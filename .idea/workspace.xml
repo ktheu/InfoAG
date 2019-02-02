@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="17908c15-2fb8-4c14-90d5-6b3e8cdaf072" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/variablen.html" beforeDir="false" afterPath="$PROJECT_DIR$/variablen.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,8 +33,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interaktion.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="101" column="7" lean-forward="true" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
+            <state relative-caret-position="142">
+              <caret line="81" column="41" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -58,14 +59,23 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="190">
-                <caret line="10" column="81" selection-start-line="10" selection-start-column="81" selection-end-line="10" selection-end-column="81" />
+              <first_editor relative-caret-position="266">
+                <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/variablen.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="389">
+              <caret line="87" column="64" selection-start-line="87" selection-start-column="64" selection-end-line="87" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -102,12 +112,12 @@
         <option value="$PROJECT_DIR$/medien.html" />
         <option value="$PROJECT_DIR$/schleifen.html" />
         <option value="$PROJECT_DIR$/scope.html" />
-        <option value="$PROJECT_DIR$/variablen.html" />
         <option value="$PROJECT_DIR$/kurs.css" />
         <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/pixel.html" />
         <option value="$PROJECT_DIR$/interaktion.html" />
         <option value="$PROJECT_DIR$/index.md" />
+        <option value="$PROJECT_DIR$/variablen.html" />
       </list>
     </option>
   </component>
@@ -129,6 +139,11 @@
             <path>
               <item name="infoAG" type="b2602c69:ProjectViewProjectNode" />
               <item name="infoAG" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infoAG" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infoAG" type="462c0819:PsiDirectoryNode" />
+              <item name="variablen" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -154,7 +169,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.interaktion.html">
+  <component name="RunManager" selected="JavaScript Debug.variablen.html">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -164,8 +179,12 @@
     <configuration name="pixel.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/pixel.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+    <configuration name="variablen.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/variablen.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.variablen.html" />
         <item itemvalue="JavaScript Debug.interaktion.html" />
         <item itemvalue="JavaScript Debug.pixel.html" />
         <item itemvalue="JavaScript Debug.index.html" />
@@ -187,7 +206,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6398000" />
+    <option name="totallyTimeSpent" value="6791000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -275,13 +294,6 @@
     <entry file="file://$PROJECT_DIR$/test.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/variablen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -351,13 +363,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interaktion.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="101" column="7" lean-forward="true" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/inhalte.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
@@ -368,10 +373,24 @@
     <entry file="file://$PROJECT_DIR$/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="190">
-            <caret line="10" column="81" selection-start-line="10" selection-start-column="81" selection-end-line="10" selection-end-column="81" />
+          <first_editor relative-caret-position="266">
+            <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interaktion.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="81" column="41" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variablen.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="87" column="64" selection-start-line="87" selection-start-column="64" selection-end-line="87" selection-end-column="64" />
         </state>
       </provider>
     </entry>
