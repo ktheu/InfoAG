@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="17908c15-2fb8-4c14-90d5-6b3e8cdaf072" name="Default Changelist" comment="" />
+    <list default="true" id="17908c15-2fb8-4c14-90d5-6b3e8cdaf072" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/interaktion.html" beforeDir="false" afterPath="$PROJECT_DIR$/interaktion.html" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -13,16 +15,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pixel.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="161" column="5" lean-forward="true" selection-start-line="161" selection-start-column="5" selection-end-line="161" selection-end-column="5" />
+            <state relative-caret-position="39">
+              <caret line="86" column="39" selection-start-line="86" selection-start-column="15" selection-end-line="86" selection-end-column="39" />
               <folding>
                 <element signature="e#4054#4060#0" expanded="true" />
                 <element signature="e#4060#4066#0" expanded="true" />
                 <element signature="e#4066#4072#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/interaktion.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="427">
+              <caret line="96" column="65" selection-start-line="96" selection-start-column="65" selection-end-line="96" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -70,6 +81,11 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>code</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -82,7 +98,6 @@
         <option value="$PROJECT_DIR$/bilder.html" />
         <option value="$PROJECT_DIR$/editor.html" />
         <option value="$PROJECT_DIR$/functions.html" />
-        <option value="$PROJECT_DIR$/interaktion.html" />
         <option value="$PROJECT_DIR$/klassen.html" />
         <option value="$PROJECT_DIR$/medien.html" />
         <option value="$PROJECT_DIR$/schleifen.html" />
@@ -92,6 +107,7 @@
         <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/index.md" />
         <option value="$PROJECT_DIR$/pixel.html" />
+        <option value="$PROJECT_DIR$/interaktion.html" />
       </list>
     </option>
   </component>
@@ -117,7 +133,7 @@
             <path>
               <item name="infoAG" type="b2602c69:ProjectViewProjectNode" />
               <item name="infoAG" type="462c0819:PsiDirectoryNode" />
-              <item name="pixel" type="462c0819:PsiDirectoryNode" />
+              <item name="interaktion" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -143,8 +159,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.pixel.html">
+  <component name="RunManager" selected="JavaScript Debug.interaktion.html">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="interaktion.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/interaktion.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="pixel.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/pixel.html" useBuiltInWebServerPort="true">
@@ -152,6 +171,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.interaktion.html" />
         <item itemvalue="JavaScript Debug.pixel.html" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
@@ -172,7 +192,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5160000" />
+    <option name="totallyTimeSpent" value="6236000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -230,13 +250,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/functions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interaktion.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
@@ -350,13 +363,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pixel.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="161" column="5" lean-forward="true" selection-start-line="161" selection-start-column="5" selection-end-line="161" selection-end-column="5" />
+        <state relative-caret-position="39">
+          <caret line="86" column="39" selection-start-line="86" selection-start-column="15" selection-end-line="86" selection-end-column="39" />
           <folding>
             <element signature="e#4054#4060#0" expanded="true" />
             <element signature="e#4060#4066#0" expanded="true" />
             <element signature="e#4066#4072#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interaktion.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="96" column="65" selection-start-line="96" selection-start-column="65" selection-end-line="96" selection-end-column="65" />
         </state>
       </provider>
     </entry>
