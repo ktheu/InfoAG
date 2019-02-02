@@ -1,0 +1,39 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        let nebula;
+        let debris;
+
+        let xdebris;
+
+        function preload() {
+            nebula = loadImage("../img/nebula_blue.png");
+            debris = loadImage("../img/debris2_blue.png");
+        }
+
+        function setup() {
+            createCanvas(nebula.width, nebula.height);
+            xdebris = width - debris.width;
+        }
+
+        function draw() {
+            image(nebula, 0, 0);
+            drawDebris();
+        }
+
+        function drawDebris() {
+            push();
+            translate(xdebris, 60);
+            image(debris, 0, 0);
+            image(debris, -debris.width, 0);
+            image(debris, -2 * debris.width, 0);
+            pop();
+            xdebris = xdebris + 0.5;
+            if (xdebris > width) xdebris = width - debris.width;
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

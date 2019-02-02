@@ -1,0 +1,148 @@
+<html>
+<head>
+    <script src="../../p5.min.js"></script>
+    <script src="explosion.js"></script>
+    <script src="asteroid.js"></script>
+    <script src="bullet.js"></script>
+    <script src="spaceship.js"></script>
+    <script>
+        let winkelgeschwindigkeitSpaceship = 3;
+        let bulletSpeed = 8.0; // Geschwindigkeit eines Bullets
+        let reibungskoeffizient = 0.1;
+        let beschleunigungSpaceship = 0.3;
+
+        let nebulaImg;
+        let spaceShipImg1;
+        let spaceShipImg2;
+        let bulletImg;
+        let asteroidImg;
+        let debrisImg;
+        let explosionImg;
+        let expImg = []; // Explosionsbilder
+
+        let ship;
+        let bullets = [];
+        let asteroids = [];
+        let explosions = [];
+
+        let tLeft = false; // Statusvariablen für Tasten
+        let tRight = false;
+        let tUp = false;
+        let tSpace = false;
+        let tSpacelock = false; // Variable zum Sperren der Spacetaste
+
+        let xdeb; // x-Position debris
+
+
+        function preload() {
+            nebulaImg = loadImage("../../img/nebula_blue.png");
+            bulletImg = loadImage("../../img/shot1.png");
+            spaceShipImg = loadImage("../../img/double_ship.png");
+            asteroidImg = loadImage("../../img/asteroid_blue.png");
+            debrisImg = loadImage("../../img/debris2_blue.png");
+            explosionImg = loadImage("../../img/explosion.png");
+        }
+
+        function setup() {
+            createCanvas(nebulaImg.width, nebulaImg.height);
+            xdeb = 0;
+            let sw = spaceShipImg.width;
+            let sh = spaceShipImg.height;
+            spaceShipImg1 = spaceShipImg.get(0, 0, sw / 2, sh);
+            spaceShipImg2 = spaceShipImg.get(sw / 2 + 2, 0, sw / 2, sh);
+            ship = new SpaceShip();
+            for (let i = 0; i < 81; i++) {
+                let zeile = int(i / 9);
+                let spalte = int(i - 9 * zeile);
+                expImg[i] = explosionImg.get(spalte * 100, zeile * 100, 100, 100);
+            }
+
+        }
+
+        function draw() {
+            imageMode(CORNER);
+            image(nebulaImg, 0, 0);
+            displayDebris();
+            ship.act();
+
+            friction = ship.v.copy();
+            friction.setMag(-reibungskoeffizient);
+            ship.applyForce(friction);
+
+            if (tUp) {
+                let gas = p5.Vector.fromAngle(radians(ship.winkel));
+                gas.setMag(beschleunigungSpaceship);
+                ship.applyForce(gas);
+            }
+
+            if (frameCount % 100 == 0) createAsteroid();
+
+            for (let b of bullets) b.act();
+            for (let a of asteroids) a.act();
+            for (let e of explosions) e.display();
+
+            checkCollisions();
+
+            if (frameCount % 500 == 0) {    // Aufräumen
+                bullets = bullets.filter(b => b.pos.x > -50);
+                asteroids = asteroids.filter(a => a.pos.x > -50);
+                explosions = explosions.filter(e => e.index < 81);
+            }
+        }
+
+        function createAsteroid() {
+            let a = new Asteroid();
+            if (a.pos.dist(ship.pos) > 80) {
+                asteroids.push(a);
+            }
+        }
+
+        function displayDebris() {
+            push();
+            translate(xdeb, 60);
+            image(debrisImg, 0, 0); // zeige erstes Bild an Koordinatenursprung
+            image(debrisImg, debrisImg.width, 0); // zeige zweites Bild rechts daneben
+            image(debrisImg, 2 * debrisImg.width, 0); // zeige drittes Bild rechts daneben
+            pop();
+            xdeb = xdeb - 0.5; // verschieben nach links
+            if (xdeb < -debrisImg.width) xdeb = 0; // wenn erstes Bild nach links raus, Anfangszustand
+        }
+
+
+        function checkCollisions() {
+            for (let i = 0; i < asteroids.length; i++) {
+                for (let j = 0; j < bullets.length; j++) {
+                    if (bullets[j].hits(asteroids[i])) {
+                        let e = new Explosion(asteroids[i].pos.x, asteroids[i].pos.y);
+                        explosions.push(e);
+                        bullets[j].vanish();
+                        asteroids[i].vanish();
+                    }
+                }
+            }
+        }
+
+        function keyPressed() {
+            if (keyCode == UP_ARROW) tUp = true;
+            if (keyCode == LEFT_ARROW) tLeft = true;
+            if (keyCode == RIGHT_ARROW) tRight = true;
+            if (key == ' ') tSpace = true; // ergänze für tSpace
+        }
+
+
+        function keyReleased() {
+            if (keyCode == UP_ARROW) tUp = false;
+            if (keyCode == LEFT_ARROW) tLeft = false;
+            if (keyCode == RIGHT_ARROW) tRight = false;
+            if (key == ' ') {
+                tSpace = false; // ergänze für tSpace
+                tSpacelock = false; // die Sperre für die Spacetaste wird aufgehoben
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+</body>
+</html>

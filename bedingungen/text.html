@@ -1,0 +1,29 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let zahl = 0
+
+    function setup() {
+      createCanvas(400, 200);
+    }
+
+    function draw() {
+      background(220);
+
+      strokeWeight(3);
+      point(50, 50);
+
+      textSize(20);
+      text("Punkte: " + zahl, 50, 50);
+    }
+
+    function mousePressed() {
+      zahl = zahl + 1;
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="part_a.css" rel="stylesheet" type="text/css" />
+  <title>Informatik</title>
+</head>
+<body>
+<h3>P5JS - Part A</h3>
+
+<p>In allen Beispielen hat der Canvas die Größe 300 x 300 und der Kreis den Durchmesser 30.</p>
+
+<p>A01: Zeichne auf schwarzem Hintergrund einen weißen Kreis
+   in die Mitte des Canvas.</p>
+
+<p>
+  <iframe src="a01.html"></iframe>
+</p>
+
+
+<p>A02: An der Mausposition werden Kreise gezeichnet.
+  Die bereits gezeichneten Kreise bleiben sichtbar.</p>
+
+<p>
+  <iframe src="a02.html"></iframe>
+</p>
+
+<p>A03: Der Kreis folgt der Mausposition. </p>
+
+<p>
+  <iframe src="a03.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A04: Der Kreis bewegt sich von der Mitte aus langsam nach rechts. </p>
+
+<p>
+  <iframe src="a04.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A05: Der Kreis stoppt bei x = 250. </p>
+
+<p>
+  <iframe src="a05.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A06: Der Kreis wird an den Seiten reflektiert </p>
+
+<p>
+  <iframe src="a06.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A07: Wenn die Maus geklickt wird, hüpft der Kreis zur Mausposition. </p>
+<small>Nutze die Funktion mousePressed() und eine Abfrage, ob keyCode === LEFT_ARROW.</small>
+
+<p>
+  <iframe src="a07.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A07a: Wenn die linke Maustaste geklickt wird, springt der Kreis nach links,
+  wenn die rechte geklickt wird, springt er nach rechts. </p>
+<small>Nutze die Funktion mousePressed() und Abfragen wie mouseButton === LEFT.</small>
+
+<p>
+  <iframe src="a07a.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A08: Wenn die rechte Pfeiltaste gedrückt wird, beginnt der Kreis seine Bewegung nach rechts.
+</br><small>Nutze die Funktion keypressed() und eine Abfrage, ob keyCode === LEFT_ARROW.</small>
+</p>
+
+<p>
+  <iframe src="a08.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A09: Der Kreis bewegt sich solange nach rechts, wie die rechte Pfeiltaste gedrückt ist.
+</br><small>Nutze die Funktionen keypressed() und keyReleased() und Abfragen, ob keyCode === LEFT_ARROW.</small>
+
+<p>
+  <iframe src="a09.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A10: Die Bewegung des Kreises kann mit der Pfeiltaste nach oben und der Pfeiltaste nach rechts gesteuert
+  werden. Beide Tasten können auch gleichzeitig gedrückt werden.
+<p>
+  <iframe src="a10.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A11: Wie A10, aber die Bewegung wird jetzt mit den Tasten 'd' (nach links) und 'w' (nach oben) gesteuert.
+</br><small>Manche Browser setzen die Variable key auf Großbuchstaben, auch wenn ein
+    Kleinbuchstabe eingegeben wurde. Nutze deswegen Abfragen wie key.toLowerCase() === 'd'.</small>
+<p>
+  <iframe src="a11.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A12: Gib einen Text aus, der die x-Position der Maus anzeigt.
+  </br><small>Nutze z.B: text("x = " + mouseX, 50,50)</small>
+<p>
+  <iframe src="a12.html"></iframe>
+</p>
+
+
+<!--------------------------------------------------->
+<p>A13: 20 Kreise entstehen an zufälligen Positionen.
+  </br><small>Nutze z.B: random(0,300)</small>
+<p>
+  <iframe src="a13.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A14: Immer wenn, die Maus geklickt wird, entstehen 20 Kreise an zufälligen Positionen.
+  </br><small>Nutze Arrays für die Verwaltung der x und y Position der Kreise. </small>
+
+<p>
+  <iframe src="a14.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A15: 20 zufällige Kreise bewegen sich mit gleicher Geschwindigkeit nach rechts.
+<p>
+  <iframe src="a15.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A16: 20 zufällige Kreise bewegen sich mit unterschiedlicher Geschwindigkeit nach rechts oder links.
+  </br><small>Verwalte auch die Geschwindigkeit in x-Richtung in einem Array. </small>
+<p>
+  <iframe src="a16.html"></iframe>
+</p>
+
+<!--------------------------------------------------->
+<p>A17: Implementiere eine Funktion <em>function zweiKreise(x,y)</em>,
+  die an die Position (x/y) zwei leicht gegeneinander versetzte Kreise zeichnet. Im Beispiel
+  wurde die Funktion zweimal aufgerufen.
+<p>
+  <iframe src="a17.html"></iframe>
+</p>

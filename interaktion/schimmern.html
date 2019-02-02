@@ -1,0 +1,22 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    function setup() {
+      createCanvas(600, 400);
+      stroke(255);
+    }
+
+    function draw() {
+      fill(0, 5);
+      rect(0, 0, 600, 400);
+      line(mouseX, mouseY, 0, 0);
+      line(mouseX, mouseY, 600, 0);
+      line(mouseX, mouseY, 600, 400);
+      line(mouseX, mouseY, 0, 400);
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

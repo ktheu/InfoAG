@@ -1,0 +1,99 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        class Fliege {
+            constructor() {
+                this.pos = createVector(random(0, width), random(0, height));
+                this.v = createVector(random(-3, 3), random(-3, 3));
+            }
+
+            act() {
+                this.checkPosition();
+                this.checkTasten();
+                this.move();
+                this.display();
+            }
+
+            move() {
+                this.pos.add(this.v);
+            }
+
+            display() {
+                imageMode(CENTER);
+                push();
+                translate(this.pos.x, this.pos.y);
+                rotate(this.v.heading());
+                image(fliege, 0, 0);
+                pop();
+            }
+
+            checkTasten() {
+                if (tLeft) this.v.rotate(radians(-5.0)); // check linke Pfeiltaste
+                if (tRight) this.v.rotate(radians(+5.0)); //- check rechte Pfeiltaste
+            }
+
+            checkPosition() {
+                if (this.pos.x > width) { // wenn nach rechts raus
+                    this.pos.x = 0; // dann an linken Rand
+                } else if (this.pos.x < 0) { // wenn nach links raus
+                    this.pos.x = width; // dann an rechten Rand
+                }
+                if (this.pos.y > height) { //- wenn nach unten raus
+                    this.pos.y = 0; //- dann an oberen Rand
+                } else if (this.pos.y < 0) { //- wenn nach oben raus
+                    this.pos.y = height; //- dann an unteren Rand
+                }
+            }
+        }
+
+
+        let img;
+        let fliege;
+        let fliegen = []
+        let anzahl = 50;
+
+        let tLeft = false;
+        let tRight = false;
+
+        function preload() {
+            img = loadImage("../img/bricks2.jpg");
+            fliege = loadImage("../img/fly.png");
+        }
+
+        function setup() {
+            createCanvas(500, 500);
+            for (let i = 0; i < anzahl; i++) {
+                fliegen.push(new Fliege());
+            }
+        }
+
+        function draw() {
+            displayBackground();
+            for (let i = 0; i < anzahl; i++) {
+                fliegen[i].act();
+            }
+        }
+
+        function displayBackground() {
+            for (var i = 0; i < width + img.width; i = i + img.width) {
+                for (var j = 0; j < height + img.height; j = j + img.height)
+                    image(img, i, j);
+            }
+
+        }
+
+        function keyPressed() {
+            if (keyCode == RIGHT_ARROW) tRight = true;
+            if (keyCode == LEFT_ARROW) tLeft = true;
+        }
+
+        function keyReleased() {
+            if (keyCode == RIGHT_ARROW) tRight = false;
+            if (keyCode == LEFT_ARROW) tLeft = false;
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let b;              // Ball
+    let obenRechts;     // Vektor nach oben rechts
+
+    function setup() {
+      createCanvas(400, 400);
+      obenRechts = createVector(width, 0);
+    }
+
+    function draw() {
+      background(0);
+      if (b != null) b.act();
+    }
+
+    function mousePressed() {
+      mouse = createVector(mouseX, mouseY)
+      v = p5.Vector.sub(obenRechts, mouse);
+      v.setMag(7.0);
+      b = new Ball(mouse, v);
+    }
+
+    class Ball {
+      constructor(pos, v) {
+        this.pos = pos
+        this.v = v
+      }
+
+      act() {
+        this.move();
+        this.display();
+      }
+
+      move() {
+        this.pos.add(this.v);
+      }
+
+      display() {
+        fill(255);
+        ellipse(this.pos.x, this.pos.y, 10, 10);
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let xBox = 200, yBox = 200;
+    let laengeBox = 200, hoeheBox = 80;
+    let radiusBall = 20;
+
+    function setup() {
+      createCanvas(600, 400);
+      ellipseMode(RADIUS);
+      noStroke();
+    }
+
+    function draw() {
+      background(255);
+      let xBall = mouseX;
+      let yBall = mouseY;
+      let ballLinksVonBox = (xBall + radiusBall < xBox);
+      let ballRechtsVonBox = (xBall - radiusBall > xBox + laengeBox);
+      let ballUeberBox = (yBall + radiusBall < yBox);
+      let ballUnterBox = (yBall - radiusBall > yBox + hoeheBox);
+      let collision = !ballLinksVonBox && !ballRechtsVonBox &&
+        !ballUeberBox && !ballUnterBox;
+
+      fill(0);
+      rect(xBox, yBox, laengeBox, hoeheBox);
+      ellipse(xBall, yBall, radiusBall, radiusBall);
+
+      if (collision) {
+        fill(255, 0, 0);
+        ellipse(10, 10, 10, 10);
+      }
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

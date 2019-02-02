@@ -1,0 +1,28 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    function setup() {
+      createCanvas(300, 200);
+      background(0);
+      noStroke();
+      fill(0, 0, 255);      // blau
+      rect(0, 0, 150, 200);
+
+      fill(255, 0, 0, 255);  // volle Deckkraft für rot
+      rect(0, 0, 300, 40);
+
+      fill(255, 0, 0, 191);  // weniger Deckkraft für rot
+      rect(0, 50, 300, 40);
+
+      fill(255, 0, 0, 127);  // noch weniger
+      rect(0, 100, 300, 40);
+
+      fill(255, 0, 0, 63);   // und noch weniger
+      rect(0, 150, 300, 40);
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    function setup() {
+      createCanvas(800, 600);
+      stroke(255);
+      strokeWeight(2);
+      noFill();
+      rectMode(CENTER);
+    }
+
+    function draw() {
+      background(0);
+      let laenge = int(map(mouseX, 0, width, -0.9*width, 0.9*width));
+      let breite = int(map(mouseY, 0, height, -0.9*height, 0.9*height));
+      rect(width*0.5, height*0.5, laenge, breite);
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

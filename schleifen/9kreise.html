@@ -1,0 +1,32 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    function setup() {
+      createCanvas(700, 100);
+      background(255);
+      stroke(0);
+      strokeWeight(4);
+
+      let x = 50;
+      let y = 50;
+      let durchmesser = 50;
+      let abstand = durchmesser + 20;
+
+      for (let i = 0; i < 9; i++) {
+        if (i % 2 == 0) {
+          fill(100);
+          y = y + 10;
+        } else {
+          fill(150);
+          y = y - 10;
+        }
+        ellipse(x, y, durchmesser, durchmesser);
+        x = x + abstand;
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

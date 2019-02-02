@@ -1,0 +1,27 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let schalter = true;
+
+    function setup() {
+      createCanvas(300, 300);
+    }
+
+    function draw() {
+      if (schalter) {
+        background(255);
+      } else {
+        background(0);
+      }
+    }
+
+    function mousePressed() {
+      schalter = !schalter;
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

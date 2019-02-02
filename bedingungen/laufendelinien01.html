@@ -1,0 +1,32 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let x = 0;
+    let y = 0;
+    let dx = 2;  // Geschwindigkeit
+    let dy = 1;
+
+    function setup() {
+      createCanvas(500, 300);
+      stroke(0);
+      strokeWeight(3);
+    }
+
+    function draw() {
+      background(255);
+
+      if (x < 0 || x > width) dx = -dx;
+      if (y < 0 || y > height) dy = -dy;
+
+      x = x + dx;
+      y = y + dy;
+
+      line(x, 0, x, height);
+      line(0, y, width, y);
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

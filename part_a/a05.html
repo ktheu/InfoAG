@@ -1,0 +1,25 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let x = 150;
+
+    function setup() {
+      createCanvas(300, 300);
+      fill(255);
+      ellipse(150,150,30,30);
+    }
+
+    function draw() {
+      background(0);
+      ellipse(x,150,30,30);
+      if (x < 200) {
+        x = x + 1;
+      }
+     }
+
+   </script>
+</head>
+<body>
+</body>
+</html>

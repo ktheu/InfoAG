@@ -1,0 +1,60 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        class FlappyBalken {
+            constructor(x, vx, breite, yLuecke, hoeheLuecke, farbe) {
+                this.x = x;
+                this.vx = vx;
+                this.breite = breite;
+                this.hoeheLuecke = hoeheLuecke;
+                this.farbe = farbe;
+            }
+
+            act() {
+                this.checkRand();
+                this.move();
+                this.display();
+            }
+
+            display() {
+                noStroke();
+                fill(this.farbe);
+                rect(this.x, 0, this.breite, this.yLuecke);
+                rect(this.x, this.yLuecke + this.hoeheLuecke,
+                    this.breite, height - (this.yLuecke + this.hoeheLuecke));
+            }
+
+            move() {
+                this.x = this.x - this.vx;
+            }
+
+            checkRand() {
+                if (this.x + this.breite < 0) {
+                    this.x = width;
+                    this.yLuecke = random(50, height - (50 + this.hoeheLuecke));
+                }
+            }
+        }
+
+        let balken = [];
+
+        function setup() {
+            createCanvas(500, 500);
+            balken.push(new FlappyBalken(400, 2.0, 20, 100, 100, '#AF7517'));
+            balken.push(new FlappyBalken(500, 2.0, 20, 300, 100, '#AF7517'));
+            balken.push(new FlappyBalken(600, 2.0, 20, 400, 100, '#AF7517'));
+        }
+
+        function draw() {
+            background(220);
+
+            for (let b of balken) {
+                b.act();
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

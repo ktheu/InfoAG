@@ -1,0 +1,35 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let tlinks, trechts = false;
+    let radius = 30;
+
+    function setup() {
+      createCanvas(500, 500);
+      ellipseMode(RADIUS);
+      noStroke();
+      fill(255);
+    }
+
+    function draw() {
+      background(0);
+      if (tlinks) radius = radius + 1;
+      if (trechts && radius >= 2) radius = radius - 2;
+      ellipse(width / 2, height / 2, radius, radius);
+    }
+
+    function keyPressed() {
+      if (keyCode == LEFT_ARROW) tlinks = true;
+      if (keyCode == RIGHT_ARROW) trechts = true;
+    }
+
+    function keyReleased() {
+      if (keyCode == LEFT_ARROW) tlinks = false;
+      if (keyCode == RIGHT_ARROW) trechts = false;
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

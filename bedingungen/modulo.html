@@ -1,0 +1,37 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let c0 = '#9D2828';
+    let c1 = '#397154';
+    let c2 = '#D9E370'
+    let zaehl = 0
+
+    function setup() {
+      createCanvas(600, 400);
+      background(0);
+    }
+
+    function draw() {
+      if (frameCount % 30 == 0) {
+        if (zaehl % 3 == 0) {
+          fill(c0);
+          ellipse(random(0, width / 3), random(0, height), 30, 30);
+        }
+        if (zaehl % 3 == 1) {
+          fill(c1);
+          ellipse(random(width / 3, 2 * width / 3), random(0, height), 30, 30);
+        }
+        if (zaehl % 3 == 2) {
+          fill(c2);
+          ellipse(random(2 * width / 3, width), random(0, height), 30, 30);
+        }
+        zaehl++;
+      }
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

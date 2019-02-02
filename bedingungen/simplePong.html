@@ -1,0 +1,87 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let px, py;      // Koordinaten des Paddles
+    let x, y;        // Koordinaten des Balls
+    let vpx = 7;     // horizontale Geschwindigkeit des Paddles
+    let vx = 5.0;    // x-Geschwindigkeit des Balls
+    let vy = 5.0;    // y-Geschwindigkeit des Balls
+    let radius = 10; // Radius des Balls
+    let hoehePaddle = 10;
+    let breitePaddle = 100;
+    let tright = false; // Schalter Taste
+    let tleft = false;  // Schalter Taste
+    let treffer = 0;
+
+
+    function setup() {
+      createCanvas(500, 500);
+
+      ellipseMode(RADIUS);
+      textSize(20);
+      x = width / 2;          // Anfangsposition Ball
+      y = 50;
+      px = width / 2;         // Anfangsposition Padde
+      py = 0.9 * height;
+    }
+
+    function draw() {
+      // check -  move - display
+      background(0);
+
+      // check: Ball am Rand?
+      if (x - radius < 0 || x + radius > width) vx = -vx;
+      if (y - radius < 0) vy = -vy;
+
+      // check: Ball kollidiert mit Paddle?
+      let ballOberhalbPaddle = y + radius < py;
+      let ballUnterhalbPaddle = y - radius > py + hoehePaddle;
+      let ballLinksVonPaddle = x + radius < px;
+      let ballRechtsVonPaddle = x - radius > px + breitePaddle;
+      let kollision = !ballOberhalbPaddle && !ballUnterhalbPaddle &&
+        !ballLinksVonPaddle && !ballRechtsVonPaddle;
+
+      if (kollision) {
+        vy = -1.05 * vy;
+        treffer++;
+      }
+
+      // move: Bewegung des Paddles
+      if (tright) px = px + vpx;
+      if (tleft) px = px - vpx;
+
+      // move: Bewegung des Balls
+      x = x + vx;
+      y = y + vy;
+
+      // display Paddle
+      fill(120);
+      rect(px, py, breitePaddle, hoehePaddle);
+
+      // display Ball
+      fill(255);
+      noStroke();
+      ellipse(x, y, radius, radius);
+
+      // display Treffer
+      //ellipse(20,30,2,2);
+      text(treffer + "", 20, 30);
+    }
+
+    function keyPressed() {
+      if (keyCode == RIGHT_ARROW) tright = true;
+      if (keyCode == LEFT_ARROW) tleft = true;
+    }
+
+    function keyReleased() {
+      if (keyCode == RIGHT_ARROW) tright = false;
+      if (keyCode == LEFT_ARROW) tleft = false;
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

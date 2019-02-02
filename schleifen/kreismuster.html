@@ -1,0 +1,24 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    function setup() {
+      createCanvas(600, 600);
+      noFill();
+    }
+
+    function draw() {
+      background(255);
+      let dichte = map(mouseX, 0, width, 20, 50);
+      let d = map(mouseY,0,height,20,200);
+      for (let x = 50; x <= width-50; x +=dichte) {
+        for (let y = 50; y <= height-50; y += dichte) {
+          ellipse(x,y,d,d);
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

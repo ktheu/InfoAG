@@ -1,0 +1,24 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    function setup() {
+      createCanvas(300, 300);
+    }
+    function draw() {
+      background(255);
+      line(150,0,150,300);
+      if (mouseX > 150) {
+        fill(255,0,0);
+      }
+      else {
+        fill(0,0,255);
+      }
+      ellipse(mouseX,150,100,100);
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

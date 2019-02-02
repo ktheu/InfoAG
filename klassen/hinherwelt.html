@@ -1,0 +1,54 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        class Hinher {
+            constructor(y) {
+                this.y = y;
+                this.x = random(30, width - 130);
+                this.vx = random(1, 5);
+                if (random(1) < 0.5) this.vx = -this.vx;
+            }
+
+            act() {
+                this.checkRand();
+                this.move();
+                this.display();
+            }
+
+            display() {
+                fill(0);
+                rect(this.x, this.y, 100, 20);
+            }
+
+            move() {
+                this.x = this.x + this.vx;
+            }
+
+            checkRand() {
+                if (this.x < 30 || width - (this.x + 100) < 30) this.vx = -this.vx;
+            }
+        }
+
+        let hinher = [];
+
+        function setup() {
+            createCanvas(500, 500);
+            y = [100, 200, 300, 400];
+            for (let i = 0; i < y.length; i++) {
+                hinher.push(new Hinher(y[i]))
+            }
+
+        }
+
+        function draw() {
+            background(220);
+            for (let i = 0; i < hinher.length; i++) {
+                hinher[i].act();
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

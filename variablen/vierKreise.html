@@ -1,0 +1,29 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let d = 100;  // Durchmesser
+    let x1 = 100;
+    let x2 = 300;
+
+    function setup() {
+      createCanvas(400, 400);
+      noStroke();
+    }
+
+    function draw() {
+      background(255);
+      fill('#EA4040');
+      ellipse(x1, x1, d, d);
+      ellipse(x2, x1, d, d);
+      ellipse(x1, x2, d, d);
+      ellipse(x2, x2, d, d);
+      x1 = x1 + 1;
+      x2 = x2 - 1;
+      d = d + 1;
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

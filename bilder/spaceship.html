@@ -1,0 +1,135 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        let winkelgeschwindigkeitSpaceship = 4;
+        let bulletSpeed = 8.0; // Geschwindigkeit eines Bullets
+        let nebulaImg;
+        let spaceShipImg1;
+        let spaceShipImg2;
+        let bulletImg;
+
+        let ship; // Ein Spaceship-Objekt
+        let bull; // Ein Bullet-Objekt
+
+        let tLeft = false; // Statusvariablen für Tasten
+        let tRight = false;
+        let tUp = false;
+        let tSpace = false;
+        let tSpacelock = false; // Variable zum Sperren der Spacetaste
+
+
+        function preload() {
+            nebulaImg = loadImage("../img/nebula_blue.png");
+            bulletImg = loadImage("../img/shot1.png");
+            spaceShipImg = loadImage("../img/double_ship.png");
+        }
+
+        function setup() {
+            createCanvas(nebulaImg.width, nebulaImg.height);
+            let sw = spaceShipImg.width;
+            let sh = spaceShipImg.height;
+            spaceShipImg1 = spaceShipImg.get(0, 0, sw / 2, sh);
+            spaceShipImg2 = spaceShipImg.get(sw / 2 + 2, 0, sw / 2, sh);
+            ship = new SpaceShip();
+        }
+
+        function draw() {
+            imageMode(CORNER);
+            image(nebulaImg, 0, 0);
+            ship.act();
+            if (bull != null) bull.act();
+        }
+
+        function keyPressed() {
+            if (keyCode == UP_ARROW) tUp = true;
+            if (keyCode == LEFT_ARROW) tLeft = true;
+            if (keyCode == RIGHT_ARROW) tRight = true;
+            if (key == ' ') tSpace = true; // ergänze für tSpace
+        }
+
+
+        function keyReleased() {
+            if (keyCode == UP_ARROW) tUp = false;
+            if (keyCode == LEFT_ARROW) tLeft = false;
+            if (keyCode == RIGHT_ARROW) tRight = false;
+            if (key == ' ') {
+                tSpace = false; // ergänze für tSpace
+                tSpacelock = false; // die Sperre für die Spacetaste wird aufgehoben
+            }
+        }
+
+        class SpaceShip {
+            constructor() {
+                this.pos = createVector(width / 4, height / 2);
+                this.winkel = 0;
+
+            }
+
+            act() {
+                this.checkTasten();
+                this.display();
+            }
+
+            checkTasten() {
+                if (tRight) {
+                    this.winkel += winkelgeschwindigkeitSpaceship;
+                }
+                if (tLeft) {
+                    this.winkel -= winkelgeschwindigkeitSpaceship;
+                }
+                if (tSpace && !tSpacelock) {
+                    bull = this.fire();
+                    tSpacelock = true;
+                }
+            }
+
+            display() {
+                imageMode(CENTER);
+                push();
+                translate(this.pos.x, this.pos.y);
+                rotate(radians(this.winkel));
+                if (tUp) {
+                    image(spaceShipImg2, 0, 0);
+                } else {
+                    image(spaceShipImg1, 0, 0);
+                }
+                pop();
+            }
+
+            fire() {
+                let b = new Bullet();
+                b.v = p5.Vector.fromAngle(radians(this.winkel));
+                b.v.setMag(spaceShipImg1.width / 2);
+                b.pos = p5.Vector.add(this.pos, b.v);
+                b.v.setMag(bulletSpeed);
+                return b;
+            }
+        }
+
+        class Bullet {
+
+            constructor() {
+                this.pos = createVector(0, 0);
+                this.v = createVector(0, 0);
+            }
+
+            act() {
+                this.move();
+                this.display();
+            }
+
+            move() {
+                this.pos.add(this.v);
+            }
+
+            display() {
+                imageMode(CENTER);
+                image(bulletImg, this.pos.x, this.pos.y);
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

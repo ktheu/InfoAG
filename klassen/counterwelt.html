@@ -1,0 +1,69 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        class Counter {
+            constructor(x, y, farbe = '#000000', groesse = 20, start = 0, end = 20) {
+                this.x = x;
+                this.y = y;
+                this.farbe = farbe;
+                this.groesse = groesse;
+                this.start = start;
+                this.end = end;
+                this.count = start
+            }
+
+            display() {
+                fill(this.farbe);
+                textSize(this.groesse);
+                ellipseMode(RADIUS);
+                text(this.count, this.x, this.y);
+
+            }
+
+            add(n = 1) {
+                if (this.count != this.end)
+                    this.count = this.count + n;
+            }
+
+            subtract(n) {
+                this.add(-n);
+            }
+
+            reset() {
+                this.count = this.start;
+            }
+
+            atEnd() {
+                return this.count == this.end;
+            }
+        }
+
+        let c1;
+        let c2;
+
+        function setup() {
+            createCanvas(400, 100);
+            c1 = new Counter(50, 50);
+            c2 = new Counter(100, 50, '#670F0F', 30, 100, 0);
+        }
+
+        function draw() {
+            background(220);
+            if (frameCount % 20 == 0) {
+                if (c1.atEnd()) c1.reset();
+                else c1.add();
+            }
+            if (frameCount % 10 == 0) {
+                if (c2.atEnd()) c2.reset();
+                else c2.subtract(5);
+            }
+
+            c1.display();
+            c2.display();
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

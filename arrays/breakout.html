@@ -1,0 +1,159 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        const xanzahl = 8;
+        const yanzahl = 3
+        let paddle, ball, block; // Bilder
+        let px = 300,
+            py = 460; // Position des Paddles
+        let bx = 100,
+            by = 200; // Position des Balls
+        let vpx = 0; // Geschwindigkeit des Paddles in x-Richtung
+        let vbx = 6,
+            vby = 6; // Geschwindigkeit Ball
+        let x = []; // x-Koordinaten der Targets
+        let y = []; // y-Koordinaten der Targets
+        let getroffen = []; // 2dim Array für getroffene Targets
+        let zaehl = 0; // Treffer zählen
+        let ballDurchmesser; // Radius des Balls
+        let paddleHoehe, paddleBreite;
+        let targetHoehe, targetBreite;
+
+        let p_ballOberhalbVonPaddle;
+        let p_ballUnterhalbVonPaddle;
+        let p_ballLinksVonPaddle;
+        let p_ballRechtsVonPaddle;
+
+        function preload() {
+            paddle = loadImage("../img/paddle.png");
+            ball = loadImage("../img/ball.png");
+            block = loadImage("../img/block.png");
+        }
+
+        function setup() {
+
+            createCanvas(700, 500);
+            ballDurchmesser = ball.width;
+            paddleHoehe = paddle.height;
+            paddleBreite = paddle.width;
+            targetHoehe = block.height;
+            targetBreite = block.width;
+            fill(0);
+            textSize(32);
+
+            for (let i = 0; i < xanzahl; i++) {
+                x[i] = 50 + i * 80;
+            }
+
+            for (let i = 0; i < yanzahl; i++) {
+                y[i] = 30 + i * 30;
+            }
+
+            for (let j = 0; j < yanzahl; j++) {
+                let tmp = []
+                for (let i = 0; i < xanzahl; i++) {
+                    tmp.push(false);
+                }
+                getroffen.push(tmp);
+            }
+        }
+
+        function draw() {
+            // --------------- check -------------------------------------------
+
+            let verloren = by > height + 30;
+
+            let ballOberhalbPaddle = (by + ballDurchmesser < py);
+            let ballLinksVonPaddle = (bx + ballDurchmesser < px);
+            let ballRechtsVonPaddle = (bx > px + paddleBreite);
+            let ballUnterhalbPaddle = (by > py + paddleHoehe);
+            let ballTrifftPaddle = !ballOberhalbPaddle && !ballLinksVonPaddle &&
+                !ballRechtsVonPaddle && !ballUnterhalbPaddle;
+            let ballTrifftSeiten = (bx + ball.width > width || bx < 0);
+            let ballTrifftOben = (by < 0);
+            let ballGehtAufwaerts = (vby < 0);
+
+            let targetGetroffen = false;
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 8; j++) {
+                    if (!getroffen[i][j] && ballGehtAufwaerts) {
+                        let xtreffer = (x[j] <= bx && bx + ballDurchmesser <= x[j] + targetBreite);
+                        let ytreffer = (y[i] <= by + ballDurchmesser && by <= y[i] + targetHoehe);
+                        if (xtreffer && ytreffer) {
+                            targetGetroffen = true;
+                            getroffen[i][j] = true;
+                            break;
+                        }
+                    }
+                    if (targetGetroffen) break;
+                }
+            }
+
+            //------------------------- move -------------------------------
+
+            if (ballTrifftPaddle && !ballRechtsVonPaddle && p_ballRechtsVonPaddle) {
+                vbx = -vbx + vpx;
+            } else if (ballTrifftPaddle && !ballLinksVonPaddle && p_ballLinksVonPaddle) {
+                vbx = -vbx - vpx;
+            } else if (ballTrifftPaddle) {
+                vby = -vby;
+            }
+
+            if (ballTrifftOben) vby = -vby;
+            if (ballTrifftSeiten) vbx = -vbx;
+
+            if (targetGetroffen) {
+                zaehl++;
+                vby = -vby;
+            }
+
+            px = px + vpx;
+            bx = bx + vbx;
+            by = by + vby;
+
+            //------------------------- display ---------------------------
+            background('#F0ED9B');
+
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 8; j++) {
+                    if (!getroffen[i][j]) {
+                        image(block, x[j], y[i]);
+                    }
+                }
+            }
+
+            image(paddle, px, py);
+            image(ball, bx, by);
+            text(zaehl, 15, 40);
+
+            if (verloren) {
+                text("ENDE", 320, 300);
+                noLoop();
+            }
+
+            // --------------- previous --------------------
+            p_ballOberhalbVonPaddle = ballOberhalbPaddle;
+            p_ballUnterhalbVonPaddle = ballUnterhalbPaddle;
+            p_ballLinksVonPaddle = ballLinksVonPaddle;
+            p_ballRechtsVonPaddle = ballRechtsVonPaddle;
+
+        }
+
+        function keyPressed() {
+            if (keyCode == RIGHT_ARROW) {
+                vpx = 5;
+            }
+            if (keyCode == LEFT_ARROW) {
+                vpx = -5;
+            }
+        }
+
+        function keyReleased() {
+            vpx = 0;
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

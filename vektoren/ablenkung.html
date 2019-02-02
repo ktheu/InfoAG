@@ -1,0 +1,54 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let baelle = [];
+    let mitte;
+    let obenRechts;
+
+    function setup() {
+      createCanvas(400, 400);
+      mitte = createVector(width / 2, height / 2);
+      obenRechts = createVector(width, 0);
+    }
+
+    function draw() {
+      background(0);
+      for (let b of baelle) b.act();
+    }
+
+    function mousePressed() {
+      mouse = createVector(mouseX, mouseY);
+      hilf = p5.Vector.sub(obenRechts, mouse);
+      hilf.setMag(5);
+      baelle.push(new Ball(mouse, hilf));
+    }
+
+    class Ball {
+      constructor(pos, v) {
+        this.pos = pos;
+        this.v = v;
+      }
+
+      act() {
+        this.move();
+        this.display();
+      }
+
+      move() {
+        this.pos.add(this.v);
+        if (this.pos.dist(mitte) > 0.8 * width / 2) {
+          this.v.rotate(radians(10));
+        }
+      }
+
+      display() {
+        fill(255);
+        ellipse(this.pos.x, this.pos.y, 10, 10);
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

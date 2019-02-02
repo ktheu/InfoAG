@@ -1,0 +1,29 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        let dy = [2, 4, 3, 2, 9, 7, 5, 8, 6, 5.5, 3];
+        let y = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
+
+        function setup() {
+            createCanvas(500, 500);
+            noFill();
+            stroke(255);
+            strokeWeight(2);
+        }
+
+        function draw() {
+            background(0);
+            for (let i = 0; i < dy.length; i++) {
+                rect(20 + i * 40, y[i], 40, 40);
+                y[i] = y[i] + dy[i]
+                if (y[i] > height - 40) {
+                    y[i] = height - 40;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

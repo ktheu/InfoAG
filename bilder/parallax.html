@@ -1,0 +1,49 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        let back, middle, front; // 3 Bilder
+        let xback, xmiddle, xfront; // x-pos der Bilder
+
+        function preload() {
+            back = loadImage("../img/back.png");
+            middle = loadImage("../img/middle1.png");
+            front = loadImage("../img/front1.png");
+        }
+
+        function setup() {
+            createCanvas(back.width, back.height);
+            xback = xmiddle = xfront = 0;
+        }
+
+        function draw() {
+
+            push();
+            translate(xback, 0);
+            image(back, 0, 0);
+            image(back, back.width, 0);
+            pop();
+            xback = xback - 1;
+            if (xback < -back.width) xback = 0;
+
+            push();
+            translate(xmiddle, height - middle.height); // Koordinatenursprung nach (xmiddle/?)
+            image(middle, 0, 0); // Mittelbild am Ursprung zeigen
+            image(middle, middle.width, 0); // zweites Bild rechts daneben
+            pop();
+            xmiddle = xmiddle - 2; // xmiddle wird um 2 vermindert
+            if (xmiddle < -middle.width) xmiddle = 0; // wenn linkes Bild nach links rausgefahren, auf Anfangszustand
+
+            push();
+            translate(xfront, height - front.height); // Koordinatenursprung nach (xfront/?)
+            image(front, 0, 0); // Vordergrundbild am Ursprung zeigen
+            image(front, front.width, 0); // zweites Bild rechts daneben
+            pop();
+            xfront = xfront - 3; // front wird um 3 vermindert
+            if (xfront < -front.width) xfront = 0; // wenn linkes Bild nach links rausgefahren, auf Anfangszustand
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

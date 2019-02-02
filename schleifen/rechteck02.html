@@ -1,0 +1,32 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    function setup() {
+      createCanvas(800, 600);
+      noFill();
+      stroke(255);
+      strokeWeight(2);
+      rectMode(CENTER);
+    }
+
+    function draw() {
+      background(0);
+      let breite = map(mouseX, 0, width, -0.9 * width, 0.9 * width);
+      let hoehe = map(mouseY, 0, height, -0.9 * height, 0.9 * height);
+
+      let anzahl = 20;
+      let diff = 20;
+
+      for (let i = 0; i < anzahl; i++) {
+        rect(0.25 * width, 0.5 * height, breite, hoehe);
+        rect(0.75 *  width, 0.5 * height, breite, hoehe);
+        breite = breite - diff;
+        hoehe = hoehe - diff;
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

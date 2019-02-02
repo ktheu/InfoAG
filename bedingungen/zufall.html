@@ -1,0 +1,31 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    function setup() {
+      createCanvas(800, 600);
+      noStroke();
+      background(0);
+      colorMode(HSB);
+    }
+
+    function draw() {
+      if (frameCount % 300 == 0) {
+        background(0);
+      }
+
+      let ton = int(map(mouseX, 0, width, 0, 255));
+      let sat = int(random(0, 256));
+      let bright = int(random(0, 256));
+
+      fill(ton, sat, bright);
+      let x = int(random(0, width));
+      let y = int(random(0, height));
+      let k = int(random(1, 60));
+      rect(x, y, k, k);
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

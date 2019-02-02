@@ -1,0 +1,54 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script src="jump.ball.js"></script>
+  <script>
+    let b;
+    let gravitation;
+    let jump;
+
+    let tRight = false;
+    let tLeft = false;
+    let tSpace = false;
+    let tSpacelock = false;
+
+    function setup() {
+      createCanvas(500, 500);
+      b = new Ball();
+      gravitation = createVector(0.0, 0.6);
+      jump = createVector(0.0, -20.0);
+    }
+
+    function draw() {
+      background(200);
+      b.act();
+    }
+
+    function keyPressed() {
+      if (keyCode == RIGHT_ARROW) tRight = true;
+      if (keyCode == LEFT_ARROW) tLeft = true;
+      if (key === ' ') {
+        tSpace = true;
+      }
+    }
+
+    function keyReleased() {
+      if (keyCode == RIGHT_ARROW) tRight = false;
+      if (keyCode == LEFT_ARROW) tLeft = false;
+      if (key === ' ') {
+        tSpace = false;
+        tSpacelock = false;
+      }
+    }
+
+    function mousePressed() {
+      b.pos.x = mouseX;
+      b.pos.y = mouseY;
+    }
+
+
+  </script>
+</head>
+<body>
+</body>
+</html>

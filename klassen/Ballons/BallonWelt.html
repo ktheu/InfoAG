@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../../p5.min.js"></script>
+    <script src="./Ballon.js"></script>
+    <script>
+        let ballons = [];   // array mit Ballonbildern
+        let b;              //  Ballon
+
+        function setup() {
+            createCanvas(400, 600);
+            ballons[0] = loadImage("../../img/balloon1.png");
+            ballons[1] = loadImage("../../img/balloon2.png");
+            ballons[2] = loadImage("../../img/balloon3.png");
+            b = new Ballon(ballons[0], height);
+        }
+
+        function draw() {
+            background('#FFFF77');
+            b.steige();
+        }
+
+        function mousePressed() {
+            b.haengeAn(new Ballon(ballons[int(random(0, 3))]));
+        }
+    </script>
+
+</head>
+<body></body>
+</html>

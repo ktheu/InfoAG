@@ -1,0 +1,26 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    function setup() {
+      createCanvas(600, 600);
+      noFill();
+    }
+
+    function draw() {
+      background(255);
+      let dichte = map(mouseX, 0, width, 30, 50);
+      let anzahl = map(mouseY,0, height, 4,80);
+      for (let x = 50; x <= width-50; x +=dichte) {
+        for (let y = 50; y <= height-50; y += dichte) {
+          for (let i = 0; i < anzahl; i = i + 4) {
+            line(x+i,y,x+i,y+12);
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

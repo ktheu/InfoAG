@@ -1,0 +1,27 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    function setup() {
+      createCanvas(401, 401);
+      background(255);
+      stroke(0);
+      strokeWeight(1);
+    }
+
+    function draw() {
+      for (let j = 0; j < 8; j++) {
+        for (let i = 0; i < 8; i++) {
+          fill(255);
+          if ((i + j) % 2 == 0) {
+            fill(0);
+          }
+          rect(i * 50, j * 50, 50, 50);
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

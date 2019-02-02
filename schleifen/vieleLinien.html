@@ -1,0 +1,33 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    function setup() {
+      createCanvas(700, 300);
+      background(255);
+      strokeWeight(5);
+
+      let x = 30;
+      let y = 100;
+      let abstand = 10;
+      let laenge;
+      let zaehl = 0;
+
+      while (x < width - 30) {
+        if (zaehl % 2 == 0) {
+          stroke(50);
+          laenge = 70;
+        } else {
+          stroke(100);
+          laenge = 100;
+        }
+        line(x, y, x, y + laenge);
+        zaehl++;
+        x = x + abstand;
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

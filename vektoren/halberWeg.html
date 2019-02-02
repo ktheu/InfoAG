@@ -1,0 +1,26 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        function setup() {
+            createCanvas(400, 400);
+            stroke(255);
+        }
+
+        function draw() {
+            background(0);
+            let maus = createVector(mouseX, mouseY);
+            let mitte = createVector(width/2, height/2);
+            let temp = p5.Vector.add(maus, mitte);
+            temp.mult(0.5);
+            strokeWeight(8);
+            point(mouseX, mouseY);
+            point(mitte.x, mitte.y);
+            strokeWeight(1);
+            line(mouseX, mouseY, temp.x, temp.y);
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

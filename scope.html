@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link href="kurs.css" rel="stylesheet" type="text/css" />
+  <title>Informatik</title>
+</head>
+
+<body>
+  <h3>Scope von Variablen - var, let, const, use strict</h3>
+
+  <!------------------------------------------------------>
+  <p>Was geschieht bei Programmablauf?</p>
+
+  <pre class="codef">
+var s1 = "A";
+let s2 = "B";
+s3 = "C";
+
+function setup() {
+  createCanvas(100, 100);
+  background(200);
+  text(s1, 50, 20)
+  text(s2, 50, 40);
+  text(s3, 50, 60);
+}
+</pre>
+
+  <button class="collapsible"> </button>
+  <pre class="content">
+Kein Fehler.
+Variable ohne var und let: global
+Variable mit var: function-scoped
+Variable mit let: block-scoped
+</pre>
+
+<!------------------------------------------------------>
+
+<pre class="codef">
+"use strict";
+var s1 = "A";
+let s2 = "B";
+s3 = "C";
+
+function setup() {
+  createCanvas(100, 100);
+  background(200);
+  text(s1, 50, 20)
+  text(s2, 50, 40);
+  text(s3, 50, 60);
+}
+</pre>
+
+<button class="collapsible"> </button>
+<pre class="content">
+Uncaught ReferenceError: s3 is not defined (sketch: line 4)
+Uncaught ReferenceError: s3 is not defined (sketch: line 11)
+use strict verlangt die Deklaration jeder benutzen Variablen mit var oder let.
+</pre>
+
+<!------------------------------------------------------>
+
+<pre class="codef">
+function setup() {
+  createCanvas(100,100);
+  background(200);
+  if (50 < width) {
+    var wort = "Hallo";
+  }
+  text(wort, 50,50);
+}
+</pre>
+
+<button class="collapsible"> </button>
+<pre class="content">
+Kein Fehler: var hat function-scope
+</pre>
+
+
+<!----------------------------------------------------->
+
+<pre class="codef">
+function setup() {
+  createCanvas(100,100);
+  background(200);
+  if (50 < width) {
+    let wort = "Hallo";
+  }
+  text(wort, 50,50);
+}
+</pre>
+
+<button class="collapsible"> </button>
+<pre class="content">
+Uncaught ReferenceError: wort is not defined (sketch: line 7)
+let hat block-scope.
+Ein Block ist durch die geschweiften Klammern gegeben.
+</pre>
+
+
+<!----------------------------------------------------->
+
+<pre class="codef">
+function setup() {
+  createCanvas(100,100);
+  background(200);
+  let wort = "Welt";
+  if (50 < width) {
+    let wort = "Hallo";
+  }
+  text(wort, 50,50);
+}
+</pre>
+
+<button class="collapsible"> </button>
+<pre class="content">
+Kein Fehler. Es erscheint das Wort "Welt"
+</pre
+
+<!------------------------------------------------------>
+
+<pre class="codef">
+function setup() {
+  createCanvas(100,100);
+  background(200);
+  let wort = "Welt";
+  if (50 < width) {
+    wort = "Hallo";
+  }
+  text(wort, 50,50);
+}
+</pre>
+
+<button class="collapsible"> </button>
+<pre class="content">
+Kein Fehler. Es erscheint das Wort "Hallo"
+</pre>
+
+<!----------------------------------------------------->
+
+<pre class="codef">
+let x = 10;
+
+function setup() {
+  createCanvas(100, 100);
+}
+
+function draw() {
+  background(200);
+  ellipse(x,50,10,10);
+  x = x + 1;
+}
+
+</pre>
+
+<button class="collapsible"> </button>
+<p class="content">
+
+Kein Fehler. Variablen, die außerhalb von Funktionen deklariert werden, heißen global.
+Sie sind in jeder Funktion verfügbar.
+Dies ist ein Standardfall: Die Variable wird außerhalb der Funktion als global deklariert
+und auf einen Anfangswert gesetzt. Sie wird in draw verändert.
+Warum kann sie nicht in draw deklariert werden?
+</p>
+
+
+
+<!----------------------------------------------------->
+
+<pre class="codef">
+let x;
+
+function setup() {
+  createCanvas(100, 100);
+  x = 10;
+}
+
+function draw() {
+  background(200);
+  ellipse(x,50,10,10);
+  x = x + 1;
+}
+
+</pre>
+
+<button class="collapsible"> </button>
+<p class="content">
+Kein Fehler. x wird als globale Variable deklariert. Der Anfangswert wird in setup gesetzt.
+
+</p>
+
+
+
+<!----------------------------------------------------->
+
+<p> Wenn die Anfangswerte auch bei Mausklick gesetzt werden sollen, spendieren wir
+  uns dafür eine eigene Funktion. Die Variablen werden dann außerhalb nur deklariert.
+  In setup und in mousePressed wird die Funktion aufgerufen, die die Anfangswerte setzt.
+</p>
+<pre class="codef">
+let x, y;
+
+function setup() {
+  createCanvas(100, 100);
+  aufAnfang();
+}
+
+function draw() {
+  background(200);
+  ellipse(x,y,10,10);
+  x = x + 1;
+  y = y + 1;
+}
+
+function mousePressed() {
+  aufAnfang();
+}
+
+function aufAnfang() {
+  x = 20;
+  y = 30;
+}
+</pre>
+
+<p> Wenn wir Werte als wichtige Parameter für unseren Sketch ansehen, spendieren
+  wir uns dafür eine Konstante mit sprechendem Namen aus Großbuchstaben.
+  Der Wert einer Konstanten kann im Programmablauf nicht mehr verändert werden.
+  Die Konstanten sammeln wir am Anfang des Sketches. Sie sind die Stellschrauben für unseren Sketch.
+</p>
+
+<pre class="codef">
+const START_X = 10;
+const START_Y = 30;
+const DURCHMESSER = 10;
+
+
+let x, y;
+
+function setup() {
+  createCanvas(100, 100);
+  aufAnfang();
+}
+
+function draw() {
+  background(200);
+  ellipse(x,y,DURCHMESSER,DURCHMESSER);
+  x = x + 1;
+  y = y + 1;
+}
+
+function mousePressed() {
+  aufAnfang();
+}
+
+function aufAnfang() {
+  x = START_X;
+  y = START_Y;
+}
+</pre>
+<p> <strong> Globale Variablen sollten möglichst sparsam verwendet werden.
+  Die Deklaration einer Variablen sollte so eng wie möglich erfolgen.
+  Ausnahme: Konstanten, die wir alle global an den Anfang setzen.
+ </strong>
+</p>
+
+<!----------------------------------------------------->
+<p> Deklariere so eng wie möglich. </p>
+<pre class="codef">
+let d = 10;
+let y = 30;
+let x = 10;
+
+function setup() {
+  createCanvas(100, 100);
+}
+
+function draw() {
+  background(200);
+
+  ellipse(x,y,d,d);
+  x = x + 1;
+}
+
+</pre>
+
+<button class="collapsible"> </button>
+<pre class="content">
+let x = 10;
+
+function setup() {
+  createCanvas(100, 100);
+}
+
+function draw() {
+  background(200);
+  let y = 30;
+  let d = 10;
+  ellipse(x, y, d, d);
+  x = x + 1;
+}
+</pre>
+
+<!----------------------------------------------------->
+<p> Deklariere so eng wie möglich. </p>
+<pre class="codef">
+let i;
+
+function setup() {
+  createCanvas(100, 100);
+  background(200);
+  for (i = 0; i < 5; i++) {
+    rect(i*20,30,10,10);
+  }
+}
+</pre>
+
+<button class="collapsible"> </button>
+<pre class="content">
+function setup() {
+  createCanvas(100, 100);
+  background(200);
+  for (let i = 0; i < 5; i++) {
+    rect(i*20,30,10,10);
+  }
+}
+
+</pre>
+
+<!----------------------------------------------------->
+<p> Hier entsteht ein Fehler, weil man nach der for-Schleife nicht mehr auf den letzten Wert von i zugreifen kann.
+Was muss geändert werden? </p>
+<pre class="codef">
+function setup() {
+  createCanvas(100, 100);
+  background(200);
+  for (let i = 0; i < 5; i++) {
+    rect(i*20,30,10,10);
+  }
+  text(i,40,50);
+}
+</pre>
+
+<button class="collapsible"> </button>
+<pre class="content">
+function setup() {
+  createCanvas(100, 100);
+  background(200);
+  let i;
+  for (i = 0; i < 5; i++) {
+    rect(i*20,30,10,10);
+  }
+  text(i,40,50);
+}
+
+</pre>
+  <!------------------------------------------------>
+  <script>
+    var coll = document.getElementsByClassName("collapsible");
+
+    for (var i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html>

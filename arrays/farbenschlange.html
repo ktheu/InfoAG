@@ -1,0 +1,42 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        let anzahl = 50;
+        let x = new Array(anzahl);
+        let y = new Array(anzahl);
+        let farbe = ['#112F41', '#068587', '#4FB99F', '#F2B134', '#ED553B']
+
+
+        function setup() {
+            createCanvas(400, 400);
+            strokeWeight(6);
+            x.fill(width / 2);
+            y.fill(height / 2);
+        }
+
+        function draw() {
+            background(220);
+
+            if (mouseIsPressed) {
+                for (let i = x.length - 1; i > 0; i--) {
+                    x[i] = x[i - 1];
+                    y[i] = y[i - 1];
+                }
+                x[0] = mouseX;
+                y[0] = mouseY;
+            }
+
+            for (let i = 0; i < x.length - 1; i++) {
+                stroke(farbe[i % 5]);
+                line(x[i], y[i], x[i + 1], y[i + 1]);
+            }
+
+            ellipse(x[0], y[0], 10, 10);
+        }
+
+    </script>
+</head>
+<body>
+</body>
+</html>

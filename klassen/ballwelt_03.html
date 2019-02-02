@@ -1,0 +1,63 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        class Ball {
+            constructor(x, y, vx, vy, radius = 15) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx;
+                this.vy = vy;
+                this.radius = radius;
+            }
+
+            act() {
+                this.checkRand();
+                this.move();
+                this.display();
+            }
+
+            checkRand() {
+                if (this.x + this.radius > width || this.x - this.radius < 0) this.vx = -this.vx;
+                if (this.y + this.radius > height || this.y - this.radius < 0) this.vy = -this.vy;
+            }
+
+            move() {
+                this.x += this.vx;
+                this.y += this.vy;
+            }
+
+            display() {
+                fill(255);
+                ellipseMode(RADIUS);
+                ellipse(this.x, this.y, this.radius, this.radius);
+            }
+        }
+
+        let baelle = [];
+        const N = 20; // Anzahl Bälle
+
+        function setup() {
+            createCanvas(400, 400);
+            for (let i = 0; i < N; i++) {
+                let x = random(50, width - 50);
+                let y = random(50, height - 50);
+                let vx = random(3, 8);
+                let vy = random(3, 8);
+                let d = random(5, 25);
+                baelle.push(new Ball(x, y, vx, vy, d));
+            }
+        }
+
+        function draw() {
+            background(0);
+            for (let b of baelle) {
+                b.act();
+            }
+        }
+
+    </script>
+</head>
+<body>
+</body>
+</html>

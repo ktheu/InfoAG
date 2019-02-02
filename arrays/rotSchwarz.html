@@ -1,0 +1,127 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        /*
+       * In einem Ort leben 2500 Menschen, die entweder alle die rote oder die schwarze Partei wählen.
+       * Wenn sich zwei Personen treffen, diskutieren Sie über Politik und wenn sie unterschiedliche
+       * Parteien wählen, gelingt es immer einem von beiden, den anderen zu überzeugen, in Zukunft die
+       * andere Partei zu wählen. Zu Beginn soll ein bestimmter Prozentsatz die rote Partei wählen.
+       * Nutze dazu eine Variable anteilRot.
+       *
+       * Die Personen sollen durch rote bzw schwarze Rechtecke in einer 50 x 50 Matrix dargestellt werden.
+       * Schreibe ein Programm, das in jedem draw-Zyklus Folgendes macht:
+       * Wähle zufällig eine Person.
+       * Wahle zufällig einen Nachbarn der Person
+       * Wenn beide die gleiche Partei wählen tue nichts.
+       * Wenn beide unterschiedliche Parteien wählen, wähle zufällig, wer wen überzeugt.
+       * Stelle die 50 x 50 Matrix dar.
+       *
+       */
+        const anteilRot = 0.3;
+
+        /*
+         * wahl = true : person wählt schwarz
+         * wahl = false : person wählt rot
+         */
+
+        let wahl = [];
+        for (let i=0; i<50; i++) {
+            zeile = new Array(50).fill(0)
+            wahl.push(zeile);
+        }
+
+        let rot;
+        let schwarz;
+
+        function setup() {
+            createCanvas(500, 500);
+            noStroke();
+            rot = color(255, 0, 0);
+            schwarz = color(0, 0, 0);
+
+            for (let i = 0; i < 50; i++)
+                for (let j = 0; j < 50; j++) {
+                    if (random(0, 1) < anteilRot)
+                        wahl[i][j] = true;
+                    else
+                        wahl[i][j] = false;
+                }
+        }
+
+        function draw() {
+            background(255);
+            for (let i = 0; i < 50; i++)
+                for (let j = 0; j < 50; j++) {
+                    if (wahl[i][j])
+                        fill(rot);
+                    else
+                        fill(schwarz);
+                    rect(i * 10, j * 10, 10, 10);
+                }
+
+            // zufällig Person auswählen
+            let x = int(random(0, 50));
+            let y = int(random(0, 50));
+
+            // Variable für den Nachbarn
+            let xn;
+            let yn;
+
+            // zufällig einen Nachbarn auswählen
+            let fall = int(random(0, 8));
+            switch (fall) {
+                case 0:
+                    xn = x - 1;
+                    yn = y - 1;
+                    break;
+                case 1:
+                    xn = x;
+                    yn = y - 1;
+                    break;
+                case 2:
+                    xn = x + 1;
+                    yn = y - 1;
+                    break;
+                case 3:
+                    xn = x - 1;
+                    yn = y;
+                    break;
+                case 4:
+                    xn = x + 1;
+                    yn = y;
+                    break;
+                case 5:
+                    xn = x - 1;
+                    yn = y + 1;
+                    break;
+                case 6:
+                    xn = x;
+                    yn = y + 1;
+                    break;
+                case 7:
+                    xn = x + 1;
+                    yn = y + 1;
+                    break;
+            }
+
+            // nur etwas tun wenn der nachbar existiert
+            if (0 <= xn && xn < 50 && 0 <= yn && yn < 50) {
+
+                // wenn die beiden unterschiedlich wählen wird
+                // zufällig bestimmt, wer überzeugt wird.
+                if (wahl[x][y] ^ wahl[xn][yn]) {
+                    if (random(0, 1) < 0.5) {
+                        wahl[x][y] = wahl[xn][yn];
+                    } else {
+                        wahl[xn][yn] = wahl[x][y];
+                    }
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+</body>
+</html>

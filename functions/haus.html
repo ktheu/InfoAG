@@ -1,0 +1,46 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        let a;
+
+        function setup() {
+            createCanvas(600, 400);
+            stroke(0);
+            a = int(random(0, 1000));
+        }
+
+        function draw() {
+            background(255);
+            randomSeed(a);
+            for (let i = 0; i < 14; i++) {
+                x = random(50, width - 50);
+                hoehe = random(100, 200);
+                breite = random(40, 90);
+                y = 330 - hoehe;
+                haus(x, y, breite, hoehe, random(0, 255));
+            }
+        }
+
+        function haus(x, y, breite, hoehe, farbe) {
+            fill(farbe);
+            strokeWeight(3);
+            rect(x, y, breite, hoehe);
+            let xfenster = x + 10;
+            while (xfenster < x + breite - 10) {
+                fill(255);
+                strokeWeight(2);
+                rect(xfenster, y + 20, 8, 8);
+                xfenster += 20;
+            }
+        }
+
+
+        function mousePressed() {
+            a = int(random(0, 1000));
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

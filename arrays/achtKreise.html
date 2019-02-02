@@ -1,0 +1,25 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        function setup() {
+            createCanvas(600, 200);
+            background(200);
+            fill(100);
+        }
+
+        function draw() {
+            background(220);
+            durchmesser = [30, 50, 90, 20, 44, 76, 22, 30];
+            diff = map(mouseX, 0, width, 20, 80);
+            let x = diff;
+            for (let i = 0; i < 8; i++) {
+                ellipse(x, 100, durchmesser[i], durchmesser[i]);
+                x = x + diff;
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

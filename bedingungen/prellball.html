@@ -1,0 +1,36 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let x = 20;
+    let y = 50;
+    let xSpeed = 1;
+    let ySpeed = -2;
+    let radius = 16;
+
+    function setup() {
+      createCanvas(300, 200);
+      fill(175);
+      ellipseMode(RADIUS);
+    }
+
+    function draw() {
+      background(230);
+
+      x = x + xSpeed;
+      y = y + ySpeed;
+      if ((x > width - radius) || (x < radius)) {
+        xSpeed = -xSpeed;
+      }
+
+      if ((y > height - radius) || (y < radius)) {
+        ySpeed = -ySpeed;
+      }
+
+      ellipse(x, y, radius, radius);
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

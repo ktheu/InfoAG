@@ -1,0 +1,29 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        let x = [100, 300]
+
+        let y = 40;
+        let dy = 5;
+
+        function setup() {
+            createCanvas(400, 400);
+        }
+
+        function draw() {
+            background(0);
+            if (y > height || y < 0) {
+                dy = -dy
+            }
+            y = y + dy;
+            fill(255);
+            for (let i = 0; i < x.length; i++) {
+                ellipse(x[i], y, 10, 10);
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

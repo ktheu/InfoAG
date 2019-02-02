@@ -1,0 +1,21 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    function setup() {
+      createCanvas(200, 200);
+      noFill();
+      stroke(255);
+      strokeWeight(3);
+    }
+
+    function draw() {
+      background(0);
+      let x = map(mouseX, 0, width, 30, 50);
+      rect(x, 100, 50, 20);
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

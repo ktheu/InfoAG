@@ -1,0 +1,60 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        class Ball {
+            constructor(x, y, vx, vy, radius = 15) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx;
+                this.vy = vy;
+                this.radius = radius;
+            }
+
+            act() {
+                this.checkRand();
+                this.move();
+                this.display();
+            }
+
+            checkRand() {
+                if (this.x + this.radius > width || this.x - this.radius < 0) this.vx = -this.vx;
+                if (this.y + this.radius > height || this.y - this.radius < 0) this.vy = -this.vy;
+            }
+
+            move() {
+                this.x += this.vx;
+                this.y += this.vy;
+            }
+
+            display() {
+                noStroke();
+                fill(255);
+                ellipseMode(RADIUS);
+                ellipse(this.x, this.y, this.radius, this.radius);
+            }
+        }
+
+        let b1;
+        let b2;
+        let b3;
+
+        function setup() {
+            createCanvas(400, 400);
+            b1 = new Ball(100, 300, 5, 4, 40);
+            b2 = new Ball(200, 200, 10, -3, 20);
+            b3 = new Ball(150, 350, 3, 7);
+        }
+
+        function draw() {
+            background(0);
+            b1.act();
+            b2.act();
+            b3.act();
+        }
+
+    </script>
+</head>
+<body>
+</body>
+</html>

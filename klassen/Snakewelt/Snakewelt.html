@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html><head>
+  <style>
+    body {
+      padding: 50;
+      margin: 50;
+    }
+  </style>
+  <script src="../../p5.min.js"></script>
+  <script src="Snake.js"></script>
+  <script>
+    const WARTE = 10;    // Anzahl framecounts zwischen Bewegungsschritten
+    const GROESSE = 30;  // Größe eines Snakeelements
+    let s;               // Snake
+
+    function setup() {
+      createCanvas(500, 500);
+      s = new Snake(width/2, height/2);
+    }
+
+    function draw() {
+      background('#FFB00D');
+      s.act();
+    }
+
+    function keyPressed() {
+      if (keyCode == RIGHT_ARROW || key == 'd' || key == 'D') {
+        s.nachRechts();
+      } else if (keyCode == LEFT_ARROW || key == 'a' || key == 'A') {
+        s.nachLinks();
+      } else if (keyCode == DOWN_ARROW || key == 's' || key == 'S') {
+        s.nachUnten();
+      } else if (keyCode == UP_ARROW || key == 'w' || key == 'W') {
+        s.nachOben();
+      }
+    }
+
+    function mousePressed() {
+      s.addSnake();
+    }
+  </script>
+
+</head><body></body></html>

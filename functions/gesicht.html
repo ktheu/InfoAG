@@ -1,0 +1,28 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        function setup() {
+            createCanvas(400, 400);
+
+        }
+
+        function draw() {
+            background(255);
+            zeichneGesicht(100, 200, '#B03A3A', '#C06AAA');
+            zeichneGesicht(300, 100, '#907A37', '#907AFA');
+        }
+
+        function zeichneGesicht(x, y, augenfarbe, gesichtsfarbe) {
+            fill(gesichtsfarbe);
+            ellipse(x, y, 80, 80); // Gesicht
+            fill(augenfarbe);
+            ellipse(x - 15, y - 15, 20, 20); // Auge
+            ellipse(x + 15, y - 15, 20, 20); // Auge
+        }
+
+    </script>
+</head>
+<body>
+</body>
+</html>
