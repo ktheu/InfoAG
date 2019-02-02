@@ -10,5 +10,9 @@ __[Interaktion](interaktion.html)__
 __[Variablen](variablen.html)__
 BewegterKreis, RandomWalk, RandomColor, 4Kreise, Wachsend, Aenderungen, Varianten
 
+__[Bedingungen](bedingungen.html)__
+if else, boolesche Operatoren, modulo, Zufall, Text, Tastatursteuerung, Kollision, map-Funktion,
+Rollover, LaufendeLinien, Prellball, Farbbereiche, Wandernde Kreise, SimplePong
+
 ------------------------------------
 
