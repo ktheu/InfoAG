@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<!-- http://www.informatik42.de/P5JS/Inhalte/Pixel/pixel.html -->
 <html>
 
 <head>
   <meta charset="UTF-8">
-  <link href="kurs.css" rel="stylesheet" type="text/css" />
+  <link href="kurs.css" rel="stylesheet" type="text/css"/>
   <title>Informatik</title>
 </head>
 
@@ -14,7 +13,7 @@
 
 <h4>Aufbau eines P5JS-Sketches</h4>
 <p>
-<iframe src="./pixel/anfang.html" width="610" height="420"></iframe>
+  <iframe src="./pixel/anfang.html" width="610" height="420"></iframe>
 </p>
 <hr/>
 
@@ -33,7 +32,8 @@
 <p>Für eine Linie benötigen wir die Koordinaten zweier Punkte.</p>
 <p><img src="./img/bild5.png" width="532" height="333"></p>
 
-<iframe src="./pixel/punktUndLinie.html" width="310" height="320" ></iframe>
+<p>
+  <iframe src="./pixel/punktUndLinie.html" width="310" height="320"></iframe>
 </p>
 <hr/>
 
@@ -42,192 +42,180 @@
 <p>Ein Rechteck wird durch die Koordinaten der linken oberen Ecke und die Breite und Höhe des Rechtecks festgelegt. </p>
 <p><img src="./img/bild6.png" width="599" height="339"></p>
 <p>Der Standardeinstellung (default) ist rectMode(CORNER). Wir können das Rechteck aber auch durch
-   die Koordinaten des Mittelpunkts  festlegen.  </p>
+  die Koordinaten des Mittelpunkts festlegen. </p>
 <p><img src="./img/bild7.png" width="593" height="325"></p>
 
 <p>Oder wir können das Rechteck durch die Angabe der Ecken oben links und unten rechts festlegen.</p>
 <p><img src="./img/bild8.png" width="576" height="334"></p>
 
 
-<iframe src="./pixel/rechteck.html" width="210" height="220"></iframe>
+<p>
+  <iframe src="./pixel/rechteck.html" width="210" height="220"></iframe>
 </p>
 <hr/>
+
 
 <h4>Ellipse</h4>
 <p>Das Zeichnen einer Ellipse funktioniert ähnlich wie ein Rechteck, nur ist hier der default ellipseMode(CENTER).
 </p>
 <p><img src="./img/bild9.png" width="648" height="1170"></p>
 
-<iframe src="./pixel/ellipse.html" width="210" height="220" ></iframe>
+<p>
+  <iframe src="./pixel/ellipse.html" width="210" height="220"></iframe>
 </p>
 <hr/>
+
 
 <h4>Dreiecke und Vierecke</h4>
 <p>Dreiecke und Vierecke werden durch die Angabe von 3 bzw. 4 Koordinaten festgelegt. </p>
 <p>
-  <a href="https://editor.p5js.org/ktheu/sketches/GHDs-hMbG"> Code </a>
-  <p>
-  <iframe src="https://editor.p5js.org/ktheu/embed/GHDs-hMbG" width="200" height="202" style="border:1px solid lightgrey"></iframe>
-  </p>
-  <hr/>
+  <iframe src="./pixel/dreiecke.html" width="210" height="220"></iframe>
+</p>
+<hr/>
 
-  <h4Grauwerte</h4>
-  <p>Grauwerte werden durch eine Zahl zwischen 0 (schwarz) und 255 (weiß) codiert.
-  <img src="./img/bild10.png" width="587" height="157">  </p>
-    <p>
-    <a href="https://editor.p5js.org/ktheu/sketches/DjSLMLrwy"> Code </a> </p>
-    <p>
-    <iframe src="https://editor.p5js.org/ktheu/embed/DjSLMLrwy" width="300" height="302" style="border:1px solid lightgrey"></iframe>
-    </p>
-    <hr/>
 
-<h4Grauwerte2</h4>
+<h4>Grauwerte</h4>
+<p>Grauwerte werden durch eine Zahl zwischen 0 (schwarz) und 255 (weiß) codiert.
+  <img src="./img/bild10.png" width="587" height="157"></p>
 <p>
-  <a href="https://editor.p5js.org/ktheu/sketches/lXPE7GnW1"> Code </a> </p>
-  <p>
-  <iframe src="https://editor.p5js.org/ktheu/embed/lXPE7GnW1" width="300" height="202" style="border:1px solid lightgrey"></iframe>
-  </p>
-  <hr/>
+  <iframe src="./pixel/grauwerte.html" width="310" height="320"></iframe>
+</p>
+<hr/>
+
+<h4>Grauwerte2</h4>
+<p>
+  <iframe src="./pixel/grauwerte02.html" width="310" height="220"></iframe>
+</p>
+<hr/>
 
 <h4>RGB-Farben</h4>
 
-  <p>Farben auf dem Bildschirm werden durch Mischung von farbigem Licht erzeugt.
-   Die drei Grundfarben sind Rot, Grün und Blau. </p>
-   <p><img src="./img/RGB.png" width="367" height="318"></p>
-   <pre class="codef">
+<p>Farben auf dem Bildschirm werden durch Mischung von farbigem Licht erzeugt.
+  Die drei Grundfarben sind Rot, Grün und Blau. </p>
+<p><img src="./img/RGB.png" width="367" height="318"></p>
+<pre class="codef">
    rot + grün = gelb
    rot + blau = magenta
    blau + grün = cyan
    rot + grün + blau = weiß
    keine Farben = schwarz
    </pre>
-   <p>Für jede der drei Farben R, G, B wird ein Wert zwischen 0 (keine Farbe) und 255 (volle Farbe) angegeben.</p>
+<p>Für jede der drei Farben R, G, B wird ein Wert zwischen 0 (keine Farbe) und 255 (volle Farbe) angegeben.</p>
 
-   <a href="https://editor.p5js.org/ktheu/sketches/IdtXKOqxM"> Code </a> </p>
-   <p>
-   <iframe src="https://editor.p5js.org/ktheu/embed/IdtXKOqxM" width="300" height="202" style="border:1px solid lightgrey"></iframe>
-   </p>
-   <hr/>
+<p>
+  <iframe src="./pixel/rotwerte.html" width="310" height="220"></iframe>
+</p>
+<hr/>
 
-   <p>
-   Die Mischung einer gewünschten Farbe mittels RGB-Werte ist nicht einfach. Es helfen
-   Color Selektoren und Farbtabellen, z.B:
-    <a href="https://www.w3schools.com/colors/colors_picker.asp">W3C</a> oder
-    <a href="https://color.adobe.com/de/create/color-wheel/">Adobe Color CC</a> &nbsp;&nbsp;&nbsp;
-   </p>
+<p>
+  Die Mischung einer gewünschten Farbe mittels RGB-Werte ist nicht einfach. Es helfen
+  Color Selektoren und Farbtabellen, z.B:
+  <a href="https://www.w3schools.com/colors/colors_picker.asp">W3C</a> oder
+  <a href="https://color.adobe.com/de/create/color-wheel/">Adobe Color CC</a> &nbsp;&nbsp;&nbsp;
+</p>
 
-   <h4>Transparenz</h4>
-   <p>
-   Als vierter Wert kann bei der Festlegung der Farbe der Alpha-Wert mitgegeben werden.
-   Er bestimmt die Transparenz der Farbe. Der Alpha-Wert 0 bedeutet völlige Transparenz
-   (keine Deckkraft), 255 bedeutet keine Transparenz (volle Deckkraft) der Farbe.
-   </p>
+<h4>Transparenz</h4>
+<p>
+  Als vierter Wert kann bei der Festlegung der Farbe der Alpha-Wert mitgegeben werden.
+  Er bestimmt die Transparenz der Farbe. Der Alpha-Wert 0 bedeutet völlige Transparenz
+  (keine Deckkraft), 255 bedeutet keine Transparenz (volle Deckkraft) der Farbe.
+</p>
 
-   <a href="https://editor.p5js.org/ktheu/sketches/p7zvJ7tTG"> Code </a> </p>
-   <p>
-   <iframe src="https://editor.p5js.org/ktheu/embed/p7zvJ7tTG" width="300" height="202" style="border:1px solid lightgrey"></iframe>
-   </p>
-   <hr/>
+<p>
+  <iframe src="./pixel/transparenz.html" width="310" height="220"></iframe>
+</p>
+<hr/>
 
-   <h4>HSB</h4>
-   <p>Mit <em>ColorMode(HSB)</em> schalten wir in den HSB-Modus, in dem eine Farbe durch die drei Parameter
-     <em>hue</em> (0-255, Farbton), <em>saturation</em> (0-255, Sättigung) und
-      <em>brightness</em> (0-255 Helligkeit) bestimmt ist. </p>
-   <p><img src="./img/hsb.png" width="400"></p>
+<h4>HSB</h4>
+<p>Mit <em>ColorMode(HSB)</em> schalten wir in den HSB-Modus, in dem eine Farbe durch die drei Parameter
+  <em>hue</em> (0-255, Farbton), <em>saturation</em> (0-255, Sättigung) und
+  <em>brightness</em> (0-255 Helligkeit) bestimmt ist. </p>
+<p><img src="./img/hsb.png" width="400"></p>
 
-   <p> Die Wertebereiche kann man anpassen, häufig wird <em>ColorMode(HSB,360,100,100)</em> genutzt.  Mit
-     <em>ColorMode(RGB,255,255,255) </em>schalten wir in den default RGB-Modus zurück.</p>
+<p> Die Wertebereiche kann man anpassen, häufig wird <em>ColorMode(HSB,360,100,100)</em> genutzt. Mit
+  <em>ColorMode(RGB,255,255,255) </em>schalten wir in den default RGB-Modus zurück.</p>
 
-   <h4>Hex-Werte für Farben</h4>
-   <p>Eine einfache Farbwahl ist die Übernahme des Hex-Werts der Farbe aus einem Colorselektor <p>
+<h4>Hex-Werte für Farben</h4>
+<p>Eine einfache Farbwahl ist die Übernahme des Hex-Werts der Farbe aus einem Colorselektor
+<p>
 
-     <a href="https://editor.p5js.org/ktheu/sketches/DDdEldjdW"> Code </a> </p>
-     <p>
-     <iframe src="https://editor.p5js.org/ktheu/embed/DDdEldjdW" width="300" height="202" style="border:1px solid lightgrey"></iframe>
-     </p>
-     <hr/>
+<p>
+  <iframe src="./pixel/colorhex.html" width="310" height="220"></iframe>
+</p>
+<hr/>
 
-     <p>Bei <a href="https://color.adobe.com/de/create/color-wheel/">Adobe Color CC</a>  finden
-     sich Farbpaletten von jeweils 5 zusammenpassenden Farben. Mit copy+paste können die Hex-Werte
-     übernommen werden. </p>
+<p>Bei <a href="https://color.adobe.com/de/create/color-wheel/">Adobe Color CC</a> finden
+  sich Farbpaletten von jeweils 5 zusammenpassenden Farben. Mit copy+paste können die Hex-Werte
+  übernommen werden. </p>
 
 
-     <a href="https://editor.p5js.org/ktheu/sketches/jA_qwit4G"> Code </a> </p>
-     <p>
-     <iframe src="https://editor.p5js.org/ktheu/embed/jA_qwit4G" width="400" height="402" style="border:1px solid lightgrey"></iframe>
-     </p>
-     <hr/>
+<p>
+  <iframe src="./pixel/farbpalette.html" width="410" height="420"></iframe>
+</p>
+<hr/>
 
-     <h4>Rechtecke02</h4>
-      <p> Mehrere Rechtecke bilden eine Figur.
-     <a href="https://editor.p5js.org/ktheu/sketches/ESBaOQpm1"> Code </a> </p>
-     <p>
-     <iframe src="https://editor.p5js.org/ktheu/embed/ESBaOQpm1" width="150" height="152" style="border:1px solid lightgrey"></iframe>
-     </p>
-     <hr/>
+<h4>Rechtecke02</h4>
+<p> Mehrere Rechtecke bilden eine Figur.
+  <a href="https://editor.p5js.org/ktheu/sketches/ESBaOQpm1"> Code </a></p>
+<p>
+  <iframe src="./pixel/rechteck02.html" width="160" height="170"></iframe>
+</p>
+<hr/>
 
-     <h4>Ellipsen02</h4>
-      <p> Mehrere Rechtecke bilden eine Figur.
-     <a href="https://editor.p5js.org/ktheu/sketches/Nc-eOTKfY"> Code </a> </p>
-     <p>
-     <iframe src="https://editor.p5js.org/ktheu/embed/Nc-eOTKfY" width="300" height="302" style="border:1px solid lightgrey"></iframe>
-     </p>
-     <hr/>
+<h4>Ellipsen02</h4>
+<p> Mehrere Rechtecke bilden eine Figur. </p>
+<p>
+  <iframe src="./pixel/ellipsen02.html" width="310" height="320"></iframe>
+</p>
+<hr/>
 
-     <h4>Linien</h4>
-      <p> Weiße Linien auf schwarzem Hintergrund.
-     <a href="https://editor.p5js.org/ktheu/sketches/y8WrA37sv"> Code </a> </p>
-     <p>
-     <iframe src="https://editor.p5js.org/ktheu/embed/y8WrA37sv" width="400" height="302" style="border:1px solid lightgrey"></iframe>
-     </p>
-     <hr/>
+<h4>Linien</h4>
+<p>
+  <iframe src="./pixel/linien.html" width="410" height="420"></iframe>
+</p>
+<hr/>
 
-     <h4>GraueQuadrate</h4>
-      <p>Ein Muster mit grauen Quadraten.
-     <a href="https://editor.p5js.org/ktheu/sketches/I3aJCdro4"> Code </a> </p>
-     <p>
-     <iframe src="https://editor.p5js.org/ktheu/embed/I3aJCdro4" width="200" height="202" style="border:1px solid lightgrey"></iframe>
-     </p>
-     <hr/>
+<h4>GraueQuadrate</h4>
+<p>Ein Muster mit grauen Quadraten.</p>
+<p>
+  <iframe src="./pixel/graueQuadrate.html" width="210" height="220"></iframe>
+</p>
+<hr/>
 
-     <h4>Farben</h4>
-      <p> Farbige Figuren mit dickem Rand.
-     <a href="https://editor.p5js.org/ktheu/sketches/NF7StgHfm"> Code </a> </p>
-     <p>
-     <iframe src="https://editor.p5js.org/ktheu/embed/NF7StgHfm" width="500" height="202" style="border:1px solid lightgrey"></iframe>
-     </p>
-     <hr/>
+<h4>Farben</h4>
+<p> Farbige Figuren mit dickem Rand.</p>
+<p>
+  <iframe src="./pixel/farben.html" width="510" height="220"></iframe>
+</p>
+<hr/>
 
-     <h4>Transparenz02</h4>
-      <p>Überlappende Figuren mit Transparenz.
-     <a href="https://editor.p5js.org/ktheu/sketches/moTwx6xCd1"> Code </a> </p>
-     <p>
-     <iframe src="https://editor.p5js.org/ktheu/embed/moTwx6xCd1" width="300" height="152" style="border:1px solid lightgrey"></iframe>
-     </p>
-     <hr/>
+<h4>Transparenz02</h4>
+<p>Überlappende Figuren mit Transparenz.</p>
+<p>
+  <iframe src="./pixel/transparenz02.html" width="310" height="170"></iframe>
+</p>
+<hr/>
 
-     <h4>Name</h4>
-      <p>Dein Name mit einfachen Formen.
-     <a href="https://editor.p5js.org/ktheu/sketches/3ELW_qJSM"> Code </a> </p>
-     <p>
-     <iframe src="https://editor.p5js.org/ktheu/embed/3ELW_qJSM" width="150" height="152" style="border:1px solid lightgrey"></iframe>
-     </p>
-     <hr/>
+<h4>Name</h4>
+<p>Dein Name mit einfachen Formen.</p>
+<p>
+  <iframe src="./pixel/name.html" width="160" height="170"></iframe>
+</p>
+<hr/>
 
-     <h4>Mondrian</h4>
-      <p>Ein Bild in der Art von <a href="https://de.wikipedia.org/wiki/Piet_Mondrian">Piet Mondrian</a>.
-     <a href="https://editor.p5js.org/ktheu/sketches/8It6eCA7M"> Code </a> </p>
-     <p>
-     <iframe src="https://editor.p5js.org/ktheu/embed/8It6eCA7M" width="400" height="402" style="border:1px solid lightgrey"></iframe>
-     </p>
+<h4>Mondrian</h4>
+<p>Ein Bild in der Art von <a href="https://de.wikipedia.org/wiki/Piet_Mondrian">Piet Mondrian</a>.
+</p>
+<p>
+  <iframe src="./pixel/mondrian.html" width="410" height="420"></iframe>
+</p>
 
-     <h4>Spielfigur</h4>
-      <p>Eine Spielfigur aus einfachen Formen.
-     <a href="https://editor.p5js.org/ktheu/sketches/ah9Mj5d2z"> Code </a> </p>
-     <p>
-     <iframe src="https://editor.p5js.org/ktheu/embed/ah9Mj5d2z" width="150" height="152" style="border:1px solid lightgrey"></iframe>
-     </p>
-     <hr/>
+<h4>Spielfigur</h4>
+<p>Eine Spielfigur aus einfachen Formen. </p>
+<p>
+  <iframe src="./pixel/spielfigur.html" width="160" height="170"></iframe>
+</p>
+<hr/>
 
 </body>
 </html>
