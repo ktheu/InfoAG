@@ -20,7 +20,7 @@ while/for-Schleife, 9 Kreise, 20 Rechtecke, viele Linien, viele Rechtecke, Schac
 __[Arrays](arrays.html)__ -
 8Kreise, Fallende Quadrate, Hinher, Linienschlange, Farbenschlange, Cobra, Rotschwarz, Snake, Breakout
 
-__[Functions](functions.html)__ -
+__[Funktionen](functions.html)__ -
 Haus und Sonne, Gesicht, Entfernung zum Mittelpunkt, Augen, Häuser
 
 __[Klassen](klassen.html)__ -
@@ -39,5 +39,5 @@ __[Sound](sound.html)__ -
 __[Kräfte](kraefte.html)__ -
 
 
---
+--------------------------------------------------------
 
