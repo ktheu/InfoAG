@@ -1,0 +1,35 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let winkel = 0;
+
+    function setup() {
+      createCanvas(500, 500);
+      noStroke();
+    }
+
+    function draw() {
+      background(0);
+      fill(255, 255, 0);
+      ellipse(width / 2, height / 2, 40, 40);
+
+      push();
+      translate(width / 2, height / 2);
+      rotate(radians(winkel));
+      winkel = winkel + 0.5;
+      fill(0, 0, 255);
+      ellipse(0, 100, 25, 25);
+
+      push();
+      translate(0, 100);
+      rotate(4 * radians(winkel));
+      fill(255, 0, 0);
+      ellipse(0, 30, 10, 10);
+      pop();
+      pop();
+    }  </script>
+</head>
+<body>
+</body>
+</html>

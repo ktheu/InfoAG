@@ -1,0 +1,47 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    function setup() {
+      createCanvas(800, 500);
+      background(255);
+      for (let i = 0; i < 50; i++) {
+        let y = random(0, height - 120);
+        let x = random(0, width - 60);
+        let groesse = map(y, 0, height - 120, 0.3, 1);
+        push();
+        translate(x, y);
+        scale(groesse);
+        zoog();
+        pop();
+      }
+    }
+
+    function zoog() {
+      ellipseMode(CENTER);
+      rectMode(CENTER);
+      // Körper
+      stroke(0);
+      fill(150);
+      rect(30, 60, 20, 100);
+
+      // Kopf
+      fill(255);
+      ellipse(30, 30, 60, 60);
+
+      // Augen
+      fill(0);
+      ellipse(11, 30, 16, 32);
+      ellipse(49, 30, 16, 32);
+
+      // Füße
+      stroke(0);
+      line(20, 110, 10, 120);
+      line(40, 110, 50, 120);
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

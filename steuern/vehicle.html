@@ -1,0 +1,45 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let pos;
+    let v;
+    let winkel = 0;
+
+    function setup() {
+      createCanvas(400, 400);
+
+      pos = createVector(200,200);
+      v = createVector(5,7);
+    }
+
+    function draw() {
+      background(255);
+      winkel += 2;
+      pos.add(v);
+      display();
+    }
+
+    function display() {
+      winkel = v.heading() + Math.PI/2;
+      fill(175);
+      stroke(0);
+      push();
+      translate(pos.x,pos.y);
+      rotate(winkel);
+      beginShape();
+      vertex(0, -20);
+      vertex(-10, 20);
+      vertex(10, 20);
+      endShape(CLOSE);
+      pop();
+
+
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>
