@@ -1,0 +1,41 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script src="../addons/p5.sound.min.js"></script>
+  <script>
+    let song;
+    let missile;
+    let explosion;
+
+    function preload() {
+      song = loadSound('../img/soundtrack.mp3');
+      missile = loadSound('../img/missile.mp3')
+      explosion = loadSound('../img/explosion.mp3')
+    }
+
+    function setup() {
+      createCanvas(200, 200);
+      background(220);
+      song.setVolume(0.7);
+    }
+
+    function draw() {
+
+    }
+
+    function keyPressed() {
+      if (key.toLowerCase() === 'e') explosion.play();
+      if (key.toLowerCase() === 's') missile.play();
+    }
+
+    function mousePressed() {
+      song.play();
+    }
+
+
+
+  </script>
+</head>
+<body>
+</body>
+</html>

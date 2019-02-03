@@ -1,0 +1,32 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script src="../addons/p5.sound.min.js"></script>
+  <script>
+    let song;
+
+    function preload() {
+      song = loadSound('../img/saba.mp3');
+    }
+
+    function setup() {
+      createCanvas(200, 200);
+      background(220);
+      song.setVolume(0.5);
+    }
+
+    function draw() {
+
+    }
+
+    function mousePressed() {
+      song.play();
+    }
+
+
+
+  </script>
+</head>
+<body>
+</body>
+</html>
