@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17908c15-2fb8-4c14-90d5-6b3e8cdaf072" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/steuern/vehicle.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/transformationen.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/transformationen/farbenrad.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/transformationen/haufen.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/transformationen/lenkenMitRotate.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/transformationen/planeten01.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/transformationen/planeten02.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/transformationen/rotierendesRechteck.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/index.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,6 +18,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="297">
+                <caret line="32" column="57" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/transformationen/rotierendesRechteck.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -35,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/transformationen.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="53" column="77" selection-start-line="53" selection-start-column="77" selection-end-line="53" selection-end-column="77" />
+            <state relative-caret-position="481">
+              <caret line="51" column="72" selection-start-line="51" selection-start-column="72" selection-end-line="51" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -56,7 +60,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vektoren.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="579">
+            <state relative-caret-position="864">
               <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
             </state>
           </provider>
@@ -107,15 +111,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/transformationen/farbenrad.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -153,7 +148,6 @@
         <option value="$PROJECT_DIR$/vektoren/lenken01.html" />
         <option value="$PROJECT_DIR$/vektoren.html" />
         <option value="$PROJECT_DIR$/vektoren/beschleunigt.html" />
-        <option value="$PROJECT_DIR$/index.md" />
         <option value="$PROJECT_DIR$/transformationen/haufen.html" />
         <option value="$PROJECT_DIR$/transformationen/drehung.html" />
         <option value="$PROJECT_DIR$/transformationen/farbenrad.html" />
@@ -162,6 +156,7 @@
         <option value="$PROJECT_DIR$/transformationen/vehicle.html" />
         <option value="$PROJECT_DIR$/transformationen/lenken.html" />
         <option value="$PROJECT_DIR$/transformationen.html" />
+        <option value="$PROJECT_DIR$/index.md" />
       </list>
     </option>
   </component>
@@ -270,7 +265,7 @@
       <option name="presentableId" value="Default" />
       <updated>1549122358481</updated>
       <workItem from="1549122359644" duration="2635000" />
-      <workItem from="1549173651494" duration="18932000" />
+      <workItem from="1549173651494" duration="19221000" />
     </task>
     <task id="LOCAL-00001" summary="vektoren">
       <created>1549177665493</created>
@@ -283,7 +278,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28060000" />
+    <option name="totallyTimeSpent" value="28349000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -502,16 +497,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="487">
-            <caret line="41" column="56" selection-start-line="41" selection-start-column="56" selection-end-line="41" selection-end-column="56" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/transformationen/haufen.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -573,7 +558,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vektoren.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
+        <state relative-caret-position="864">
           <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
         </state>
       </provider>
@@ -587,8 +572,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/transformationen.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="53" column="77" selection-start-line="53" selection-start-column="77" selection-end-line="53" selection-end-column="77" />
+        <state relative-caret-position="481">
+          <caret line="51" column="72" selection-start-line="51" selection-start-column="72" selection-end-line="51" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="297">
+            <caret line="32" column="57" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

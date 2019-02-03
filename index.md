@@ -30,6 +30,7 @@ __[Vektoren](vektoren.html)__ - gleichmäßige und beschleunigte Bewegung, Lenke
 NachobenRechts, Ablenkung
 
 __[Transformationen](transformationen.html)__ -
+Haufen, Rotierendes Rechteck, Planeten, Lenken mit Rotate
 
 __[Bilder](bilder.html)__ -
 Himmel, Kachelbilder, Fliegen, Cliff, Wüste, Explosion, Parallax, Weltall, Spaceship
