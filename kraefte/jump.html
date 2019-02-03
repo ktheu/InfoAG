@@ -1,0 +1,97 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let m;
+    let trechts = false;
+    let tlinks = false;
+    let tw = false;     // Taste w
+
+    function setup() {
+      createCanvas(400, 400);
+      m = new Mover();
+    }
+
+    function draw() {
+      background(0);
+
+      if (trechts) {
+        let rechts = createVector(0.1,0);
+        m.applyForce(rechts);
+
+      }
+      if (tlinks) {
+        let links = createVector(-0.1,0);
+        m.applyForce(links);
+
+      }
+
+      if (tw) {
+        let jump = createVector(0,-10);
+        m.applyForce(jump);
+        tw = false;
+      }
+      let gravity = createVector(0, 0.4);
+
+      m.applyForce(gravity);
+      m.act();
+
+    }
+
+    function keyPressed() {
+      if (keyCode === LEFT_ARROW) tlinks = true;
+      if (keyCode === RIGHT_ARROW) trechts = true;
+      if (key.toLowerCase() === 'w') tw = true;
+    }
+
+    function keyReleased() {
+      if (keyCode === LEFT_ARROW)  tlinks = false;
+      if (keyCode === RIGHT_ARROW) trechts = false;
+      if (key.toLowerCase() === 'w') tw = false;
+    }
+
+    class Mover {
+
+      constructor() {
+        this.pos = createVector(30, 30);
+        this.v = createVector(0, 0);
+        this.a = createVector(0, 0);
+      }
+
+      applyForce(force) {
+        this.a.add(force);
+      }
+
+      act() {
+        this.check();
+        this.move();
+        this.display();
+      }
+
+      move() {
+        this.v.add(this.a);
+        this.pos.add(this.v);
+        this.a.mult(0);
+      }
+
+      display() {
+        fill(255);
+        ellipse(this.pos.x, this.pos.y, 10, 10);
+      }
+
+      check() {
+        if (this.pos.y > height - 5) {
+          this.v.y *= 0;
+          this.v.x *= 0;
+          this.pos.y = height - 5;
+        }
+      }
+
+
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

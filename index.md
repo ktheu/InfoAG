@@ -39,7 +39,7 @@ __[Sound](sound.html)__ -
 Saba, DreiSounds
 
 __[Kräfte](kraefte.html)__ -
-Fallen, Wind und Gravitation, Reibung, Navigation
+Fallen, Wind und Gravitation, Reibung, Navigation, Jump
 
 --------------------------------------------------------
 
