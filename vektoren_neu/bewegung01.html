@@ -3,20 +3,15 @@
   <script src="../p5.min.js"></script>
   <script>
 
-    /*
-    gleichmäßige Bewegung: auf den Positionsvektor
-    wird bei jedem Durchgang der Geschwindigkeitsvektor addiert.
-    */
-
-    let pos;
-    let v;
+    let pos;     // Position
+    let v;       // Geschwindigkeit
 
     function setup() {
       createCanvas(400, 400);
       strokeWeight(10);
       stroke(255);
-      pos = createVector(200,50);  // Position
-      v = createVector(0,1);
+      pos = createVector(50,200);
+      v = createVector(1,0);
     }
 
     function draw() {
