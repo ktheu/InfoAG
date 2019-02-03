@@ -26,7 +26,8 @@ Haus und Sonne, Gesicht, Entfernung zum Mittelpunkt, Augen, Häuser
 __[Klassen](klassen.html)__ -
 Ballwelt, Counter, Hinher, Flappybalken, Snake
 
-__[Vektoren](vektoren.html)__ -
+__[Vektoren](vektoren.html)__ - gleichmäßige und beschleunigte Bewegung, Lenken, HalberWeg,
+NachobenRechts, Ablenkung
 
 __[Transformationen](transformationen.html)__ -
 

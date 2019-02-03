@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17908c15-2fb8-4c14-90d5-6b3e8cdaf072" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/vektoren/beschleunigt.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vektoren/lenken.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vektoren/umdrehen.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vektoren.html" beforeDir="false" afterPath="$PROJECT_DIR$/vektoren.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vektoren_neu/bewegung01.html" beforeDir="false" afterPath="$PROJECT_DIR$/vektoren/gleichmaessig.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/index.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,12 +18,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="354">
-                <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+              <first_editor relative-caret-position="278">
+                <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
               </first_editor>
               <second_editor />
             </state>
@@ -44,7 +39,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vektoren/beschleunigt.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="437">
@@ -61,7 +56,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vektoren.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="579">
+            <state relative-caret-position="1263">
               <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
             </state>
           </provider>
@@ -129,7 +124,6 @@
         <option value="$PROJECT_DIR$/arrays.html" />
         <option value="$PROJECT_DIR$/functions.html" />
         <option value="$PROJECT_DIR$/inhalte.html" />
-        <option value="$PROJECT_DIR$/index.md" />
         <option value="$PROJECT_DIR$/klassen.html" />
         <option value="$PROJECT_DIR$/bilder/himmel_02.html" />
         <option value="$PROJECT_DIR$/vektoren_neu/bewegung01.html" />
@@ -140,6 +134,7 @@
         <option value="$PROJECT_DIR$/vektoren/lenken01.html" />
         <option value="$PROJECT_DIR$/vektoren.html" />
         <option value="$PROJECT_DIR$/vektoren/beschleunigt.html" />
+        <option value="$PROJECT_DIR$/index.md" />
       </list>
     </option>
   </component>
@@ -162,16 +157,6 @@
             <path>
               <item name="infoAG" type="b2602c69:ProjectViewProjectNode" />
               <item name="infoAG" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infoAG" type="b2602c69:ProjectViewProjectNode" />
-              <item name="infoAG" type="462c0819:PsiDirectoryNode" />
-              <item name="vektoren" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infoAG" type="b2602c69:ProjectViewProjectNode" />
-              <item name="infoAG" type="462c0819:PsiDirectoryNode" />
-              <item name="vektoren_neu" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -245,7 +230,7 @@
       <option name="presentableId" value="Default" />
       <updated>1549122358481</updated>
       <workItem from="1549122359644" duration="2635000" />
-      <workItem from="1549173651494" duration="14099000" />
+      <workItem from="1549173651494" duration="14216000" />
     </task>
     <task id="LOCAL-00001" summary="vektoren">
       <created>1549177665493</created>
@@ -258,7 +243,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23227000" />
+    <option name="totallyTimeSpent" value="23344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -467,16 +452,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="354">
-            <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vektoren/ablenkung.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-124">
@@ -539,17 +514,27 @@
     <entry file="file://$PROJECT_DIR$/vektoren/halberWeg.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/vektoren.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vektoren/beschleunigt.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vektoren.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1263">
+          <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="278">
+            <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
