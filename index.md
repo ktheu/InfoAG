@@ -17,6 +17,8 @@ Rollover, LaufendeLinien, Prellball, Farbbereiche, Wandernde Kreise, SimplePong
 __[Schleifen](schleifen.html)__
 while/for-Schleife, 9 Kreise, 20 Rechtecke, viele Linien, viele Rechtecke, Schachbrett, Linien-, Kreis-, Dicke-, Strichmuster
 
+__[Arrays](arrays.html)__
+8Kreise, Fallende Quadrate, Hinher, Linienschlange, Farbenschlange, Cobra, Rotschwarz, Snake, Breakout
 
 ------------------------------------
 
