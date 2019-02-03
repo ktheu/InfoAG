@@ -5,19 +5,26 @@
 
     let pos;     // Position
     let v;       // Geschwindigkeit
+    let a;       // Beschleunigung
 
     function setup() {
       createCanvas(400, 400);
       strokeWeight(10);
       stroke(255);
       pos = createVector(50,200);
-      v = createVector(1,0);
+      v = createVector(0,0);
+      a = createVector(0.015,0.005);
+
     }
 
     function draw() {
       background(0);
+      v.add(a);
       pos.add(v);
-      point(pos.x,pos.y);
+      v.limit(15);
+      if (pos.x > width + 5) pos.x = -5;
+      if (pos.y > height + 5) pos.y = -5;
+      ellipse(pos.x,pos.y,10,10);
     }
 
   </script>

@@ -1,0 +1,39 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let pos;     // Position
+    let v;       // Geschwindigkeit
+    let a;       // Beschleunigung
+
+    function setup() {
+      createCanvas(400, 400);
+      strokeWeight(10);
+      stroke(255);
+      pos = createVector(50,200);
+      v = createVector(0,0);
+      a = createVector(0.15,0.05);
+
+    }
+
+    function draw() {
+      background(0);
+      v.add(a);
+      pos.add(v);
+      v.limit(6);
+      if (pos.x > width + 5) pos.x = -5;
+      if (pos.y > height + 5) pos.y = -5;
+      if (pos.x < -5) pos.x = width + 5;
+      if (pos.y < -5) pos.y = height + 5;
+      ellipse(pos.x,pos.y,10,10);
+    }
+
+    function mousePressed() {
+      a = a.mult(-1);
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>
