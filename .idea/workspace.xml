@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17908c15-2fb8-4c14-90d5-6b3e8cdaf072" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/sound/dreiSounds.html" beforeDir="false" afterPath="$PROJECT_DIR$/sound/dreiSounds.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sound/explosionMitSound.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sound/start.html" beforeDir="false" afterPath="$PROJECT_DIR$/sound/start.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sound/startResume.html" beforeDir="false" afterPath="$PROJECT_DIR$/sound/startResume.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sound/startStop.html" beforeDir="false" afterPath="$PROJECT_DIR$/sound/startStop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sound/usergesture.html" beforeDir="false" afterPath="$PROJECT_DIR$/sound/usergesture.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kraefte.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kraefte/navigation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kraefte/reibung.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kraefte/windUndGravitation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kraefte/aufprall.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kraefte/fallen.html" beforeDir="false" afterPath="$PROJECT_DIR$/kraefte/fallen.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,12 +25,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="722">
-                <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
+              <first_editor relative-caret-position="551">
+                <caret line="41" column="49" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
               </first_editor>
               <second_editor />
             </state>
@@ -36,33 +38,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kraefte/fallen.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sound/startStop.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sound/start.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sound/dreiSounds.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="465">
@@ -72,37 +47,46 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bilder/explosion.html">
+        <entry file="file://$PROJECT_DIR$/kraefte/fallen.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="43" column="9" selection-start-line="4" selection-end-line="43" selection-end-column="9" />
+            <state relative-caret-position="285">
+              <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sound/startResume.html">
+        <entry file="file://$PROJECT_DIR$/kraefte/windUndGravitation.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="152">
+              <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sound.html">
+        <entry file="file://$PROJECT_DIR$/kraefte/reibung.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+            <state relative-caret-position="228">
+              <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sound/usergesture.html">
+        <entry file="file://$PROJECT_DIR$/kraefte/navigation.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+            <state relative-caret-position="-1036">
+              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kraefte.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="541">
+              <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -155,19 +139,28 @@
         <option value="$PROJECT_DIR$/sound/saba.html" />
         <option value="$PROJECT_DIR$/sound/explosionMitSound.html" />
         <option value="$PROJECT_DIR$/sound.html" />
-        <option value="$PROJECT_DIR$/index.md" />
         <option value="$PROJECT_DIR$/sound/usergesture.html" />
         <option value="$PROJECT_DIR$/sound/startStop.html" />
         <option value="$PROJECT_DIR$/sound/startResume.html" />
         <option value="$PROJECT_DIR$/sound/start.html" />
         <option value="$PROJECT_DIR$/sound/dreiSounds.html" />
+        <option value="$PROJECT_DIR$/kraefte/schwerkraftUndWind.html" />
+        <option value="$PROJECT_DIR$/kraefte/mover.html" />
+        <option value="$PROJECT_DIR$/kraefte/navigation.html" />
+        <option value="$PROJECT_DIR$/kraefte/aufprall.html" />
+        <option value="$PROJECT_DIR$/kraefte/fallen.html" />
+        <option value="$PROJECT_DIR$/kraefte/windUndGravitation.html" />
+        <option value="$PROJECT_DIR$/kraefte/reibung.html" />
+        <option value="$PROJECT_DIR$/kraefte.html" />
+        <option value="$PROJECT_DIR$/index.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="1404" />
-    <option name="height" value="1038" />
+    <option name="x" value="427" />
+    <option name="y" value="71" />
+    <option name="width" value="1405" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -188,7 +181,7 @@
             <path>
               <item name="infoAG" type="b2602c69:ProjectViewProjectNode" />
               <item name="infoAG" type="462c0819:PsiDirectoryNode" />
-              <item name="sound" type="462c0819:PsiDirectoryNode" />
+              <item name="kraefte" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -199,23 +192,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/GitHubDownloads/The-Nature-of-Code-Examples-p5.js-master" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\khthe\GitHubIO\infoAG\sound" />
-      <recent name="C:\Users\khthe\GitHubIO\infoAG" />
-      <recent name="C:\Users\khthe\GitHubIO\infoAG\kraefte" />
-      <recent name="C:\Users\khthe\GitHubIO\infoAG\transformationen" />
-      <recent name="C:\Users\khthe\GitHubIO\infoAG\steuern" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\khthe\GitHubIO\infoAG\kraefte" />
       <recent name="C:\Users\khthe\GitHubIO\infoAG\steuern" />
       <recent name="C:\Users\khthe\GitHubIO\infoAG\vektoren" />
       <recent name="C:\Users\khthe\GitHubIO\infoAG\klassen" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\khthe\GitHubIO\infoAG" />
+      <recent name="C:\Users\khthe\GitHubIO\infoAG\kraefte" />
+      <recent name="C:\Users\khthe\GitHubIO\infoAG\sound" />
+      <recent name="C:\Users\khthe\GitHubIO\infoAG\transformationen" />
+      <recent name="C:\Users\khthe\GitHubIO\infoAG\steuern" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -230,29 +223,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.dreiSounds.html">
-    <configuration name="dreiSounds.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/sound/dreiSounds.html" useBuiltInWebServerPort="true">
+  <component name="RunManager" selected="JavaScript Debug.kraefte.html">
+    <configuration name="aufprall.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/kraefte/aufprall.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="explosionMitSound.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/sound/explosionMitSound.html" useBuiltInWebServerPort="true">
+    <configuration name="fallen.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/kraefte/fallen.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="sound.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/sound.html" useBuiltInWebServerPort="true">
+    <configuration name="kraefte.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/kraefte.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="start.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/sound/start.html" useBuiltInWebServerPort="true">
+    <configuration name="navigation.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/kraefte/navigation.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="usergesture.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/sound/usergesture.html" useBuiltInWebServerPort="true">
+    <configuration name="reibung.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/infoAG/kraefte/reibung.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.dreiSounds.html" />
-        <item itemvalue="JavaScript Debug.start.html" />
-        <item itemvalue="JavaScript Debug.sound.html" />
-        <item itemvalue="JavaScript Debug.explosionMitSound.html" />
-        <item itemvalue="JavaScript Debug.usergesture.html" />
+        <item itemvalue="JavaScript Debug.kraefte.html" />
+        <item itemvalue="JavaScript Debug.fallen.html" />
+        <item itemvalue="JavaScript Debug.aufprall.html" />
+        <item itemvalue="JavaScript Debug.navigation.html" />
+        <item itemvalue="JavaScript Debug.reibung.html" />
       </list>
     </recent_temporary>
   </component>
@@ -268,6 +261,7 @@
       <updated>1549122358481</updated>
       <workItem from="1549122359644" duration="2635000" />
       <workItem from="1549173651494" duration="26934000" />
+      <workItem from="1549221707817" duration="7983000" />
     </task>
     <task id="LOCAL-00001" summary="vektoren">
       <created>1549177665493</created>
@@ -280,7 +274,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36062000" />
+    <option name="totallyTimeSpent" value="44045000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -289,7 +283,6 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24586913" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -301,6 +294,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3286119" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -314,25 +308,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="vektoren" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bedingungen/rollover03.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bedingungen/prellball.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/arrays/kreise_03.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bedingungen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="140" column="44" selection-start-line="140" selection-start-column="15" selection-end-line="140" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/schleifen/while.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/schleifen.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
@@ -491,9 +466,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/steuern/lenken.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/steuern/lenken.html" />
     <entry file="file://$PROJECT_DIR$/transformationen/rotierendesRechteck.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
@@ -515,13 +488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/transformationen/lenkenMitRotate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="44" column="1" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/transformationen.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="481">
@@ -529,76 +495,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kraefte/aufprall.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vektoren_neu/fallen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kraefte/fallen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bilder/explosion.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="43" column="9" selection-start-line="4" selection-end-line="43" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sound/explosionMitSound.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sound.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="722">
-            <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/vektoren_neu/fallen.html" />
+    <entry file="file://$PROJECT_DIR$/sound/explosionMitSound.html" />
     <entry file="file://$PROJECT_DIR$/sound/startStop.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sound/usergesture.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sound/startResume.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
@@ -609,10 +511,104 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bilder/explosion.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="817">
+          <caret line="43" column="9" selection-start-line="4" selection-end-line="43" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sound/startResume.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sound.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sound/usergesture.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sound/dreiSounds.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kraefte/schwerkraftUndWind.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/transformationen/lenkenMitRotate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="43" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kraefte/aufprall.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kraefte/fallen.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kraefte/windUndGravitation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kraefte/reibung.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kraefte/navigation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1036">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kraefte.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="551">
+            <caret line="41" column="49" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

@@ -3,22 +3,17 @@
   <script src="../p5.min.js"></script>
   <script>
 
-    /*
-    beschleunigte Bewegung: auf den Positionsvektor
-    wird bei jedem Durchgang der Geschwindigkeitsvektor addiert.
-    */
-
-    let pos;   // Position
-    let v;     // Geschwindigkeit
-    let a;     // Beschleunigung
+    let pos;
+    let v;
+    let a;
 
     function setup() {
       createCanvas(400, 400);
       strokeWeight(10);
       stroke(255);
       pos = createVector(200,50);  // Position
-      v = createVector(0,1);
-      a = createVector(0,0.05);
+      v = createVector(0,0);
+      a = createVector(0,0.1);
     }
 
     function draw() {
