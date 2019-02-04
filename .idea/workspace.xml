@@ -22,8 +22,8 @@
         <entry file="file://$PROJECT_DIR$/index.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="589">
-                <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+              <first_editor relative-caret-position="525">
+                <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
               </first_editor>
               <second_editor />
             </state>
@@ -51,7 +51,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/part_a/part_a.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2214" />
+            <state relative-caret-position="123">
+              <caret line="123" column="34" lean-forward="true" selection-start-line="123" selection-start-column="34" selection-end-line="123" selection-end-column="34" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -153,11 +155,6 @@
               <item name="infoAG" type="b2602c69:ProjectViewProjectNode" />
               <item name="infoAG" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="infoAG" type="b2602c69:ProjectViewProjectNode" />
-              <item name="infoAG" type="462c0819:PsiDirectoryNode" />
-              <item name="part_a" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -238,7 +235,7 @@
       <workItem from="1549173651494" duration="26934000" />
       <workItem from="1549221707817" duration="10577000" />
       <workItem from="1549260037519" duration="173000" />
-      <workItem from="1549260233695" duration="4288000" />
+      <workItem from="1549260233695" duration="4502000" />
     </task>
     <task id="LOCAL-00001" summary="vektoren">
       <created>1549177665493</created>
@@ -251,7 +248,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51100000" />
+    <option name="totallyTimeSpent" value="51314000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -600,14 +597,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/part_a/part_a.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2214" />
+        <state relative-caret-position="123">
+          <caret line="123" column="34" lean-forward="true" selection-start-line="123" selection-start-column="34" selection-end-line="123" selection-end-column="34" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="589">
-            <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+          <first_editor relative-caret-position="525">
+            <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
           </first_editor>
           <second_editor />
         </state>
