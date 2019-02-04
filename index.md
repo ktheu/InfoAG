@@ -55,4 +55,4 @@ Fallen, Wind und Gravitation, Reibung, Navigation, Jump
 
 #### Übungsrunden
 
-__[Teil A](part_a/part_a.html)__ - Themen bis Arrays (einfach)
+__[Teil A](part_a/part_a.html)__ - Themen bis Arrays 
