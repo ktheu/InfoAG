@@ -1,0 +1,137 @@
+%\documentclass[landscape,twocolumn,a4paper]{article}
+\documentclass[a4paper,11pt,landscape,twocolumn]{book}
+%\documentclass[a4paper]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings} 
+\usepackage{mathtools}
+\usepackage{ulem}
+\usepackage{eurosym}
+\usepackage{textcomp}
+\usepackage{soul}
+\usepackage[top=20mm,left=10mm,right=10mm,bottom=10mm]{geometry}
+\usepackage[german=quotes]{csquotes} 
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[L]{Merkhilfe P5JS }
+\fancyhead[R]{\thepage}
+\fancyfoot{}
+\setlength{\parindent}{0em} 
+
+\fancypagestyle{ErsteSeite}{
+   \fancyhf{}
+   \fancyhead[L]{Merkhilfe - einfach}
+   \fancyhead[R]{v04.02.2019}
+} 
+\begin{document}
+\parskip 4pt
+\thispagestyle{ErsteSeite}
+\footnotesize
+\lstset{tabsize=4, basicstyle=\footnotesize, showstringspaces=false,mathescape=true}
+\lstset{literate=%
+  {Ö}{{\"O}}1
+  {Ä}{{\"A}}1
+  {Ü}{{\"U}}1
+  {ß}{{\ss}}1
+  {ü}{{\"u}}1
+  {ä}{{\"a}}1
+  {ö}{{\"o}}1
+}
+
+%--------------------
+\begin{lstlisting} 
+// einzeiliger Kommentar,  /* mehrzeiliger Kommentar */ 
+let x;        #  Deklaration
+let x = 2;    #  Deklaration und Zuweisung
+
+# Allerlei
+x = x + 1;   # Zuweisung
+$===$,   $!==$         # Gleichheit, Ungleichheit
+&&, ||, !,   # boolesche Operatoren
+true, false
+
+# setup und draw
+function setup() {             
+  createCanvas(400, 400);
+}
+function draw() {
+  background(220);
+} 
+
+# Systemvariablen
+width, height    # wie in createCanvas gesetzt
+mouseX, mouseY,  # mousePosition
+frameCount       # Anzahl draw-Durchgänge
+
+# Bedingte Anweisungen
+if (x > width) {
+   x = 0;
+}
+else {
+   x = x + 1;
+}
+  
+# for-Schleife
+for (let i = 0; i < 20; i++) {   # 20 zufällige Punkte
+   point(random(0, 300), random(0, 300));
+}
+
+# Zeichnen
+point(x,y);
+line(x1,y1,x2,y2);
+rect(x,y,breite,hoehe);
+ellipse(x,y,durchmesser,durchmesser);
+
+# Farben
+background(100);         # Grauwert
+background(255,100,30);  # RGB-Wert
+background(farbe), stroke(farbe), fill(farbe);  
+strokeWeight(4); noStroke(); noFill();
+
+
+# Zufall
+randomSeed(42);
+x = random(4,9) # x in [4,9)
+x = int(random(4,9))  # ganze Zahl in [4,9)
+
+# Text 
+textSize(16);
+text('Bitte eine Zahl eingeben', 20, 40);
+
+# Events
+function mousePressed() {
+  if (mouseButton $===$ LEFT) { ... }
+}
+
+function keyPressed() {
+  if (keyCode $===$ RIGHT_ARROW) { ... }
+  if (key.toLowerCase() $===$ 'd') {...}
+}
+function keyReleased() {.... }  
+
+# Keys
+keyCode  // Variable mit Code des letzten gedrückten keys
+UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW.
+
+# Functions
+function lala(x, y) {
+   let z = x + y * 2
+   return z;
+}
+
+# Arrays
+let a = [];      # leeres Array
+a=[-1,2,4];      # mit Werten initialisiertes Array
+a.push(17);      # Array erweitern
+a[4] = 3;        # Array an einer Stelle updaten
+for (let i = 0; i < a.length; i++) {   # Array durchlaufen
+	a[i] = a[i] + 4;
+}
+
+\end{lstlisting} 
+
+\end{document}
