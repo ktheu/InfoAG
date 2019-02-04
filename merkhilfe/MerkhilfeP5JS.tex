@@ -45,16 +45,12 @@
 %--------------------
 \begin{lstlisting} 
 // einzeiliger Kommentar,  /* mehrzeiliger Kommentar */ 
-let x;  const x = 10;  // Deklaration, Zuweisung (blocksclope)
-var x; var x = 10;   // functionscope
+let x;  const x = 10;  // Deklaration, Zuweisung 
 
 # Allerlei
-** Exponentation, i++ möglich, Kurzformen möglich,
-$== $  // equal to
-$===$ // equal value and equal type
-a = (b > 8) ? 1 : 0;  // bedingte Zuweisung
+** Exponentation, i++;  i+=2;
+$===$,   $!==$         // Gleichheit, Ungleichheit
 &&, ||, !,   // boolesche Operatoren
-&, |, ~, ^  // bitweise
 true, false
 
 # setup und draw
@@ -70,7 +66,6 @@ function draw() {
 width, height    # wie in createCanvas gesetzt
 mouseX, mouseY, pmouseX, pmouseY
 frameCount      # Anzahl draw-Durchgänge
-keyCode  # Code des zuletzt gedrückten keys
 mouseIsPressed, keyIsPressed (irgendeiner)
 keyIsDown(UP_ARROW)
 
