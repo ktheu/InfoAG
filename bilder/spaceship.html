@@ -42,7 +42,7 @@
         }
 
         function keyPressed() {
-            if (keyCode == UP_ARROW) tUp = true;
+            if (key.toLowerCase() === 'w') tUp = true;
             if (keyCode == LEFT_ARROW) tLeft = true;
             if (keyCode == RIGHT_ARROW) tRight = true;
             if (key == ' ') tSpace = true; // ergänze für tSpace
@@ -50,7 +50,7 @@
 
 
         function keyReleased() {
-            if (keyCode == UP_ARROW) tUp = false;
+            if (key.toLowerCase() === 'w') tUp = false;
             if (keyCode == LEFT_ARROW) tLeft = false;
             if (keyCode == RIGHT_ARROW) tRight = false;
             if (key == ' ') {
