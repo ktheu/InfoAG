@@ -1,0 +1,80 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    Ball[] baelle;
+
+    void setup() {
+      size(900, 900);
+      smooth();
+      noStroke();
+      baelle = new Ball[100];
+      for (int i=0; i<baelle.length; i++) {
+        baelle[i] = new Ball();
+      }
+    }
+
+    void draw() {
+      fill(0, 20);
+      rect(0, 0, width, height);
+      for (Ball b : baelle) b.act();
+    }
+
+
+    //-end
+    class Ball {
+
+      PVector pos;
+      PVector v;
+      PVector a;
+      float radius;
+      float topSpeed;
+
+
+      Ball() {
+        pos = new PVector(width/2, height/2);
+        v = new PVector(random(-5, 5), random(-5, 5));
+        a = new PVector();
+        radius = 10;
+        topSpeed = 6;
+      }
+
+      void act() {
+        checkRand();
+        move();
+        display();
+      }
+
+      void move() {
+        if (mousePressed) {
+          PVector mouse = new PVector(mouseX, mouseY);
+          a = PVector.sub(mouse, pos);
+          a.setMag(0.5);
+        } else {
+          a.set(random(-1, 1), random(-1, 1));
+        }
+        v.add(a);
+        v.limit(topSpeed);
+        pos.add(v);
+      }
+
+      void display() {
+        fill(255);
+        ellipse(pos.x, pos.y, radius*2, radius*2);
+      }
+
+      void checkRand() {
+        if (pos.x - radius > width) pos.x = -radius;
+        else if (pos.x + radius < 0) pos.x = width+radius;
+
+        if (pos.y - radius > height) pos.y = -radius;
+        else if (pos.y + radius < 0) pos.y = height+radius;
+      }
+    }
+
+
+  </script>
+</head>
+<body>
+</body>
+</html>
