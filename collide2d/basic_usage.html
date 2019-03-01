@@ -1,0 +1,30 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script src="../p5.collide2d.min.js"></script>
+  <script>
+    //button callback example
+    let hit = false;
+
+    function setup() {
+      createCanvas(400, 400);
+    }
+
+    function draw() {
+      noStroke();
+      hit = collidePointRect(mouseX, mouseY, 200, 200, 100, 100); //see if the mouse is in the rect
+
+      if (hit) { //change color!
+        fill('purple')
+      } else {
+        fill('green')
+      }
+      rect(200, 200, 100, 100);
+    }
+
+
+  </script>
+</head>
+<body>
+</body>
+</html>

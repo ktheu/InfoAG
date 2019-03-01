@@ -1,0 +1,28 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let x = 0;
+
+    function setup() {
+      createCanvas(400, 400);
+      strokeWeight(2);
+      angleMode(DEGREES);
+      rectMode(CENTER);
+    }
+
+    function draw() {
+      background(255);
+      translate(200,200);
+      rotate(x);
+      rect(0,0,80,20);
+      x = x + 1;
+
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

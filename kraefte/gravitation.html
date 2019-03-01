@@ -1,0 +1,41 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let pos;
+    let v;
+    let a;
+    let fbetrag = 0
+
+    function setup() {
+      createCanvas(400, 400);
+      strokeWeight(10);
+      stroke(255);
+      pos = createVector(20,50);  // Position
+      v = createVector(2,0);
+      a = createVector(0,0.1);
+    }
+
+    function draw() {
+      background(0);
+      if (fbetrag != 0) {
+        a = createVector(mouseX-pos.x, mouseY-pos.y);
+        a.setMag(fbetrag)
+        v.add(a)
+      }
+      pos.add(v);
+      point(pos.x,pos.y);
+    }
+
+    function mousePressed() {
+      let a = createVector(mouseX-pos.x, mouseY-pos.y);
+      let radius = a.mag();
+      let vbetrag = v.mag();
+      fbetrag = (vbetrag * vbetrag / radius);
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

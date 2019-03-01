@@ -1,27 +1,27 @@
 <html>
 <head>
-    <script src="../p5.min.js"></script>
-    <script>
-        let kachel;
-        let fliege;
+  <script src="../p5.min.js"></script>
+  <script>
+    let kachel;
+    let fliege;
 
-        function preload() {
-            kachel = loadImage("../img/bricks2.jpg");
-            fliege = loadImage("../img/fly.png");
-        }
+    function preload() {
+      kachel = loadImage("../img/bricks2.jpg");
+      fliege = loadImage("../img/fly.png");
+    }
 
-        function setup() {
-            createCanvas(800, 400);
-        }
+    function setup() {
+      createCanvas(800, 400);
+    }
 
-        function draw() {
-            for (let i = 0; i < width + kachel.width; i = i + kachel.width) {
-                for (let j = 0; j < height + kachel.height; j = j + kachel.height)
-                    image(kachel, i, j);
-            }
-            image(fliege, 400, 200);
-        }
-    </script>
+    function draw() {
+      for (let i = 0; i < width + kachel.width; i = i + kachel.width) {
+        for (let j = 0; j < height + kachel.height; j = j + kachel.height)
+          image(kachel, i, j);
+      }
+      image(fliege, 400, 200);
+    }
+  </script>
 </head>
 <body>
 </body>

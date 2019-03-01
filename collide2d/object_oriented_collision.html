@@ -1,0 +1,84 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script src="../p5.collide2d.min.js"></script>
+  <script>
+    let rechtecke = [];
+    let anzRechtecke = 50;
+    let kreis;
+
+    function setup() {
+      createCanvas(1000, 300);
+
+      for (i = 0; i < anzRechtecke; i++) {
+        r = new Rechteck(random(width), random(height), random(10, 50), random(10, 50))
+        rechtecke.push(r);
+      }
+      kreis = new Kreis(20);
+    }
+
+    function draw() {
+      background(255);
+
+      for (i = 0; i < anzRechtecke; i++) {
+        rechtecke[i].display();
+        rechtecke[i].collide(kreis); //collide against the circle object
+      }
+      kreis.display(mouseX, mouseY); //pass the x,y pos in to the circle.
+
+    }
+
+    class Rechteck {
+
+      constructor(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.color = color(random(255), random(255), random(255));
+        this.hit = false;
+      }
+
+      collide(obj) {
+        this.hit = collideRectCircle(this.x, this.y, this.w, this.h, obj.x, obj.y, obj.dia);
+
+        if (this.hit) {
+          this.color = color(0);
+        }
+      }
+
+      display() {
+        noStroke();
+        fill(this.color);
+        this.x += 3 //move to the right!
+        if (this.x > width) { //loop to the left!
+          this.x = -this.w;
+        }
+        rect(this.x, this.y, this.w, this.h);
+      }
+
+    }
+
+    class Kreis {
+
+      constructor(dia) {
+        this.dia = dia;
+        this.color = color(random(255), random(255), random(255));
+        this.x;
+        this.y;
+      }
+
+      display(x, y) {
+        noStroke();
+        this.x = x;
+        this.y = y;
+        fill(this.color);
+        ellipse(this.x, this.y, this.dia, this.dia);
+      }
+
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

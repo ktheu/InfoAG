@@ -1,0 +1,60 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let ya;
+    let t;
+    let incr = 0.007;
+
+    function setup() {
+      createCanvas(600, 200);
+      noFill();
+      stroke(0);
+      strokeWeight(2);
+      ya = new Array(width).fill(random(height));
+      t = random(0, 1000);                 // t wird anfänglich zufällig gesetzt
+      for (let x = 0; x < width; x++) {
+        ya[x] = map(noise(t), 0, 1, 0, height);
+        t += incr;
+      }
+    }
+
+    function draw() {
+      background(255);
+      display();
+      for (let i = 1; i < ya.length; i++)
+        ya[i - 1] = ya[i];
+      t += incr;
+      ya[ya.length - 1] = map(noise(t), 0, 1, 0, height);
+    }
+
+    // die display-Methode zeigt die Linie der ya-Punkte
+    function display() {
+      fill('#7784F5');
+      beginShape();
+      vertex(0, 0);
+      for (let x = 0;
+           x < ya.length;
+           x++
+      )
+        vertex(x, ya[x]);
+      vertex(width, 0);
+      endShape(CLOSE);
+
+      fill('#F0CC55');
+      beginShape();
+      for (let x = 0;
+           x < ya.length;
+           x++
+      )
+      vertex(x, ya[x]);
+      vertex(width, height);
+      vertex(0, height);
+      endShape(CLOSE);
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

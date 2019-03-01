@@ -52,6 +52,8 @@ Saba, DreiSounds
 __[Kräfte](kraefte.html)__ -
 Fallen, Wind und Gravitation, Reibung, Navigation, Jump
 
+__[Perlin Noise](noise.html)__ -
+Hügel
 --------------------------------------------------------
 
 #### Übungsrunden

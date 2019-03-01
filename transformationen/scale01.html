@@ -1,0 +1,26 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let x = 1.0;
+
+    function setup() {
+      createCanvas(400, 400);
+      strokeWeight(10);
+    }
+
+    function draw() {
+      background(255);
+      scale(x);
+      rect(200,200,80,20);
+      scale(x);
+      rect(200,200,80,20);
+      x = x - 0.001
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

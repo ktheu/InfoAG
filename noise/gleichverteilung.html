@@ -1,0 +1,28 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let anzahl = 20;
+    let counts = new Array(anzahl).fill(0);
+
+    function setup() {
+      createCanvas(800, 300);
+      stroke(0);
+      strokeWeight(2);
+      fill(127);
+    }
+
+    function draw() {
+      background(255);
+      let index = int(random(anzahl));
+      counts[index]++;
+      let breite = width/anzahl;
+      for (let x = 0; x < anzahl; x++) {
+        rect(x*breite, height-counts[x], breite, counts[x]);
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

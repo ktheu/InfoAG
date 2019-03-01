@@ -1,0 +1,38 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let ew = 300;      // Erwartungswert
+    let sa = 60;       // Standardabweichung
+    let counts;
+
+    function setup() {
+      createCanvas(800, 200);
+      counts = new Array(width).fill(0);
+    }
+
+    function draw() {
+      background(255);
+      stroke(0, 255, 0);
+      line(ew, 0, ew, height);
+      stroke(255, 0, 0);
+      line(ew-sa, 0, ew-sa, height);
+      line(ew+sa, 0, ew+sa, height);
+
+      let zahl = randomGaussian(ew, sa);
+      let index = int(zahl);
+
+      if (0 <= index && index < width)
+        counts[index]++;
+
+      stroke(0);
+      for (let i = 0; i < width; i++) {
+        line(i, height, i, height-counts[i]);
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>
