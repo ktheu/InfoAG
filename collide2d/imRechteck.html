@@ -3,23 +3,22 @@
   <script src="../p5.min.js"></script>
   <script src="../p5.collide2d.min.js"></script>
   <script>
-    //button callback example
-    let hit = false;
 
     function setup() {
       createCanvas(400, 400);
+      noStroke();
     }
 
     function draw() {
-      noStroke();
-      hit = collidePointRect(mouseX, mouseY, 200, 200, 100, 100); //see if the mouse is in the rect
+      background(200);
+      hit = collidePointRect(mouseX, mouseY, 100, 100, 200, 200);
 
-      if (hit) { //change color!
-        fill('purple')
+      if (hit) {
+        fill('red')
       } else {
         fill('green')
       }
-      rect(200, 200, 100, 100);
+      rect(100, 100, 200, 200);
     }
 
 

@@ -1,0 +1,192 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script src="../p5.collide2d.min.js"></script>
+  <script>
+    let balken = []
+    let spieler;
+
+    // Tastensteuerung
+    let tLeft;
+    let tRight;
+    let tS;
+    let tW;
+
+    // Parameter für das Spiel
+    let vxSpieler = 2;  // Geschwindigkeit bei rechts-links Taste
+
+    let gravity;
+    let jump;
+
+    function setup() {
+      createCanvas(400, 300);
+      gravity = createVector(0, 0.5);
+      jump = createVector(0, -8);
+      balken.push(new Balken(-100, 280, width + 100, 20));   // Boden
+      balken.push(new Balken(160, 230, 80, 10));
+      balken.push(new Balken(80, 180, 80, 10));
+      balken.push(new Balken(200, 130, 80, 10));
+      balken.push(new Balken(90, 80, 80, 10));
+      balken[0].vx = 0;                            // Boden bewegt sich nicht
+
+      spieler = new Spieler(10, 100, 10, 20);
+    }
+
+    function draw() {
+      background(230);
+      for (let b of balken) b.act();
+      spieler.act();
+
+    }
+
+    function keyPressed() {
+      if (keyCode == RIGHT_ARROW) {
+        tRight = true;
+      }
+      if (keyCode == LEFT_ARROW) {
+        tLeft = true;
+      }
+      if (key == 's' || key == 'S') {
+        tS = true;
+      }
+      if (key == 'w' || key == 'W') {
+        tW = true;
+      }
+    }
+
+    function keyReleased() {
+      if (keyCode == RIGHT_ARROW) {
+        tRight = false;
+      }
+      if (keyCode == LEFT_ARROW) {
+        tLeft = false;
+      }
+      if (key == 's' || key == 'S') {
+        tS = false;
+      }
+      if (key == 'w' || key == 'W') {
+        tW = false;
+      }
+    }
+
+    class Balken {
+
+      constructor(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.vx = random(0.4, 2);
+        if (random() < 0.5) this.vx = -this.vx;
+      }
+
+      display() {
+        noStroke();
+        fill(150);
+        rect(this.x, this.y, this.w, this.h);
+      }
+
+      move() {
+        this.x = this.x + this.vx;
+        if (this.x < 30 || this.x + this.w > width - 30) this.vx = -this.vx;
+      }
+
+      act() {
+        this.move();
+        this.display();
+      }
+    }
+
+    class Spieler {
+
+      constructor(x, y, w, h) {
+        this.pos = createVector(x, y);
+        this.v = createVector(0, 0);
+        this.a = createVector(0, 0);
+        this.w = w;
+        this.h = h;
+
+      }
+
+      act() {
+        this.check();
+        this.move();
+        this.display();
+      }
+
+      check() {
+        let hit_unten = false;
+        for (let b of balken) {
+          if (collideRectRect(this.pos.x, this.pos.y, this.w, this.h, b.x, b.y + b.h / 2, b.w, b.h / 2)) {
+            hit_unten = true;
+            break;
+          }
+        }
+
+        let hit_oben = -1;           // Index des getroffenen Balkens
+        for (let i = 0; i < balken.length; i++) {
+          if (collideRectRect(this.pos.x, this.pos.y, this.w, this.h,
+            balken[i].x, balken[i].y, balken[i].w, balken[i].h / 2)) {
+            hit_oben = i;
+            break;
+          }
+        }
+
+        // Gravitation
+        if (hit_oben === -1) this.applyForce(gravity);
+        else {
+          this.v.y = 0;
+        }
+
+        // Nach unten abprallen
+        if (hit_unten) {
+          this.v.y = abs(this.v.y)
+        }
+
+        // Sprung
+        if ((hit_oben > -1) && tW) {
+          this.applyForce(jump);
+        }
+
+        // Auf den Balken (ohne Boden) mit dem Balken bewegen
+        if (hit_oben > 0) {
+          this.v.x = balken[hit_oben].vx;
+        }
+
+        // Positionskorrektur
+        if (hit_oben > -1) this.pos.y = balken[hit_oben].y - this.h
+
+        // Links- und Rechts-Bewegung
+        if (tRight) {
+          this.v.x = vxSpieler
+        }
+        if (tLeft) {
+          this.v.x = -vxSpieler;
+        }
+        if (tS) {
+          this.v.x = 0;
+        }
+      }
+
+      applyForce(force) {
+        this.a.add(force);
+      }
+
+      move() {
+        this.v.add(this.a);
+        this.pos.add(this.v);
+        this.a.mult(0);
+      }
+
+      display() {
+        noStroke();
+        fill(20);
+        rect(this.pos.x, this.pos.y, this.w, this.h);
+      }
+
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

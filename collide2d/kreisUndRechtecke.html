@@ -1,0 +1,64 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script src="../p5.collide2d.min.js"></script>
+  <script>
+    let rechtecke = [];
+    anzRechtecke = 50;
+
+    function setup() {
+      createCanvas(1000, 300);
+      noStroke();
+      for (i = 0; i < anzRechtecke; i++) {
+        rechtecke.push(new Rechteck());
+      }
+    }
+
+    function draw() {
+      background(255);
+
+      for (let r of rechtecke) r.act();
+
+      fill(50);
+      ellipse(mouseX, mouseY, 20, 20)
+    }
+
+    class Rechteck {
+
+      constructor() {
+        this.x = random(width);
+        this.y = random(height);
+        this.w = random(10, 50);
+        this.h = random(10, 50);
+        this.color = color(random(255), random(255), random(255));
+      }
+
+      act() {
+        this.check();
+        this.move();
+        this.display();
+      }
+
+      check() {
+        let hit = collideRectCircle(this.x, this.y, this.w, this.h, mouseX, mouseY, 20);
+        if (hit) this.color = color(0);
+      }
+
+      move() {
+        this.x += 3
+        if (this.x > width) {
+          this.x = -this.w;
+        }
+      }
+
+      display() {
+        fill(this.color);
+        rect(this.x, this.y, this.w, this.h);
+      }
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

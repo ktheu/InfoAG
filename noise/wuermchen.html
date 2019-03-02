@@ -2,73 +2,64 @@
 <head>
   <script src="../p5.min.js"></script>
   <script>
-    Ball[] baelle;
+    let baelle = new Array(100);
 
-    void setup() {
-      size(900, 900);
-      smooth();
-      noStroke();
-      baelle = new Ball[100];
-      for (int i=0; i<baelle.length; i++) {
+    function setup() {
+      createCanvas(800, 800 );
+      noStroke()
+
+      for (let i = 0; i < baelle.length; i++) {
         baelle[i] = new Ball();
       }
     }
 
-    void draw() {
+    function draw() {
       fill(0, 20);
       rect(0, 0, width, height);
-      for (Ball b : baelle) b.act();
+      for (let b of baelle) b.act();
     }
 
 
-    //-end
     class Ball {
 
-      PVector pos;
-      PVector v;
-      PVector a;
-      float radius;
-      float topSpeed;
-
-
-      Ball() {
-        pos = new PVector(width/2, height/2);
-        v = new PVector(random(-5, 5), random(-5, 5));
-        a = new PVector();
-        radius = 10;
-        topSpeed = 6;
+      constructor() {
+        this.pos = createVector(width / 2, height / 2);
+        this.v = createVector(random(-5, 5), random(-5, 5));
+        this.a = createVector(0,0);
+        this.radius = 8;
+        this.topSpeed = 6;
       }
 
-      void act() {
-        checkRand();
-        move();
-        display();
+      act() {
+        this.checkRand();
+        this.move();
+        this.display();
       }
 
-      void move() {
-        if (mousePressed) {
-          PVector mouse = new PVector(mouseX, mouseY);
-          a = PVector.sub(mouse, pos);
-          a.setMag(0.5);
+      move() {
+        if (mouseIsPressed) {
+          let mouse = createVector(mouseX, mouseY);
+          this.a = p5.Vector.sub(mouse, this.pos);
+          this.a.setMag(0.5);
         } else {
-          a.set(random(-1, 1), random(-1, 1));
+          this.a.set(random(-1, 1), random(-1, 1));
         }
-        v.add(a);
-        v.limit(topSpeed);
-        pos.add(v);
+        this.v.add(this.a);
+        this.v.limit(this.topSpeed);
+        this.pos.add(this.v);
       }
 
-      void display() {
+      display() {
         fill(255);
-        ellipse(pos.x, pos.y, radius*2, radius*2);
+        ellipse(this.pos.x, this.pos.y, this.radius * 2, this.radius * 2);
       }
 
-      void checkRand() {
-        if (pos.x - radius > width) pos.x = -radius;
-        else if (pos.x + radius < 0) pos.x = width+radius;
+      checkRand() {
+        if (this.pos.x - this.radius > width) this.pos.x = -this.radius;
+        else if (this.pos.x + this.radius < 0) this.pos.x = width + this.radius;
 
-        if (pos.y - radius > height) pos.y = -radius;
-        else if (pos.y + radius < 0) pos.y = height+radius;
+        if (this.pos.y - this.radius > height) this.pos.y = -this.radius;
+        else if (this.pos.y + this.radius < 0) this.pos.y = height + this.radius;
       }
     }
 
