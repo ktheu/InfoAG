@@ -8,6 +8,7 @@
 
     function setup() {
       createCanvas(200,200);
+      screen.orientation.lock("landscape");
       if (window.DeviceOrientationEvent) {
         window.addEventListener('deviceorientation', onOrientationChange);
       }
