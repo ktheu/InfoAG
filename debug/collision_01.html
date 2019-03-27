@@ -1,0 +1,75 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script src="../p5.collide2d.min.js"></script>
+    <script>
+        let num = 20;
+        let part = new Array(num);
+
+        function setup() {
+            createCanvas(400, 400);
+            for (let i = 0; i < num; i++) {
+                part[i] = new Rec();
+                part[i] = new Rec();
+            }
+        }
+
+        function draw() {
+            background(220);
+
+            for (let i = 0; i < num; i++) {
+                for (let j = 0; j < num; j++) {
+                    if (i !== j)
+                        part[i].checkkollision(part[j])
+                }
+            }
+
+            for (let i = 0; i < num; i++) {
+                part[i].check()
+                part[i].display();
+                part[i].move();
+            }
+        }
+
+        class Rec {
+            constructor(id) {
+                this.x = random(width);
+                this.y = random(height);
+                this.w = random(width / 10);
+                this.h = random(height / 10);
+                this.vx = random(-2, 2);
+                this.vy = random(-2, 2);
+            }
+
+            check() {
+                if (this.x > width) this.x = 0;
+                if (this.x < 0) this.x = width
+                if (this.y > height) this.y = 0;
+                if (this.y < 0) this.y = height
+
+            }
+
+            display() {
+                rect(this.x, this.y, this.w, this.h);
+            }
+
+            move() {
+                this.x = this.x + this.vx;
+                this.y = this.y + this.vy;
+            }
+
+
+            checkkollision(other) {
+                let coll = collideRectRect(this.x, this.y, this.w, this.h, other.x, other.y, other.w, other.h);
+                if (coll) {
+                    this.vx = random(-2,2);
+                    this.vy = random(-2,2);
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+</body>
+</html>

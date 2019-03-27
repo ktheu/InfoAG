@@ -1,0 +1,28 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+
+    function setup() {
+      createCanvas(300, 300);
+      fill(255);
+      noStroke();
+     }
+
+    function draw() {
+      background(0);
+      zweiKreise(100,150);
+      zweiKreise(200,150);
+    }
+
+    function zweiKreise(x,y) {
+      ellipse(x-10,y,30,30);
+      ellipse(x+10,y,30,30);
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

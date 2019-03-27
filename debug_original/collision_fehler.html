@@ -1,0 +1,62 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script src="../p5.collide2d.min.js"></script>
+  <script src="particle.js"></script>
+  <script src="rect.js"></script>
+  <script>
+    let part = [];
+    let num = 12;
+
+    function setup() {
+      createCanvas(400, 400);
+      for (let i = 0; i < num; i++) {
+        let which = int(random(0, 1));
+        switch (which) {
+          case 0:
+            which = Rec;
+            break;
+          case 1:
+            which = Ell;
+            break;
+        }
+        part.push(new which());
+      }
+    }
+
+    function draw() {
+      background(220);
+      for (let j = 0; j < part.length; j++) {
+        for (let i = 0; i < part.length; i++) {
+          if (part[i] === undefined) {
+            print('i: ' + i);
+            print('part: ' + part[i]);
+          }
+          part[j].kollO(part[i]);
+        }
+      }
+      for (let i = 0; i < part.length; i++) {
+        part[i].act();
+      }
+    }
+
+    function mousePressed() {
+      for (let i = 0; i < 5; i++) {
+        let which = int(random(0, 2));
+        switch (which) {
+          case 0:
+            which = Rec;
+            break;
+          case 1:
+            which = Ell;
+            break;
+        }
+        part.push(new which(mouseX, mouseY));
+      }
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

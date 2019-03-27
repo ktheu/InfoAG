@@ -1,0 +1,39 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    var alpha = 0; // Orientation around Z axis
+    var beta = 0; // Orientation around X axis
+    var gamma = 0; // Orientation around Y axis
+
+    function setup() {
+      createCanvas(200,200);
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', onOrientationChange);
+      }
+    }
+
+    function draw() {
+      background(255,255,255);
+      angleMode(DEGREES);
+      rectMode(CENTER);
+      push();
+      translate(width/2, height/2);
+      rotate(beta);
+      rect(0,0, 50, 100);
+      pop();
+    }
+
+    function onOrientationChange(e) {
+      alpha = e.alpha;
+      beta = e.beta;
+      gamma = e.gamma;
+
+      println(alpha + " " + beta + " " + gamma);
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+
+    function setup() {
+      createCanvas(600, 200);
+      y = new Array(width).fill(0);   // ein Array mit width-Elementen
+      for (let x = 0; x < width; x++) {
+        y[x] = random(height);
+      }
+
+    }
+
+    function draw() {
+      background(255);
+      for (let x=0; x<y.length - 1; x++) {
+        line(x,y[x],x+1,y[x+1])
+      }
+
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

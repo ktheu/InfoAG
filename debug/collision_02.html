@@ -1,0 +1,115 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script src="../p5.collide2d.min.js"></script>
+    <script>
+        let num = 50;
+        let part = new Array(num);
+
+        function setup() {
+            createCanvas(400, 400);
+            stroke(3);
+            for (let i = 0; i < num; i++) {
+                if (random() < 0.5) {
+                    part[i] = new Rec();
+                }
+
+                else {
+                    part[i] = new Ell();
+                }
+            }
+        }
+
+        function draw() {
+            background(220);
+
+            for (let i = 0; i < num; i++) {
+                for (let j = 0; j < num; j++) {
+                    if (i !== j)
+                        part[i].checkkollision(part[j])
+                }
+            }
+
+            for (let i = 0; i < num; i++) {
+                part[i].check()
+                part[i].display();
+                part[i].move();
+            }
+        }
+
+        class Particle {
+
+            constructor() {
+                this.x = random(width);
+                this.y = random(height);
+           /*     this.w = random(10,width / 10);
+                this.h = random(10,height / 10);*/
+                this.w = 10;
+                this.h = 10;
+                this.vx = random(-2, 2);
+                this.vy = random(-2, 2);
+
+            }
+
+            check() {
+                if (this.x > width) this.x = 0;
+                if (this.x < 0) this.x = width
+                if (this.y > height) this.y = 0;
+                if (this.y < 0) this.y = height
+
+            }
+
+
+
+            move() {
+                this.x = this.x + this.vx;
+                this.y = this.y + this.vy;
+            }
+
+
+            checkkollision(other) {
+
+                let n1 = this.constructor.name
+                let n2 = other.constructor.name
+                let coll = false;
+
+                if (n1 === 'Rec' && n2 === 'Rec')
+                     coll = collideRectRect(this.x, this.y, this.w, this.h, other.x, other.y, other.w, other.h);
+                if (n1 === 'Rec' && n2 === 'Ell')
+                    coll = collideRectCircle(this.x, this.y, this.w, this.h, other.x, other.y, other.w, other.h);
+                if (n1 === 'Ell' && n2 === 'Rec')
+                    coll = collideRectCircle(other.x, other.y, other.w, other.h,this.x, this.y, this.w, this.h);
+                if (n1 === 'Ell' && n2 === 'Ell')
+                    coll = collideCircleCircle(this.x, this.y, this.w, other.x, other.y, other.w);
+                if (coll) {
+                  /*  this.vx = random(-2,2);
+                    this.vy = random(-2,2)*/;
+                    this.vx *= -1;
+                    this.vy *= -1;
+
+                }
+            }
+        }
+
+        class Rec extends Particle {
+
+            display() {
+                rect(this.x, this.y, this.w, this.h);
+            }
+
+        }
+
+
+        class Ell extends Particle {
+
+            display() {
+                ellipse(this.x, this.y, this.w, this.h);
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+</body>
+</html>
