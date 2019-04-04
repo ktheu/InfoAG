@@ -1,0 +1,42 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let anzahl = 100;
+    let t = new Array(anzahl);
+    let x = new Array(anzahl);
+    let y = new Array(anzahl);
+
+    function setup() {
+      createCanvas(400, 400);
+      for (let i = 0; i < anzahl; i++) {
+        t[i] = random(1000);
+        x[i] = int(random(width));
+        y[i] = int(random(height));
+      }
+    }
+
+    function draw() {
+      background(220);
+
+      noFill();
+      stroke('#233259');
+
+      beginShape();
+      for (let i = 0; i < anzahl; i++) {
+        curveVertex(x[i], y[i]);
+        x[i] += map(noise(t[i]), 0, 1, -2, 2);
+        y[i] += map(noise(t[i] + 500), 0, 1, -2, 2);
+        t[i] += 0.01;
+        x[i] = constrain(x[i], 50, width - 50);
+        y[i] = constrain(y[i], 50, height - 50);
+      }
+      endShape(CLOSE);
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

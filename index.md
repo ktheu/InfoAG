@@ -58,6 +58,9 @@ Hügel
 __[Collide2D](collide2d.html)__ -
 Im Rechteck, Kreis und Rechtecke, Jump and Run
 
+__[Vertex](vertex.html)__ -
+vertex, curveVertex
+
 __[Mobile](mobile.html)__ -
 Smiley
 
