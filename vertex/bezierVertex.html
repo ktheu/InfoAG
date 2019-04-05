@@ -1,0 +1,47 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let x = [80,180,50,200];   // Koordinaten der Kontrollpunkte
+    let y = [20,200,120,250];
+    let t = 0;    // time for perlin-noise
+
+    function setup() {
+      createCanvas(400, 400);
+      noFill();
+      stroke(0);
+    }
+
+    function draw() {
+      background(220);
+
+      strokeWeight(1);
+
+      beginShape();
+      vertex(20, 50);
+      bezierVertex(x[0], y[0], x[1], y[1], 220, 100);
+      bezierVertex(x[2], y[2], x[3], y[3], 330, 320);
+      endShape();
+
+      strokeWeight(5);
+      point(20,50);
+      point(220,100);
+      point(330,320);
+
+      for (let i=1; i<x.length; i++) {
+        x[i] += map(noise(t+i*100),0,1,-2,2);
+        y[i] += map(noise(t+i*200),0,1,-2,2);
+
+        x[i] = constrain(x[i],50,width-50);
+        y[i] = constrain(y[i],50,height-50);
+      }
+      t = t+0.01;
+
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

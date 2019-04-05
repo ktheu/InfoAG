@@ -47,11 +47,32 @@
 <hr/>
 
 <h4>Smiley</h4>
-<p>Die Kontrollpunkte des Mundes sind gleich mit dem ersten und letzten Punkt.</p>
+<p>Der Mund ist eine CurveVertex.Gestalt.</p>
 <p>
   <iframe src="vertex/smiley.html" width="410" height="420" ></iframe>
 </p>
 <hr/>
+<h4>Bezier</h4>
+<p>
+Bei einer Bezier-Kurve gibt es <em> zwischen</em> zwei (sichtbaren) Ankerpunkten zwei (unsichtbare) Kontrollpunkte.
+</p>
+<p>
+  <iframe src="vertex/bezier.html" width="410" height="420" ></iframe>
+</p>
 
- 
+<h4>BezierVertex</h4>
+<p>
+  Ein Shape mit bezierVertex besteht aus einem Anfangsvertex als Ankerpunkt, dann jeweils drei Punkten
+  in der Funktion bezierVertex, die beiden ersten Punkte sind Kontrollpunkte, der dritte wieder ein Ankerpunkt.
+  Im Beispiel bewegen sich die (unsichtbaren) Kontrollpunkte mit Perlin-Noise.
+<p>
+  <iframe src="vertex/bezierVertex.html" width="410" height="420" ></iframe>
+</p>
+
+<h4>BezierVertex Linien</h4>
+<p>
+   Eine Menge sehr dünner BezierVertex Linien.
+<p>
+  <iframe src="vertex/bezierVertex_noise_lines.html" width="410" height="420" ></iframe>
+</p>
 </html>
