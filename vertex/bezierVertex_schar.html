@@ -1,0 +1,44 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let anzahl = 200;
+    let x1 = new Array(anzahl).fill(50);
+    let y1 = new Array(anzahl).fill(50);
+    let x2 = new Array(anzahl).fill(300);
+    let y2 = new Array(anzahl).fill(300);
+    let t = 0;
+
+    function setup() {
+      createCanvas(720, 400);
+      stroke(255);
+      noFill();
+      strokeWeight(0.3);
+    }
+
+    function draw() {
+      background(0);
+      for (let i = 0; i < anzahl; i++) {
+        bezier(
+          x1[i],
+          y1[i],
+          410,
+          20,
+          440,
+          300,
+          x2[i],
+          y2[i]
+        );
+        x1[i] += map(noise(t+100*i),0,1,-1,1);
+        y1[i] += map(noise(t+200*i),0,1,-1,1);
+        x2[i] += map(noise(t+300*i),0,1,-1,1);
+        y2[i] += map(noise(t+400*i),0,1,-1,1);
+      }
+      t+= 0.01;
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>
