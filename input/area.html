@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="../p5.min.js"></script>
+  <script src="../p5.dom.min.js"></script>
+  <style type="text/css">
+    body {
+      color: #555753;
+      margin-top: 100px;
+      margin-left: 200px;
+      font-family: Verdana, Arial, sans-serif;
+    }
+  </style>
+  <script>
+
+    let bereich;
+
+    function setup() {
+      noCanvas();
+      createElement('h4', 'Textarea');
+      bereich = createElement('textarea');
+      bereich.size(400,300);
+      createP();
+      submit = createButton('submit');
+      submit.mousePressed(doit);
+      ausgabe = createP();
+    }
+
+    function doit() {
+      ausgabe.html(bereich.value());
+    }
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="../p5.min.js"></script>
+  <script src="../p5.dom.min.js"></script>
+  <style type="text/css">
+    body {
+      color: #555753;
+      margin-top: 100px;
+      margin-left: 200px;
+      font-family: Verdana, Arial, sans-serif;
+    }
+  </style>
+  <script>
+
+    let txt;
+
+    function preload() {
+      txt = loadStrings('Korf.txt');
+    }
+
+    function setup() {
+      noCanvas();
+      createP(join(txt,'<br>'));
+    }
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
