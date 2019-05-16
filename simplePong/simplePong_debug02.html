@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html><head>
+    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    <script src="p5.min.js"></script>
+    <script>
+        /*
+         Ein Paddle wird mit den Pfeiltasten gesteuert. Der Ball prallt
+         an den Seiten und oben ab. Wenn er vom Paddle abprallt erhöht sich
+         seine Geschwindigkeit geringfügig und ein Zähler wird hochgezählt.
+         */
+        var px, py;      // Koordinaten des Paddles
+        var x, y;        // Koordinaten des Balls
+        var vpx = 7;     // horizontale Geschwindigkeit des Paddles
+        var vx = 5.0;    // x-Geschwindigkeit des Balls
+        var vy = 5.0;    // y-Geschwindigkeit des Balls
+        var radius = 10; // Radius des Balls
+        var hoehePaddle = 10;
+        var breitePaddle = 100;
+        var tright = false; // Schalter Taste
+        var tleft = false;  // Schalter Taste
+        var treffer = 0;
+
+        function setup() {
+            createCanvas(500, 500);
+            ellipseMode(RADIUS);
+            textSize(20);
+            x = width/2;          // Anfangsposition Ball
+            y = 50;
+            px = width/2-20;         // Anfangsposition Padde
+            py = 0.9 * height;
+            frameRate(4);
+        }
+
+        function draw() {
+
+            // check -  move - display
+            background(0);
+
+            // check: Ball am Rand?
+            if (x - radius < 0 || x + radius > width) vx = - vx;
+            if (y - radius < 0 ) vy = - vy;
+
+            // check: Ball kollidiert mit Paddle?
+            var ballOberhalbPaddle = y + radius < py;
+            var ballUnterhalbPaddle = y - radius > py+hoehePaddle;
+            var ballLinksVonPaddle = x + radius < px;
+            var ballRechtsVonPaddle = x - radius > px + breitePaddle;
+            var kollision = !ballOberhalbPaddle && !ballUnterhalbPaddle &&
+                !ballLinksVonPaddle && !ballRechtsVonPaddle;
+
+
+
+            if (kollision) {
+                vy = -1.05*vy;
+                treffer++;
+            }
+
+            // move: Bewegung des Paddles
+            if (tright) px = px + vpx;
+            if (tleft) px = px - vpx;
+
+            // move: Bewegung des Balls
+            x = x + vx;
+            y = y + vy;
+
+            // display Paddle
+            fill(120);
+            rect(px, py, breitePaddle, hoehePaddle);
+
+            // display Ball
+            fill(255);
+            noStroke();
+            ellipse(x, y, radius, radius);
+
+            // display Treffer
+            text(treffer+"", 20, 30);
+
+            debugInfo();
+
+        }
+
+        function keyPressed() {
+            if (keyCode == RIGHT_ARROW) tright = true;
+            if (keyCode == LEFT_ARROW) tleft = true;
+        }
+
+        function keyReleased() {
+            if (keyCode == RIGHT_ARROW) tright = false;
+            if (keyCode == LEFT_ARROW) tleft = false;
+        }
+
+        function debugInfo() {
+            s1 = "frame "+ frameCount;
+            textSize(10);
+            text(s1,300,50);
+        }
+
+
+    </script>
+
+</head><body></body></html>

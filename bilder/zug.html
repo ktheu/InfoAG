@@ -1,0 +1,112 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script src="../addons/p5.sound.min.js"></script>
+  <script>
+    let imgBerge;
+    let imgLok, imgWaggon1, imgWaggon2, imgWaggon3;
+    let tuut;
+
+    function preload() {
+      imgBerge = loadImage('../img/berge.jpg');
+      imgLok = loadImage('../img/lok.png');
+      imgWaggon1 = loadImage('../img/waggon1.png');
+      imgWaggon2 = loadImage('../img/waggon2.png');
+      imgWaggon3 = loadImage('../img/waggon3.png');
+      tuut = loadSound('../img/zug.mp3');
+    }
+
+    function setup() {
+      imgBerge.resize(0.7 * imgBerge.width, 0);
+      createCanvas(imgBerge.width, imgBerge.height);
+      lok = new Lok(imgLok, 30, 200, 2);
+
+    }
+
+    function draw() {
+      image(imgBerge, 0, 0);
+      lok.fahre();
+    }
+
+    function keyPressed() {
+      if (key === '1') {
+        lok.koppleAn(new Waggon(imgWaggon1));
+      }
+      if (key === '2') {
+        lok.koppleAn(new Waggon(imgWaggon2));
+      }
+      if (key === '3') {
+        lok.koppleAn(new Waggon(imgWaggon3));
+      }
+      if (key === '4') {
+        lok.koppleAb();
+      }
+    }
+
+    class Waggon {
+      constructor(img) {
+        this.img = img;
+        this.x = 0;
+        this.y = 0;
+        this.next = null;   // der nächste Waggon
+      }
+
+      display() {
+        image(this.img, this.x, this.y);
+      }
+
+      ziehe() {
+        if (this.next != null) {
+          this.next.y = this.y + this.img.height - this.next.img.height;
+          this.next.x = this.x - this.next.img.width;
+          this.next.display();
+          this.next.ziehe();
+        }
+      }
+
+      letzter() {
+        if (this.next === null) return this;
+        else return this.next.letzter();
+      }
+
+      vorletzter() {
+        if (this.next === null) return null;
+        else if (this.next.next === null) return this;
+        else
+          return this.next.vorletzter();
+      }
+    }
+
+    class Lok extends Waggon {
+
+      constructor(img, x, y, v) {
+        super(img);
+        this.x = x;
+        this.y = y;
+        this.v = v;
+      }
+
+      koppleAn(waggon) {
+        this.letzter().next = waggon;
+      }
+
+      koppleAb() {
+        if (this.vorletzter() != null)
+          this.vorletzter().next = null;
+      }
+
+      fahre() {
+        if (this.letzter().x > width) {
+          this.x = -this.img.width;
+          tuut.play();
+        }
+        this.x = this.x + this.v;
+        this.display();
+        this.ziehe();
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>
