@@ -6,6 +6,7 @@
     let imgBerge;
     let imgLok, imgWaggon1, imgWaggon2, imgWaggon3;
     let tuut;
+    let lok;
 
     function preload() {
       imgBerge = loadImage('../img/berge.jpg');
@@ -20,12 +21,12 @@
       imgBerge.resize(0.7 * imgBerge.width, 0);
       createCanvas(imgBerge.width, imgBerge.height);
       lok = new Lok(imgLok, 30, 200, 2);
-
     }
 
     function draw() {
       image(imgBerge, 0, 0);
       lok.fahre();
+      lok.display();
     }
 
     function keyPressed() {
@@ -53,13 +54,15 @@
 
       display() {
         image(this.img, this.x, this.y);
+        if (this.next != null) {
+          this.next.display();
+        }
       }
 
       ziehe() {
         if (this.next != null) {
           this.next.y = this.y + this.img.height - this.next.img.height;
           this.next.x = this.x - this.next.img.width;
-          this.next.display();
           this.next.ziehe();
         }
       }
@@ -101,8 +104,8 @@
           tuut.play();
         }
         this.x = this.x + this.v;
-        this.display();
         this.ziehe();
+
       }
     }
   </script>
