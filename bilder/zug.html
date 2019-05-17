@@ -67,16 +67,29 @@
         }
       }
 
-      letzter() {
-        if (this.next === null) return this;
-        else return this.next.letzter();
+      koppleAn(waggon) {
+        if (this.next === null) {
+          this.next = waggon;
+        } else this.next.koppleAn(waggon);
       }
 
-      vorletzter() {
-        if (this.next === null) return null;
-        else if (this.next.next === null) return this;
-        else
-          return this.next.vorletzter();
+      koppleAb() {
+        if (this.next === null) {
+          return;
+        }
+        if (this.next.next === null) {
+          this.next = null;
+        } else {
+          this.next.koppleAb();
+        }
+      }
+
+      endeX() {
+        let hx = this.x
+        if (this.next !== null) {
+          hx = this.next.endeX();
+        }
+        return hx;
       }
     }
 
@@ -89,23 +102,13 @@
         this.v = v;
       }
 
-      koppleAn(waggon) {
-        this.letzter().next = waggon;
-      }
-
-      koppleAb() {
-        if (this.vorletzter() != null)
-          this.vorletzter().next = null;
-      }
-
       fahre() {
-        if (this.letzter().x > width) {
+        if (this.endeX() > width) {
           this.x = -this.img.width;
           tuut.play();
         }
         this.x = this.x + this.v;
         this.ziehe();
-
       }
     }
   </script>
