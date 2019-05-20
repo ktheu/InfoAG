@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="../kurs300.css" rel="stylesheet" type="text/css" />
+  <title>Informatik</title>
+</head>
+<body>
+<h3>P5JS - Part B</h3>
+
+
+
+<p>B01: Implementiere eine Klasse Quadrat.
+  <ul>
+    <li>Attribute: x, y für Position, laenge für Seitenlänge</li>
+  <li>Methoden: display</li>
+  <li>Aufruf: q = new Quadrat(x,y,laenge)</li>
+
+
+  </ul>
+
+ Das Quadrat hat eine schwarze Umrandung mit Breite 1 und keine Füllung. Auch wenn stroke oder strokeWeight vorher
+anders gesetzt werden, sorgt das Quadrat in der display-Methode dafür, dass es mit schwarzer Umrandung der Breite 1 erscheint.
+ </p>
+
+<pre class="codef">
+    let q1, q2;
+
+    function setup() {
+      createCanvas(300, 300);
+      q1 = new Quadrat(100,200,50);
+      q2 = new Quadrat(50,100,30);
+    }
+
+    function draw() {
+      background(200);
+      q1.display();         // 1. Rechteck
+
+      stroke(255,0,0);      // dicker roter Punkt
+      strokeWeight(30);
+      point(150,150);
+
+      q2.display();         // 2. Rechteck
+    }
+</pre>
+
+<p>
+  <iframe src="B01.html"></iframe>
+</p>
+
+

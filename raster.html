@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<!-- http://www.informatik42.de/P5JS/Inhalte/Pixel/pixel.html -->
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link href="kurs.css" rel="stylesheet" type="text/css" />
+  <title>Informatik</title>
+  <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+  </script>
+</head>
+
+<body>
+
+<h3>2D-Arrays und Raster</h3>
+
+<h4>Zaehlung</h4>
+<p> Es gibt verschiedene Möglichkeiten, ein 2-dimensionales Feld mit Indizes zu versehen.
+  <ul>
+  <li>
+    In der Mathematik befindet sich das Element \( a_{23} \) in der 2.Zeile und 3.Spalte einer Matrix.
+    Die Zählung beginnt bei 1.
+  </li>
+  <li>
+    In der Computergrafik befindet sich die Koordinate \( (2|3) \) in der 2.Spalte und 3.Zeile. Die Zählung
+    beginnt bei 0.
+  </li>
+</ul>
+ </p>
+<p>Wenn wir die Indizes unseres Rasters wie die Koordinaten der Computergrafik organisieren wollen, ergibt
+sich folgendes Muster:</p>
+
+<pre class="codef">
+  let cols = 6;
+  let rows = 4;
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+        // i/j - nr  = Koordinate, Reihenfolge
+    }
+  }
+</pre>
+
+<p>
+  <iframe src="raster/zaehlung.html" width="360" height="270" ></iframe>
+</p>
+
+<p>
+  Wir merken uns: Äußere Schleife <em>cols</em> mit Index <em>i</em> , innere Schleife <em>rows</em>
+  mit Index <em>j</em>. Dann ist <em>(i|j)</em> die Koordinate des Rasters nach Art der Computergrafik.
+
+</p>
+
+
+<hr/>
+<h4>Schachbrett</h4>
+<p>Ein Schachbrettmuster mit 15 Zeilen und 30 Spalten. </p>
+
+<p>
+  <iframe src="raster/schachbrett.html" width="460" height="245" ></iframe>
+</p>
+<hr/>
+
+<h4>Kacheln</h4>
+<p>Wenn wir die Kacheln als Objekte organisieren benötigen wir ein 2-dimensionales Array.
+
+</p>
+
+<pre class="codef">
+  let grid = []                      // Dies wird ein 2-dimensionale Array
+  for (let i = 0; i < cols; i++) {
+    grid[i] = [];
+    for (let j = 0; j < rows; j++) {
+      grid[i][j] = new Tile(i,j,groesse);
+    }
+  }
+</pre>
+
+<p>Im Beispiel hat eine Kachel (Objekt der Klasse Tile) außer den Attributen
+  für die Indizes und die Seitenlänge noch Attribute
+für die Farbe und ein Zeichen. Durch eine einfache Rechnung können wir aus der Mausposition die Koordinate der Kachel
+berechnen, über der sich die Maus befindet.</p>
+
+<pre class="codef">
+  let i = Math.floor((mouseX-2)/groesse);   // Abstand zum Rand oben links: (2,2)
+  let j = Math.floor((mouseY-2)/groesse);
+
+  if (0 <= i && i < cols && 0 <= j && j < rows) {
+    grid[i][j].farbe = '#1177FF'
+  }
+</pre>
+
+
+<p>
+  <iframe src="raster/kacheln.html" width="610" height="320" ></iframe>
+</p>
+
+<h4>TicTacToe</h4>
+
+<p>
+  <iframe src="raster/tictactoe.html" width="313" height="323" ></iframe>
+</p>
+</html>

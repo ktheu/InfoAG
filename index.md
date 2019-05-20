@@ -67,6 +67,9 @@ Smiley
 __[Input](input.html)__ -
 Textfeld, Textarea, Datei laden
 
+__[Raster/Grid](raster.html)__ -
+Zählung, Schachbrett, Kacheln, TicTacToe
+
 #### Übungsrunden
 
 __[Teil A](part_a/part_a.html)__ - Themen bis Funktionen (einfach) 

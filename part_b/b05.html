@@ -1,0 +1,120 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let q1, q2, q3;
+
+    function setup() {
+      createCanvas(300, 300);
+      q1 = new Quadrat(0);
+      q1.setPosition(50,50);
+      q1.setLaenge(60);
+      q1.setRand('#223F34', 3);
+      q1.setFarbe('#00FF00');
+      q1.setZeichen('X',40);
+      q1.setZeichenfarbe('#0000FF');
+    }
+
+    function draw() {
+      background(230);
+      q1.display();
+
+    }
+
+    class Quadrat {
+      constructor(nr) {
+        this.nr = nr;
+        this.x = 0;
+        this.y = 0;
+        this.randfarbe = 0;
+        this.randbreite = 1;
+        this.laenge = 0;
+        this.farbe = null;
+        this.zeichen = null;
+        this.zeichenSize = 0;
+        this.zeichenfarbe = 0;
+      }
+
+      display() {
+        strokeWeight(this.randbreite);
+        stroke(this.randfarbe);
+        if (this.farbe === null) {
+          noFill();
+        } else {
+          fill(this.farbe);
+        }
+
+        rect(this.x, this.y, this.laenge, this.laenge);
+
+        if (this.zeichenfarbe != null) {
+          fill(this.zeichenfarbe);
+        }
+
+        if (this.zeichen != null) {
+          textSize(this.zeichenSize);
+          textAlign(CENTER,CENTER);
+          noStroke();
+          text(this.zeichen,this.x + this.laenge/2,this.y+ 1.1*this.laenge/2);
+        }
+      }
+
+      setZeichen(c,size) {
+        this.zeichen = c;
+        this.zeichenSize = size;
+      }
+
+      setZeichenfarbe(farbe) {
+        this.zeichenfarbe = farbe;
+      }
+
+
+      setPosition(x,y) {
+        this.x = x;
+        this.y = y;
+      }
+
+      setLaenge(laenge) {
+        this.laenge = laenge;
+      }
+
+      setRand(randfarbe, randbreite) {
+        this.randfarbe = randfarbe;
+        this.randbreite = randbreite;
+      }
+
+      setFarbe(farbe) {
+        this.farbe = farbe;
+      }
+
+      clone(nr) {
+        let q = new Quadrat(nr);
+        q.x = this.x;
+        q.y = this.y;
+        q.farbe = this.farbe;
+        q.randbreite = this.randbreite;
+        q.randfarbe = this.randfarbe;
+
+      }
+    }
+
+    class Zeile {
+       constructor(quadrat, anzahl,x,y) {
+         this.quadrate = [];
+         q.x = x;
+         quadrat.y = y;
+         for (let i=0; i<anzahl; i++) {
+           this.quadrate.add(quadrat);
+           q
+         }
+
+       }
+
+
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

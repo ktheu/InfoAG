@@ -1,0 +1,69 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let q1, q2, q3;
+
+    function setup() {
+      createCanvas(300, 300);
+      q1 = new Quadrat(50);
+      q1.setRand('#223F34', 3);
+      q1.setFarbe('#00FF00');
+      q2 = q1.cloneRechts();
+      q3 = q2.cloneRechts();
+    }
+
+    function draw() {
+      background(230);
+      q1.display();
+      q2.display();
+      q3.display();
+    }
+
+    class Quadrat {
+      constructor(laenge, x = 0, y = 0) {
+        this.x = x;
+        this.y = y;
+        this.randfarbe = 0;
+        this.randbreite = 1;
+        this.laenge = laenge;
+        this.farbe = null;
+      }
+
+      display() {
+        strokeWeight(this.randbreite);
+        stroke(this.randfarbe);
+        if (this.farbe === null) {
+          noFill();
+        } else {
+          fill(this.farbe);
+        }
+        rect(this.x, this.y, this.laenge, this.laenge);
+      }
+
+      setRand(randfarbe, randbreite) {
+        this.randfarbe = randfarbe;
+        this.randbreite = randbreite;
+      }
+
+      setFarbe(farbe) {
+        this.farbe = farbe;
+      }
+
+      cloneRechts() {
+        let q = new Quadrat(this.laenge);
+        q.x = this.x + this.laenge;
+        q.y = this.y;
+        q.farbe = this.farbe;
+        q.randbreite = this.randbreite;
+        q.randfarbe = this.randfarbe;
+        return q;
+      }
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

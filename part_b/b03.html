@@ -1,0 +1,62 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let q1, q2;
+
+    function setup() {
+      createCanvas(300, 300);
+      q1 = new Quadrat(50,100,50);
+      q1.setRand('#FF0000',4);
+      q2 = new Quadrat(50, 100, 200);
+      q2.setRand('#00FF00',5);
+      q2.setFarbe('#223F34');
+    }
+
+    function draw() {
+      background(230);
+      q1.display();         // 1. Rechteck
+
+      q2.display();
+    }
+
+    class Quadrat {
+      constructor(laenge, x = 0, y = 0) {
+        this.x = x;
+        this.y = y;
+        this.randfarbe = 0;
+        this.randbreite = 1;
+        this.laenge = laenge;
+        this.farbe = null;
+      }
+
+      display() {
+        strokeWeight(this.randbreite);
+        stroke(this.randfarbe);
+        if (this.farbe === null) {
+          noFill();
+        }
+        else {
+          fill(this.farbe);
+        }
+        rect(this.x, this.y, this.laenge, this.laenge);
+      }
+
+      setRand(randfarbe, randbreite) {
+        this.randfarbe = randfarbe;
+        this.randbreite = randbreite;
+      }
+
+      setFarbe(farbe) {
+        this.farbe = farbe;
+      }
+
+
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

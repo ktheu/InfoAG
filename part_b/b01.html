@@ -1,0 +1,44 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let q1, q2;
+
+    function setup() {
+      createCanvas(300, 300);
+      q1 = new Quadrat(30);
+      q2 = new Quadrat(50,100,200);
+    }
+
+    function draw() {
+      background(200);
+      q1.display();         // 1. Rechteck
+
+      stroke(255,0,0);      // dicker roter Punkt
+      strokeWeight(30);
+      point(150,150);       // 2. Rechteck
+
+      q2.display();
+    }
+
+    class Quadrat {
+      constructor(laenge, x = 0, y = 0) {
+        this.x = x;
+        this.y = y;
+        this.laenge = laenge;
+      }
+
+      display() {
+        strokeWeight(1);
+        stroke(0);
+        noFill();
+        rect(this.x, this.y, this.laenge, this.laenge);
+      }
+    }
+
+   </script>
+</head>
+<body>
+</body>
+</html>
