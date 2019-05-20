@@ -64,7 +64,7 @@ sich folgendes Muster:</p>
 <hr/>
 
 <h4>Kacheln</h4>
-<p>Wenn wir die Kacheln des Rasters als Objekte organisieren benötigen wir ein 2-dimensionales Array.
+<p>Wenn wir die Kacheln des Rasters als Objekte organisieren wollen,  benötigen wir ein 2-dimensionales Array.
 
 </p>
 
@@ -76,12 +76,17 @@ sich folgendes Muster:</p>
       grid[i][j] = new Tile(i,j,groesse);
     }
   }
+
+  grid[4][2].farbe = '#FF0000';
+  grid[2][1].zeichen = 'X';
+  grid[7][4].zeichen = 'O';
 </pre>
 
 <p>Im Beispiel hat eine Kachel (Objekt der Klasse Tile) außer den Attributen
-  für die Indizes und die Seitenlänge noch Attribute
-für die Farbe und ein Zeichen. Durch eine einfache Rechnung können wir aus der Mausposition die Koordinate der Kachel
-berechnen, über der sich die Maus befindet.</p>
+  für Index-Koordinate und die Seitenlänge noch Attribute
+für die Farbe und ein Zeichen. Durch eine einfache Rechnung können wir aus der Mausposition die Index-Koordinate der Kachel
+berechnen, über der sich die Maus befindet. Die Kachel berechnet ihre display-Koordinate aus ihrer Index-Koordinate und
+dem Attribut für die Größe.</p>
 
 <pre class="codef">
   let i = Math.floor((mouseX-2)/groesse);   // Abstand zum Rand oben links: (2,2)
@@ -96,6 +101,8 @@ berechnen, über der sich die Maus befindet.</p>
 <p>
   <iframe src="raster/kacheln.html" width="610" height="320" ></iframe>
 </p>
+
+<hr/>
 
 <h4>TicTacToe</h4>
 
