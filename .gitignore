@@ -4,3 +4,5 @@
 *.gz
 *.xml
 test/*
+sockets/node_modules/*
+sockets/public2/*

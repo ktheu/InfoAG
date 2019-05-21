@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<!-- http://www.informatik42.de/P5JS/Inhalte/Pixel/pixel.html -->
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link href="kurs.css" rel="stylesheet" type="text/css" />
+  <title>Informatik</title>
+
+
+</head>
+
+<body>
+
+<h3>Sockets</h3>
+
+<h4>Node.js</h4>
+<p> Javascript läuft im Browser. Node ist ein Programm, welches die Javascript-Engine aus Chrome benutzt,
+um Javascript-Code außerhalb des Browsers laufen zu lassen (= Javascript auf einem Server). <p>
+
+<p>Wenn Node installiert ist, können wir es als Programm aufrufen und Javascript-Befehle eingeben wie in
+  der Chrome-Konsole. Mit Strg-C beenden wir ein Node-Programm.<p>
+
+<img src="img/node1.png">
+
+<p>In der Kommandozeile in unserem Arbeitsordner rufen wir <em>npm init</em> auf und machen verschiedene Eingaben.
+  </p>
+
+<img src="img/node2.png">
+
+<p>In der Kommandozeile rufen wir <em>npm install express --save</em> auf.
+</p>
+
+<img src="img/node3.png">
+
+
+<p>In unserem Arbeitsordner Wir erstellen ein File  <em>server.js</em> und einen Unterordner <em>public</em>.
+</p>
+<pre class="codef">
+  // server.js
+  let express = require('express');
+  let app = express();
+  let server = app.listen(3000);
+  app.use(express.static('public'));
+</pre>
+
+<p>In den Unterordner public übernehmen wir die drei Files index.html, sketch.js, style.css aus einem
+neuen Sketch des P5JS-Webeditors. In sketch.js schreiben wir unseren Sketch. In der Kommandozeile rufen
+  wir <em>node server.js </em> auf. Im Browser können wir mit <em>localhost:3000</em> unseren Sketch sehen.</p>
+
+<img src="img/node4.png" width="500">
+
+<p>In der Kommandozeile rufen wir <em>npm install socket.io --save</em> auf.
+</p>
+
+<p>Wir erweitern unser File <em>server.js</em>.
+  <pre class="codef">
+let express = require('express');
+let app = express();
+let server = app.listen(3000);
+app.use(express.static('public'));
+
+let socket = require('socket.io');
+let io = socket(server);
+
+io.sockets.on('connection', newConnection);
+
+function newConnection(socket) {
+  console.log('Socket-id = ' + socket.id);
+}
+</pre>
+
+<p>In unserem Sketch verbinden wir uns mit dem Server
+</p>
+
+<pre class="codef">
+let socket;
+
+function setup() {
+  createCanvas(400, 400);
+  socket = io.connect('http://localhost:3000');
+}
+
+function draw() {
+  ellipse(mouseX,mouseY,30,30);
+}
+</pre>
+
+<p>Wenn wir unser localhost-Fenster mehrmals duplizieren, sehen wir die Verbindungen in der Konsole.</p>
+
+<img src="img/node5.png" >
+</body>
+</html>
