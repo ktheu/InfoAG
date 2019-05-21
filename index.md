@@ -70,6 +70,9 @@ Textfeld, Textarea, Datei laden
 __[Raster/Grid](raster.html)__ -
 Zählung, Schachbrett, Kacheln, TicTacToe
 
+__[Sockets](sockets.html)__ -
+Nodejs, TicTacToe
+
 #### Übungsrunden
 
 __[Teil A](part_a/part_a.html)__ - Themen bis Funktionen (einfach) 

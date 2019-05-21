@@ -1,11 +1,11 @@
-var socket;
+let socket;
 
 function setup() {
   createCanvas(400, 400);
   background(0);
 
-  //socket = io.connect('http://localhost:3000');
-  socket = io.connect('http://192.168.178.79:3000');
+  //socket = io.connect('http://192.168.xxx.xx:3000');
+  socket = io.connect('localhost:3000');
   socket.on('mouse',
      function(data) {
       fill(0,0,255);
@@ -20,7 +20,7 @@ function draw() {
 }
 
 function mousePressed() {
-  fill(255);
+  fill(255,0,0);
   noStroke();
   ellipse(mouseX,mouseY,20,20);
   var data = {

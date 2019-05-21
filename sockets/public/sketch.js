@@ -15,8 +15,8 @@ function setup() {
     }
   }
 
-  socket = io.connect('http://192.168.178.79:3000');
-  // socket = io.connect('localhost:3000');
+  //socket = io.connect('http://192.168.123.45:3000');
+  socket = io.connect('localhost:3000');
   socket.on('mouse',
     function(data) {
       let i = I(data.x);

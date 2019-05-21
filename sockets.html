@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 
-<!-- http://www.informatik42.de/P5JS/Inhalte/Pixel/pixel.html -->
 <html>
 
 <head>
   <meta charset="UTF-8">
-  <link href="kurs.css" rel="stylesheet" type="text/css" />
+  <link href="kurs.css" rel="stylesheet" type="text/css"/>
   <title>Informatik</title>
-
-
 </head>
-
 <body>
-
 <h3>Sockets</h3>
 
+<p>Daniel Shiffman: 4 Videos zum Thema, erstes davon  <a href="https://www.youtube.com/watch?v=bjULmG8fqc8">hier </a></p>
+
 <h4>Node.js</h4>
-<p> Javascript läuft im Browser. Node ist ein Programm, welches die Javascript-Engine aus Chrome benutzt,
-um Javascript-Code außerhalb des Browsers laufen zu lassen (= Javascript auf einem Server). <p>
+<p> Javascript läuft im Browser. Node ist ein Programm, das die Javascript-Engine aus Chrome benutzt,
+  um Javascript-Code außerhalb des Browsers laufen zu lassen (= Javascript auf einem Server).
+<p>
 
 <p>Wenn Node installiert ist, können wir es als Programm aufrufen und Javascript-Befehle eingeben wie in
-  der Chrome-Konsole. Mit Strg-C beenden wir ein Node-Programm.<p>
+  der Chrome-Konsole. Mit Strg-C beenden wir ein Node-Programm.
+<p>
 
 <img src="img/node1.png">
 
-<p>In der Kommandozeile in unserem Arbeitsordner rufen wir <em>npm init</em> auf und machen verschiedene Eingaben.
-  </p>
+<p> Im Beispiel heißt der Arbeitsordner <em>sockets</em>.
+  In der Kommandozeile in unserem Arbeitsordner rufen wir <em>npm init</em> auf und machen verschiedene Eingaben.
+</p>
 
 <img src="img/node2.png">
 
@@ -34,61 +34,258 @@ um Javascript-Code außerhalb des Browsers laufen zu lassen (= Javascript auf ei
 
 <img src="img/node3.png">
 
-
-<p>In unserem Arbeitsordner Wir erstellen ein File  <em>server.js</em> und einen Unterordner <em>public</em>.
+<p>Anschließend rufen wir <em>npm install socket.io --save</em> auf.
 </p>
+
+
+<p>Im Arbeitsordner erstellen wir einen Ordner <em>public</em> und
+  ein File <em>server.js</em>. Im Ordner public erstellen wir die Files <em>index.html</em> und <em>sketch.js</em>
+  Wir erhalten folgende Struktur: </p>
+
 <pre class="codef">
-  // server.js
-  let express = require('express');
-  let app = express();
-  let server = app.listen(3000);
-  app.use(express.static('public'));
+sockets
+   public
+      index.html
+      sketch.js
+   server.js
 </pre>
 
-<p>In den Unterordner public übernehmen wir die drei Files index.html, sketch.js, style.css aus einem
-neuen Sketch des P5JS-Webeditors. In sketch.js schreiben wir unseren Sketch. In der Kommandozeile rufen
-  wir <em>node server.js </em> auf. Im Browser können wir mit <em>localhost:3000</em> unseren Sketch sehen.</p>
+<p>Inhalt von server.js</p>
 
-<img src="img/node4.png" width="500">
-
-<p>In der Kommandozeile rufen wir <em>npm install socket.io --save</em> auf.
-</p>
-
-<p>Wir erweitern unser File <em>server.js</em>.
-  <pre class="codef">
+<pre class="codef">
 let express = require('express');
 let app = express();
 let server = app.listen(3000);
+
 app.use(express.static('public'));
 
 let socket = require('socket.io');
 let io = socket(server);
-
 io.sockets.on('connection', newConnection);
 
 function newConnection(socket) {
-  console.log('Socket-id = ' + socket.id);
+  console.log("We have a new client: " + socket.id);
+
+  socket.on('mouse',
+    function (data) {
+      socket.broadcast.emit('mouse', data);
+    }
+  );
+
+  socket.on('disconnect',
+    function () {
+      console.log("Client has disconnected");
+    }
+  );
 }
+
+</pre>
+<p>Inhalt von index.html</p>
+<pre class="codef">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;InfoAG&lt;/title&gt;
+    &lt;script src=&quot; https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;sketch.js&quot;&gt;&lt;/script&gt;
+    &lt;style&gt;
+      body {
+        padding: 20px;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
 </pre>
 
-<p>In unserem Sketch verbinden wir uns mit dem Server
-</p>
-
+<p>Inhalt von sketch.js</p>
 <pre class="codef">
 let socket;
 
 function setup() {
   createCanvas(400, 400);
-  socket = io.connect('http://localhost:3000');
+  background(0);
+
+  //socket = io.connect('http://192.168.xxx.xx:3000');
+  socket = io.connect('localhost:3000');
+  socket.on('mouse',
+     function(data) {
+      fill(0,0,255);
+      noStroke();
+      ellipse(data.x, data.y, 20, 20);
+    }
+  );
 }
 
 function draw() {
-  ellipse(mouseX,mouseY,30,30);
+  // Nothing
 }
+
+function mousePressed() {
+  fill(255,0,0);
+  noStroke();
+  ellipse(mouseX,mouseY,20,20);
+  var data = {
+    x: mouseX,
+    y: mouseY
+  };
+
+  socket.emit('mouse',data);
+}
+
+</pre>
+<p>In der Kommandozeile im Arbeitsverzeichnis starten wir den Server mit
+  <em>node server.js </em>. Im Browser können wir mit <em>localhost:3000</em> unseren Sketch sehen. Die Konsole
+  meldet, dass sich ein Client connected hat.
+Wenn wir das Browserfenster duplizieren, können wir einen weitern Client connecten. Bei Mausklick werden die
+Kreise an alle Clients weitergegeben, die connected sind. </p>
+
+<p>Wenn wir uns von einem anderen PC zum Server connected wollen, benötigen wir die IP-Adresse
+  des Servers. Wir geben in der Kommandozeile den Befehl <em>ipconfig</em> ein</p>
+
+<pre class="codef">
+IPv4-Adresse  . . . . . . . . . . : 192.168.123.45
 </pre>
 
-<p>Wenn wir unser localhost-Fenster mehrmals duplizieren, sehen wir die Verbindungen in der Konsole.</p>
+<p>Wir ersetzen die entsprechende Zeile in <em>sketch.js</em></p>
+<pre  class="codef">
+// socket = io.connect('localhost:3000');
+socket = io.connect('http://192.168.123.45:3000');
+</pre>
 
-<img src="img/node5.png" >
+<p>Im Browser des anderen PCs können wir uns jetzt mit <em>192.168.123.45:3000</em> zu dem server connecten.</p>
+
+<hr>
+<h4>TicTacToe</h4>
+<p>Ersetze <em>sketch.js</em> durch den folgenden Inhalt, um Tictactoe an zwei Clients zu spielen.
+  In dem Beispiel sind ungültige Eingaben noch nicht abgefangen.</p>
+
+<pre class="codef">
+let rows = 3;
+let cols = 3;
+let grid = [];
+let groesse = 100;
+let schalter = true;
+let gruen = '#00FF00';
+let socket;
+
+function setup() {
+  createCanvas(303, 303);
+  for (let i = 0; i < cols; i++) {
+    grid[i] = [];
+    for (let j = 0; j < rows; j++) {
+      grid[i][j] = new Tile(i, j, groesse);
+    }
+  }
+
+  socket = io.connect('localhost:3000');
+  socket.on('mouse',
+    function(data) {
+      let i = I(data.x);
+      let j = J(data.y);
+      grid[i][j].zeichen = schalter ? 'X' : 'O';
+      schalter = !schalter;
+    }
+  );
+}
+
+function draw() {
+  background(255);
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      grid[i][j].display();
+    }
+  }
+  check();
+}
+
+// berechnet aus mouseX den i-Index der Kachel
+function I(x) {
+  return Math.floor((x - 2) / groesse);
+}
+
+// berechnet aus mouseY den j-Index der Kachel
+function J(y) {
+  return Math.floor((y - 2) / groesse);
+}
+
+function mousePressed() {
+  let i = I(mouseX);
+  let j = J(mouseY);
+
+  grid[i][j].zeichen = schalter ? 'X' : 'O';
+  schalter = !schalter;
+
+  var data = {
+    x: mouseX,
+    y: mouseY
+  };
+
+  socket.emit('mouse',data);
+}
+
+function check() {
+
+  for (let k = 0; k < 3; k++) {
+    let zeile = grid[0][k].zeichen + grid[1][k].zeichen + grid[2][k].zeichen;
+    if (zeile === 'XXX' || zeile === 'OOO') {
+      grid[0][k].farbe = gruen;
+      grid[1][k].farbe = gruen;
+      grid[2][k].farbe = gruen;
+    }
+    let spalte = grid[k][0].zeichen + grid[k][1].zeichen + grid[k][2].zeichen;
+    if (spalte === 'XXX' || spalte === 'OOO') {
+      grid[k][0].farbe = gruen;
+      grid[k][1].farbe = gruen;
+      grid[k][2].farbe = gruen;
+    }
+  }
+  let diagonale1 = grid[0][0].zeichen + grid[1][1].zeichen + grid[2][2].zeichen;
+  if (diagonale1 === 'XXX' || diagonale1 === 'OOO') {
+    grid[0][0].farbe = gruen;
+    grid[1][1].farbe = gruen;
+    grid[2][2].farbe = gruen;
+  }
+
+  let diagonale2 = grid[0][2].zeichen + grid[1][1].zeichen + grid[2][0].zeichen;
+  if (diagonale2 === 'XXX' || diagonale2 === 'OOO') {
+    grid[0][2].farbe = gruen;
+    grid[1][1].farbe = gruen;
+    grid[2][0].farbe = gruen;
+  }
+}
+
+class Tile {
+
+  constructor(i, j, groesse) {
+    this.i = i;
+    this.j = j;
+    this.groesse = groesse;
+    this.farbe = null;
+    this.zeichen = null;
+  }
+
+  display() {
+    strokeWeight(2);
+    if (this.farbe !== null) {
+      fill(this.farbe);
+    } else {
+      noFill();
+    }
+
+    rect(2 + this.i * this.groesse, 2 + this.j * this.groesse, this.groesse, this.groesse);
+
+    if (this.zeichen !== null) {
+      fill(0);
+      textAlign(CENTER, CENTER);
+      textSize(this.groesse * 0.7);
+      text(this.zeichen, (this.i + 0.5) * this.groesse, (this.j + 0.6) * this.groesse);
+    }
+  }
+}
+</pre>
 </body>
 </html>
