@@ -1,0 +1,23 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let winkel = 0;
+
+    function setup() {
+      createCanvas(300, 300, WEBGL);
+    }
+    function draw() {
+      background(200);
+      rotateX(winkel);
+      rectMode(CENTER);
+      fill(0, 0, 255);
+      rect(0,0,150,100);
+      winkel += 0.03;
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

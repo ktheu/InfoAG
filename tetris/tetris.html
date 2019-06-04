@@ -1,0 +1,99 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let cols = 10;
+    let rows = 20;
+    let cellsize = 30;
+
+    let linesCleared = 0;
+    let boardState = [];
+    let rowState;
+
+    let gameScore = 0;
+
+    function setup() {
+      createCanvas(300, 600);
+      rowState = new Array(rows).fill(0);
+      for (let i = 0; i < cols; i++) {
+        boardState[i] = [];
+        for (let j = 0; j < rows; j++) {
+          boardState[i][j] = 0;
+        }
+      }
+    }
+
+    function draw() {
+      background(220);
+    }
+
+    function getRandomPiece() {
+      return new IBlock(cols);
+    }
+
+    class Tile {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+    }
+
+    class Block {
+
+      constructor() {
+        this.tiles = new Array(4);
+        this.rotationTile = null;
+        this.color = null;
+      }
+
+      move(direction) {
+        switch (direction) {
+          case 'left':
+            this.tiles.forEach((t) => t.x -= 1);
+            break;
+          case 'right':
+            this.tiles.forEach((t) => t.x += 1);
+            break;
+          case 'up':
+            this.tiles.forEach((t) => t.y -= 1);
+            break;
+          case 'down':
+            this.tiles.forEach((t) => t.y += 1);
+            break;
+        }
+      }
+
+      rotateRight() {
+        this.tiles.forEach(function (tile) {
+          let x = tile.x;
+          tile.x = this.rotationTile.x - tile.y + this.rotationTile.y;
+          tile.y = this.rotationTile.y + x - this.rotationTile.x;
+        });
+      }
+
+      rotateLeft() {
+        this.tiles.forEach(function (tile) {
+          let x = tile.x;
+          tile.x = this.rotationTile.x + tile.y - this.rotationTile.y;
+          tile.y = this.rotationTile.y - x + this.rotationTile.x;
+        });
+      }
+    }
+
+    class IBlock extends Block {
+      IBlock(width) {
+        this.tiles[0] = Tile((width / 2 - 2).floor(), -1);
+        this.tiles[1] = Tile((width / 2 - 1).floor(), -1);
+        this.tiles[2] = Tile((width / 2).floor(), -1);
+        this.tiles[3] = Tile((width / 2 + 1).floor(), -1);
+        this.rotationTile = this.tiles[0];
+        this.color = 'cyan';
+      }
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

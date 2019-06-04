@@ -1,0 +1,35 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    function setup() {
+      createCanvas(300, 300, WEBGL);
+    }
+    function draw() {
+      background(230);
+      strokeWeight(4);
+
+      winkelX = map(mouseX,0,width,-HALF_PI,HALF_PI);
+      winkelY = map(mouseY,0,width,-HALF_PI,HALF_PI);
+
+      push();
+      fill(0,0,255);
+      rotateX(winkelX);
+      rotateY(winkelY);
+      box(40,40);
+      pop();
+
+      push();
+      fill(255,0,0);
+      translate(-100,-100,0);
+      rotateX(winkelX);
+      rotateY(winkelY);
+      box(40,40);
+      pop();
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

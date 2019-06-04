@@ -1,0 +1,33 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+
+
+  <script>
+    let winkel = 0;
+    let cam;
+
+    function setup() {
+      createCanvas(300, 300, WEBGL);
+      pg = createGraphics(150, 150);
+      pg.background(255,100);
+      pg.textSize(50);
+      pg.fill(255,200);
+      pg.textAlign(CENTER);
+      pg.text('Stifts',80, 100);
+    }
+
+    function draw() {
+      background(0);
+      texture(pg);
+      rotateX(winkel * 0.9);
+      rotateY(winkel * 0.8);
+      rotateZ(winkel);
+      box(150);
+      winkel += 0.003;
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

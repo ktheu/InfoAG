@@ -1,0 +1,33 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script src="../p5.dom.min.js"></script>
+
+
+
+  <script>
+    let winkel = 0;
+    let cam;
+
+    function setup() {
+      createCanvas(300, 300, WEBGL);
+      cam = createCapture(VIDEO);
+      cam.hide();
+
+    }
+    function draw() {
+      background(200);
+
+      texture(cam);
+      rotateX(winkel * 0.9);
+      rotateY(winkel * 0.8);
+      rotateZ(winkel);
+
+      box(150);
+      winkel += 0.003;
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

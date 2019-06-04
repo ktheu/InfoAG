@@ -1,0 +1,32 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let winkel = 0;
+    let img;
+
+    function preload() {
+      img = loadImage('../img/stifts.png');
+    }
+
+    function setup() {
+      createCanvas(300, 300, WEBGL);
+
+    }
+    function draw() {
+      background(200);
+
+      texture(img);
+      rotateX(winkel * 0.9);
+      rotateY(winkel * 0.8);
+      rotateZ(winkel);
+
+
+      box(150);
+      winkel += 0.01;
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

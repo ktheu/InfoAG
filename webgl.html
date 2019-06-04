@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<!-- http://www.informatik42.de/P5JS/Inhalte/Pixel/pixel.html -->
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link href="kurs.css" rel="stylesheet" type="text/css" />
+  <title>Informatik</title>
+</head>
+
+<body>
+
+<h3>WebGL</h3>
+
+<p> OpenGL (Open Graphics Library) ist eine Spezifikation (API) zur Entwicklung von
+  2D- und 3D-Computergrafikanwendungen.
+  Der OpenGL-Standard beschreibt etwa 250 Befehle, die die Darstellung komplexer 3D-Szenen in Echtzeit erlauben.
+
+</p>
+<p>
+  WebGL eine Übertragung der OpenGL Standards für Javascript. <a href="https://threejs.org/">Three.js </a>
+  ist eine Bibliothek, die diese
+  Standards implementiert.
+</p>
+<p>p5.js enthält Methoden zur einfachen Nutzung von WebGL.</p>
+
+<h4> 3D-Koordinaten </h4>
+<p> Der Ursprung des 3D-Canvas ist nicht mehr
+  oben links, sondern in der Mitte.</p>
+<img src="img/koordinaten.png" width="301">
+
+
+<h4>Rotation</h4>
+<p> Mit <em>rotateX(), rotateY(), rotateZ() </em> können wir um die Achsen rotieren. <em>rotateZ() </em>entspricht der
+  Rotation in einem 2D-Kontext.
+ </p>
+<p>
+  <iframe src="webgl/rechteckX.html" width="310" height="320" ></iframe>
+  <iframe src="webgl/rechteckY.html" width="310" height="320" ></iframe>
+  <iframe src="webgl/rechteckZ.html" width="310" height="320" ></iframe>
+</p>
+
+<p>Rotationen um alle Achsen</p>
+<p>
+  <iframe src="webgl/rotationen.html" width="310" height="320" ></iframe>
+</p>
+
+<h4>3D-Primitives</h4>
+
+<p>Es gibt sieben 3D-Primitives: plane, box, sphere, cylinder, cone, ellipsoid, torus</p>
+
+<p>
+  <iframe src="webgl/plane.html" width="310" height="320" ></iframe>
+  <iframe src="webgl/box.html" width="310" height="320" ></iframe>
+  <iframe src="webgl/sphere.html" width="310" height="320" ></iframe>
+</p>
+
+<p>
+  <iframe src="webgl/cylinder.html" width="310" height="320" ></iframe>
+  <iframe src="webgl/cone.html" width="310" height="320" ></iframe>
+  <iframe src="webgl/ellipsoid.html" width="310" height="320" ></iframe>
+</p>
+
+<p>
+  <iframe src="webgl/torus.html" width="310" height="320" ></iframe>
+</p>
+
+
+<h4>Translate</h4>
+<p>Um ein Objekt an eine bestimmte Stelle zu positionieren, benötigen wir
+translate().</p>
+
+<p>
+  <iframe src="webgl/translate.html" width="310" height="320" ></iframe>
+</p>
+
+<h4>Material und Light</h4>
+<em>Material</em> beschreibt, wie die Oberfläche eines Objekts im Licht erscheint. In der 2D-Welt
+bestimmen wir das Erscheinen eines Pixels mit seiner Farbe. In der 3D-Welt bestimmen wir die Erscheinung
+dadurch, dass wir festlegen, welches
+Material von welchem Licht beschienen wird.
+
+<p><em>normalMaterial</em> ist unabhängig vom Licht. Die Oberfläche eines 3D-Primitives setzt sich aus vielen
+  kleinen Dreiecken zusammen. Der Normalenvektor auf dem Dreieck bestimmt die r,g,b - Werte der Färbung.
+  Im Beispiel ist die Oberfläche dann blau, wenn der Normalvektor mit Richtung (0,0,1) auf den Betrachter zeigt.
+  </p>
+
+
+</p>
+
+<p>
+  <iframe src="webgl/normalMaterial.html" width="310" height="320" ></iframe>
+</p>
+
+<p>Die Parameter des <em>ambientMaterial</em> bestimmen, welches Licht das Material
+  reflektieren kann. <em>ambientLight </em> setzt ein gleichmäßiges Umgebungslicht.
+  Im Beispiel wird mit mouseX der Blauanteil des Lichts gesteuert. Ist dieser Null, dann erscheint
+  der Torus schwarz, weil er nur blaues Licht reflektieren kann.
+
+</p>
+
+<p>
+  <iframe src="webgl/ambientMaterial.html" width="310" height="320" ></iframe>
+</p>
+
+
+<p>Das <em>directionalLight</em> scheint aus einer Richtung (Quelle ziemlich weit weg, wie die Sonne).
+Im Beispiel scheint ein rotes directionalLight aus Richtung (-10,0,-7), ein grünes
+aus Richtung (1,2,-3).</p>
+
+<p>
+  <iframe src="webgl/directionalLight.html" width="310" height="320" ></iframe>
+</p>
+
+<h4>Texture</h4>
+<p>Statt einem Material können wir auch Textures verwenden und die Oberfläche mit einem Bild, einem Film, oder einem
+Text versehen.</p>
+
+<p>
+  <iframe src="webgl/bildTexture.html" width="310" height="320" ></iframe>
+  <iframe src="webgl/camTexture.html" width="310" height="320" ></iframe>
+  <iframe src="webgl/textTexture.html" width="310" height="320" ></iframe>
+</p>
+</body>
+</html>
