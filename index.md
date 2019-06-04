@@ -73,7 +73,7 @@ Zählung, Schachbrett, Kacheln, TicTacToe
 __[Sockets](sockets.html)__ -
 Nodejs, TicTacToe
 
-__[WebGL](sockets.html)__ -
+__[WebGL](webgl.html)__ -
 3D-Primitives, Rotate, Translate, Material, Light, Texture
 
 #### Übungsrunden
