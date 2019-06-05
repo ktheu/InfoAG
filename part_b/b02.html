@@ -3,42 +3,32 @@
   <script src="../p5.min.js"></script>
   <script>
 
-    let q1, q2;
+    let k1, k2;
 
     function setup() {
       createCanvas(300, 300);
-      q1 = new Quadrat(50,100,50);
-      q1.setRand('#FF0000',4);
-      q2 = new Quadrat(50, 100, 200);
-      q2.setRand('#00FF00',5);
+      k1 = new Kachel(30,200,40);
+      k2 = new Kachel(50);
     }
 
     function draw() {
       background(230);
-      q1.display();         // 1. Rechteck
-
-      q2.display();
+      k1.display();
+      k2.display();
     }
 
-    class Quadrat {
-      constructor(laenge, x = 0, y = 0) {
+    class Kachel {
+      constructor(size, x = 0, y = 0) {
+        this.size = size;
         this.x = x;
         this.y = y;
-        this.randfarbe = 0;
-        this.randbreite = 1;
-        this.laenge = laenge;
       }
 
       display() {
-        strokeWeight(this.randbreite);
-        stroke(this.randfarbe);
+        strokeWeight(1);
+        stroke(0);
         noFill();
-        rect(this.x, this.y, this.laenge, this.laenge);
-      }
-
-      setRand(randfarbe, randbreite) {
-        this.randfarbe = randfarbe;
-        this.randbreite = randbreite;
+        rect(this.x, this.y, this.size, this.size);
       }
     }
 

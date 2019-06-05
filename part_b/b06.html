@@ -7,12 +7,11 @@
 
     function setup() {
       createCanvas(300, 300);
-      k1 = new Kachel(30,200,40);
-      k2 = new Kachel(50,100,200);
-      k1.setRandbreite(5);
-      k1.setRandfarbe('#FF0000')
-      k2.setRandbreite(10);
-      k2.setRandfarbe('#0000FF')
+      k1 = new Kachel(30, 200, 40);
+      k1.setRandbreite(3);
+      k1.setRandfarbe('#008888');
+      k1.setFuellfarbe('#00FFFF');
+      k2 = k1.clone()
     }
 
     function draw() {
@@ -28,6 +27,7 @@
         this.y = y;
         this.randbreite = 1;
         this.randfarbe = 0;
+        this.fuellfarbe = null;
       }
 
       setRandbreite(breite) {
@@ -38,12 +38,29 @@
         this.randfarbe = farbe;
       }
 
+      setFuellfarbe(farbe) {
+        this.fuellfarbe = farbe;
+      }
+
       display() {
         strokeWeight(this.randbreite);
         stroke(this.randfarbe);
-        noFill();
+        if (this.fuellfarbe === null) {
+          noFill();
+        } else {
+          fill(this.fuellfarbe);
+        }
         rect(this.x, this.y, this.size, this.size);
       }
+
+      clone() {
+        let k = new Kachel(this.size);
+        k.setRandbreite(this.randbreite);
+        k.setRandfarbe(this.randfarbe);
+        k.setFuellfarbe(this.fuellfarbe);
+        return k
+      }
+
     }
 
   </script>

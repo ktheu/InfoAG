@@ -10,42 +10,275 @@
 
 
 
-<p>B01: Implementiere eine Klasse Quadrat.
+<p>B01: Implementiere eine Klasse Kachel
   <ul>
-    <li>Attribute: x, y für Position, laenge für Seitenlänge</li>
-  <li>Methoden: display</li>
-  <li>Aufruf: q = new Quadrat(x,y,laenge)</li>
-
+  <li>Attribute: x, y für Position, size für Seitenlänge</li>
+  <li>Methode: display</li>
 
   </ul>
 
- Das Quadrat hat eine schwarze Umrandung mit Breite 1 und keine Füllung. Auch wenn stroke oder strokeWeight vorher
-anders gesetzt werden, sorgt das Quadrat in der display-Methode dafür, dass es mit schwarzer Umrandung der Breite 1 erscheint.
- </p>
+In der display-Methode sorgt die Kachel dafür, dass sie mit schwarzer Umrandung, Randbreite 1 und
+keiner Füllung erscheint. Überprüfe die Werte der Attribute der Objekte k1 und k2 in der Konsole.
+</p>
 
 <pre class="codef">
-    let q1, q2;
+    let k1, k2;
 
     function setup() {
       createCanvas(300, 300);
-      q1 = new Quadrat(100,200,50);
-      q2 = new Quadrat(50,100,30);
+      k1 = new Kachel(30,200,40);
+      k2 = new Kachel(50,80,100);
     }
 
     function draw() {
-      background(200);
-      q1.display();         // 1. Rechteck
+      background(230);
+      k1.display();
+      k2.display();
+    }
 
-      stroke(255,0,0);      // dicker roter Punkt
-      strokeWeight(30);
-      point(150,150);
+    class Kachel {
+      ???
 
-      q2.display();         // 2. Rechteck
     }
 </pre>
 
 <p>
-  <iframe src="B01.html"></iframe>
+  <iframe src="b01.html"></iframe>
 </p>
 
 
+<p>B02: Verändere die Klasse Kachel so, dass beim Erzeugen eines Kachel-Objektes wahlweise nur
+  ein Parameter für die size angegeben werden kann. Die default-Position ist dann (0/0).
+</p>
+
+<pre class="codef">
+    let k1, k2;
+
+    function setup() {
+      createCanvas(300, 300);
+      k1 = new Kachel(30,200,40);
+      k2 = new Kachel(50);
+    }
+
+    function draw() {
+      background(230);
+      k1.display();
+      k2.display();
+    }
+
+    class Kachel {
+        ???
+    }
+  </pre>
+
+<p>
+  <iframe src="b02.html"></iframe>
+</p>
+
+<p>B03: Füge der Klasse Kachel das Attribut <em>randbreite</em> hinzu und
+  implementiere die Methode <em>setRandbreite</em>.
+</p>
+
+<pre class="codef">
+  function setup() {
+      createCanvas(300, 300);
+      k1 = new Kachel(30,200,40);
+      k2 = new Kachel(50);
+      k1.setRandbreite(5);
+    }
+
+    function draw() {
+      background(230);
+      k1.display();
+      k2.display();
+    }
+
+    class Kachel {
+        ???
+    }
+  </pre>
+
+<p>
+  <iframe src="b03.html"></iframe>
+</p>
+
+<p>B04: Füge der Klasse Kachel das Attribut <em>randfarbe</em> hinzu und implementiere die
+  Methode <em>setRandfarbe</em>.
+</p>
+
+<pre class="codef">
+    let k1, k2;
+
+    function setup() {
+      createCanvas(300, 300);
+      k1 = new Kachel(30,200,40);
+      k2 = new Kachel(50,100,200);
+      k1.setRandbreite(5);
+      k1.setRandfarbe('#FF0000')
+      k2.setRandbreite(10);
+      k2.setRandfarbe('#0000FF')
+    }
+
+    function draw() {
+      background(230);
+      k1.display();
+      k2.display();
+    }
+
+    class Kachel {
+        ???
+    }
+  </pre>
+
+<p>
+  <iframe src="b04.html"></iframe>
+</p>
+
+
+<p>B05: Füge der Klasse Kachel das Attribut <em>fuellfarbe</em> hinzu und implementiere die
+  Methode <em>setFuellfarbe</em>. Wenn <em>fuellfarbe</em> den Wert <em>null</em> hat (default), soll die
+  Kachel ohne Füllung sein.
+</p>
+
+<pre class="codef">
+    let k1, k2;
+
+    function setup() {
+      createCanvas(300, 300);
+      k1 = new Kachel(30,200,40);
+      k2 = new Kachel(50,100,200);
+      k1.setRandbreite(5);
+      k1.setRandfarbe('#FF0000')
+      k2.setRandbreite(10);
+      k2.setRandfarbe('#0000FF');
+      k2.setFuellfarbe('#7799FF');
+    }
+
+    function draw() {
+      background(230);
+      k1.display();
+      k2.display();
+    }
+
+    class Kachel {
+        ???
+    }
+  </pre>
+
+<p>
+  <iframe src="b05.html"></iframe>
+</p>
+
+<p>B06: Implementiere in der Klasse Kachel die Methode <em>clone</em>, die eine Kachel mit denselben
+  Attributen zurückgibt, nur die Position ist auf (0/0) gesetzt.
+</p>
+<pre class="codef">
+    let k1, k2;
+
+    function setup() {
+      createCanvas(300, 300);
+      k1 = new Kachel(30, 200, 40);
+      k1.setRandbreite(3);
+      k1.setRandfarbe('#008888');
+      k1.setFuellfarbe('#00FFFF');
+      k2 = k1.clone()
+    }
+
+    function draw() {
+      background(230);
+      k1.display();
+      k2.display();
+    }
+
+    class Kachel {
+        ???
+    }
+  </pre>
+
+<p>
+  <iframe src="b06.html"></iframe>
+</p>
+
+<p>B07: Implementiere in der Klasse Kachel die Methode <em>setzeRechtsVon</em>, die eine Kachel
+  als Argument erhält. Die Position der aktuellen Kachel wird
+  so verändert, dass sie sich direkt rechts neben der übergebenen Kachel befindet.
+
+</p>
+
+
+
+<pre class="codef">
+    let k1, k2;
+
+    function setup() {
+      createCanvas(300, 300);
+      k1 = new Kachel(30, 200, 40);
+      k1.setRandbreite(3);
+      k1.setRandfarbe('#008888');
+      k1.setFuellfarbe('#00FFFF');
+      k2 = k1.clone()
+      k2.setzeRechtsVon(k1);
+    }
+
+    function draw() {
+      background(230);
+      k1.display();
+      k2.display();
+    }
+
+    class Kachel {
+        ???
+    }
+  </pre>
+
+<p>
+  <iframe src="b07.html"></iframe>
+</p>
+
+<p>B08: Implementiere in der Klasse Kachel die Methoden <em>setzeLinksVon, setzeUeber, setzeUnter</em>, analog zu
+  <em>setzeRechtsVon</em>.
+
+</p>
+
+<pre class="codef">
+    let k1, k2, k3, k4, k5;
+
+    function setup() {
+      createCanvas(300, 300);
+      k1 = new Kachel(30, 200, 40);
+      k1.setRandbreite(3);
+      k1.setRandfarbe('#008888');
+      k1.setFuellfarbe('#00FFFF');
+      k2 = k1.clone();
+      k3 = k1.clone();
+      k4 = k1.clone();
+      k5 = k1.clone();
+      k2.setzeRechtsVon(k1);
+      k3.setzeLinksVon(k1);
+      k4.setzeUeber(k1);
+      k5.setzeUnter(k1);
+    }
+
+    function draw() {
+      background(230);
+      k1.display();
+      k2.display();
+      k3.display();
+      k4.display();
+      k5.display();
+    }
+
+    class Kachel {
+        ???
+    }
+  </pre>
+
+<p>
+  <iframe src="b08.html"></iframe>
+</p>
+
+
+<p>B08: Die Klasse IBlock hat die Attribute die Methoden <em>setzeLinksVon, setzeUeber, setzeUnter</em>, analog zu
+  <em>setzeRechtsVon</em>.
+
+</p>

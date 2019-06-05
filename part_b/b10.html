@@ -1,0 +1,158 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let b1;
+
+    function setup() {
+      createCanvas(300, 300);
+      b1 = new IBlock(30, 100, 140);
+
+
+
+    }
+
+    function draw() {
+      background(230);
+
+      b1.display();
+      if (frameCount % 60 === 0) {
+        b1.turnRight();
+      }
+    }
+
+
+    class Kachel {
+      constructor(size, x = 0, y = 0) {
+        this.size = size;
+        this.x = x;
+        this.y = y;
+        this.randbreite = 1;
+        this.randfarbe = 0;
+        this.fuellfarbe = null;
+      }
+
+      setRandbreite(breite) {
+        this.randbreite = breite;
+      }
+
+      setRandfarbe(farbe) {
+        this.randfarbe = farbe;
+      }
+
+      setFuellfarbe(farbe) {
+        this.fuellfarbe = farbe;
+      }
+
+      display() {
+        strokeWeight(this.randbreite);
+        stroke(this.randfarbe);
+        if (this.fuellfarbe === null) {
+          noFill();
+        } else {
+          fill(this.fuellfarbe);
+        }
+        rect(this.x, this.y, this.size, this.size);
+      }
+
+      clone() {
+        let k = new Kachel(this.size);
+        k.setRandbreite(this.randbreite);
+        k.setRandfarbe(this.randfarbe);
+        k.setFuellfarbe(this.fuellfarbe);
+        return k
+      }
+
+      setzeRechtsVon(kachel) {
+        this.x = kachel.x + kachel.size;
+        this.y = kachel.y;
+      }
+
+      setzeLinksVon(kachel) {
+        this.x = kachel.x - kachel.size;
+        this.y = kachel.y;
+      }
+
+      setzeUeber(kachel) {
+        this.x = kachel.x;
+        this.y = kachel.y - kachel.size;
+      }
+
+      setzeUnter(kachel) {
+        this.x = kachel.x;
+        this.y = kachel.y + kachel.size;
+      }
+
+    }
+
+    class IBlock {
+
+      constructor(size,x,y) {
+        this.richtung = 0;
+
+        this.size = size;
+        this.x = x;
+        this.y = y;
+        this.kacheln = new Array(2);
+        let k = new Kachel(size,x,y);
+        k.setRandbreite(3);
+        k.setRandfarbe('#008888');
+        k.setFuellfarbe('#00FFFF');
+
+        this.kacheln[0] = k;
+
+        this.kacheln[1] = k.clone();
+        this.kacheln[1].setzeRechtsVon(this.kacheln[0]);
+
+        this.kacheln[2] = k.clone();
+        this.kacheln[2].setzeRechtsVon(this.kacheln[1]);
+
+        this.kacheln[3] = k.clone();
+        this.kacheln[3].setzeRechtsVon(this.kacheln[2]);
+
+      }
+
+      turnRight() {
+        if (this.richtung === 0) {
+          this.kacheln[0].setzeUeber(this.kacheln[1]);
+          this.kacheln[2].setzeUnter(this.kacheln[1]);
+          this.kacheln[3].setzeUnter(this.kacheln[2]);
+          this.richtung = 1;
+
+        }
+
+        else if (this.richtung === 1) {
+          this.kacheln[0].setzeRechtsVon(this.kacheln[1]);
+          this.kacheln[2].setzeLinksVon(this.kacheln[1]);
+          this.kacheln[3].setzeLinksVon(this.kacheln[2]);
+          this.richtung = 2;
+        }
+
+        else if (this.richtung === 2) {
+          this.kacheln[0].setzeUnter(this.kacheln[1]);
+          this.kacheln[2].setzeUeber(this.kacheln[1]);
+          this.kacheln[3].setzeUeber(this.kacheln[2]);
+          this.richtung = 3;
+        }
+
+        else if (this.richtung === 3) {
+          this.kacheln[0].setzeLinksVon(this.kacheln[1]);
+          this.kacheln[2].setzeRechtsVon(this.kacheln[1]);
+          this.kacheln[3].setzeRechtsVon(this.kacheln[2]);
+          this.richtung = 0;
+        }
+      }
+
+      display() {
+        for (let i=0; i < this.kacheln.length; i++) {
+          this.kacheln[i].display();
+        }
+      }
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>

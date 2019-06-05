@@ -1,0 +1,100 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+    let k1, k2, k3, k4, k5;
+
+    function setup() {
+      createCanvas(300, 300);
+      k1 = new Kachel(30, 200, 40);
+      k1.setRandbreite(3);
+      k1.setRandfarbe('#008888');
+      k1.setFuellfarbe('#00FFFF');
+      k2 = k1.clone();
+      k3 = k1.clone();
+      k4 = k1.clone();
+      k5 = k1.clone();
+      k2.setzeRechtsVon(k1);
+      k3.setzeLinksVon(k1);
+      k4.setzeUeber(k1);
+      k5.setzeUnter(k1);
+    }
+
+    function draw() {
+      background(230);
+      k1.display();
+      k2.display();
+      k3.display();
+      k4.display();
+      k5.display();
+    }
+
+    class Kachel {
+      constructor(size, x = 0, y = 0) {
+        this.size = size;
+        this.x = x;
+        this.y = y;
+        this.randbreite = 1;
+        this.randfarbe = 0;
+        this.fuellfarbe = null;
+      }
+
+      setRandbreite(breite) {
+        this.randbreite = breite;
+      }
+
+      setRandfarbe(farbe) {
+        this.randfarbe = farbe;
+      }
+
+      setFuellfarbe(farbe) {
+        this.fuellfarbe = farbe;
+      }
+
+      display() {
+        strokeWeight(this.randbreite);
+        stroke(this.randfarbe);
+        if (this.fuellfarbe === null) {
+          noFill();
+        } else {
+          fill(this.fuellfarbe);
+        }
+        rect(this.x, this.y, this.size, this.size);
+      }
+
+      clone() {
+        let k = new Kachel(this.size);
+        k.setRandbreite(this.randbreite);
+        k.setRandfarbe(this.randfarbe);
+        k.setFuellfarbe(this.fuellfarbe);
+        return k
+      }
+
+      setzeRechtsVon(kachel) {
+        this.x = kachel.x + kachel.size;
+        this.y = kachel.y;
+      }
+
+      setzeLinksVon(kachel) {
+        this.x = kachel.x - kachel.size;
+        this.y = kachel.y;
+      }
+
+      setzeUeber(kachel) {
+        this.x = kachel.x;
+        this.y = kachel.y - kachel.size;
+      }
+
+      setzeUnter(kachel) {
+        this.x = kachel.x;
+        this.y = kachel.y + kachel.size;
+      }
+
+    }
+
+  </script>
+</head>
+<body>
+</body>
+</html>
