@@ -278,7 +278,71 @@ keiner Füllung erscheint. Überprüfe die Werte der Attribute der Objekte k1 un
 </p>
 
 
-<p>B08: Die Klasse IBlock hat die Attribute die Methoden <em>setzeLinksVon, setzeUeber, setzeUnter</em>, analog zu
-  <em>setzeRechtsVon</em>.
+<p>B08: Ein IBlock besteht aus 4 cyan-farbigen Kacheln, die horizontal nebeneinander
+    angeordnet sind. Die Klasse IBlock hat als Attribut eine Liste mit den vier Kacheln.
+    Der Konstruktor erhält die Werte für die linke Kachel. Die Methode display zeigt die
+    vier Kacheln.
+</p>
 
+<pre class="codef">
+    let b1;
+
+    function setup() {
+      createCanvas(300, 300);
+      b1 = new IBlock(30, 100, 40);
+    }
+
+    function draw() {
+      background(230);
+      b1.display();
+    }
+
+    class Kachel {
+      ...
+    }
+
+    class IBlock {
+     ...
+    }
+
+  </pre>
+<p>
+    <iframe src="b09.html"></iframe>
+</p>
+
+<p>B09: Füge der Klasse IBlock ein Attribut <em>richtung</em>  hinzu, in dem die Ausrichtung des IBlocks
+    gespeichert wird. richtung = 0,1,2,3 bedeutet jeweils, das der IBlock 0,1,2,3-mal um 90 Grad
+    gedreht wurde. Implementiere in der Klasse IBlock eine Methode turnRight, die einer Drehung um
+    90 Grad nach rechts entspicht. Die Rotationskachel des IBlocks ist die zweite Kachel von links des
+    Anfangszustands. In der Mitte dieser Kachel kann man sich die Rotationsachse vorstellen.
+</p>
+
+<pre class="codef">
+    let b1;
+
+    function setup() {
+      createCanvas(300, 300);
+      b1 = new IBlock(30, 100, 140);
+    }
+
+    function draw() {
+      background(230);
+      b1.display();
+      if (frameCount % 60 === 0) {
+        b1.turnRight();
+      }
+    }
+
+    class Kachel {
+      ...
+    }
+
+    class IBlock {
+     ...
+    }
+
+  </pre>
+
+<p>
+    <iframe src="b10.html"></iframe>
 </p>

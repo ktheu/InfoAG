@@ -80,5 +80,7 @@ __[WebGL](webgl.html)__ - __[Teil2](webgl2.html)__
 
 __[Teil A](part_a/part_a.html)__ - Themen bis Funktionen (einfach) 
 
+__[Teil B](part_b/part_b.html)__ - Klassen und Objekte
+
 --------------------------------------------------------
 

@@ -8,15 +8,12 @@
     function setup() {
       createCanvas(300, 300);
       b1 = new IBlock(30, 100, 40);
-      b2 = new IBlock(50, 40,150);
-
     }
 
     function draw() {
       background(230);
       b1.display();
-      b2.display();
-    }
+   }
 
     class Kachel {
       constructor(size, x = 0, y = 0) {
@@ -84,9 +81,6 @@
     class IBlock {
 
       constructor(size,x,y) {
-        this.size = size;
-        this.x = x;
-        this.y = y;
         this.kacheln = new Array(2);
         let k = new Kachel(size,x,y);
         k.setRandbreite(3);

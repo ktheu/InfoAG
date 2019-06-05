@@ -8,14 +8,10 @@
     function setup() {
       createCanvas(300, 300);
       b1 = new IBlock(30, 100, 140);
-
-
-
     }
 
     function draw() {
       background(230);
-
       b1.display();
       if (frameCount % 60 === 0) {
         b1.turnRight();
