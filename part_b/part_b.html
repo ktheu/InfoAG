@@ -278,7 +278,7 @@ keiner Füllung erscheint. Überprüfe die Werte der Attribute der Objekte k1 un
 </p>
 
 
-<p>B08: Ein IBlock besteht aus 4 cyan-farbigen Kacheln, die horizontal nebeneinander
+<p>B09: Ein IBlock besteht aus 4 cyan-farbigen Kacheln, die horizontal nebeneinander
     angeordnet sind. Die Klasse IBlock hat als Attribut eine Liste mit den vier Kacheln.
     Der Konstruktor erhält die Werte für die linke Kachel. Die Methode display zeigt die
     vier Kacheln.
@@ -310,7 +310,7 @@ keiner Füllung erscheint. Überprüfe die Werte der Attribute der Objekte k1 un
     <iframe src="b09.html"></iframe>
 </p>
 
-<p>B09: Füge der Klasse IBlock ein Attribut <em>richtung</em>  hinzu, in dem die Ausrichtung des IBlocks
+<p>B10: Füge der Klasse IBlock ein Attribut <em>richtung</em>  hinzu, in dem die Ausrichtung des IBlocks
     gespeichert wird. richtung = 0,1,2,3 bedeutet jeweils, das der IBlock 0,1,2,3-mal um 90 Grad
     gedreht wurde. Implementiere in der Klasse IBlock eine Methode turnRight, die einer Drehung um
     90 Grad nach rechts entspicht. Die Rotationskachel des IBlocks ist die zweite Kachel von links des
@@ -345,4 +345,42 @@ keiner Füllung erscheint. Überprüfe die Werte der Attribute der Objekte k1 un
 
 <p>
     <iframe src="b10.html"></iframe>
+</p>
+
+<p>B11: Implementiere die Klasse JBlock. Für ein Tetris-Spiel werden noch L, O, S und T-Blöcke gebraucht.
+
+    <pre class="codef">
+    let b1;
+
+    function setup() {
+      createCanvas(300, 300);
+      b1 = new IBlock(30, 40, 60);
+      b2 = new JBlock(30,150,140)
+    }
+
+    function draw() {
+      background(230);
+      b1.display();
+      b2.display();
+      if (frameCount % 60 === 0) {
+        b1.turnRight();
+        b2.turnRight();
+      }
+    }
+
+    class Kachel {
+      ...
+    }
+
+    class IBlock {
+     ...
+    }
+
+    class JBlock {
+     ...
+    }
+
+<p>
+    <iframe src="b11.html"></iframe>
+</p>
 </p>
