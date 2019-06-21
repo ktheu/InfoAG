@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link href="kurs.css" rel="stylesheet" type="text/css"/>
+  <title>Informatik</title>
+</head>
+<body>
+<h3>Sockets mit Repl.it</h3>
+
+<p> <em>repl</em> steht für <em>read–eval–print loop</em>. In einer 
+  repl-Umgebung kann der Anwender einzelne Anweisungen eingeben, die sofort ausgewertet
+  werden. Repl.it stellt repl-Umgebungen für viele Programmiersprachen zur Verfügung.</p>
+
+<h4>Beispiel</h4>
+
+<ol><li>
+  Erstelle einen Account auf <a href="https://repl.it">repl.it</a>. Dafür ist eine 
+  gültige email-Adresse nötig. Der Account ist kostenfrei.
+</li>
+<li>
+  Erstelle mit <em>new repl</em> ein neues Repl, wähle als Sprache <em>Express</em>
+  und gib dem repl einen Namen.
+</li>
+<li>Klicke links auf das package-Symbol, suche nach <em>socket.io</em> und klicke dann
+auf das plus-Zeichen, um das package hinzuzufügen. Klicke dann wieder auf das
+Ordner-Symbol um die Files zu sehen.</li>
+<li>Ersetze den Inhalt von index.js mit:
+  <pre class="codef">
+let express = require('express');
+let app = express();
+let server = app.listen(3000);
+
+app.use(express.static('public'));
+
+let socket = require('socket.io');
+let io = socket(server);
+io.sockets.on('connection', newConnection);
+
+function newConnection(socket) {
+  console.log("We have a new client: " + socket.id);
+
+  socket.on('mouse',
+    function (data) {
+      socket.broadcast.emit('mouse', data);
+    }
+  );
+
+  socket.on('disconnect',
+    function () {
+      console.log("Client has disconnected");
+    }
+  );
+}
+</pre>
+</li>
+<li>Erstelle einen neuen Ordner <em>public</em> mit den Files
+<em>index.html</em> und <em>sketch.js</em>.  </li>
+<li>
+  Fülle index.html mit:
+
+  <pre class="codef">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;InfoAG&lt;/title&gt;
+    &lt;script src=&quot; https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;sketch.js&quot;&gt;&lt;/script&gt;
+    &lt;style&gt;
+      body {
+        padding: 20px;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</li>
+<li> Fülle sketch.js mit: 
+
+<pre class="codef">
+let socket;
+
+function setup() {
+  createCanvas(400, 400);
+  background(0);
+
+  socket = io.connect('xxxxxxxxxxxxxxxxxxxxxxxxx');
+  socket.on('mouse',
+      function(data) {
+      fill(0,0,255);
+      noStroke();
+      ellipse(data.x, data.y, 20, 20);
+    }
+  );
+}
+
+function draw() {
+}
+
+function mousePressed() {
+  fill(255,0,0);
+  noStroke();
+  ellipse(mouseX,mouseY,20,20);
+  var data = {
+    x: mouseX,
+    y: mouseY
+  };
+
+  socket.emit('mouse',data);
+}
+    
+  </pre></li>
+  <li>Ersetze in der Zeile <em>socket = io.connect('xxxxxxxxxxxxxxxxxxxxxxxxx');</em>
+  die x-e mit der Adresse, die in dem oberen Fenster auf der rechten Seite  
+  angzeigt wird, z.B: <em>https://p5ball--ktest.repl.co</em>
+  </li>
+<li>Klicke auf <em>start</em> und den Server zu starten.</li>
+
+<li>Klicke bei dem Fenster mit dem Sketch auf <em>open in a new tab</em>. Die gleiche
+  Adresse kann von einem anderen PC aufgerufen werden. Beide Anwender können mit
+  der Maus Kreise erstellen.
+</li>
+</ol>
+</body>
+</html>

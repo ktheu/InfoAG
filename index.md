@@ -70,8 +70,8 @@ Textfeld, Textarea, Datei laden
 __[Raster/Grid](raster.html)__ -
 Zählung, Schachbrett, Kacheln, TicTacToe
 
-__[Sockets](sockets.html)__ -
-Nodejs, TicTacToe
+__[Sockets](sockets2.html)__ -
+Repl.it
 
 __[WebGL](webgl.html)__ - __[Teil2](webgl2.html)__
 3D-Primitives, Rotate, Translate, Mbaterial, Light, Texture
