@@ -82,7 +82,12 @@ __[Teil A](part_a/part_a.html)__ - Themen bis Funktionen (einfach)
 
 __[Teil B](part_b/part_b.html)__ - Klassen und Objekte
 
+----
+
 __[JavaScript Repl](https://repl.it/classroom/invite/b62owlc)__ - 165 Übungen
+
+__[Javascript Tutorial](https://www.w3schools.com/js/default.asp)__ -  W3CSchools  
+
 
 --------------------------------------------------------
 
