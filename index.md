@@ -82,5 +82,7 @@ __[Teil A](part_a/part_a.html)__ - Themen bis Funktionen (einfach)
 
 __[Teil B](part_b/part_b.html)__ - Klassen und Objekte
 
+__[JavaScript Repl](https://repl.it/data/classrooms/share/1ffba50a1b692424d43695a60509acc2)__ - 165 Übungen
+
 --------------------------------------------------------
 
