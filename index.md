@@ -82,9 +82,16 @@ __[Teil A](part_a/part_a.html)__ - Themen bis Funktionen (einfach)
 
 __[Teil B](part_b/part_b.html)__ - Klassen und Objekte
 
-----
+#### Links
 
-__[JavaScript Repl](https://repl.it/classroom/invite/b62owlc)__ - 165 Übungen
+__[Code! Programming with P5JS](https://www.youtube.com/watch?v=HerCR8bw_GE&list=PLRqwX-V7Uu6Zy51Q-x9tMWIv9cueOFTFA)__
+
+__[HTML/CSS/DOM with P5JS](https://www.youtube.com/watch?v=URSH0QpxKo8&list=PLRqwX-V7Uu6bI1SlcCRfLH79HZrFAtBvX)__
+
+__[CodingTrain Playlists](https://www.youtube.com/user/shiffman/playlists)__
+
+
+<!-- __[JavaScript Repl](https://repl.it/classroom/invite/b62owlc)__ - 165 Übungen -->
 
 __[Javascript Tutorial](https://www.w3schools.com/js/default.asp)__ -  W3CSchools  
 
