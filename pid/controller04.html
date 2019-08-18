@@ -1,0 +1,92 @@
+<html>
+
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+
+let targetY = 200
+let startY = 480
+let prev_error = null
+let error_sum = 0
+let windup = 0.3;
+ 
+function setup() {
+  createCanvas(300, 500);
+  m = new Mover();
+}
+
+function draw() {
+  background(200);
+  m.act();
+}
+
+function mousePressed() {
+  m.go = true;
+}
+
+
+class Mover {
+
+  constructor() {
+    this.pos = createVector(100, startY-50);
+    this.v = createVector(0, 0);
+    this.a = createVector(0, 0);
+    this.go = false;
+  }
+
+  applyForce(force) {
+    this.a.add(force);
+  }
+
+  act() {
+    if (this.go) {
+      
+      let kp = 0.00045
+      let kd = 0.18
+      let ki = 0.02
+      
+      let error = targetY - this.pos.y - 50
+      error_sum += error
+      if (error_sum > windup) error_sum = windup;
+      if (error_sum < -windup) error_sum = -windup;
+      
+      let force = createVector(0,1);
+     
+      let p_force = p5.Vector.mult(force,kp*error);
+      let d_force = p5.Vector.mult(force,kd*(error-prev_error));
+      let i_force = p5.Vector.mult(force,ki*(error_sum));
+      
+    
+      this.applyForce(p_force);
+      this.applyForce(d_force);
+      this.applyForce(i_force);
+      
+      prev_error = error
+    }
+    this.move();
+    this.display();
+  }
+
+  move() {
+    this.v.add(this.a);
+    this.pos.add(this.v);
+    this.a.mult(0);
+  }
+
+  display() {
+
+    strokeWeight(2);
+    line(0, startY, width, startY);
+    line(0, targetY, width, targetY);
+    rect(this.pos.x, this.pos.y, 30, 50);
+
+  }
+
+}
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
