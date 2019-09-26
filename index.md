@@ -2,7 +2,6 @@
 
 __[P5JS WebEditor](https://editor.p5js.org/)__ -
 __[P5JS Reference](https://p5js.org/reference/)__ -
-__[Merkhilfe](./merkhilfe/MerkhilfeP5JS.pdf)__ -
 __[OpenProcessing](https://www.openprocessing.org/)__ -
 __[Medien](./medien.html)__ -
 __[Hinweise](./hinweise.html)__
