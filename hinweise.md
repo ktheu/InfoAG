@@ -15,9 +15,8 @@ Um den Source Code eines Sketches anzuschauen, gehe wie folgt vor:
 - Die Vorlage in eine \*.html - Datei kopieren, mit Notepad++ den Sketch editieren und dann mit
   *Ausführen, Launch in Chrome* das Ergebnis ansehen. Dies geht für Sketche ohne
   Bilder oder Sound. Nach jedem Edit in der html-Datei den
-  Browser refreshen. Die Konsole für Fehlermeldungen erhält man in Chrome mit *F12* oder *Strg+Umschalt+i, Console*</em>.*
+  Browser refreshen. Die Konsole für Fehlermeldungen erhält man in Chrome mit *F12* oder *Strg+Umschalt+i, Console*
 
-</p>
 
 ``` 
 <html>
