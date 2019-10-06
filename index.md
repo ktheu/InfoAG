@@ -1,22 +1,21 @@
 
 
 __[P5JS WebEditor](https://editor.p5js.org/)__ -
-__[P5JS Reference](https://p5js.org/reference/)__ -
-__[OpenProcessing](https://www.openprocessing.org/)__ -
-__[Medien](./medien.html)__ -
-__[Hinweise](./hinweise.md)__
+__[P5JS Reference](https://p5js.org/reference/)__ 
+<!-- __[OpenProcessing](https://www.openprocessing.org/)__ - -->
+
+<!-- __[Hinweise](./hinweise.md)__ -->
 
 ### Inhalte
 
 ___________________________________________________________________
 
-__[Einführung und Einfache Figuren](a_figuren/figuren.md)__ - Sketchaufbau, Koordinaten, einfache Figuren, Grauwerte
+__[Einführung und Einfache Figuren](figuren/figuren.md)__ - Sketchaufbau, Koordinaten, einfache Figuren, Grauwerte
 
-__[Farben](a_farben/farben.md)__ - RGB-Farben, HSB-Modus, Farbtabellen, Transparenz
+__[Farben](farben/farben.md)__ - RGB-Farben, HSB-Modus, Farbtabellen, Transparenz
 
-__[Interaktion](interaktion.html)__ - 
-  setup und draw, pmouseX/Y, mousePressed(), keyPressed(), Mauslinie, Mauszeichnen,
-  Strichstärke, kleineQuadrate, Schimmern, Ergrauen, Kette
+__[Interaktion mit der Maus](interaktionMitMaus/interaktionMitMaus.md)__ - 
+  mouseX/mouseY, pmouseX/pmouseY, mousePressed() frameRate()
   
 __[Variablen](variablen.html)__ - 
 BewegterKreis, RandomWalk, RandomColor, 4Kreise, Wachsend, Aenderungen, Varianten
@@ -76,13 +75,15 @@ Repl.it
 __[WebGL](webgl.html)__ - __[Teil2](webgl2.html)__
 3D-Primitives, Rotate, Translate, Mbaterial, Light, Texture
 
-#### Übungsrunden
+<!-- #### Übungsrunden
 
 __[Teil A](part_a/part_a.html)__ - Themen bis Funktionen (einfach) 
 
-__[Teil B](part_b/part_b.html)__ - Klassen und Objekte
+__[Teil B](part_b/part_b.html)__ - Klassen und Objekte -->
 
 #### Links
+
+__[Medien](./medien.html)__ 
 
 __[Code! Programming with P5JS](https://www.youtube.com/watch?v=HerCR8bw_GE&list=PLRqwX-V7Uu6Zy51Q-x9tMWIv9cueOFTFA)__
 
@@ -95,6 +96,6 @@ __[CodingTrain Playlists](https://www.youtube.com/user/shiffman/playlists)__
 
 __[Javascript Tutorial](https://www.w3schools.com/js/default.asp)__ -  W3CSchools  
 
-__[Test](s01.md)__
+
 --------------------------------------------------------
 

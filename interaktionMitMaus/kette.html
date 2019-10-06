@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    function setup() {
+      createCanvas(600, 400);
+      stroke(255);
+      background(0);
+      frameRate(10);
+    }
+
+    function draw() {
+      fill(255);
+      line(mouseX, mouseY, pmouseX, pmouseY);
+      fill(255, 255, 0);
+      ellipse(mouseX, mouseY, 10, 10);
+    }
+
+    function mousePressed() {
+      background(0);
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
