@@ -10,9 +10,10 @@ __[Hinweise](./hinweise.md)__
 
 ___________________________________________________________________
 
-__[Pixel](pixel.html)__ - 
- Sketchaufbau, Koordinaten, einfache Figuren, Grauwerte, RGB-Farben, Transparenz, HSB-Modus, Farbpaletten
- 
+__[Einführung und Einfache Figuren](a_figuren/figuren.md)__ - Sketchaufbau, Koordinaten, einfache Figuren, Grauwerte
+
+__[Farben](a_farben/farben.md)__ - RGB-Farben, HSB-Modus, Farbtabellen, Transparenz
+
 __[Interaktion](interaktion.html)__ - 
   setup und draw, pmouseX/Y, mousePressed(), keyPressed(), Mauslinie, Mauszeichnen,
   Strichstärke, kleineQuadrate, Schimmern, Ergrauen, Kette
