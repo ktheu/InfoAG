@@ -83,8 +83,8 @@ Ellipsen
 
 ----
 
-Figuren
-<iframe src="figuren.html" width="320" height="320"></iframe>
+Figuren und Linien
+<iframe src="figurenUndLinien.html" width="320" height="320"></iframe>
 
 ----
 

@@ -33,7 +33,7 @@ function draw() {
 }
 ```
 
-<iframe src="farben.html" width="320" height="320"></iframe>
+<iframe src="rgb.html" width="320" height="320"></iframe>
 
 Die drei RGB-Werte können auch in einen Hex-Wert zusammengefasst werden:
 
