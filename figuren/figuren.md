@@ -25,7 +25,7 @@ function draw() {
 }
 
 ```
-Anweisungen in *setup* werden zu Beginn einmal durchlaufen. Die Anweisungen in *draw* werden immmer wieder durchlaufen.
+Anweisungen in *setup* werden zu Beginn einmal durchlaufen. Die Anweisungen in *draw* werden immmer wieder durchlaufen. Alle Anweisungen enden mit einem Semikolon.
 
 
 ##### Reference  
