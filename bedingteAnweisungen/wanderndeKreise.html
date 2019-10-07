@@ -1,0 +1,62 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let x = 50;
+    let y = 70;
+
+    let vx = 5;
+    let vy = 9;
+
+    let radius = 20;
+
+    let farbe0 = '#F2D4AE';
+    let farbe1 = '#D98D62';
+    let farbe2 = '#73321A';
+    let farbe3 = '#A61414';
+
+    function setup() {
+      createCanvas(600, 400);
+      ellipseMode(RADIUS);
+      noFill();
+      strokeWeight(2);
+      background(farbe0);
+    }
+
+    function draw() {
+
+      if (frameCount % 300 == 0) {
+        background(farbe0);
+      }
+
+      if (x < radius || x > width - radius) {
+        vx = -vx;
+      }
+
+      if (y < radius || y > height - radius) {
+        vy = -vy;
+      }
+
+      let wahl = frameCount % 3;
+
+      if (wahl == 0) {
+        stroke(farbe1);
+      } else if (wahl == 1) {
+        stroke(farbe2);
+      } else {
+        stroke(farbe3);
+      }
+
+      x = x + vx;
+      y = y + vy;
+
+      circle(x, y, radius);
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

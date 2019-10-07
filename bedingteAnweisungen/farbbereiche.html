@@ -1,0 +1,38 @@
+<html>
+<head>
+  <script src="../p5.min.js"></script>
+  <script>
+    let x = 0;
+    let y = 0;
+    let vx = 2;  
+    let vy = 1;
+
+    function setup() {
+      createCanvas(500, 300);
+      stroke(0);
+      strokeWeight(4);
+    }
+
+    function draw() {
+      background(255);
+
+      if (x < 0 || x > width) vx = -vx;
+      if (y < 0 || y > height) vy = -vy;
+
+      x = x + vx;
+      y = y + vy;
+
+      fill('#FC1414');
+      rect(0, 0, x, y);
+      fill('#F7F75C');
+      rect(x, 0, width - x, y);
+      fill('#1C2BC4');
+      rect(0, y, x, height - y);
+      fill('#3FC41C');
+      rect(x, y, width - x, height - y);
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

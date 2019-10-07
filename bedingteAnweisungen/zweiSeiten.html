@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let x = 0;
+
+    function setup() {
+      createCanvas(300, 200);
+      strokeWeight(3);
+    }
+
+    function draw() {
+      background(220);
+      line(width / 2, 0, width / 2, height);
+      if (mouseX < width / 2) {
+        fill(255, 0, 0);
+      } else {
+        fill(0, 0, 255);
+      }
+      circle(mouseX, mouseY, 50);
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

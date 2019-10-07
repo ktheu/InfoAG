@@ -1,0 +1,39 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let x = 0
+
+    function setup() {
+      createCanvas(400, 200);
+      strokeWeight(3);
+      background(240);
+      noFill();
+    }
+
+    function draw() {
+
+      if (frameCount % 100 == 0) {
+        x = 0;
+        background(240);
+      }
+
+      if (frameCount % 3 == 0) {
+        stroke(255, 0, 0);
+      } else if (frameCount % 3 == 1) {
+        stroke(0, 255, 0);
+      } else {
+        stroke(0, 0, 255);
+      }
+
+      x = x + 10;
+      line(x, 0, x, height);
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

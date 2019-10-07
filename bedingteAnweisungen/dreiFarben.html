@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    function setup() {
+      createCanvas(300, 200);
+    }
+
+    function draw() {
+      background(255);
+      line(100, 0, 100, 200);
+      line(200, 0, 200, 200);
+      if (mouseX < 100) {
+        fill(255, 0, 0);
+      } else if (100 <= mouseX && mouseX < 200) {
+        fill(0, 255, 0);
+      } else {
+        fill(0, 0, 255);
+      }
+      ellipse(mouseX, 100, 50, 50);
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

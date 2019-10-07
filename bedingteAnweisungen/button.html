@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let x = 100;
+    let y = 100;
+    let w = 200;
+    let h = 50;
+
+    function setup() {
+      createCanvas(400, 250);
+      strokeWeight(5);
+    }
+
+    function draw() {
+      background(255);
+      if (x < mouseX && mouseX < x + w && y < mouseY && mouseY < y + h)
+        fill('#069528');
+      else
+        fill('#F52349');
+      rect(x, y, w, h);
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
