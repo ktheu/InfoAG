@@ -230,7 +230,7 @@ Zwei abprallende Bälle mit unterschiedlichen Größen und Geschwindigkeiten
 ---
 Laufende Linien - zwei Linien werden an den Seiten reflektiert
 
-<iframe src="laufendeLinien.html" width="320" height="220"></iframe>
+<iframe src="laufendelinien.html" width="320" height="220"></iframe>
 
 ---
 Farbbereiche - die Bereiche zweier laufender Linien werden unterschiedliche gefärbt
