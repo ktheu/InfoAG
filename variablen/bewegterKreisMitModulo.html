@@ -7,13 +7,12 @@
 
     function setup() {
       createCanvas(300, 200);
-      rectMode(CENTER);
     }
 
     function draw() {
       background(240);
       circle(x, 100, 20);
-      x = x + 1;
+      x = (x + 1) % 300;
     }
   </script>
 </head>

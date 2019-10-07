@@ -3,16 +3,20 @@
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
-    let x = 30;
+    let y = 0;
+    let x = 1;
 
     function setup() {
-      createCanvas(300, 200);
+      createCanvas(300, 300);
       rectMode(CENTER);
     }
 
     function draw() {
       background(240);
-      circle(x, 100, 20);
+
+      square(150, y, 30);
+      y = y + 1;
+      square(x, 150, 30);
       x = x + 1;
     }
   </script>

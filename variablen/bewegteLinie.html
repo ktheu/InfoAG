@@ -3,17 +3,17 @@
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
-    let x = 30;
+    let x = 300;
 
     function setup() {
-      createCanvas(300, 200);
-      rectMode(CENTER);
+      createCanvas(300, 300);
     }
 
     function draw() {
       background(240);
-      circle(x, 100, 20);
-      x = x + 1;
+      strokeWeight(10);
+      line(x, 0, x, 300);
+      x = x - 1;
     }
   </script>
 </head>

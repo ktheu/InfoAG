@@ -15,10 +15,10 @@ __[Einführung und Einfache Figuren](figuren/figuren.md)__ - Sketchaufbau, Koord
 __[Farben](farben/farben.md)__ - RGB-Farben, HSB-Modus, Farbtabellen, Transparenz
 
 __[Interaktion mit der Maus](interaktionMitMaus/interaktionMitMaus.md)__ - 
-  mouseX/mouseY, pmouseX/pmouseY, mousePressed() frameRate()
+  mouseX/mouseY, pmouseX/pmouseY, mousePressed(), frameRate()
   
-__[Variablen](variablen.html)__ - 
-BewegterKreis, RandomWalk, RandomColor, 4Kreise, Wachsend, Aenderungen, Varianten
+__[Variablen](variablen/variablen.md)__ - 
+var, let, const, typeof, console.log, print, arithmetische Ausdrücke, modulo-Operator
 
 __[Bedingungen](bedingungen.html)__ -
 if else, boolesche Operatoren, modulo, Zufall, Text, Tastatursteuerung, Kollision, map-Funktion,
