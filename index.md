@@ -20,9 +20,10 @@ __[Interaktion mit der Maus](interaktionMitMaus/interaktionMitMaus.md)__ -
 __[Variablen](variablen/variablen.md)__ - 
 var, let, const, typeof, console.log, print, arithmetische Ausdrücke, modulo-Operator
 
-__[Bedingungen](bedingungen.html)__ -
-if else, boolesche Operatoren, modulo, Zufall, Text, Tastatursteuerung, Kollision, map-Funktion,
-Rollover, LaufendeLinien, Prellball, Farbbereiche, Wandernde Kreise, SimplePong
+__[Bedingte Anweisungen](bedingteAnweisungen/bedingteAnweisungen.md)__ -
+if, if-else, if-else if-else, width, height, frameCount, boolesche Variablen
+
+__[Zufall und map-Funktion](zufall/zufall.md)__
 
 __[Schleifen](schleifen.html)__ -
 while/for-Schleife, 9 Kreise, 20 Rechtecke, viele Linien, viele Rechtecke, Schachbrett, Linien-, Kreis-, Dicke-, Strichmuster
