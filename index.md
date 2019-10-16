@@ -2,6 +2,7 @@
 
 __[P5JS WebEditor](https://editor.p5js.org/)__ -
 __[P5JS Reference](https://p5js.org/reference/)__ 
+__[Gallery](./gallery.md)__
 <!-- __[OpenProcessing](https://www.openprocessing.org/)__ - -->
 
 <!-- __[Hinweise](./hinweise.md)__ -->
