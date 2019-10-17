@@ -38,7 +38,7 @@ function draw() {
 Die drei RGB-Werte können auch in einen Hex-Wert zusammengefasst werden:
 
 ```
-fill('#A3251B') statt fill(163,25,27) 
+fill('#A3251B') statt fill(163,37,27) 
 ```
 
 Die Mischung einer gewünschten Farbe mittels RGB-Werte ist nicht einfach. Es helfen Color Selektoren und Farbtabellen: 
