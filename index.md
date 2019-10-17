@@ -75,6 +75,11 @@ Repl.it
 __[WebGL](webgl.html)__ - __[Teil2](webgl2.html)__
 3D-Primitives, Rotate, Translate, Mbaterial, Light, Texture
 
+--- 
+
+__[Fehler](fehler/fehler.md)__
+
+---
 <!-- #### Übungsrunden
 
 __[Teil A](part_a/part_a.html)__ - Themen bis Funktionen (einfach) 
