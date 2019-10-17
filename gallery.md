@@ -2,6 +2,4 @@
 
 ---
 
-Malte: Kreis mit wechselnden Farben
-
-__[Malte](https://editor.p5js.org/ktheu/present/NUgnwasbu)__
+__[Max - Drei Quadrate](https://editor.p5js.org/ktheu/present/NUgnwasbu)__
