@@ -54,8 +54,64 @@ Mit *ColorMode(HSB)* schalten wir in den HSB-Modus, in dem eine Farbe durch die 
 
 <img src="hsb.png" width="400">
 
+<img src="hsb1.png" width="400">
+
 Den Wertebereiche können wir anpassen, häufig wird *ColorMode(HSB,360,100,100)* genutzt. Mit
   *ColorMode(RGB,255,255,255)* schalten wir in den default RGB-Modus zurück. 
+
+```
+function setup() {
+  createCanvas(350, 150);
+  noStroke();
+}
+
+function draw() {
+  
+  colorMode(HSB,360,100,100);
+  background(100,0,100);
+  
+  fill(0,100,100);
+  circle(50,50,40);
+  
+  fill(60,100,100);
+  circle(100,50,40);
+  
+  fill(120,100,100);
+  circle(150,50,40);
+  
+  fill(180,100,100);
+  circle(200,50,40);
+  
+  fill(240,100,100);
+  circle(250,50,40);
+  
+  fill(300,100,100);
+  circle(300,50,40);
+  
+  colorMode(RGB,255,255,255);
+  
+  fill(255,0,0);
+  circle(50,100,40);
+  
+  fill(255,255,0);
+  circle(100,100,40);
+  
+  fill(0,255,0);
+  circle(150,100,40);
+  
+  fill(0,255,255);
+  circle(200,100,40);
+  
+  fill(0,0,255);
+  circle(250,100,40);
+  
+  fill(255,0,255);
+  circle(300,100,40);
+}
+
+```
+
+<iframe src="hsb.html" width="370" height="170"></iframe>
 
 ##### Transparenz
 
