@@ -1,196 +1,170 @@
-### Variablen
+#### Variablen
 
-Variablen sind Behälter (Schubladen, container) um Daten zu speichern. Jede
-Variable sollte vor oder bei ihrem ersten Gebrauch deklariert werden. 
+Mit einer *Variablen* speichern wir einen Wert an einer Speicherstelle unseres Computers ab. Wir können den
+Wert später wiederverwenden oder ändern.
 
-
-##### var, let, const
-
-Die alte Art:
 ```
-var x;              // Deklaration
-x = 12;             // Zuweisung
-x = 20.5;           // erneute Zuweisung
-var y = 17;         // Deklaration und Zuweisung
+let x;        // Deklaration einer Variablen
+x = 10;       // Zuweisung eines Wertes
+
+let y = 12;   // Deklaration und Zuweisung
+y = 13;       // erneute Zuweisung
 ```
 
-Ab Javascript ES6 empfohlen: 
-```
-let x;                 // Deklaration
-x = 12;                // Zuweisung
-x = 20.5;              // erneute Zuweisung
-let y = 17;            // Deklaration und Zuweisung
 
-const pi = 3.1415;     // Deklaration und Zuweisung eines konstanten Werts,
-                       // erneute Zuweisung nicht möglich
-```
-
-Variablennamen
+Variablennamen 
 - können Buchstaben, Ziffern, den Unterstrich _ und das Dollarzeichen $ enthalten.  
 - dürfen nicht mit einer Ziffer beginnen. 
 - sind case-sensitiv (große und kleine Buchstaben sind verschieden). 
 - dürfen keine reservierten Worte sein. 
 
-##### console.log und print
+---------------------------------------
 
-In Chrome können wir nach *Ctrl+Umsch+i/Console* auf der Konsole Javascript-Anweisungen eingeben, die sofort ausgeführt werden. Mit *console.log(x)* geben wir den Wert der Variablen x auf der Konsole aus.
-
-Im P5-Webeditor können wir mit *print* die Werte im unteren Konsolbereich ausgeben. Wenn wir kein Grafikfenster
-benötigen, nutzen wir *noCanvas()* und schreiben alle Anweisungen in die setup-Funktion.
+Mit sprechenden Variablenname können wir unseren Code lesbarer und leichter veränderbar machen.
 
 ```
-function setup() {
-  noCanvas();
-  let z = 12;
-  print(z);
-}
-
-```
-
-##### Typen
-Jede Variable hat einen Typ, der von der letzten Zuweisung abhängt. Mit *typeof* können wir den Typ
-einer Variablen abfragen. Ganze Zahlen und Dezimalzahlen sind vom Typ *number*.
-
-```
-function setup() {
-  noCanvas();
-  let k = 12;
-  let x = 3.14;
-  print(typeof k, typeof x);
-}
-
-Ausgabe:
-number number  
-```
- 
-##### Arithmetische Ausdrücke
-Mit Zahlen können wir rechnen wie auf einem Taschenrechner und mit den üblichen arithmetischen Operatoren und Klammern arithmetische Ausdrücke bilden. 
-
-```
-function setup() {
-  noCanvas();
-  let x = 2;
-  let y = 4;
-  let z = x * x + (20 - y)/2;
-  print(z);
-}
-
-Ausgabe: 12
-``` 
-
-##### Der Modulo-Operator
-Der Modulo-Operator *%* liefert den Rest der ganzzahligen Division.
-
-``` 
-function setup() {
-  noCanvas();
-  print(0 % 3, 1 % 3, 2 % 3, 3 % 3, 4 % 3, 5 % 3)
-}
-``` 
-Ausgabe: 0 1 2 0 1 2
-
-
-##### Bewegter Kreis
-
-```
-let x = 30;
+let x = 0;
+let y = 100;
+let durchmesser = 50
 
 function setup() {
   createCanvas(300, 200);
-  rectMode(CENTER);
 }
 
 function draw() {
-  background(240);
-  circle(x, 100, 20);
+  background(220);
+  circle(x,y,durchmesser);
   x = x + 1;
 }
 ```
+<p>
 <iframe src="bewegterKreis.html" width="320" height="220"></iframe>
+</p>
 
-##### Bewegter Kreis mit modulo
+-----------------------------
+
+Systemvariablen werden vom System gesetzt, wir können ihren Inhalt nutzen.
+```
+mouseX, mouseY - Koordinaten der Maus
+width, height  - Breite und Höhe wie in createCanvas gesetzt.
+```
+ 
+```
+let x = 0
+function setup() {
+  createCanvas(300, 200);
+}
+
+function draw() {
+  background(220);
+  line(x,0,x,height)
+  x = x + 1;
+}
+```
+
+<p>
+<iframe src="laufendeLinie.html" width="320" height="220"></iframe>
+</p>
+
+
+-------------------------------
+
+Mit Variablen können wir rechnen wie mit einem Taschenrechner. Mit `print` können wir den Wert auf der Konsole ausgeben.
+Der Modulo-Operator `%` liefert den Rest der ganzzahligen Division. Mit `noCanvas` wird keine Leinwand erzeugt.
 
 ```
-let x = 30;
+ function setup() {
+   noCanvas();
+   let x = 5;
+   let y = 10;
+   print((2 * x + 0.5 * y) / 4);
+   print(0 % 3, 1 % 3, 2 % 3, 3 % 3, 4 % 3, 5 % 3)
+ }
+
+Ausgabe:
+3.75
+0 1 2 0 1 2
+```
+-------------------------------
+
+Der modulo-Operator eignet sich für periodische Vorgänge.
+
+```
+let x = 0;
+let y = 100;
+let durchmesser = 50;
 
 function setup() {
   createCanvas(300, 200);
 }
 
 function draw() {
-  background(240);
-  circle(x, 100, 20);
-  x = (x + 1) % 300;
+  background(0);
+  circle(x,y,durchmesser);
+  x = (x + 2) % width
 }
 ```
-<iframe src="bewegterKreisMitModulo.html" width="320" height="220"></iframe>
+<p>
+<iframe src="moduloKreis.html" width="320" height="220"></iframe>
+</p>
 
+-------------------------------
 
-##### Kreisdurchmesser ändert sich
+Eine sich ändernde Variable können wir auch für Farben und Form nutzen.
 
 ```
-let durchmesser = 200;
+let x = 0;
+let y = 100;
+let durchmesser = 50;
 
 function setup() {
-  createCanvas(300, 300);
+  createCanvas(300, 200);
+  colorMode(HSB,width,100,100);
 }
 
 function draw() {
-  background(240);
-  circle(150, 150, durchmesser);
-  durchmesser = durchmesser - 1;
-}
-```
-<iframe src="kreisDurchmesser.html" width="320" height="320"></iframe>
-
-##### Kreisfarbe ändert sich
-
-```
-let farbe = 0;
-
-function setup() {
-  createCanvas(300, 300);
-  colorMode(HSB,360,100,100);
+  fill(x,100,100);
+  circle(x,y,x % durchmesser);
+  x = (x + 2) % width
 }
 
-function draw() {
-  background(240);
-  noStroke();
-  fill(farbe,100,100);
-  circle(150, 150, 200);
-  farbe = (farbe + 1) % 360;
+function mousePressed() {
+  x = 0;
+  background(255);
 }
 ```
-<iframe src="kreisFarbe.html" width="320" height="320"></iframe>
+
+<p>
+<iframe src="moduloDurchmesser.html" width="320" height="220"></iframe>
+</p>
 
 ### Übungen
 
-Bewegte Linie - eine Linie bewegt sich von rechts nach links
-<iframe src="bewegteLinie.html" width="320" height="320"></iframe>
+Eine Linie bewegt sich von rechts nach links, restart mit Mausklick.
+<iframe src="linieVonRechts.html" width="320" height="220"></iframe>
 
 ---
 
-Zwei Quadrate
+Zwei Quadrate bewegen sich, restart mit Mausklick.
 <iframe src="zweiQuadrate.html" width="320" height="320"></iframe>
 
 ---
 
-Diagonale Kreise - zwei Kreise bewegen sich auf den Diagonalen, Mausklick startet die Bewegung neu.
+Zwei Kreise bewegen sich auf den Diagonalen und verändern dabei langsam ihre Farbe, restart mit Mausklick.  
+
 <iframe src="diagonaleKreise.html" width="320" height="320"></iframe>
 
 ---
-Vier Kreise bewegen sich auf den Diagonalen und werden immer größer.
-<iframe src="vierKreise.html" width="420" height="420"></iframe>
+
+Zwei Kreise bewegen sich auf den Diagonalen und verändern dabei langsam ihre Farbe und Durchmesser. Der Durchmesser wird periodisch auf Null gesetzt, restart mit Mausklick.  
+
+<iframe src="diagonaleKreiseModulo.html" width="420" height="420"></iframe>
 
 ---
-Drei dicke farbige Linien wachsen mit unterschiedlicher Geschwindigkeit nach unten.
+Drei dicke farbige Linien wachsen mit unterschiedlicher Geschwindigkeit nach unten, restart mit Mausklick.
 <iframe src="dreiLinien.html" width="320" height="320"></iframe>
 
-
 ---
-Farblinie - eine Linie läuft von links nach rechts und wechselt dabei die Farbe.
-Mausklick startet den Lauf neu.
+Farblinie - eine Linie läuft von links nach rechts und wechselt dabei die Farbe, restart mit Mausklick.
 
 <iframe src="farbLinie.html" width="320" height="320"></iframe>
-
- 

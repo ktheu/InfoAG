@@ -5,16 +5,16 @@
   <script>
 let x = 0;
 let y = 100;
-let durchmesser = 50
+let durchmesser = 50;
 
 function setup() {
   createCanvas(300, 200);
 }
 
 function draw() {
-  background(220);
+  background(0);
   circle(x,y,durchmesser);
-  x = x + 1;
+  x = (x + 2) % width
 }
   </script>
 </head>

@@ -3,25 +3,27 @@
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
-    let x = 0;
+let x = 0;
+let durchmesser = 60;
 
-    function setup() {
-      createCanvas(300, 300);
-    }
+function setup() {
+  createCanvas(300, 300);
+  colorMode(HSB,360,100,100);
+  strokeWeight(5);
+}
 
-    function draw() {
-      background(240);
-      strokeWeight(2);
+function draw() {
+  background(255);
+  
+  fill(60 + 0.8*x ,100,100);
+  circle(x, x, durchmesser);
+  circle(width - x, x, durchmesser);
+  x = x + 1;
+}
 
-      circle(x, x, 30);
-      circle(300 - x, x, 30);
-      x = x + 1;
-
-    }
-
-    function mousePressed() {
-      x = 0;
-    }
+function mousePressed() {
+  x = 0;
+}
   </script>
 </head>
 

@@ -19,10 +19,10 @@ __[Interaktion mit der Maus](interaktionMitMaus/interaktionMitMaus.md)__ -
   mouseX/mouseY, pmouseX/pmouseY, mousePressed, frameRate
   
 __[Variablen](variablen/variablen.md)__ - 
-var, let, const, typeof, console.log, print, arithmetische Ausdrücke, modulo-Operator
+let, print, width, height, modulo-Operator
 
 __[Bedingte Anweisungen](bedingteAnweisungen/bedingteAnweisungen.md)__ -
-if, if-else, if-else if-else, width, height, frameCount, boolesche Variablen
+if, if-else, if-else if-else, frameCount, boolesche Variablen
 
 __[Schleifen](schleifen.html)__ -
 while/for-Schleife, 9 Kreise, 20 Rechtecke, viele Linien, viele Rechtecke, Schachbrett, Linien-, Kreis-, Dicke-, Strichmuster

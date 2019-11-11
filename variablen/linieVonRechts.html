@@ -3,16 +3,22 @@
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
-    let durchmesser = 200;
+    let x;
 
     function setup() {
-      createCanvas(300, 300);
+      createCanvas(300, 200);
+      x = width;
     }
 
     function draw() {
       background(240);
-      circle(150, 150, durchmesser);
-      durchmesser = durchmesser - 1;
+      strokeWeight(10);
+      line(x, 0, x, height);
+      x = x - 1;
+    }
+
+    function mousePressed() {
+      x = width;
     }
   </script>
 </head>
