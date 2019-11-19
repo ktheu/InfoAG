@@ -1,34 +1,35 @@
 <html>
-
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 let y = 10
+vy = 1;
 
 function setup() {
   createCanvas(400, 300);
 }
 
 function draw() {
-  // check
-  if (y > height) y = 10;
-  
-  // move
-  y = y + 1;
-  
-  // display
   background(220);
-  strokeWeight(10)
   let x = 20;
+
+  if (!(0 <= y && y <= height)) {
+    vy = -vy;
+  }
+  
+  y = y + vy;
+
   while (x < width) {
+    strokeWeight(1);
+    line(width / 2, 0, x, y);
+    line(width / 2, height, x, y);
+    strokeWeight(10)
     point(x, y);
     x = x + 20
   }
 }
-  </script>
+ </script>
 </head>
-
 <body>
 </body>
-
 </html>

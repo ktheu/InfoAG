@@ -1,0 +1,27 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let anzahl = 100;
+
+    function setup() {
+      createCanvas(400, 400);
+    }
+
+    function draw() {
+      background(0);
+      strokeWeight(1);
+      stroke(255);
+      for (let i = 0; i < anzahl; i++) {
+        circle(mouseX, mouseY, 10);
+        line(mouseX, mouseY, width, random(80, height - 80));
+      }
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

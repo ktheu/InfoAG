@@ -2,7 +2,7 @@
 
 __[P5JS WebEditor](https://editor.p5js.org/)__ -
 __[P5JS Reference](https://p5js.org/reference/)__ - 
-__[Gallery](./gallery.md)__ 
+__[Gallery](https://www.openprocessing.org/user/141965/#sketches)__ 
 <!-- __[OpenProcessing](https://www.openprocessing.org/)__ - -->
 
 <!-- __[Hinweise](./hinweise.md)__ -->
@@ -24,8 +24,8 @@ let, print, width, height, modulo-Operator
 __[Bedingte Anweisungen](bedingteAnweisungen/bedingteAnweisungen.md)__ -
 if, if-else, if-else if-else, frameCount, boolesche Variablen
 
-__[Schleifen](schleifen.html)__ -
-while/for-Schleife, 9 Kreise, 20 Rechtecke, viele Linien, viele Rechtecke, Schachbrett, Linien-, Kreis-, Dicke-, Strichmuster
+__[Schleifen und Zufall](./schleifen/schleifen.md)__ -
+while-Schleife, for-Schleife, random, randomSeed
 
 __[Arrays](arrays.html)__ -
 8Kreise, Fallende Quadrate, Hinher, Linienschlange, Farbenschlange, Cobra, Rotschwarz, Snake, Breakout
@@ -74,6 +74,8 @@ Repl.it
 
 __[WebGL](webgl.html)__ - __[Teil2](webgl2.html)__
 3D-Primitives, Rotate, Translate, Mbaterial, Light, Texture
+
+__[Sonstiges](sonstiges/sonstiges.md)__
 
 --- 
 

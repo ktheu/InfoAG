@@ -1,0 +1,42 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let v, w;
+    let i = 0;
+    let geschwindigkeit = 0.01
+
+    function setup() {
+      createCanvas(300, 300);
+      v = createVector(50, 250);
+      w = createVector(150, 50);
+    }
+
+    function draw() {
+      background(220);
+      if (i > 1) i = 0;
+      i = i + geschwindigkeit;
+
+      strokeWeight(1);
+      line(v.x, v.y, w.x, w.y);
+
+      let p = kpoint(v, w, i);
+      strokeWeight(4);
+      point(p.x, p.y);
+    }
+
+    function kpoint(v, w, k) {
+      // returns point at v + k * (w-v)
+      let tmp = p5.Vector.sub(w, v);
+      tmp.mult(k);
+      tmp = p5.Vector.add(v, tmp);
+      return tmp;
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

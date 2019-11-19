@@ -1,0 +1,24 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+let abstand = 5
+
+function setup() {
+  createCanvas(600, 300);
+}
+
+function draw() {
+  background(255);
+  
+  let x = mouseX
+  while (x < width) {
+    line(x,0,x,height);
+    x = x + abstand;
+  }
+}
+ </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+let anzahl = 100;
+let radius = 50;
+let y = 40;
+
+function setup() {
+  createCanvas(600, 300);
+ 
+}
+
+function draw() {
+  background(0);
+  if (y - radius >= height) y = -radius;
+  let x = 40;
+  
+  for (let i=0; i<anzahl; i++) {
+      circle(x+5*i,y,radius);
+  }
+  y = y + 1;
+}
+ </script>
+</head>
+<body>
+</body>
+</html>

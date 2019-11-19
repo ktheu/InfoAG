@@ -43,23 +43,26 @@ function setup() {
 
 ##### if - else
 ```
-let x = 0
+  let x = 0;
 
-function setup() {
-  createCanvas(300, 200);
-}
+  function setup() {
+    createCanvas(300, 200);
+    strokeWeight(3);
+  }
 
-function draw() {
-  background(220);
-  if (x > 100) {
-    fill(255,0,0)
+  function draw() {
+    background(220);
+    if (x > 100) {
+      fill(255,0,0);
+      stroke(0);
+    }
+    else {
+      fill(0,255,0);
+      stroke(255);
+    }
+    circle(x, 100, 30);
+    x = x + 1;
   }
-  else {
-    fill(0,255,0);
-  }
-  circle(x, 100, 30);
-  x = x + 1;
-}
 ```
 
 <iframe src="zweiFarbwechsel.html" width="320" height="220"></iframe>
@@ -92,36 +95,10 @@ function draw() {
 
 <iframe src="dreiFarbwechsel.html" width="320" height="220"></iframe>
 
-##### width, height
-
-Die Systemvariablen *width* und *height* enthalten Breite und Höhe des Canvas. 
-
-```
-let x = 0;
-
-function setup() {
-  createCanvas(300, 200);
-  strokeWeight(3);
-}
-
-function draw() {
-  background(220);
-  line(width / 2, 0, width / 2, height);
-  if (mouseX < width / 2) {
-    fill(255, 0, 0);
-  } else {
-    fill(0, 0, 255);
-  }
-  circle(mouseX, mouseY, 50);
-}
-```
-
-<iframe src="zweiSeiten.html" width="320" height="220"></iframe>
-
 
 ##### frameCount
 
-Die Variable frameCount zählt die Anzahl der draw-Durchläufe. Zusammen mit dem modulo-Operator können
+Die Systemvariable `frameCount` zählt die Anzahl der draw-Durchläufe. Zusammen mit dem modulo-Operator können
 wir damit periodisch wiederkehrende Ereignisse implementieren.
 
 ```
@@ -199,6 +176,12 @@ Wenn möglich, halten wir uns bei Sketchen mit bewegten Figuren an die Reihenfol
 <iframe src="abprallenderBall.html" width="320" height="220"></iframe>
 
 ### Übungen
+
+Zwei Seiten
+
+<iframe src="zweiSeiten.html" width="320" height="220"></iframe>
+
+----
 
 Drei Farben
 
