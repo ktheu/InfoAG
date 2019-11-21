@@ -13,7 +13,7 @@ Bedingte Anweisungen ermöglichen Verzweigungen im Programmablauf.
     function draw() {
       background(220);
       if (x > 100) {
-        fill(255,0,0)
+        fill(255,0,0);
       }
       circle(x, 100, 30);
       x = x + 1;
