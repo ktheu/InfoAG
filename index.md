@@ -28,7 +28,7 @@ __[Schleifen und Zufall](./schleifen/schleifen.md)__ -
 while-Schleife, for-Schleife, random, randomSeed
 
 __[Arrays](./arrays/arrays.md)__ -
-8Kreise, Fallende Quadrate, Hinher, Linienschlange, Farbenschlange, Cobra, Rotschwarz, Snake, Breakout
+Fallende Quadrate, Hinher, Linienschlange 
 
 __[Funktionen](functions.html)__ -
 Haus und Sonne, Gesicht, Entfernung zum Mittelpunkt, Augen, Häuser
