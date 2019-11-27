@@ -1,0 +1,31 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+let x = [100, 300, 200, 350]
+let y = [40, 140, 20, 300];
+let dy = [3, 6, 1, -7];
+
+function setup() {
+  createCanvas(400, 400);
+  fill(255);
+}
+
+function draw() {
+  background(0);
+  for (let i = 0; i < x.length; i++) {
+    if (y[i] < 0 || height < y[i]) {
+      dy[i] = -dy[i]
+    }
+    y[i] = y[i] + dy[i];
+    ellipse(x[i], y[i], 10, 10);
+  }
+}
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

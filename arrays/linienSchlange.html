@@ -2,36 +2,35 @@
 <head>
     <script src="../p5.min.js"></script>
     <script>
-        anzahl = 5;
-        let x = [];
-        let y = [];
+anzahl = 5;
+let x = [];
+let y = [];
 
+function setup() {
+  createCanvas(400, 400);
+  strokeWeight(3);
+  for (let i = 0; i < anzahl; i++) {
+    x[i] = random(50, 350);
+    y[i] = random(50, 350);
+  }
+}
 
-        function setup() {
-            createCanvas(400, 400);
-            strokeWeight(3);
-            for (let i = 0; i < anzahl; i++) {
-                x.push(random(50, 350));
-                y.push(random(50, 350));
-            }
-        }
+function draw() {
+  background(220);
+  for (let i = 0; i < x.length - 1; i++) {
+    line(x[i], y[i], x[i + 1], y[i + 1]);
+  }
+  ellipse(x[0], y[0], 10, 10);
+}
 
-        function draw() {
-            background(220);
-            for (let i = 0; i < x.length - 1; i++) {
-                line(x[i], y[i], x[i + 1], y[i + 1]);
-            }
-            ellipse(x[0], y[0], 10, 10);
-        }
-
-        function mousePressed() {
-            for (let i = x.length - 1; i > 0; i--) {
-                x[i] = x[i - 1];
-                y[i] = y[i - 1];
-            }
-            x[0] = mouseX;
-            y[0] = mouseY;
-        }
+function mousePressed() {
+  for (let i = x.length - 1; i > 0; i--) {
+    x[i] = x[i - 1];
+    y[i] = y[i - 1];
+  }
+  x[0] = mouseX;
+  y[0] = mouseY;
+}
 
     </script>
 </head>

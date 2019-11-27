@@ -1,27 +1,37 @@
 <html>
 <head>
-    <script src="../p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
     <script>
-        let dy = [2, 4, 3, 2, 9, 7, 5, 8, 6, 5.5, 3];
-        let y = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
+let dy = [];
+let y = new Array(11).fill(20);
 
-        function setup() {
-            createCanvas(500, 500);
-            noFill();
-            stroke(255);
-            strokeWeight(2);
-        }
+function setup() {
+  createCanvas(500, 500);
+  noFill();
+  stroke(255);
+  strokeWeight(2);
+  for (let i=0; i<11; i++) {
+    dy[i] = random(2,9);
+  }
+}
 
-        function draw() {
-            background(0);
-            for (let i = 0; i < dy.length; i++) {
-                rect(20 + i * 40, y[i], 40, 40);
-                y[i] = y[i] + dy[i]
-                if (y[i] > height - 40) {
-                    y[i] = height - 40;
-                }
-            }
-        }
+function draw() {
+  background(0);
+  for (let i = 0; i < dy.length; i++) {
+    rect(20 + i * 40, y[i], 40, 40);
+    y[i] = y[i] + dy[i]
+    if (y[i] > height - 40) {
+      y[i] = height - 40;
+    }
+  }
+}
+
+function mousePressed() {
+  for (let i=0; i<dy.length; i++) {
+    y[i] = 20;
+    dy[i] = random(2,9);
+  }
+}
     </script>
 </head>
 <body>

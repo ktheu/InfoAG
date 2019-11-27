@@ -1,0 +1,38 @@
+<html>
+<head>
+    <script src="../p5.min.js"></script>
+    <script>
+        let anzahl = 8;
+        let hinherX = [];
+        let hinherY = [];
+        let hinherVx = [];
+
+        function setup() {
+            createCanvas(400, 400);
+            noStroke();
+            fill(255);
+            for (let i = 0; i < anzahl; i++) {
+                hinherX[i] = int(random(50, 300));
+                hinherY[i] = 50 + i * 40;
+                hinherVx[i] = int(random(1, 4))
+                if (random() < 0.5) {
+                    hinherVx[i] = -hinherVx[i];
+                }
+            }
+        }
+
+        function draw() {
+            background(0);
+            for (let i = 0; i < anzahl; i++) {
+                if (hinherX[i] < 0 || hinherX[i] + 100 > width) {
+                    hinherVx[i] = -hinherVx[i];
+                }
+                hinherX[i] = hinherX[i] + hinherVx[i];
+                rect(hinherX[i], hinherY[i], 100, 10);
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -27,7 +27,7 @@ if, if-else, if-else if-else, frameCount, boolesche Variablen
 __[Schleifen und Zufall](./schleifen/schleifen.md)__ -
 while-Schleife, for-Schleife, random, randomSeed
 
-__[Arrays](arrays.html)__ -
+__[Arrays](./arrays/arrays.md)__ -
 8Kreise, Fallende Quadrate, Hinher, Linienschlange, Farbenschlange, Cobra, Rotschwarz, Snake, Breakout
 
 __[Funktionen](functions.html)__ -
