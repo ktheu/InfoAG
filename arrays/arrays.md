@@ -220,7 +220,7 @@ Fünf zufällig gesetzte Punkte werden mit Linien zu einer Schlange verbunden. D
 Kopf der Schlange markiert. Mit Mausklick entsteht an der Mausposition eine neuer Kopf und die anderen
 Punkte rücken nach. Die Koordinaten der Punkte werden mit zwei Arrays verwaltet.
 
-<iframe src="linienschlange.html" width="420" height="420"></iframe>
+<iframe src="linienSchlange.html" width="420" height="420"></iframe>
 
 ---  
 
