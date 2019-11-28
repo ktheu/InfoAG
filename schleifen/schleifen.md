@@ -15,30 +15,29 @@ function setup() {
   print("Ende");
 }
 ```
+--- 
 
+Solange x noch nicht die Breite der Leinwand erreicht hat, wird im Abstand von 20 ein neuer Punkt gezeichnet.
+Mit dieser Bedingung muss man nicht selbst ausrechnen, wieviele Punkte entstehen.
 
 ```javascript
-let y = 10
+let y = 10;
 
 function setup() {
-  createCanvas(400, 300);
+  createCanvas(400, 300); 
+  strokeWeight(10);
 }
 
 function draw() {
-  // check
-  if (y > height) y = 10;
-  
-  // move
-  y = y + 1;
-  
-  // display
   background(220);
-  strokeWeight(10)
+ 
   let x = 20;
   while (x < width) {
     point(x, y);
-    x = x + 20
+    x = x + 20;
   }
+  y = y + 1;
+  if (y > height) y = 10;
 }
 ```
 
@@ -74,18 +73,13 @@ function setup() {
 }
 
 function draw() {
-  // check
-  if (x > width) x = -60;
-
-  // move
-  x = x + 1;
-
-  // display
   background(220);
+
   for (let i = 0; i < 20; i++) {
     line(x + 3 * i, 0, x + 3 * i, height);
   }
-
+  x = x + 1;
+  if (x > width) x = -60;
 }
 ```
 <iframe src="zwanzigLinien.html" width="320" height="220"></iframe>

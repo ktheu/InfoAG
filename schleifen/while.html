@@ -6,24 +6,20 @@
 let y = 10
 
 function setup() {
-  createCanvas(400, 300);
+  createCanvas(400, 300); 
+  strokeWeight(10)
 }
 
 function draw() {
-  // check
-  if (y > height) y = 10;
-  
-  // move
-  y = y + 1;
-  
-  // display
   background(220);
-  strokeWeight(10)
+ 
   let x = 20;
   while (x < width) {
     point(x, y);
     x = x + 20
   }
+  y = y + 1;
+  if (y > height) y = 10;
 }
   </script>
 </head>

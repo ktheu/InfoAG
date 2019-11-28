@@ -9,18 +9,13 @@ function setup() {
 }
 
 function draw() {
-  // check
-  if (x > width) x = -60;
-
-  // move
-  x = x + 1;
-
-  // display
   background(220);
+
   for (let i = 0; i < 20; i++) {
     line(x + 3 * i, 0, x + 3 * i, height);
   }
-
+  x = x + 1;
+  if (x > width) x = -60;
 }
  </script>
 </head>
