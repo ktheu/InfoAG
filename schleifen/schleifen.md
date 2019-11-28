@@ -5,7 +5,7 @@ Solange die while-Bedingung wahr ist, wird der Schleifenrumpf durchlaufen.
 
 ```javascript
 function setup() {
-  noCanvas(400, 400);
+  noCanvas();
 
   let x = 0;
   while (x < 5) {
