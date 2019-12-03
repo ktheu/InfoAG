@@ -5,7 +5,7 @@
   <script>
 let x = [100, 300, 200, 350]
 let y = [40, 140, 20, 300];
-let dy = [3, 6, 1, -7];
+let vy = [3, 6, 1, -7];
 
 function setup() {
   createCanvas(400, 400);
@@ -16,9 +16,9 @@ function draw() {
   background(0);
   for (let i = 0; i < x.length; i++) {
     if (y[i] < 0 || height < y[i]) {
-      dy[i] = -dy[i]
+      vy[i] = -vy[i]
     }
-    y[i] = y[i] + dy[i];
+    y[i] = y[i] + vy[i];
     ellipse(x[i], y[i], 10, 10);
   }
 }

@@ -7,8 +7,8 @@ let x0 = 100;
 let x1 = 300;
 let y0 = 40;
 let y1 = 140;
-let dy0 = 3;
-let dy1 = 6;
+let vy0 = 3;
+let vy1 = 6;
 
 function setup() {
   createCanvas(400, 400);
@@ -19,15 +19,15 @@ function draw() {
   background(0);
 
   if (y0 < 0 || height < y0) {
-    dy0 = -dy0
+    vy0 = -vy0
   }
-  y0 = y0 + dy0;
+  y0 = y0 + vy0;
   ellipse(x0, y0, 10, 10);
   
   if (y1 < 0 || height < y1) {
-    dy1 = -dy1
+    vy1 = -vy1
   }
-  y1 = y1 + dy1;
+  y1 = y1 + vy1;
   ellipse(x1, y1, 10, 10);
 
 }

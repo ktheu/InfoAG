@@ -5,7 +5,7 @@
   <script>
 let x = []
 let y = []
-let dy = [];
+let vy = [];
 let farbe = [];
 let anzahl = 100;
 
@@ -15,7 +15,7 @@ function setup() {
   for (let i=0; i<anzahl; i++) {
     x[i] = random(20,width-20)
     y[i] = random(20,height-20)
-    dy[i] = random(-8,8);
+    vy[i] = random(-8,8);
     farbe[i] = random(0,360);
   }
  
@@ -25,9 +25,9 @@ function draw() {
   background(0);
   for (let i = 0; i < x.length; i++) {
     if (y[i] < 0 || height < y[i]) {
-      dy[i] = -dy[i]
+      vy[i] = -vy[i]
     }
-    y[i] = y[i] + dy[i];
+    y[i] = y[i] + vy[i];
     fill(farbe[i],100,100);
     ellipse(x[i], y[i], 10, 10);
   }
