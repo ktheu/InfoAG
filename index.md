@@ -30,6 +30,9 @@ while-Schleife, for-Schleife, random, randomSeed
 __[Arrays](./arrays/arrays.md)__ -
 Fallende Quadrate, Hinher, Linienschlange 
 
+__[Tastensteuerung](./tasten/tasten.md)__ - 
+Tastensteuerung mit keyPressed/keyReleased und booleschen Variablen
+
 __[Funktionen](functions.html)__ -
 Haus und Sonne, Gesicht, Entfernung zum Mittelpunkt, Augen, Häuser
 

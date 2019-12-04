@@ -1,0 +1,31 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+let x = 30;
+let vx = 1;
+function setup() {
+  createCanvas(300, 200);
+}
+
+function draw() {
+  background(0);
+  
+  circle(x,100,20);
+  if (keyIsPressed) {
+    if (key == 'd') {
+      x = x + vx; 
+    }
+    else if (keyCode == LEFT_ARROW) {
+      x = x - vx;
+    }
+  }
+}
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

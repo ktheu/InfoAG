@@ -1,0 +1,52 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+ 
+let x = 30;
+let y = 20;
+let vx = 2;
+let vy = 1;
+
+// Für jede Taste eine boolesche Variable
+let tLinks = false;
+let tRechts = false;
+let tOben = false;
+let tUnten = false;
+
+function setup() {
+  createCanvas(300, 200);
+}
+
+function draw() {
+  background(0);
+  if (tLinks) x = x - vx;
+  if (tRechts) x = x + vx;
+  if (tOben) y = y - vy;
+  if (tUnten) y = y + vy;
+
+  circle(x, y, 20);
+}
+
+function keyPressed() {
+  if (key === 's') tUnten = true;
+  else if (key === 'w') tOben = true;
+  else if (key === 'a') tLinks = true;
+  else if (key === 'd') tRechts = true;
+}
+
+function keyReleased() {
+  if (key === 's') tUnten = false;
+  else if (key === 'w') tOben = false;
+  else if (key === 'a') tLinks = false;
+  else if (key === 'd') tRechts = false;
+}
+ 
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

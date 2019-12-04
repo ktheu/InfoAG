@@ -1,0 +1,35 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+let x;
+let y;
+
+function setup() {
+  createCanvas(300, 300);
+  background(0);
+}
+
+function draw() {
+}
+
+function keyPressed() {
+  fill(255);
+  x = random(0, width);
+  y = random(0, height);
+  circle(x, y, 30);
+}
+
+function keyReleased() {
+  fill(0);
+  circle(x, y, 10);
+}
+ 
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

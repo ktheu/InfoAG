@@ -1,0 +1,28 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+let x = 30;
+let durchmesser = 20;
+
+function setup() {
+  createCanvas(300, 200);
+}
+
+function draw() {
+  background(0);
+
+  circle(150, 100, durchmesser);
+  if (keyIsPressed) {
+    durchmesser = durchmesser + 1;
+  }
+  if (durchmesser > 200) durchmesser = 20;
+}
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+let x1 = 30;
+let y1 = 20;
+let x2 = 230;
+let y2 = 120;
+let vx = 2;
+let vy = 1;
+
+let t1Links = false;
+let t1Rechts = false;
+let t1Oben = false;
+let t1Unten = false;
+
+let t2Links = false;
+let t2Rechts = false;
+let t2Oben = false;
+let t2Unten = false;
+
+function setup() {
+  createCanvas(300, 200);
+}
+
+function draw() {
+  background(0);
+  if (t1Links) x1 = x1 - vx;
+  if (t1Rechts) x1 = x1 + vx;
+  if (t1Oben) y1 = y1 - vy;
+  if (t1Unten) y1 = y1 + vy;
+  
+  if (t2Links) x2 = x2 - vx;
+  if (t2Rechts) x2 = x2 + vx;
+  if (t2Oben) y2 = y2 - vy;
+  if (t2Unten) y2 = y2 + vy;
+  
+  fill(255,0,0);
+  circle(x1, y1, 20);
+  
+  fill(0,0,255);
+  circle(x2, y2, 20);
+}
+
+function keyPressed() {
+  if (key === 's') t1Unten = true;
+  else if (key === 'w') t1Oben = true;
+  else if (key === 'a') t1Links = true;
+  else if (key === 'd') t1Rechts = true;
+  
+  if (keyCode === DOWN_ARROW) t2Unten = true;
+  else if (keyCode === UP_ARROW) t2Oben = true;
+  else if (keyCode === LEFT_ARROW) t2Links = true;
+  else if (keyCode === RIGHT_ARROW) t2Rechts = true;
+}
+
+function keyReleased() {
+  if (key === 's') t1Unten = false;
+  else if (key === 'w') t1Oben = false;
+  else if (key === 'a') t1Links = false;
+  else if (key === 'd') t1Rechts = false;
+  
+  if (keyCode === DOWN_ARROW) t2Unten = false;
+  else if (keyCode === UP_ARROW) t2Oben = false;
+  else if (keyCode === LEFT_ARROW) t2Links = false;
+  else if (keyCode === RIGHT_ARROW) t2Rechts = false;
+}
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

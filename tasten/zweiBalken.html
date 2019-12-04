@@ -1,0 +1,59 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+let x1 = 30;
+let x2;
+
+let y1 = 100;
+let y2;
+
+let vy = 2;
+
+let t1Oben = false;
+let t1Unten = false;
+
+let t2Oben = false;
+let t2Unten = false;
+
+function setup() {
+  createCanvas(300, 200);
+  rectMode(CENTER);
+  x2 = width - x1;
+  y2 = height - y1;
+}
+
+function draw() {
+  background(0);
+
+  if (t1Oben) y1 = y1 - vy;
+  if (t1Unten) y1 = y1 + vy;
+
+  if (t2Oben) y2 = y2 - vy;
+  if (t2Unten) y2 = y2 + vy;
+
+  rect(x1, y1, 10, 50);
+  rect(x2, y2, 10, 50);
+}
+
+function keyPressed() {
+  if (key === 's') t1Unten = true;
+  else if (key === 'w') t1Oben = true;
+  else if (key === 'l') t2Unten = true;
+  else if (key === 'o') t2Oben = true;
+}
+
+function keyReleased() {
+  if (key === 's') t1Unten = false;
+  else if (key === 'w') t1Oben = false;
+  else if (key === 'l') t2Unten = false;
+  else if (key === 'o') t2Oben = false;
+}
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
