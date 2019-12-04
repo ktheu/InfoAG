@@ -2,7 +2,7 @@
 
 Die Systemvariable `isKeyPressed` ist `true`, wenn irgendeine Taste gedrückt ist.
 
-```javascript
+```
 let x = 30;
 let vx = 2;
 function setup() {
@@ -30,7 +30,7 @@ Wenn wir eine bestimmte Taste abfragen wollen, nutzen wir `key` für Tasten mit 
 Die `keyCode`-Werte der Pfeiltasten sind: `UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW`.
 
 
-```javascript
+```
 let x = 30;
 let vx = 1;
 function setup() {
@@ -63,7 +63,7 @@ durchlaufen, wenn eine Taste losgelassen wird.
 
 Wenn eine Taste gedrückt wird erscheint an zufälliger Stelle ein weißer Kreis, wenn die Taste losgelassen wird, erscheint darin noch ein kleiner scharzer Kreis.
 
-```javascript
+```
 let x;
 let y;
 
@@ -97,7 +97,9 @@ function keyReleased() {
 Für jede Taste spendieren wir uns eine boolesche Variable, 
 die über die Methoden `keyPressed` und `keyReleased` gesetzt wird.
 
-```javascript
+Mit `w, a, s, d` steuern wir die Richtung des Balls. Mit zwei Tasten können wir den Ball auch diagonal bewegen.
+
+```
 let x = 30;
 let y = 20;
 let vx = 2;
@@ -145,7 +147,7 @@ function keyReleased() {
 Die beiden Balken lassen sich unabhängig voneinander nach oben und unten bewegen. Der linke Balken mit den Tasten `w` und `s`,
 der rechte Balken mit den Tasten `o` und `l`.
 
-```javascript
+```
 let x1 = 30;
 let x2;
 
