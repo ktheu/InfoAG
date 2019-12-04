@@ -61,7 +61,7 @@ function draw() {
 Die Funktion `keyPressed` wird einmal durchlaufen, wenn eine Taste gedrückt wird, die Funktion `keyReleased` wird einmal
 durchlaufen, wenn eine Taste losgelassen wird.
 
-Wenn eine Taste gedrückt wird erscheint an zufälliger Stelle ein weißer Kreis, wenn die Taste losgelassen wird, erscheint darin noch ein kleiner scharzer Kreis.
+Wenn eine Taste gedrückt wird, erscheint an zufälliger Stelle ein weißer Kreis, wenn die Taste losgelassen wird, erscheint darin noch ein kleiner scharzer Kreis.
 
 ```
 let x;
