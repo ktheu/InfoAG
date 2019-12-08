@@ -30,7 +30,7 @@ while-Schleife, for-Schleife, random, randomSeed
 __[Arrays](./arrays/arrays.md)__ -
 Fallende Quadrate, Hinher, Linienschlange 
 
-__[Kollisionen](./kollisionen.md)__ - 
+__[Kollisionen](./kollisionen/kollisionen.md)__ - 
 Kollisionen prüfen mit booleschen Variablen 
 
 __[Tastensteuerung](./tasten/tasten.md)__ - 
