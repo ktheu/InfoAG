@@ -319,12 +319,7 @@ Mit den Tasten `r`, `g` und `b` werden die RGB-Werte für die Farbe des Kreises 
 
 ---
 
-
-
-
 Mit `w, a, s, d` wird der rote Ball gesteuert, mit den Pfeiltasten der blaue Ball. 
-
-
 
 <iframe src="zweiKreise.html" width="320" height="220"></iframe>
 
