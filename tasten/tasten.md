@@ -1,6 +1,6 @@
 ## Tastensteuerung
 
-Die Systemvariable `isKeyPressed` ist `true`, wenn irgendeine Taste gedrückt ist.
+Die Systemvariable `keyIsPressed` ist `true`, wenn irgendeine Taste gedrückt ist.
 
 ```
 let x = 30;

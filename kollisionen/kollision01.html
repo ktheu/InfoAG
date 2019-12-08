@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+let xBalken = 100;
+let yBalken = 250;
+let balkenBreite = 80;
+let balkenHoehe = 10;
+
+let xBall = 20;
+let yBall = 50;
+let ballRadius = 10;
+
+function setup() {
+  createCanvas(300, 300);
+  ellipseMode(RADIUS);
+  noStroke();
+}
+
+function draw() {
+  background(0);
+
+  xBall = mouseX;
+  yBall = mouseY;
+
+  rect(xBalken, yBalken, balkenBreite, balkenHoehe);
+  circle(xBall, yBall, ballRadius);
+}
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
