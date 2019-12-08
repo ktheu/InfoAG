@@ -199,8 +199,95 @@ function keyReleased() {
 
 <iframe src="zweiBalken.html" width="320" height="220"></iframe>
 
-
 ---
+
+#### SimplePong
+
+```
+let xBalken = 150;
+let yBalken = 270;
+let balkenBreite = 80;
+let balkenHoehe = 10;
+let xBall = 20;
+let yBall = 50;
+let ballRadius = 10;
+
+var tRechts = false; // Schalter Taste
+var tLinks = false;
+
+let vxBall = 4;
+let vyBall = 3;
+
+let vxBalken = 4;
+
+let pLinksVonBalken;
+let pRechtsVonBalken;
+
+function setup() {
+  createCanvas(300, 300);
+  ellipseMode(RADIUS);
+  noStroke();
+}
+
+function draw() {
+  background(0);
+
+  let oberhalbBalken = yBall + ballRadius <= yBalken;
+  let unterhalbBalken = yBall - ballRadius >= yBalken + balkenHoehe;
+  let linksVonBalken = xBall + ballRadius <= xBalken;
+  let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
+
+  let kollisionMitBalken = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
+
+  let amRandLinksRechts = (xBall - ballRadius < 0 || xBall + ballRadius > width);
+  let amRandOben = yBall - ballRadius < 0;
+
+  let kommtVonLinks = pLinksVonBalken && !linksVonBalken;
+  let kommtVonRechts = pRechtsVonBalken && !rechtsVonBalken;
+
+  if (amRandLinksRechts) vxBall = -vxBall;
+  if (amRandOben) vyBall = -vyBall;
+ 
+  if (kollisionMitBalken) {
+    if (kommtVonLinks) vxBall = -vxBall - vxBalken;
+    else if (kommtVonRechts) vxBall = -vxBall + vxBalken
+    else vyBall = -vyBall;
+  }
+
+  if (tLinks) xBalken = xBalken - vxBalken;
+  if (tRechts) xBalken = xBalken + vxBalken;
+
+  xBall = xBall + vxBall;
+  yBall = yBall + vyBall;
+
+  rect(xBalken, yBalken, balkenBreite, balkenHoehe);
+  circle(xBall, yBall, ballRadius);
+
+  pLinksVonBalken = linksVonBalken;
+  pRechtsVonBalken = rechtsVonBalken;
+
+}
+
+function keyPressed() {
+  if (keyCode == RIGHT_ARROW) tRechts = true;
+  if (keyCode == LEFT_ARROW) tLinks = true;
+}
+
+function keyReleased() {
+  if (keyCode == RIGHT_ARROW) tRechts = false;
+  if (keyCode == LEFT_ARROW) tLinks = false;
+}
+
+function mousePressed() {
+  xBall = random(20, width-20);
+  yBall = 50;
+  vxBall = 4;
+  vyBall = 3;
+}
+```
+
+<iframe src="simplePong.html" width="320" height="320"></iframe>
+
 
 ### Übungen
 

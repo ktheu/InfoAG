@@ -221,8 +221,8 @@ function draw() {
   let amRandLinksRechts = (xBall - ballRadius < 0 || xBall + ballRadius > width);
   let amRandOben = yBall - ballRadius < 0;
 
-  if (xBall - ballRadius < 0 || width < xBall + ballRadius) vxBall = -vxBall;
-  if (yBall - ballRadius < 0 || kollisionMitBalken) vyBall = -vyBall;
+  if (amRandLinksRechts) vxBall = -vxBall;
+  if (amRandOben || kollisionMitBalken) vyBall = -vyBall;
   
   xBall = xBall + vxBall;
   yBall = yBall + vyBall;
@@ -283,8 +283,9 @@ function draw() {
 
   let kommtVonLinks = pLinksVonBalken && !linksVonBalken;
 
-  if (xBall - ballRadius < 0 || width < xBall + ballRadius) vxBall = -vxBall;
-  if (yBall - ballRadius < 0) vyBall = -vyBall;
+  if (amRandLinksRechts) vxBall = -vxBall;
+  if (amRandOben) vyBall = -vyBall;
+  
   if (kollisionMitBalken) {
     if (kommtVonLinks) vxBall = -vxBall;
     else {

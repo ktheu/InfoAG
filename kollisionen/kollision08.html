@@ -39,8 +39,9 @@
 
       let kommtVonLinks = pLinksVonBalken && !linksVonBalken;
 
-      if (xBall - ballRadius < 0 || width < xBall + ballRadius) vxBall = -vxBall;
-      if (yBall - ballRadius < 0) vyBall = -vyBall;
+      if (amRandLinksRechts) vxBall = -vxBall;
+      if (amRandOben) vyBall = -vyBall;
+
       if (kollisionMitBalken) {
         if (kommtVonLinks) vxBall = -vxBall + vxBalken;
         else {

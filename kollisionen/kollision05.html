@@ -36,8 +36,8 @@ function draw() {
 
   let kollisionMitBalken = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
 
-  if (xBall - ballRadius < 0 || width < xBall + ballRadius) vxBall = -vxBall;
-  if (yBall - ballRadius < 0 || kollisionMitBalken) vyBall = -vyBall;
+  if (amRandLinksRechts) vxBall = -vxBall;
+  if (amRandOben || kollisionMitBalken) vyBall = -vyBall;
 
   xBall = xBall + vxBall;
   yBall = yBall + vyBall;
