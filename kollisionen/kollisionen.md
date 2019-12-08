@@ -1,8 +1,8 @@
 ## Kollisionen
 
-Wir wollen die Kollision eines Kreises mit einem Rechteck feststellen. Wir gehen in kleinen Schritten vor.
+Wir wollen die Kollision eines Balls (Kreis) mit einem Balken (Rechteck) feststellen. Wir gehen in kleinen Schritten vor.
 Wir spendieren uns sprechende Variablen, damit wir nicht an konkrete Koordinaten gebunden sind.
-Die Position des Kreises bestimmen wir zu Testzwecken mit der Maus.
+Die Position des Balls bestimmen wir zu Testzwecken mit der Maus.
 
 Die Ausgangssituation:
 
@@ -37,7 +37,7 @@ function draw() {
 
 ---
 
-Wir führen eine Reihe von booleschen Variablen ein. Jede Variable prüft ein einfaches Detail und kann unabhängig von den anderen Variablen getestet werden. Die Variable `oberhalbBalken` soll genau dann `true` sein, wenn sich der Kreis oberhalb des Balkens befindet.
+Wir führen eine Reihe boolescher Variablen ein. Jede Variable prüft ein einfaches Detail und kann unabhängig von den anderen Variablen getestet werden. Die Variable `oberhalbBalken` soll genau dann `true` sein, wenn sich der Ball oberhalb des Balkens befindet.
 
 ```
 let xBalken = 100;
@@ -285,7 +285,7 @@ function draw() {
 
   if (amRandLinksRechts) vxBall = -vxBall;
   if (amRandOben) vyBall = -vyBall;
-  
+
   if (kollisionMitBalken) {
     if (kommtVonLinks) vxBall = -vxBall;
     else {
