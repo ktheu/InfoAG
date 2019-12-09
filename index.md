@@ -83,6 +83,9 @@ __[WebGL](webgl.html)__ - __[Teil2](webgl2.html)__
 
 __[Sonstiges](sonstiges/sonstiges.md)__
 
+__[Gallery](gallery/gallery.md)__ -
+Eine Gallerie der Sketche erstellen
+
 --- 
 
 __[Fehler](fehler/fehler.md)__
