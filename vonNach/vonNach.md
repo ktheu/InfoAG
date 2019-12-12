@@ -76,9 +76,9 @@ function keyTyped() {
 ```
 
 <iframe src="paintVor.html" width="420" height="420"></iframe>
-<br>
-<br>
-<br>
+
+<br><br>
+
 
 <details><summary><strong>Code Änderung</strong></summary>
 
@@ -393,7 +393,7 @@ function keyTyped() {
 
 <iframe src="pongVor.html" width="320" height="220"></iframe>
 
-<br><br><br>
+<br> <br>
 
 <details><summary><strong>Code Änderung</strong></summary>
 <pre><code>/*
