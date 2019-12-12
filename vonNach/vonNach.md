@@ -82,7 +82,7 @@ function keyTyped() {
 
 <details><summary><strong>Code Änderung</strong></summary>
 
-```
+<pre><code>
 /*
 Die function info() vermeidet Code-Wiederholung.
 Der Text soll mit noStroke() gezeichnet werden, deswegen merken
@@ -124,7 +124,7 @@ function keyTyped() {
   else if (key === '4') farbe = [0, 0, 255];
   else if (key === ' ') info();
 }
-```
+</code></pre>
 <iframe src="paintNach.html" width="420" height="420"></iframe>
 
 </details>
@@ -396,9 +396,7 @@ function keyTyped() {
 <br><br><br>
 
 <details><summary><strong>Code Änderung</strong></summary>
-
-```
-/*
+<pre><code>/*
 
 Die Mittelline wird eine Linie, kein Rechteck.
 Das Rechteck-Array wird nirgends gebraucht.
@@ -511,7 +509,7 @@ function draw() {
   rect(10, t, 5, 40);
   rect(285, z, 5, 40);
 }
-```
+</code></pre>
 
 <iframe src="pongNach.html" width="320" height="220"></iframe>
 
