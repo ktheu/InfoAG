@@ -86,6 +86,9 @@ __[Sonstiges](sonstiges/sonstiges.md)__
 __[Gallery](gallery/gallery.md)__ -
 Eine Gallerie der Sketche erstellen
 
+__[Code Änderungen](vonNach/vonNach.md)__ -
+Code lesbarer und besser wartbar machen
+
 --- 
 
 __[Fehler](fehler/fehler.md)__

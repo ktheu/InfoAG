@@ -1,0 +1,54 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+/*
+Die function info() vermeidet Code-Wiederholung.
+Der Text soll mit noStroke() gezeichnet werden, deswegen merken
+wir uns die aktuelle Farbe in einer Variablen.
+Die line-Funktion rufen wir nur in der draw-Methode auf.
+*/
+
+let farbe = [0, 0, 0];
+
+function setup() {
+  createCanvas(400, 400);
+  info();
+}
+
+
+function info() {
+  background(255);
+  noStroke();
+  textSize(13);
+  textAlign(LEFT);
+  text('1 = Black', 10, 50);
+  text('2 = Red', 10, 70);
+  text('3 = Green', 10, 90)
+  text('4 = Blue', 10, 110);
+  text('Space = Delete', 10, 30);
+}
+
+function draw() {
+  stroke(farbe);
+  if (mouseIsPressed) {
+    line(pmouseX, pmouseY, mouseX, mouseY);
+  }
+}
+
+function keyTyped() {
+  if (key === '1') farbe = [0, 0, 0];
+  else if (key === '2') farbe = [255, 0, 0];
+  else if (key === '3') farbe = [0, 255, 0];
+  else if (key === '4') farbe = [0, 0, 255];
+  else if (key === ' ') info();
+}
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

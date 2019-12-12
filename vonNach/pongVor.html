@@ -1,0 +1,268 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/bmoren/p5.collide2D@0.6/p5.collide2d.js"></script>
+  <script>
+ let x = 150;
+ let y = 100;
+ let vx = 1.5;
+ let vy = -3;
+ let radius = 10;
+ let t = 80;
+ let z = 80;
+ let l = 0;
+ let r = 0;
+ let rechtecke = [];
+
+ function setup() {
+   createCanvas(300, 200);
+   ellipseMode(RADIUS);
+ }
+
+ function draw() {
+   background(0);
+   for (let r of rechtecke) r.act();
+
+   noStroke();
+   fill(155);
+   rect(149, 5, 2, 190);
+
+   if (x < radius || x > width - radius) {
+     vx = -vx;
+     if (x >= 290) {
+       l += 1;
+       x = 150;
+       y = 100;
+       vx = -1.5;
+       vy = -3;
+     }
+     if (x <= 10) {
+       r += 1;
+       x = 150;
+       y = 100;
+       vx = 1.5;
+       vy = -3;
+     }
+   }
+
+   if (y < radius || y > height - radius) {
+     vy = -vy;
+   }
+
+   if (keyIsDown(UP_ARROW)) {
+     z -= 2;
+   }
+   if (keyIsDown(DOWN_ARROW)) {
+     z += 2;
+   }
+
+   if (keyIsDown(SHIFT)) {
+     t -= 2;
+   }
+
+   if (keyIsDown(CONTROL)) {
+     t += 2;
+   }
+
+   if (z >= 160) {
+     z = 160;
+   }
+
+   if (z <= 0) {
+     z = 0;
+   }
+
+   if (t >= 160) {
+     t = 160;
+   }
+
+   if (t <= 0) {
+     t = 0;
+   }
+
+   if (l === 0) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('0', 120, 40);
+   }
+
+   if (l === 1) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('1', 120, 40);
+   }
+
+   if (l === 2) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('2', 120, 40);
+   }
+
+   if (l === 3) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('3', 120, 40);
+   }
+
+   if (l === 4) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('4', 120, 40);
+   }
+
+   if (l === 5) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('5', 120, 40);
+   }
+
+   if (l === 6) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('6', 120, 40);
+   }
+
+   if (l === 7) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('7', 120, 40);
+   }
+
+   if (l === 8) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('8', 120, 40);
+   }
+
+   if (l === 9) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('9', 120, 40);
+   }
+
+   if (l === 10) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('10', 120, 40);
+     textSize(18);
+     fill(255);
+     text('Der linke Spieler hat gewonnen', 280, 60);
+     vx = 0;
+     vy = 0;
+   }
+
+   if (r === 0) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('0', 195, 40);
+   }
+
+   if (r === 1) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('1', 195, 40);
+   }
+
+   if (r === 2) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('2', 195, 40);
+   }
+
+   if (r === 3) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('3', 195, 40);
+   }
+
+   if (r === 4) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('4', 195, 40);
+   }
+
+   if (r === 5) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('5', 195, 40);
+   }
+
+   if (r === 6) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('6', 195, 40);
+   }
+
+   if (r === 7) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('7', 195, 40);
+   }
+
+   if (r === 8) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('8', 195, 40);
+   }
+
+   if (r === 9) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('9', 195, 40);
+   }
+
+   if (r === 10) {
+     textSize(30);
+     textAlign(RIGHT);
+     fill(255);
+     text('10', 210, 40);
+     textSize(18);
+     fill(255);
+     text('Der rechte Spieler hat gewonnen', 280, 60);
+     vx = 0;
+     vy = 0;
+   }
+
+   x = x + vx;
+   y = y + vy;
+
+   fill(255);
+   circle(x, y, radius);
+   rect(10, t, 5, 40);
+   rect(285, z, 5, 40);
+
+   let hit = collideRectCircle(10, t, 5, 40, x, y, radius);
+   if (hit) vx = -vx;
+
+   let hitt = collideRectCircle(285, z, 5, 40, x, y, radius);
+   if (hitt) vx = -vx;
+ }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
