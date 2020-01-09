@@ -1,19 +1,5 @@
 ## Tastensteuerung
 
-Jeder Taste ist eine Zahl, der `keyCode`. Auf [keyCode.info](https://keycode.info/) können wir diese Zahl abfragen.
-Für Buchstaben, Ziffern und weitere [ASCII](https://de.wikipedia.org/wiki/American_Standard_Code_for_Information_Interchange)-Zeichen können wir auch die Variable `key` benutzen.
-
-Für einige Tasten gibt es Systemvariablen, die den keyCode enthalten:
-`UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, RETURN, SHIFT, CONTROL, BACKSPACE, DELETE, TAB, ESCAPE, ALT`
- 
-```
-if (keyCode === '39')           # prüft ob 
-if (keyCode === RIGHT_ARROW)    # rechte Pfeiltaste gedrückt
-
-if (keyCode === '65')           # prüft ob  
-if (key === 'a')                # Taste A gedrückt
- 
-```
 #### Prüfen, ob irgendeine Taste gedrückt ist
 
 Die Systemvariable `keyIsPressed` ist `true`, wenn irgendeine Taste gedrückt ist.
@@ -41,8 +27,11 @@ function draw() {
 ---
 #### Die zuletzt gedrückte Taste
 
-Wenn wir abfragen wollen welche Taste zuletzt gedrückt wurde, nutzen wir `key` für Tasten mit Zeichen, ansonsten
+Wenn wir abfragen wollen welche Taste zuletzt gedrückt wurde, nutzen wir `key` für Tasten mit Zeichen, für die Pfeiltasten nutzen wir
 `keyCode`.
+
+Die `keyCode`-Werte der Pfeiltasten sind: `UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW`.
+
 
 ```
 let x = 30;
@@ -56,10 +45,10 @@ function draw() {
   
   circle(x,100,20);
   if (keyIsPressed) {
-    if (key === 'd') {
+    if (key == 'd') {
       x = x + vx; 
     }
-    else if (keyCode === LEFT_ARROW) {
+    else if (keyCode == LEFT_ARROW) {
       x = x - vx;
     }
   }
@@ -108,14 +97,11 @@ function keyReleased() {
 
 #### Prüfen, ob bestimmte Tasten gerade gedrückt sind 
 
-Die `keyIsDown`-Methode bekommt den keyCode als Argument. Den keyCode können wir
-auch mit der String-Methode `charCodeAt` ermitteln.
+Die `keyIsDown`-Methode bekommt als Argument eine Zahl. Für Buchstaben ist die Zahl die [ASCII-Codierung](https://de.wikipedia.org/wiki/American_Standard_Code_for_Information_Interchange) für den
+großen Buchstaben. Diese Zahl können wir auch mit der String-Methode `charCodeAt` ermitteln.
 
-```
-keyIsDown('A'.charCodeAt(0))   true, wenn Taste `A` 
-keyIsDown(65)`                 gedrückt ist.
-
-```
+- `keyIsDown('A'.charCodeAt(0))` ist true, wenn ein kleines oder großes `A` gedrückt ist.
+- `keyIsDown('A'.charCodeAt(0)) && keyIsDown(SHIFT)` ist true, wenn ein großes `A` gedrückt ist.
 
 
 Mit `w, a, s, d` steuern die Richtung des Balls. Mit zwei Tasten können wir den Ball auch diagonal bewegen.
