@@ -1,5 +1,7 @@
 ## Tastensteuerung
 
+#### Prüfen, ob irgendeine Taste gedrückt ist
+
 Die Systemvariable `keyIsPressed` ist `true`, wenn irgendeine Taste gedrückt ist.
 
 ```
@@ -23,8 +25,9 @@ function draw() {
 <iframe src="irgendeinKey.html" width="320" height="220"></iframe>
  
 ---
+#### Die zuletzt gedrückte Taste
 
-Wenn wir eine bestimmte Taste abfragen wollen, nutzen wir `key` für Tasten mit Zeichen, für die Pfeiltasten nutzen wir
+Wenn wir abfragen wollen welche Taste zuletzt gedrückt wurde, nutzen wir `key` für Tasten mit Zeichen, für die Pfeiltasten nutzen wir
 `keyCode`.
 
 Die `keyCode`-Werte der Pfeiltasten sind: `UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW`.
@@ -56,7 +59,7 @@ function draw() {
 
 ---
 
-#### Funktionen für die Tastensteuerung
+#### Die Funktionen keyPressed und keyReleased
 
 Die Funktion `keyPressed` wird einmal durchlaufen, wenn eine Taste gedrückt wird, die Funktion `keyReleased` wird einmal
 durchlaufen, wenn eine Taste losgelassen wird.
@@ -92,7 +95,7 @@ function keyReleased() {
 
 ---
 
-#### Steuerung mit mehreren Tasten 
+#### Prüfen, ob bestimmte Tasten gerade gedrückt sind 
 
 Die `keyIsDown`-Methode bekommt als Argument eine Zahl. Für Buchstaben ist die Zahl die [ASCII-Codierung](https://de.wikipedia.org/wiki/American_Standard_Code_for_Information_Interchange) für den
 großen Buchstaben. Diese Zahl können wir auch mit der String-Methode `charCodeAt` ermitteln.
@@ -246,7 +249,7 @@ Hinweis:
 
 - Wenn wir die zuletzt gedrückte Taste benötigen, dann fragen wir die Variable `key` (für ASCII-Zeichen) und
   `keyCode` für sonstige Tasten ab.
-- Wenn wir abfragen wollen, ob eine Taste gerade gedrückt ist, dann fragen wir das Ergebnis der
+- Wenn wir abfragen wollen, ob eine bestimmte Taste gerade gedrückt ist, dann fragen wir das Ergebnis der
   Funktion `keyIsDown()` ab.
 
 ---
