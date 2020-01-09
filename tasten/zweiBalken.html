@@ -11,12 +11,6 @@ let y2;
 
 let vy = 2;
 
-let t1Oben = false;
-let t1Unten = false;
-
-let t2Oben = false;
-let t2Unten = false;
-
 function setup() {
   createCanvas(300, 200);
   rectMode(CENTER);
@@ -27,28 +21,14 @@ function setup() {
 function draw() {
   background(0);
 
-  if (t1Oben) y1 = y1 - vy;
-  if (t1Unten) y1 = y1 + vy;
+  if (keyIsDown(87)) y1 = y1 - vy;   // W
+  if (keyIsDown(83)) y1 = y1 + vy;   // S
 
-  if (t2Oben) y2 = y2 - vy;
-  if (t2Unten) y2 = y2 + vy;
+  if (keyIsDown(79)) y2 = y2 - vy;   // O
+  if (keyIsDown(76)) y2 = y2 + vy;   // L
 
   rect(x1, y1, 10, 50);
   rect(x2, y2, 10, 50);
-}
-
-function keyPressed() {
-  if (key === 's') t1Unten = true;
-  else if (key === 'w') t1Oben = true;
-  else if (key === 'l') t2Unten = true;
-  else if (key === 'o') t2Oben = true;
-}
-
-function keyReleased() {
-  if (key === 's') t1Unten = false;
-  else if (key === 'w') t1Oben = false;
-  else if (key === 'l') t2Unten = false;
-  else if (key === 'o') t2Oben = false;
 }
   </script>
 </head>

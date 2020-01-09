@@ -19,10 +19,10 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: #1a1a1a;
+  padding-top: 100px; 
 }
 canvas {
   display: block;
-  padding-top: 200px;
   margin: auto;
 }
 ```

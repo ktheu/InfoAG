@@ -94,14 +94,10 @@ function keyReleased() {
 
 #### Steuerung mit mehreren Tasten 
 
-Die `keyIsDown`-Methode bekommt als Argument eine Zahl. Für Buchstaben ist die Zahl die [ASCII-Codierung](https://de.wikipedia.org/wiki/American_Standard_Code_for_Information_Interchange) für den
-großen Buchstaben. Diese Zahl können wir auch mit der String-Methode `charCodeAt` ermitteln.
+Für jede Taste spendieren wir uns eine boolesche Variable, 
+die über die Methoden `keyPressed` und `keyReleased` gesetzt wird.
 
-- `keyIsDown('A'.charCodeAt(0))` ist true, wenn ein kleines oder großes `A` gedrückt ist.
-- `keyIsDown('A'.charCodeAt(0)) && keyIsDown(SHIFT)` ist true, wenn ein großes `A` gedrückt ist.
-
-
-Mit `w, a, s, d` steuern die Richtung des Balls. Mit zwei Tasten können wir den Ball auch diagonal bewegen.
+Mit `w, a, s, d` steuern wir die Richtung des Balls. Mit zwei Tasten können wir den Ball auch diagonal bewegen.
 
 ```
 let x = 30;
@@ -109,18 +105,38 @@ let y = 20;
 let vx = 2;
 let vy = 1;
 
+// Für jede Taste eine boolesche Variable
+let tLinks = false;
+let tRechts = false;
+let tOben = false;
+let tUnten = false;
+
 function setup() {
   createCanvas(300, 200);
 }
 
 function draw() {
   background(0);
-  if (keyIsDown('A'.charCodeAt(0))) x = x - vx;
-  if (keyIsDown('D'.charCodeAt(0))) x = x + vx;
-  if (keyIsDown('W'.charCodeAt(0))) y = y - vy;
-  if (keyIsDown('S'.charCodeAt(0))) y = y + vx;
+  if (tLinks) x = x - vx;
+  if (tRechts) x = x + vx;
+  if (tOben) y = y - vy;
+  if (tUnten) y = y + vy;
 
   circle(x, y, 20);
+}
+
+function keyPressed() {
+  if (key === 's') tUnten = true;
+  else if (key === 'w') tOben = true;
+  else if (key === 'a') tLinks = true;
+  else if (key === 'd') tRechts = true;
+}
+
+function keyReleased() {
+  if (key === 's') tUnten = false;
+  else if (key === 'w') tOben = false;
+  else if (key === 'a') tLinks = false;
+  else if (key === 'd') tRechts = false;
 }
 ```
 
@@ -140,6 +156,12 @@ let y2;
 
 let vy = 2;
 
+let t1Oben = false;
+let t1Unten = false;
+
+let t2Oben = false;
+let t2Unten = false;
+
 function setup() {
   createCanvas(300, 200);
   rectMode(CENTER);
@@ -150,14 +172,28 @@ function setup() {
 function draw() {
   background(0);
 
-  if (keyIsDown(87)) y1 = y1 - vy;   // W
-  if (keyIsDown(83)) y1 = y1 + vy;   // S
+  if (t1Oben) y1 = y1 - vy;
+  if (t1Unten) y1 = y1 + vy;
 
-  if (keyIsDown(79)) y2 = y2 - vy;   // O
-  if (keyIsDown(76)) y2 = y2 + vy;   // L
+  if (t2Oben) y2 = y2 - vy;
+  if (t2Unten) y2 = y2 + vy;
 
   rect(x1, y1, 10, 50);
   rect(x2, y2, 10, 50);
+}
+
+function keyPressed() {
+  if (key === 's') t1Unten = true;
+  else if (key === 'w') t1Oben = true;
+  else if (key === 'l') t2Unten = true;
+  else if (key === 'o') t2Oben = true;
+}
+
+function keyReleased() {
+  if (key === 's') t1Unten = false;
+  else if (key === 'w') t1Oben = false;
+  else if (key === 'l') t2Unten = false;
+  else if (key === 'o') t2Oben = false;
 }
 ```
 
@@ -240,16 +276,6 @@ function mousePressed() {
 
 <iframe src="simplePong.html" width="320" height="320"></iframe>
 
----
-
-Hinweis:
-
-- Wenn wir die zuletzt gedrückte Taste benötigen, dann fragen wir die Variable `key` (für ASCII-Zeichen) und
-  `keyCode` für sonstige Tasten ab.
-- Wenn wir abfragen wollen, ob eine Taste gerade gedrückt ist, dann fragen wir das Ergebnis der
-  Funktion `keyIsDown()` ab.
-
----
 
 ### Übungen
 

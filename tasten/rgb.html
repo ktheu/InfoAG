@@ -3,31 +3,23 @@
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
-let r = 0;
-let g = 0;
-let b = 0;
-
 function setup() {
   createCanvas(300, 200);
   noStroke();
 }
 
 function draw() {
+  
   background(220);
+  let r = 0;
+  let g = 0;
+  let b = 0
+  if (keyIsDown(82)) r = 255;
+  if (keyIsDown(71)) g = 255;
+  if (keyIsDown(66)) r = 255;
+  
   fill(r, g, b);
   circle(150, 100, 80);
-}
-
-function keyPressed() {
-  if (key === 'r') r = 255;
-  else if (key === 'g') g = 255;
-  else if (key === 'b') b = 255;
-}
-
-function keyReleased() {
-  if (key === 'r') r = 0;
-  else if (key === 'g') g = 0;
-  else if (key === 'b') b = 0;
 }
  
   </script>
