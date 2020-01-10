@@ -36,6 +36,9 @@ Kollisionen prüfen mit booleschen Variablen
 __[Tastensteuerung](./tasten/tasten.md)__ - 
 Tastensteuerung mit key, keyCode und keyIsDown
 
+__[Text](./text/text.md)__ - 
+textSize, textFont, Score, Timer
+
 __[Funktionen](functions.html)__ -
 Haus und Sonne, Gesicht, Entfernung zum Mittelpunkt, Augen, Häuser
 

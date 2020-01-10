@@ -1,0 +1,50 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let eingabe = '';
+
+    state = 'EINGABE';
+
+    function setup() {
+      createCanvas(300, 200);
+    }
+
+    function draw() {
+      background(230);
+      if (state === 'EINGABE') {
+        textSize(20);
+        text("Eingabe:", 40, 100);
+        text(eingabe, 40, 130);
+      }
+
+      if (state === 'AUSGABE') {
+        text(eingabe, 40, 100);
+      }
+    }
+
+    function mousePressed() {
+      if (state === 'PLAY') {
+        score += 1;
+      }
+    }
+
+    function keyPressed() {
+      if (state === 'EINGABE') {
+        eingabe += key;
+      }
+      if (state === 'EINGABE' && keyCode === ENTER) {
+        eingabe = eingabe.substr(0,eingabe.length-5);
+        state = 'AUSGABE';
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

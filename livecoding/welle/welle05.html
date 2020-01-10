@@ -1,0 +1,115 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let anzahlWellen = 6;
+    let anzahlQuadrate = 10;
+    let abstand = 120;            // abstand zwischen zwei Wellen
+    let seitenlaenge = 30;        // seitenlänge eines quadrats
+    let x = 100;
+    let y;
+    let vx = 1;
+
+    let px = 10;
+    let py = 200;
+    let radius = 10;
+    let vpx = 1;
+    let vpy = 2;
+    let count = 0;
+
+    function setup() {
+      createCanvas(600, 400);
+      noStroke();
+      textSize(30);
+      ellipseMode(RADIUS);
+
+      y = [];
+      for (let i = 0; i < anzahlWellen; i++) {
+        y[i] = []
+        for (let j = 0; j < anzahlQuadrate; j++) {
+          y[i][j] = int(random(0, 400));
+        }
+      }
+    }
+
+    function draw() {
+      background(0);
+
+      x = x - vx;
+      vx = 1.0003 * vx;
+
+      if (x + seitenlaenge < 0) {
+        y.shift();
+        y[anzahlWellen - 1] = [];
+        for (let i = 0; i < anzahlQuadrate; i++) {
+          y[anzahlWellen - 1][i] = int(random(0, 400))
+        }
+        x = x + abstand;
+        count += 1;
+      }
+
+      // check collision
+      let collision = false;
+
+      if (px < 0 || px > width || py < 0 || py > height) collision = true;
+
+      for (let i = 0; i < anzahlWellen; i++) {
+        for (let j = 0; j < anzahlQuadrate; j++) {
+          if ((x + i * abstand <= px && px <= x + i * abstand + seitenlaenge)
+            && (y[i][j] <= py && py <= y[i][j] + seitenlaenge)) {
+            collision = true;
+          }
+        }
+      }
+
+      if (keyIsDown(LEFT_ARROW)) px = px - vpx;
+      if (keyIsDown(RIGHT_ARROW)) px = px + vpx;
+      if (keyIsDown(UP_ARROW)) py = py - vpy;
+      if (keyIsDown(DOWN_ARROW)) py = py + vpy;
+
+      fill(120);
+      for (let i = 0; i < anzahlWellen; i++) {
+        for (let j = 0; j < anzahlQuadrate; j++) {
+          square(x + i * abstand, y[i][j], seitenlaenge)
+        }
+      }
+
+      fill(0, 255, 0);
+      text(count, 40, 40)
+
+      fill(255, 0, 0);
+      circle(px, py, radius)
+
+      if (collision) {
+        s = "Your score: " + count;
+        fill(0, 255, 0);
+        text(s, 200, 200);
+        s2 = "r - restart"
+        text(s2, 200, 250);
+        noLoop();
+      }
+    }
+
+    function keyPressed() {
+      if (key === 'r') {
+        px = 10;
+        py = 200;
+        vx = 1;
+        x = 100;
+        count = 0
+        loop();
+      }
+    }
+
+
+
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

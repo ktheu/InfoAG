@@ -1,0 +1,46 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let zeichen = [];
+    let x = [];
+    let y = [];
+    let size = [];
+    let grenze = 50;
+
+    function setup() {
+      createCanvas(600, 400);
+    }
+
+    function draw() {
+      background(220);
+      for (let i = 0; i < zeichen.length; i++) {
+        textSize(size[i]);
+        text(zeichen[i], x[i], y[i]);
+      }
+      if (zeichen.length >= grenze) {
+        for (let i = 0; i < zeichen.length; i++) {
+          if (y[i] < height) {
+            y[i] = y[i] + 1;
+          }
+        }
+      }
+    }
+
+    function keyTyped() {
+      if (zeichen.length < grenze) {
+        zeichen.push(key);
+        x.push(int(random(10, width)));
+        y.push(int(random(10, height)));
+        size.push(int(random(20, 90)));
+      }
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

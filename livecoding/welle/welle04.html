@@ -1,0 +1,55 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let anzahlWellen = 6;
+    let anzahlQuadrate = 10;
+    let abstand = 120;            // abstand zwischen zwei Wellen
+    let seitenlaenge = 30;       // seitenlänge eines quadrats
+    let x = 50;
+    let y;
+
+    function setup() {
+      createCanvas(600, 400);
+      noStroke();
+
+      y = [];
+      for (let i = 0; i < anzahlWellen; i++) {
+        y[i] = []
+        for (let j = 0; j < anzahlQuadrate; j++) {
+          y[i][j] = int(random(0, 400));
+        }
+      }
+    }
+
+    function draw() {
+      background(0);
+
+      x = x - 1;
+
+      if (x + seitenlaenge < 0) {
+        y.shift();
+        y[anzahlWellen - 1] = [];
+        for (let i = 0; i < anzahlQuadrate; i++) {
+          y[anzahlWellen - 1][i] = int(random(0, 400))
+        }
+        x = x + abstand;
+      }
+
+      for (let i = 0; i < anzahlWellen; i++) {
+        for (let j = 0; j < anzahlQuadrate; j++) {
+          square(x + i * abstand, y[i][j], seitenlaenge)
+        }
+      }
+    }
+
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

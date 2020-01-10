@@ -1,0 +1,41 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    s = "A long time ago in a galaxy far, far away...\n\n";
+
+    s = s + "Episode IV \n\n\n It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire. During the battle, Rebel spies managed to steal";
+    s = s + " secret plans to the Empire's ultimate weapon, the Death Star, an armoured space station with enough power to";
+    s = s + " destroy an entire planet. Pursued by the Empire's sinister agents, Princess Leia races home aboard her starship, custodian of the stolen plans that can save her people and restore freedom to the galaxy...";
+    
+    let y = 420;
+ 
+    function setup() {
+      createCanvas(300, 400);
+      textFont('Georgia');
+    }
+
+    function draw() {
+      background(0);
+      textAlign(CENTER);
+      fill(255);
+      textSize(20);
+      text(s,50,y,200);
+      y = y - 0.5;
+      if (y < -850) y = 420;
+    }
+
+    function mousePressed() {
+      console.log(y);
+    }
+
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

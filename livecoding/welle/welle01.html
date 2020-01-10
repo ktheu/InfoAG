@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    /*
+    Ein zweidimensionales Array 
+    */
+
+    let anzahlWellen = 3;
+    let anzahlQuadrate = 5
+    function setup() {
+      noCanvas();
+      let a = [];
+      for (let i = 0; i < anzahlWellen; i++) {
+        a[i] = []
+        for (let j = 0; j < anzahlQuadrate; j++) {
+          a[i][j] = int(random(0,400));
+        }
+      }
+      print(a);
+    }
+
+
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

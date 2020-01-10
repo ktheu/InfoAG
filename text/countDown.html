@@ -1,0 +1,81 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let count = 10;
+    let score = 0;
+
+    let state = "WELCOME";
+
+    function setup() {
+      createCanvas(300, 200);
+    }
+
+    function draw() {
+
+      if (state === "WELCOME") {
+        background(200);
+        fill(240);
+        s = "Welcome - \nclick to score, \nstart with enter"
+        textSize(30);
+        text(s, 40, 80);
+      }
+
+      if (state === "PLAY") {
+        background(220);
+        if (frameCount % 30 === 0) {
+          count -= 1;
+        }
+
+        if (count === 0) {
+          state = "END";
+        }
+
+        fill(255, 0, 0);
+        textSize(20);
+        textAlign(RIGHT);
+        text(count, 40, 40);
+
+        fill(0, 0, 255);
+        text("Score: " + score, 280, 40)
+      }
+
+      if (state === 'END') {
+        background(80);
+        fill(200);
+        textAlign(LEFT);
+        textSize(20);
+        text("Your Score: " + score, 40, 100);
+        textSize(10);
+        text("r - restart", 40,120);
+      }
+
+    }
+
+    function mousePressed() {
+      if (state === 'PLAY') {
+        score += 1;
+      }
+    }
+
+    function keyPressed() {
+      if (state === 'WELCOME' && keyCode === ENTER) {
+        state = 'PLAY';
+      }
+
+      if (state === 'END' && key === 'r') {
+        count = 10;
+        score = 0;
+        state = 'PLAY';
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
