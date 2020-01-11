@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+
+        let a = [];
+        let y = 0;
+        let x = 300;
+        let size = 14;
+
+        function setup() {
+            createCanvas(600, 600);
+            textSize(size);
+            for (let i = 0; i < height / size; i++) {
+                a[i] = getChar();
+            }
+        }
+
+        function draw() {
+            background(0, 150);
+            fill(0, 255, 70);
+
+            if (y > height) {
+                a.shift();
+                a.push(getChar());
+                y = y - size;
+            }
+
+            for (let i = 0; i < height / size; i++) {
+                text(a[i], x, y - size * i)
+            }
+
+            y = y + 3;
+        }
+
+
+        function getChar() {
+            if (random() < 0.8) {
+                return String.fromCharCode(int(random(33, 126)));
+            }
+            else {
+                return ' ';
+            }
+        }
+
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

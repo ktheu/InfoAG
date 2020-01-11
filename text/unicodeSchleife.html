@@ -1,0 +1,26 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let cp = 0x1F600;
+
+    function setup() {
+      createCanvas(800, 200);
+      background(245);
+      let size = 30
+      textSize(size);
+      for (let i = 0; i < 20; i++) {
+        zeichen = String.fromCodePoint('0x' + (cp + i).toString(16));
+        text(zeichen, i*(size+4), 100);
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

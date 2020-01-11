@@ -1,0 +1,39 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let cp = 0x2654;
+    
+    let zeichen = [];
+    let x = []
+    let y = []
+
+    function setup() {
+      createCanvas(400, 400);
+      background(245);
+      textSize(50);
+      textAlign(CENTER);
+    }
+
+    function draw() {
+      for (let i=0; i<zeichen.length; i++) {
+        text(zeichen[i],x[i],y[i]);
+      }
+    }
+
+    function mousePressed() {
+      r = int(random(12));
+      zeichen.push(String.fromCodePoint('0x' + (cp + r).toString(16)));
+      x.push(mouseX);
+      y.push(mouseY);
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+
+        let a = [];
+        let y = [];
+        let vy = [];
+
+        let size = 14;
+        let anzSpalten;
+
+        function setup() {
+            createCanvas(600, 600);
+            textSize(size);
+            textFont('Consolas');
+            anzSpalten = width / size;
+            for (let j = 0; j < anzSpalten; j++) {
+                a[j] = []
+                for (let i = 0; i < height / size; i++) {
+                    a[j][i] = getChar();
+                }
+                y[j] = int(random(50, -50));
+                vy[j] = int(random(2, 5));
+            }
+        }
+
+        function draw() {
+            background(0, 90);
+            fill(0, 255, 70);
+
+            for (let j = 0; j < anzSpalten; j++) {
+                if (y[j] > height) {
+                    a[j].shift();
+                    a[j].push(getChar());
+                    y[j] = y[j] - size;
+                }
+            }
+
+            for (let j = 0; j < anzSpalten; j++) {
+                for (let i = 0; i < height / size; i++) {
+                    text(a[j][i], j * size, y[j] - size * i)
+                }
+                y[j] = y[j] + vy[j];
+            }
+        }
+
+        function getChar() {
+            let r = random();
+            if (r < 0.6) {
+                return String.fromCharCode(0x30A0 + floor(random(0, 97)));
+            }
+            else if (r < 0.8) {
+                return int(random(0, 10));
+            }
+            else {
+                return ' ';
+            }
+        }
+
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -136,6 +136,51 @@ function keyPressed() {
 
 ---
 
+#### Unicode
+
+Der [Unicode-Standard](http://www.unicode.org/charts/) ordnet jedem Zeichen eine Zahl im hexadezimalen Format zu (Codepoint).  
+Wenn der Browser das Zeichen darstellen kann, können wir es mit der Funktion
+`String.fromCodePoint` auf die Leinwand bringen. 
+
+`k.toString(16)` wandelt eine ganze Zahl k in einen hexadezimalen String um.
+
+Beispiel: [Diese Tabelle](https://www.unicode.org/charts/PDF/U1F600.pdf) enthält die Codepoints der Emoticons von
+1F600 bis 1F64F
+
+```
+let cp = 0x1F631;    
+
+function setup() {
+  createCanvas(200, 200);
+  zeichen = String.fromCodePoint('0x' + cp.toString(16))
+  textSize(50);
+  text(zeichen, 70, 100);
+}
+```
+<iframe src="unicode.html" width="220" height="220"></iframe>
+
+---
+
+ 
+
+
+```
+let cp = 0x1F600;
+
+function setup() {
+  createCanvas(800, 200);
+  background(245);
+  let size = 30
+  textSize(size);
+  for (let i = 0; i < 20; i++) {
+    zeichen = String.fromCodePoint('0x' + (cp + i).toString(16));
+    text(zeichen, i*(size+4), 100);
+  }
+}
+```
+<iframe src="unicodeSchleife.html" width="820" height="220"></iframe>
+
+
 ### Übungen
 
 
@@ -164,5 +209,12 @@ Anschließend sinken sie nach unten.
 
 <iframe src="fallendeZeichen.html" width="620" height="420"></iframe>
 
+---
 
+#### Schach
+
+Finde die Unicode-Codepoints der
+Schachfiguren. Bei jedem Mausklick entsteht an der Mausposition eine Schachfigur.
+
+<iframe src="chess.html" width="420" height="420"></iframe>
 
