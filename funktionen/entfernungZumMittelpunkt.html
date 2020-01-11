@@ -1,0 +1,29 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+        function setup() {
+            createCanvas(400, 400);
+        }
+
+        function draw() {
+            background('#B03A3A');
+            let y = mausEntfernungZumMittelpunkt();
+            displayEntfernung(y);
+        }
+
+        function mausEntfernungZumMittelpunkt() {
+            let d = dist(mouseX, mouseY, width / 2, height / 2);
+            return d;
+        }
+
+        function displayEntfernung(x) {
+            fill(255);
+            textSize(30);
+            text(int(x), 40, 40);
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

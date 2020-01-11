@@ -37,9 +37,9 @@ __[Tastensteuerung](./tasten/tasten.md)__ -
 Tastensteuerung mit key, keyCode und keyIsDown
 
 __[Text](./text/text.md)__ - 
-textSize, textFont, Score, Timer
+textSize, textFont, Score, Timer, Unicode
 
-__[Funktionen](functions.html)__ -
+__[Funktionen](./funktionen/funktionen.md)__ -
 Haus und Sonne, Gesicht, Entfernung zum Mittelpunkt, Augen, Häuser
 
 __[Klassen](klassen.html)__ -
