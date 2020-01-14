@@ -1,6 +1,6 @@
 ## Glitch
 
-In einem Glitch-Project können wir einen Node-Server starten, der es erlaubt, Daten zu speichern.
+In einem [Glitch](https://glitch.com)-Project können wir einen Node-Server starten, der es erlaubt, Daten zu speichern.
 
 Wir möchten Highscores in einem Spiel zu verwalten.
 
@@ -8,7 +8,7 @@ Wir möchten Highscores in einem Spiel zu verwalten.
 
 - Wir klicken auf `New Project` und wählen `hello-express` aus.  
 - Durch Klick auf den Projektnamen können wir einen passenden Namen vergeben.
-- Klick auf `package.json`, `add package`, suchen nach `nedb`  und auswählen.
+- Klick auf `package.json`, `add package`, suchen nach `nedb`  und auswählen. Nedb ist eine einfache Datenbank.
 
 #### server.js
  
@@ -67,7 +67,7 @@ app.listen(process.env.PORT);
 ```
 #### views/index.html
 
-Den Inhalt von `views/index.html löschen` und durch den folgenden Inhalt ersetzen. 
+Den Inhalt von `views/index.html` löschen und durch den folgenden Inhalt ersetzen. 
 Gegebenenfalls `title`, `background-color` und `padding` anpassen.
 
 ```
@@ -97,12 +97,8 @@ Gegebenenfalls `title`, `background-color` und `padding` anpassen.
   <body></body>
 </html>
 ```
-
-#### Sketch einfügen
  
-Jetzt den Sketch an die markierte Stelle einfügen.
-
-
+Jetzt den Sketch an die markierte Stelle einfügen und weitere Anpassungen machen.
 
 #### httpPost, httpGet
 

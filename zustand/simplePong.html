@@ -1,19 +1,8 @@
-## Zustände
+<html>
 
-Bei Spielen ist es häufig möglich, verschiedene Zustände zu identifizieren. Meist unterscheiden sich die Zustände dadurch,
-dass auf der Leinwand andere Dinge zu sehen sind. Im Beispiel wird im Zustand "WELCOME" der Benutzer begrüßt und mit den Regeln des
-Spiels vertraut gemacht, im Zustand "PLAY" findet das eigentliche Spiel statt, im Zustand "END" wird das Ergebnis angezeigt und
-die Möglichkeit zum Restart gegeben.
-
-Für spendieren uns eine Variable `state` und implementieren für jeden Zustand eine eigene Funktion.
-Die draw-Funktion beteht dann nur noch aus einer `switch-case` Anweisung.
-
-Hat unser Spiel mehrere Levels, wird jeder Level ein eigener Zustand.
-
-Beispiel (ohne Levels): SimplePong
-
-
-```
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
     let xBalken = 150;
     let yBalken = 270;
     let balkenBreite = 80;
@@ -141,6 +130,12 @@ Beispiel (ohne Levels): SimplePong
         state = "PLAY";
       }
     }
-```
 
-<iframe src="simplePong.html" width="320" height="320"></iframe>
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
