@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let highscore = [['Malte', 20], ['Thorben', 14], ['Lena', 18]];
+
+    function hssort(a, b) {
+      if (a[1] > b[1]) return -1;  // das größere kommt vorne hin (nach links = -1)
+      if (a[1] < b[1]) return 1;
+      return 0;
+    }
+
+    function setup() {
+      createCanvas(300, 200);
+      background(220);
+      highscore.sort(hssort);
+      s = "Highscore:\n\n";
+      for (let i = 0; i < highscore.length; i++) {
+        s = s + highscore[i][0] + '  ' + highscore[i][1] + '\n';
+      }
+      textSize(16);
+      text(s, 50, 50);
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

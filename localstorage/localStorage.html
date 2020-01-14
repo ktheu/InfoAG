@@ -4,40 +4,30 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 
-    let eingabe = '';
-
-    state = 'EINGABE';
+    let name = '';
 
     function setup() {
       createCanvas(300, 200);
+      s = getItem('name');
+      if (s) name = s; 
     }
 
     function draw() {
       background(230);
-      if (state === 'EINGABE') {
-        textSize(20);
-        text("Eingabe:", 40, 100);
-        text(eingabe, 40, 130);
-      }
-
-      if (state === 'AUSGABE') {
-        text(eingabe, 40, 100);
-      }
+      textSize(30);
+      text(name, 40, 100);
     }
 
-    function mousePressed() {
-      if (state === 'PLAY') {
-        score += 1;
-      }
+    function keyTyped() {
+        name += key;
     }
 
     function keyPressed() {
-      if (state === 'EINGABE') {
-        eingabe += key;
+      if (keyCode === BACKSPACE) {
+        name = name.substr(0, name.length - 1);
       }
-      if (state === 'EINGABE' && keyCode === ENTER) {
-        eingabe = eingabe.substr(0,eingabe.length-5);
-        state = 'AUSGABE';
+      else if (keyCode === ENTER) {
+        storeItem('name',name);
       }
     }
 

@@ -4,10 +4,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 
-    let wert = '';
-
-    state = 'EINGABE';
-
+    
+  
     function setup() {
       createCanvas(300, 200);
       s = getItem('Wert');
@@ -36,8 +34,8 @@
     }
 
     function keyTyped() {
-      if (state === 'EINGABE') {
-        eingabe += key;
+      if (key === 'p') {
+        number = int(random(100));
       }
     }
 
