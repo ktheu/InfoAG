@@ -1,243 +1,231 @@
 ## Glitch
 
-In einem Glitch-Project können eine Node-Server starten, der es erlaubt, Daten zu speichern.
+In einem Glitch-Project können wir einen Node-Server starten, der es erlaubt, Daten zu speichern.
 
-Wir müssen zwei Dateien anpassen:
+Wir möchten Highscores in einem Spiel zu verwalten.
+
+#### Express und Nedb
+
+- Wir klicken auf `New Project` und wählen `hello-express` aus.  
+- Durch Klick auf den Projektnamen können wir einen passenden Namen vergeben.
+- Klick auf `package.json`, `add package`, suchen nach `nedb`  und auswählen.
+
+#### server.js
+ 
+Den Inhalt von `server.js` vollständig ersetzen durch den folgenden Inhalt. Gegebenenfalls die Variable
+`highscoreAnz` anpassen. 
 
 ```
-- views
-   index.html
-- server.js
+const highscoreAnz = 3;         // Update: Anzahl Highscores
+
+const path = require("path");
+const express = require("express");
+const bodyParser = require("body-parser");
+const Datastore = require("nedb");
+
+const db = new Datastore(".data/highscore.db");
+db.loadDatabase();  
+// db.remove({}, { multi: true });  
+db.count({}, function(err, res) {
+  if (res === 0) {
+    for (let i = 0; i < highscoreAnz; i++) {
+      db.insert([{ name: "N.N", score: 0 }]);
+    }
+  }
+});  
+
+const app = express();
+app.use(bodyParser.json());
+
+app.get("/", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "./", "views/index.html"));
+});
+
+app.get("/highscore", (req, res, next) => {
+  db.find({})
+    .sort({
+      score: -1 // Nach score absteigend sortieren
+    })
+    .exec(function(err, docs) {
+      // docs ist das Array mit den Resultaten der Abfrage
+      if (docs.length > highscoreAnz) {
+        for (let i = highscoreAnz; i < docs.length; i++) {
+          db.remove({ _id: docs[i]._id });
+        }
+        docs = docs.slice(0, highscoreAnz);
+      }
+      res.json(docs);
+    });
+});
+
+app.post("/highscore", (req, res, next) => {
+  db.insert(req.body);
+  res.redirect("/");
+});
+
+app.listen(process.env.PORT);
+```
+#### views/index.html
+
+Den Inhalt von `views/index.html löschen` und durch den folgenden Inhalt ersetzen. 
+Gegebenenfalls `title`, `background-color` und `padding` anpassen.
+
+```
+<html>
+  <head>
+    <title>Highscore-Demo</title>
+    <meta charset="utf-8" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #1a1a1a;
+        padding-top: 100px;
+      }
+      canvas {
+        display: block;
+        margin: auto;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+        //  ------------ Hier kommt der Sketch hin -------------
+    </script>
+  </head>
+
+  <body></body>
+</html>
+```
+
+#### Sketch einfügen
+ 
+Jetzt den Sketch an die markierte Stelle einfügen.
+
+
+
+#### httpPost, httpGet
+
+Wir setzen voraus, dass `name` die Variable ist mit dem Namen des Spielers, der in die Highscoreliste
+soll und `score` sein score. Mit der folgenden Anweisung senden wir die Daten an den Server,
+setzen `name` und `score` auf einen Anfangszustand und begeben uns in den Spielstatus `PLAY`.
+
+
+```
+let score = 0;
+let name = "";
+let state = "PLAY"; 
+
+// ...
+
+httpPost("/highscore", {name: name, score: score}, function(res) {
+    score = 0;
+    name = "";
+    state = "PLAY";
+    getHighscore();
+});
  
 ```
 
-#### index.html
-
-Lösche den gesamten Inhalt und füge das Muster unten ein.
-Update den `title`, wähle bei `background-color` eine Hintergrundfarbe und setze ein geeignetes `padding`.
-
+Die Funktion `getHighscore` füllt die Variablen `hsmin` und `highscoreText`, die wir an geeigneter
+Stelle ausgeben können. `hsmin` wird benötigt um zu entscheiden, ob eine neuer Eintrag in die
+Highscore-Liste erfolgen soll.
 
 ```
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Highscore-Demo</title>
-    <meta charset="utf-8" />
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #1a1a1a;
-        padding-top: 100px;
+let hsmin = 0;               // minimaler Highscore
+let highscoreText = "";      // Ausgabetext des Highscores
+ 
+// ...
+
+function getHighscore() {
+  httpGet(
+    "/highscore",
+    "json",
+    false,
+    function(res) {
+      highscoreText = "Highscore:\n\n";
+      for (let i = 0; i < res.length; i++) {
+        highscoreText += res[i].name + ": " + res[i].score + "\n";
       }
-      canvas {
-        display: block;
-        margin: auto;
-      }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
-    <script>
-      // Hier kommt der Sketch hin
-    </script>
-  </head>
-</html>
-  
+      hsmin = res[res.length - 1].score;
+    },
+    function(err) {
+      console.log(err);
+    }
+  );
+}
 ```
 
-Füge den Sketch zwischen die beiden `script`-Tags ein
+#### Beispiel Sketch
+
+Spiel auf Glitch [hier](https://highscore.glitch.me/). Bei jedem Klick wird eine Zahl erzeugt.
 
 ```
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Highscore-Demo</title>
-    <meta charset="utf-8" />
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #1a1a1a;
-        padding-top: 100px;
+let highscoreText = "";
+let hsmin = 0; // minimaler Highscore
+let score = 0;
+let name = "";
+
+let state = "PLAY";
+
+function setup() {
+  createCanvas(300, 200);
+  getHighscore();
+}
+
+function getHighscore() {
+  httpGet(
+    "/highscore",
+    "json",
+    false,
+    function(res) {
+      highscoreText = "Highscore:\n\n";
+      for (let i = 0; i < res.length; i++) {
+        highscoreText += res[i].name + ": " + res[i].score + "\n";
       }
-      canvas {
-        display: block;
-        margin: auto;
-      }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
-    <script>
-      let highscore = [["N.N.", 0]];
-      let zahl = 0;
-      let state = "PLAY";
-      let name = "";
+      hsmin = res[res.length - 1].score;
+    },
+    function(err) {
+      console.log(err);
+    }
+  );
+}
 
-      function hssort(a, b) {
-        if (a[1] > b[1]) return -1;
-        if (a[1] < b[1]) return 1;
-        return 0;
-      }
+function draw() {
+  background(220);
+  text(highscoreText, 50, 30);
+  text("Deine Zahl: " + score, 50, 140);
 
-      function setup() {
-        createCanvas(300, 200);
-        a = getItem("highscore");
-        if (a) highscore = a;
-      }
+  if (score > hsmin) {
+    state = "EINGABE";
+    text("Dein Name: " + name, 50, 165);
+  }
+}
 
-      function draw() {
-        background(220);
-        s = "Highscore:\n\n";
-        for (let i = 0; i < highscore.length; i++) {
-          s = s + highscore[i][0] + "  " + highscore[i][1] + "\n";
-        }
-        textSize(16);
-        text(s, 50, 30);
+function keyTyped() {
+  if (state === "EINGABE") {
+    name += key;
+  }
+}
 
-        text("Deine Zahl: " + zahl, 50, 140);
+function keyPressed() {
+  if (state === "EINGABE") {
+    if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
+    if (keyCode === ENTER) {
+        httpPost("/highscore", {name: name, score: score}, function(res) {
+        score = 0;
+        name = "";
+        state = "PLAY";
+        getHighscore();
+      });
+    }
+  }
+}
 
-        if (
-          (highscore.length < 3 && zahl > 0) ||
-          zahl > highscore[highscore.length - 1][1]
-        ) {
-          state = "EINGABE";
-          text("Dein Name: " + name, 50, 165);
-        }
-      }
-
-      function keyTyped() {
-        if (state === "EINGABE") {
-          name += key;
-        }
-      }
-
-      function keyPressed() {
-        if (state === "EINGABE") {
-          if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
-          if (keyCode === ENTER) {
-            if (highscore.length >= 3) {
-              highscore.pop();
-            }
-            highscore.push([name, zahl]);
-            highscore.sort(hssort);
-            storeItem("highscore", highscore);
-            zahl = 0;
-            name = "";
-            state = "PLAY";
-          }
-        }
-      }
-
-      function mousePressed() {
-        if (state === "PLAY") {
-          zahl = int(random(50));
-        }
-      }
-    </script>
-  </head>
-</html>
-
-```
-
-Jetzt sollte der Sketch durch einen Click auf `Show` laufen. Es fehlt jetzt noch die Umstellung der Datenspeicherung
-von *local storage* auf eine Datei auf dem Server.
-
-
-```
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Highscore-Demo</title>
-    <meta charset="utf-8" />
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #1a1a1a;
-        padding-top: 100px;
-      }
-      canvas {
-        display: block;
-        margin: auto;
-      }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
-    <script>
-      let highscore = [["N.N.", 0]];
-      let zahl = 0;
-      let state = "PLAY";
-      let name = "";
-
-      function hssort(a, b) {
-        if (a[1] > b[1]) return -1;
-        if (a[1] < b[1]) return 1;
-        return 0;
-      }
-
-      function preload() {
-         httpGet("/highscore", "text", false, function(res) {
-          highscore = JSON.parse(res);
-        });
-      }
-      
-      function setup() {
-        createCanvas(300, 200);
-        // a = getItem("highscore");
-      }
-
-
-      function draw() {
-        background(220);
-        s = "Highscore:\n\n";
-        for (let i = 0; i < highscore.length; i++) {
-          s = s + highscore[i][0] + "  " + highscore[i][1] + "\n";
-        }
-        textSize(16);
-        text(s, 50, 30);
-
-        text("Deine Zahl: " + zahl, 50, 140);
-
-        if (
-          (highscore.length < 3 && zahl > 0) ||
-          zahl > highscore[highscore.length - 1][1]
-        ) {
-          state = "EINGABE";
-          text("Dein Name: " + name, 50, 165);
-        }
-      }
-
-      function keyTyped() {
-        if (state === "EINGABE") {
-          name += key;
-        }
-      }
-
-      function keyPressed() {
-        if (state === "EINGABE") {
-          if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
-          if (keyCode === ENTER) {
-            if (highscore.length >= 3) {
-              highscore.pop();
-            }
-            highscore.push([name, zahl]);
-            highscore.sort(hssort);
-            // storeItem("highscore", highscore);
-            zahl = 0;
-            name = "";
-            state = "PLAY";
-            httpPost("/highscore", JSON.stringify(highscore));
-          }
-        }
-      }
-
-      function mousePressed() {
-        if (state === "PLAY") {
-          zahl = int(random(50));
-        }
-      }
-    </script>
-  </head>
-</html>
+function mousePressed() {
+  if (state === "PLAY") {
+    score = int(random(50));
+  }
+}
 
 ```
