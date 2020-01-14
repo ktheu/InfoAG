@@ -42,6 +42,12 @@ textSize, textFont, Score, Timer, Unicode
 __[Funktionen](./funktionen/funktionen.md)__ -
 Haus und Sonne, Gesicht, Entfernung zum Mittelpunkt, Augen, Häuser
 
+__[Zustände](./zustand/zustand.md)__ -
+switch/case, Spielsteuerung durch Zustände
+
+__[Glitch](./glitch/glitch.md)__ -
+Highscore eines Spiels auf einem Server verwalten.
+
 __[Klassen](klassen.html)__ -
 Ballwelt, Counter, Hinher, Flappybalken, Snake
 
