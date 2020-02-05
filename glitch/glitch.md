@@ -4,6 +4,10 @@ In einem [Glitch](https://glitch.com)-Project können wir einen Node-Server star
 
 Wir möchten Highscores in einem Spiel zu verwalten.
 
+Beispiel 1: [SimplePong](https://simplepong.glitch.me/)
+
+Beispiel 2: [Wellen](https://wellen.glitch.me/)
+
 #### Express und Nedb
 
 - Wir klicken auf `New Project` und wählen `hello-express` aus.  
