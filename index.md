@@ -48,8 +48,8 @@ switch/case, Spielsteuerung durch Zustände
 __[Glitch](./glitch/glitch.md)__ -
 Highscore eines Spiels auf einem Server verwalten.
 
-__[Klassen](klassen.html)__ -
-Ballwelt, Counter, Hinher, Flappybalken, Snake
+__[Klassen](./klassen/klassen.md)__ -
+Ballwelt, Counter, Hinher, Flappybalken 
 
 __[Vektoren](vektoren.html)__ - gleichmäßige und beschleunigte Bewegung, Lenken, HalberWeg,
 NachobenRechts, Ablenkung

@@ -1,6 +1,7 @@
 <html>
+
 <head>
-    <script src="../p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
     <script>
         class Ball {
             constructor(x, y, vx, vy, radius = 15) {
@@ -29,8 +30,9 @@
 
             display() {
                 fill(255);
+                noStroke();
                 ellipseMode(RADIUS);
-                ellipse(this.x, this.y, this.radius, this.radius);
+                circle(this.x, this.y, this.radius);
             }
         }
 
@@ -58,6 +60,8 @@
 
     </script>
 </head>
+
 <body>
 </body>
+
 </html>
