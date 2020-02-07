@@ -150,7 +150,7 @@ Von der Mausposition wird eine Linie Richtung Mittelpunkt gezeichnet, die halb s
 
 Bei jedem Mausklick entsteht ein neuer Ball, der nach oben rechts fliegt. Es fliegt aber immer nur ein Ball.
 
-<iframe src="nachObenRechts.html" width="420" height="420"></iframe>
+<iframe src="nachobenrechts.html" width="420" height="420"></iframe>
 
 ----
 
@@ -158,7 +158,7 @@ Bei jedem Mausklick entsteht ein neuer Ball, der nach oben rechts fliegt. Es fli
 
 Bei jedem Mausklick entsteht ein neuer Ball, der nach oben rechts fliegt. Es können auch viele unterwegs sein. Die Bälle werden in einem Array verwaltet.
 
-<iframe src="nachObenRechtsViele.html" width="420" height="420"></iframe>
+<iframe src="nachobenrechtsViele.html" width="420" height="420"></iframe>
 
 ---- 
 
