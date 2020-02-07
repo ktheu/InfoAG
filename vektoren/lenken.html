@@ -1,60 +1,41 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 
-    let pos;          // Position
-    let richtung;
+    let pos;
+    let winkel = 0;
     let geschwindigkeit = 0.5;
-    let trechts = false;
-    let tlinks = false;
-    let tw = false;   // Taste w
-    let ts = false;   // Taste s
-
 
     function setup() {
       createCanvas(400, 400);
       strokeWeight(10);
       stroke(255);
       pos = createVector(50, 200);
-      richtung = createVector(0.1,0.1);
-
     }
 
     function draw() {
       background(0);
-      if (tlinks) richtung.rotate(-0.06);
-      if (trechts) richtung.rotate(0.06);
-      if (tw) geschwindigkeit += 0.05;
-      if (ts) geschwindigkeit -= 0.1;
-      geschwindigkeit = constrain(geschwindigkeit,0.5,7);
-      let v = richtung.copy();
-      v.setMag(geschwindigkeit);
+      if (keyIsDown(LEFT_ARROW)) winkel -= 0.06;
+      if (keyIsDown(RIGHT_ARROW)) winkel += 0.06;
+      if (keyIsDown(87)) geschwindigkeit += 0.1;
+      if (keyIsDown(83)) geschwindigkeit -= 0.1;
+
+      let v = p5.Vector.fromAngle(winkel, geschwindigkeit)
+      v.limit(5);
       pos.add(v);
 
       if (pos.x > width + 5) pos.x = -5;
       if (pos.y > height + 5) pos.y = -5;
       if (pos.x < -5) pos.x = width + 5;
       if (pos.y < -5) pos.y = height + 5;
-      ellipse(pos.x, pos.y, 10, 10);
-
-    }
-
-    function keyPressed() {
-      if (keyCode === LEFT_ARROW) tlinks = true;
-      if (keyCode === RIGHT_ARROW) trechts = true;
-      if (key.toLowerCase() === 'w') tw = true;
-      if (key.toLowerCase() === 's') ts = true;
-    }
-
-    function keyReleased() {
-      if (keyCode === LEFT_ARROW) tlinks = false;
-      if (keyCode === RIGHT_ARROW) trechts = false;
-      if (key.toLowerCase() === 'w') tw = false;
-      if (key.toLowerCase() === 's') ts = false;
+      circle(pos.x, pos.y, 10);
     }
   </script>
 </head>
+
 <body>
 </body>
+
 </html>
