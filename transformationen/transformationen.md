@@ -121,7 +121,7 @@ function draw() {
 
 #### Rotierendes Rechteck
 
-Mit *rectMode(CENTER)* und *translate* können wir das Rechteck um seinen Mittelpunkt rotieren lassen.
+Mit *rectMode(CENTER)* und *translate* können wir das Rechteck um seinen Mittelpunkt drehen.
 
 ```
 let winkel = 0; // aktueller Winkel des Rechtecks
@@ -239,6 +239,7 @@ Eine Figur wird mittels *scale* in unterschiedlichen Größen gezeichnet.
 #### Dreieck Lenken
 
 Die Geschwindigkeit des Dreiecks wird mit den Tasten *w,s* gesteuert, die Richtung mit den Pfeiltasten.
+Mit der *s*-Taste kann man nur bis zu einer gewissen Mindestgeschwindigkeit abbremsen.
 
 <iframe src="dreiecklenken.html" width="420" height="420"></iframe>
 

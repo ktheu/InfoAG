@@ -20,9 +20,10 @@
       if (keyIsDown(LEFT_ARROW)) winkel -= 0.06;
       if (keyIsDown(RIGHT_ARROW)) winkel += 0.06;
       if (keyIsDown(87)) geschwindigkeit += 0.1;
-      if (keyIsDown(83)) geschwindigkeit -= 0.1;
+      if (keyIsDown(83) && geschwindigkeit >=0.5) geschwindigkeit -= 0.1;
 
       let v = p5.Vector.fromAngle(winkel, geschwindigkeit)
+      
       v.limit(5);
       pos.add(v);
 
