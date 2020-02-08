@@ -1,11 +1,12 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
     /*
      Ein schmales Rechteck dreht sich innerhalb eines Kreises um seinen Mittelpunkt
      */
-    let winkel = 0;  // aktueller Winkel des Rechtecks
+    let winkel = 0; // aktueller Winkel des Rechtecks
 
     function setup() {
       createCanvas(400, 400);
@@ -14,21 +15,28 @@
 
     function draw() {
       background('#F0C92E');
+
+      // der Kreis
       noFill();
       stroke(0);
-      ellipse(width/2, height/2, 300, 300);
+      circle(width / 2, height / 2, 300);
+
+      // das drehende Rechteck
+      winkel = winkel + 0.5;
+
       push();
-      translate(width/2, height/2);
+      translate(width / 2, height / 2);
       rotate(radians(winkel));
       fill('#988433');
       noStroke();
       rect(0, 0, 300, 20);
-      winkel = winkel + 0.5;
       pop();
     }
 
   </script>
 </head>
+
 <body>
 </body>
+
 </html>

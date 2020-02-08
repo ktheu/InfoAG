@@ -1,14 +1,14 @@
 <html>
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
     function setup() {
-      createCanvas(800, 500);
+      createCanvas(600, 400);
       background(255);
       for (let i = 0; i < 50; i++) {
         let y = random(0, height - 120);
         let x = random(0, width - 60);
-        let groesse = map(y, 0, height - 120, 0.3, 1);
+        let groesse = 0.2 + 0.004*y
         push();
         translate(x, y);
         scale(groesse);
