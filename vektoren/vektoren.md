@@ -1,7 +1,22 @@
 ## Vektoren
 
-Ein Objekt der P5JS-Klasse _Vector_ hat die Attribute x und y. Mit den Methoden der Vektorklasse können viele
+Ein Objekt der P5JS-Klasse [Vector](https://p5js.org/reference/#/p5.Vector) hat die Attribute x und y. Mit den Methoden der Vektorklasse können viele
 Bewegungsprobleme vereinfacht programmiert werden. 
+
+Für einige Vektormethoden gibt in zwei Varianten, z.B:
+ 
+
+```
+# Variante 1
+let v = createVector(1, 2);
+v.add(4, 5);                   // v ist (5,7)
+
+# Variante 2 (statische Methode)
+let v1 = createVector(1, 2);
+let v2 = createVector(2, 3);
+
+let v3 = p5.Vector.add(v1,v2)  // v3 ist (3,5), v1, v2 unverändert
+``` 
 
 Die gleichmäßig Bewegung ist gekennzeichnet durch den Code:
 
