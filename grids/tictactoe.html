@@ -1,33 +1,36 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 
     let rows = 3;
     let cols = 3;
     let grid = [];
     let groesse = 100;
-    let schalter = true;
-    let gruen = '#00FF00';
+    let playerX = true;       // X ist an der Reihe
+    let gewinn = '#FFB03B';   // Farbe für die Gewinnfelder
 
     function setup() {
-      createCanvas(303, 303);
+      createCanvas(cols * groesse + 4, rows * groesse + 4);
       for (let i = 0; i < cols; i++) {
         grid[i] = [];
         for (let j = 0; j < rows; j++) {
           grid[i][j] = new Tile(i, j, groesse);
+          grid[i][j].farbe = '#FFF0A5';
         }
       }
     }
 
     function draw() {
-      background(255);
+
+      check();
+
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
           grid[i][j].display();
         }
       }
-      check();
     }
 
     // berechnet aus mouseX den i-Index der Kachel
@@ -43,11 +46,10 @@
     function mousePressed() {
       let i = I(mouseX);
       let j = J(mouseY);
-
-      grid[i][j].zeichen = schalter ? 'X' : 'O';
-      schalter = !schalter;
-
-
+      if (!grid[i][j].zeichen) {
+        grid[i][j].zeichen = playerX ? 'X' : 'O';
+        playerX = !playerX;
+      }
     }
 
     function check() {
@@ -55,29 +57,33 @@
       for (let k = 0; k < 3; k++) {
         let zeile = grid[0][k].zeichen + grid[1][k].zeichen + grid[2][k].zeichen;
         if (zeile === 'XXX' || zeile === 'OOO') {
-          grid[0][k].farbe = gruen;
-          grid[1][k].farbe = gruen;
-          grid[2][k].farbe = gruen;
+          grid[0][k].farbe = gewinn;
+          grid[1][k].farbe = gewinn;
+          grid[2][k].farbe = gewinn;
+          noLoop();
         }
         let spalte = grid[k][0].zeichen + grid[k][1].zeichen + grid[k][2].zeichen;
         if (spalte === 'XXX' || spalte === 'OOO') {
-          grid[k][0].farbe = gruen;
-          grid[k][1].farbe = gruen;
-          grid[k][2].farbe = gruen;
+          grid[k][0].farbe = gewinn;
+          grid[k][1].farbe = gewinn;
+          grid[k][2].farbe = gewinn;
+          noLoop();
         }
       }
       let diagonale1 = grid[0][0].zeichen + grid[1][1].zeichen + grid[2][2].zeichen;
       if (diagonale1 === 'XXX' || diagonale1 === 'OOO') {
-        grid[0][0].farbe = gruen;
-        grid[1][1].farbe = gruen;
-        grid[2][2].farbe = gruen;
+        grid[0][0].farbe = gewinn;
+        grid[1][1].farbe = gewinn;
+        grid[2][2].farbe = gewinn;
+        noLoop();
       }
 
       let diagonale2 = grid[0][2].zeichen + grid[1][1].zeichen + grid[2][0].zeichen;
       if (diagonale2 === 'XXX' || diagonale2 === 'OOO') {
-        grid[0][2].farbe = gruen;
-        grid[1][1].farbe = gruen;
-        grid[2][0].farbe = gruen;
+        grid[0][2].farbe = gewinn;
+        grid[1][1].farbe = gewinn;
+        grid[2][0].farbe = gewinn;
+        noLoop();
       }
     }
 
@@ -99,10 +105,12 @@
           noFill();
         }
 
+        stroke('#8E2800')    // Farbe für den Kachel-Rand
         rect(2 + this.i * this.groesse, 2 + this.j * this.groesse, this.groesse, this.groesse);
 
         if (this.zeichen !== null) {
-          fill('#8E2800');
+          fill('#468966');   // Farbe für das Zeichen
+          noStroke();
           textAlign(CENTER, CENTER);
           textSize(this.groesse * 0.7);
           text(this.zeichen, (this.i + 0.5) * this.groesse, (this.j + 0.6) * this.groesse);
@@ -111,6 +119,8 @@
     }
   </script>
 </head>
+
 <body>
 </body>
+
 </html>

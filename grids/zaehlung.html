@@ -1,0 +1,28 @@
+<html>
+<head>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let cols = 6;
+    let rows = 4;
+    function setup() {
+      createCanvas(350, 250);
+    }
+
+    function draw() {
+      background(220);
+      let zaehl = 0;
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          textAlign(CENTER,CENTER);
+          text(str(i)+'/'+str(j)+' - '+str(zaehl),i*50+50,j*50+50);
+          zaehl++;
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

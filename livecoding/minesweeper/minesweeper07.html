@@ -1,0 +1,294 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let rows = 9;
+    let cols = 9;
+    let grid = [];
+    let groesse = 65;
+    let bomb = String.fromCodePoint('0x1F4A3');
+    let flagge = String.fromCodePoint('0x1F6A9')
+    let anzBombs = 10;
+    let startTime;
+    let timePlayed;
+    let phase;
+
+    function setup() {
+      createCanvas(cols * groesse + 4, rows * groesse + 4 + 100);
+      init0();
+    }
+
+    function init0() {
+      createGrid();
+      createBombs(anzBombs);
+      startTime = second();
+      phase = "PLAY";
+      startTime = millis();
+
+    }
+
+    function draw() {
+      switch (phase) {
+        case "PLAY":
+          play()
+          break;
+        case "LOST":
+          lost();
+          break;
+        case "END":
+          end();
+          break;
+      }
+    }
+
+    function lost() {
+      showHeader();
+      textSize(16);
+      strokeWeight(1);
+      textAlign(LEFT, CENTER);
+      text("r - restart, s - showBoard", 340, 50, 200);
+      showGrid();
+
+    }
+
+    function play() {
+      showHeader();
+      showGrid();
+      checkEnd();
+    }
+
+    function checkEnd() {
+
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          let t = grid[i][j];
+          if (t.state === 0 && t.zeichen != bomb) {
+            return;
+          }
+        }
+
+      }
+      phase = 'END'
+    }
+
+    function showHeader() {
+
+      if (phase === 'PLAY') {
+        timePlayed = (millis() - startTime) / 1000;
+      }
+
+      fill('#FFF0A5')
+      stroke('#8E2800')
+      strokeWeight(10);
+      rect(0, 0, width, 100);
+
+      strokeWeight(1);
+      textAlign(LEFT, CENTER);
+      fill('#8E2800')
+      textSize(18);
+      text('Time:   ' + floor(timePlayed), 40, 50, 100);
+
+      textSize(28);
+      text(bomb + " : " + anzBombs, 150, 50, 120);
+    }
+
+    function showGrid() {
+      push();
+      translate(0, 100);
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          grid[i][j].display();
+        }
+      }
+      pop();
+    }
+
+    function createGrid() {
+      for (let i = 0; i < cols; i++) {
+        grid[i] = [];
+        for (let j = 0; j < rows; j++) {
+          grid[i][j] = new Tile(i, j, groesse);
+        }
+      }
+    }
+
+    function neigbors(i, j) {
+      tmp = []
+      let dirs = [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]]
+      for (let c of dirs) {
+        let x = i + c[0]
+        let y = j + c[1]
+        if (0 <= x && x < cols && 0 <= y && y < rows) {
+          tmp.push([x, y]);
+        }
+      }
+      return tmp;
+    }
+
+    function countBombs(i, j) {
+      let zaehl = 0;
+      let nb = neigbors(i, j);
+      for (let c of nb) {
+        if (grid[c[0]][c[1]].zeichen === bomb) {
+          zaehl += 1;
+        }
+      }
+      return zaehl;
+    }
+
+
+    function createBombs(n) {
+      a = []
+      wahl = []
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          a.push([i, j])
+        }
+      }
+
+      for (let j = 0; j < n; j++) {
+        let w = floor(random(a.length));
+        wahl.push(a[w])
+        a.splice(w, 1);
+      }
+
+      for (let c of wahl) {
+        grid[c[0]][c[1]].zeichen = bomb;
+      }
+    }
+
+    // berechnet aus mouseX den i-Index der Kachel
+    function I(x) {
+      return Math.floor((x - 2) / groesse);
+    }
+
+    // berechnet aus mouseY den j-Index der Kachel
+    function J(y) {
+      return Math.floor((y - 2) / groesse);
+    }
+
+    function mousePressed() {
+      if (phase === "PLAY") {
+        let i = I(mouseX);
+        let j = J(mouseY - 100);
+        let t = grid[i][j];
+        if (keyIsDown(70) && t.state === 0) {   // f
+          t.state = 2;           // markieren
+        }
+        if (keyIsDown(78) && t.state === 2) {   // n
+          t.state = 0;           // markierung entfernen
+        }
+
+        if (keyIsDown(67)) {     // cheating
+           t.inhalt();
+        }
+
+        else {
+          t.state = 1;
+          if (t.zeichen != bomb) {
+            let anzBombs = countBombs(i, j);
+            if (anzBombs === 0) {
+              showFree(i, j);
+            }
+            else {
+              grid[i][j].zeichen = anzBombs;
+            }
+          }
+          else {
+            phase = "LOST";
+          }
+        }
+      }
+    }
+
+    function keyPressed() {
+      if (phase === 'LOST') {
+        if (key === 's') {
+          for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+              let t = grid[i][j];
+              if (t.zeichen === bomb) {
+                grid[i][j].state = 1;
+              }
+            }
+          }
+        }
+
+        if (key === 'r') {
+          init0();
+
+        }
+      }
+    }
+
+    function showFree(i, j) {
+      for (let c of neigbors(i, j)) {
+        let x = c[0];
+        let y = c[1];
+        let t = grid[x][y];
+
+        if (t.state === 0) {
+          t.state = 1;
+          let anz = countBombs(x, y);
+          if (anz === 0) {
+            showFree(x, y);
+          }
+          else {
+            t.zeichen = anz;
+          }
+        }
+      }
+    }
+
+    class Tile {
+
+      constructor(i, j, groesse) {
+        this.i = i;
+        this.j = j;
+        this.groesse = groesse;
+        this.state = 0;  // 0 - zu, 1 - auf, 2 - markiert   
+        this.zeichen = '';
+      }
+
+      display() {
+        //  FFB03B,  468966,  FFF0A5 
+        strokeWeight(3);
+        switch (this.state) {
+          case 0:
+            fill('#FFB03B');
+            break;
+          case 1:
+            fill('#FFF0A5');
+            break;
+          case 2:
+            fill('#FFB03B');
+            break;
+        }
+        stroke('#8E2800')    // Farbe für den Kachel-Rand
+        rect(2 + this.i * this.groesse, 2 + this.j * this.groesse, this.groesse, this.groesse);
+        if (this.state === 1) {
+          this.inhalt();
+        }
+        if (this.state === 2) {
+          textAlign(CENTER, CENTER);
+          textSize(this.groesse * 0.6);
+          text(flagge, (this.i + 0.55) * this.groesse, (this.j + 0.6) * this.groesse);
+        }
+      }
+
+      inhalt() {
+        textAlign(CENTER, CENTER);
+        textSize(this.groesse * 0.6);
+        fill('#8E2800')
+        text(this.zeichen, (this.i + 0.55) * this.groesse, (this.j + 0.6) * this.groesse);
+      }
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

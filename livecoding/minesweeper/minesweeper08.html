@@ -1,0 +1,314 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    // Aus Minesweeper 07 aber mit anderer Tile-Klasse
+    let bomb = String.fromCodePoint('0x1F4A3');
+    let flagge = String.fromCodePoint('0x1F6A9')
+
+    let rows = 9;
+    let cols = 9;
+    let groesse = 65;
+    let anzBombs = 10;
+
+    let grid = [];
+    let startTime;
+    let timePlayed;
+    let state;
+
+    function setup() {
+      createCanvas(cols * groesse + 4, rows * groesse + 4 + 100);
+      init0();
+    }
+
+    function init0() {
+      createGrid();
+      state = "PLAY";
+      createBombs(anzBombs);
+      startTime = millis();
+    }
+
+    function draw() {
+      switch (state) {
+        case "PLAY":
+          play();
+          break;
+        case "LOST":
+          lost();
+          break;
+        case "END":
+          end();
+          break;
+      }
+    }
+
+    function lost() {
+      showHeader();
+      textSize(16);
+      strokeWeight(1);
+      textAlign(LEFT, CENTER);
+      text("r - restart, s - showBoard", 340, 50, 200);
+      showGrid();
+
+    }
+
+    function end() {
+      showHeader();
+      textSize(16);
+      strokeWeight(1);
+      textAlign(LEFT, CENTER);
+      text("Well done, r - restart", 340, 50, 200);
+      showGrid();
+    }
+
+    function play() {
+      showHeader();
+      showGrid();
+      checkEnd();
+
+      cheat();
+
+    }
+
+    function cheat() {
+      if (mouseIsPressed && keyIsDown(67)) {
+        let i = I(mouseX);
+        let j = J(mouseY - 100);
+        let t = grid[i][j];
+        if (t.inhalt.length > 0) {
+          push();
+          translate(0, 100);
+          t.zeige(t.inhalt)
+          pop();
+        }
+      }
+    }
+
+    function checkEnd() {
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          let t = grid[i][j];
+          if (t.verdeckt && t.inhalt != bomb) {
+            return;
+          }
+        }
+      }
+      state = 'END'
+    }
+
+    function showHeader() {
+
+      if (state === 'PLAY') {
+        timePlayed = (millis() - startTime) / 1000;
+      }
+
+      fill('#FFF0A5')
+      stroke('#8E2800')
+      strokeWeight(10);
+      rect(0, 0, width, 100);
+
+      strokeWeight(1);
+      textAlign(LEFT, CENTER);
+      fill('#8E2800')
+      textSize(18);
+      text('Time:   ' + floor(timePlayed), 40, 50, 100);
+
+      textSize(28);
+      text(bomb + " : " + anzBombs, 150, 50, 120);
+    }
+
+    function showGrid() {
+      push();
+      translate(0, 100);
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          t = grid[i][j];
+          if (t.inhalt === bomb) {
+            //grid[i][j].verdeckt = false;
+          }
+          grid[i][j].display();
+        }
+      }
+      pop();
+    }
+
+    function createGrid() {
+      for (let i = 0; i < cols; i++) {
+        grid[i] = [];
+        for (let j = 0; j < rows; j++) {
+          grid[i][j] = new Tile(i, j, groesse);
+        }
+      }
+    }
+
+    function neigbors(i, j) {
+      tmp = []
+      let dirs = [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]]
+      for (let c of dirs) {
+        let x = i + c[0]
+        let y = j + c[1]
+        if (0 <= x && x < cols && 0 <= y && y < rows) {
+          tmp.push([x, y]);
+        }
+      }
+      return tmp;
+    }
+
+    function countBombs(i, j) {
+      let zaehl = 0;
+      let nb = neigbors(i, j);
+      for (let c of nb) {
+        if (grid[c[0]][c[1]].inhalt === bomb) {
+          zaehl += 1;
+        }
+      }
+      return zaehl;
+    }
+
+
+    function createBombs(n) {
+      a = []
+      wahl = []
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          a.push([i, j])
+        }
+      }
+
+      for (let j = 0; j < n; j++) {
+        let w = floor(random(a.length));
+        wahl.push(a[w])
+        a.splice(w, 1);
+      }
+
+      for (let c of wahl) {
+        grid[c[0]][c[1]].inhalt = bomb;
+      }
+    }
+
+    // berechnet aus mouseX den i-Index der Kachel
+    function I(x) {
+      return Math.floor((x - 2) / groesse);
+    }
+
+    // berechnet aus mouseY den j-Index der Kachel
+    function J(y) {
+      return Math.floor((y - 2) / groesse);
+    }
+
+    function mousePressed() {
+      if (state === "PLAY") {
+
+        let i = I(mouseX);
+        let j = J(mouseY - 100);
+        let t = grid[i][j];
+        if (keyIsDown(70)) {   // f markieren
+          t.anzeige = flagge;
+        }
+        if (keyIsDown(78)) {   // n Markierung entfernen
+          t.anzeige = '';
+        }
+
+        if (keyIsDown(67)) {
+          cheat(i, j);
+        }
+
+        if (!keyIsPressed) {
+          t.verdeckt = false;
+          if (t.inhalt === bomb) {
+            state = "LOST";
+            return
+          }
+          let anzBombs = countBombs(i, j);
+          if (anzBombs === 0) {
+            showFree(i, j);
+          } else {
+            t.anzeige = anzBombs.toString();
+          }
+        }
+      }
+    }
+
+    function keyPressed() {
+      if (state != 'PLAY') {
+        if (key === 's') {
+          for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+              let t = grid[i][j];
+              if (t.zeichen === bomb) {
+                grid[i][j].state = 1;
+              }
+            }
+          }
+        }
+
+        if (key === 'r') {
+          init0();
+        }
+      }
+    }
+
+    function showFree(i, j) {
+      for (let c of neigbors(i, j)) {
+        let x = c[0];
+        let y = c[1];
+        let t = grid[x][y];
+
+        if (t.verdeckt) {
+          t.verdeckt = false;
+          let anz = countBombs(x, y);
+          if (anz === 0) {
+            showFree(x, y);
+          }
+          else {
+            t.anzeige = anz.toString();
+          }
+        }
+      }
+    }
+
+    class Tile {
+
+      constructor(i, j, groesse) {
+        this.i = i;
+        this.j = j;
+        this.groesse = groesse;
+        this.inhalt = '';
+        this.anzeige = '';
+        this.verdeckt = true;
+      }
+
+      display() {
+        strokeWeight(3);
+        stroke('#8E2800');    // Randfarbe
+
+        if (this.verdeckt) fill('#FFB03B'); else fill('#FFF0A5');    // Farbe auf- oder zu.
+
+        rect(2 + this.i * this.groesse, 2 + this.j * this.groesse, this.groesse, this.groesse);
+
+        // wenn Kachel nicht verdeckt, wird der Inhalt angezeigt
+        if (!this.verdeckt && this.inhalt.length > 0) this.zeige(this.inhalt);
+
+        // ist eine anzeige gesetzt, wird diese gezeigt.
+        else if (this.anzeige.length > 0) this.zeige(this.anzeige);
+
+
+      }
+
+      zeige(char) {
+
+        textAlign(CENTER, CENTER);
+        fill('#8E2800');  // wie Randfarbe
+        textSize(this.groesse * 0.6);
+        text(char, (this.i + 0.55) * this.groesse, (this.j + 0.6) * this.groesse);
+      }
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let grid;
+    let bomb = String.fromCodePoint('0x1F4A3');
+    let flagge = String.fromCodePoint('0x1F6A9');
+    let cols = 8;
+    let rows = 8;
+    let groesse = 40;
+
+    function setup() {
+      createCanvas(cols * groesse + 4, rows * groesse + 4);
+      grid = new Grid(cols,rows,groesse);
+      grid.auf(3,4);
+      grid.anzeige(4,4,flagge);
+      grid.anzeige(5,4,'3');
+      grid.inhalt(6,4,bomb);
+      grid.auf(6,4);
+    }
+
+    function draw() {
+      background(240);
+      grid.display();
+    }
+
+    class Grid {
+
+      constructor(cols, rows, groesse) {
+        this.cols = cols;
+        this.rows = rows;
+        this.groesse = groesse;
+        this.tiles = []
+        for (let i = 0; i < this.cols; i++) {
+          this.tiles[i] = [];
+          for (let j = 0; j < this.rows; j++) {
+            this.tiles[i][j] = new Tile(i, j, groesse);
+          }
+        }
+      }
+
+      display() {
+        for (let i = 0; i < this.cols; i++) {
+          for (let j = 0; j < this.rows; j++) {
+            this.tiles[i][j].display();
+          }
+        }
+      }
+
+      auf(i,j) {
+        this.tiles[i][j].verdeckt = false;
+      }
+
+      anzeige(i,j,char) {
+        this.tiles[i][j].anzeige = char;
+      }
+
+      inhalt(i,j,char) {
+        this.tiles[i][j].inhalt = char;
+      }
+
+      
+
+    }
+
+    class Tile {
+
+      constructor(i, j, groesse) {
+        this.i = i;
+        this.j = j;
+        this.groesse = groesse;
+        this.inhalt = '';
+        this.anzeige = '';
+        this.verdeckt = true;
+      }
+
+      display() {
+        strokeWeight(3);
+        stroke('#8E2800');    // Randfarbe
+
+        if (this.verdeckt) fill('#FFB03B'); else fill('#FFF0A5');    // Farbe auf- oder zu.
+
+        rect(2 + this.i * this.groesse, 2 + this.j * this.groesse, this.groesse, this.groesse);
+
+        // wenn Kachel nicht verdeckt, wird der Inhalt angezeigt
+        if (!this.verdeckt && this.inhalt.length > 0) this.zeige(this.inhalt);
+
+        // ist eine anzeige gesetzt, wird diese gezeigt.
+        else if (this.anzeige.length > 0) this.zeige(this.anzeige);
+      }
+
+      zeige(char) {
+        textAlign(CENTER, CENTER);
+        fill('#8E2800');  // wie Randfarbe
+        textSize(this.groesse * 0.6);
+        text(char, (this.i + 0.55) * this.groesse, (this.j + 0.6) * this.groesse);
+      }
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

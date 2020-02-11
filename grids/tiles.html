@@ -1,0 +1,98 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let rows = 3;
+    let cols = 3;
+    let grid = [];
+    let groesse = 100;
+
+    function setup() {
+      createCanvas(cols * groesse + 4, rows * groesse + 4);
+      createGrid();
+    }
+
+    function draw() {
+      showGrid();
+    }
+
+    function showGrid() {
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          grid[i][j].display();
+        }
+      }
+    }
+
+
+    function createGrid() {
+      for (let i = 0; i < cols; i++) {
+        grid[i] = [];
+        for (let j = 0; j < rows; j++) {
+          grid[i][j] = new Tile(i, j, groesse);
+        }
+      }
+    }
+
+    // berechnet aus mouseX den i-Index der Kachel
+    function I(x) {
+      return Math.floor((x - 2) / groesse);
+    }
+
+    // berechnet aus mouseY den j-Index der Kachel
+    function J(y) {
+      return Math.floor((y - 2) / groesse);
+    }
+
+    function mousePressed() {
+      let i = I(mouseX);
+      let j = J(mouseY);
+      if (key === '0') {
+        grid[i][j].state = 0
+      }
+      else if (key === '1') {
+        grid[i][j].state = 1
+      }
+      else if (key === '2') {
+        grid[i][j].state = 2
+      }
+    }
+
+    class Tile {
+
+      constructor(i, j, groesse) {
+        this.i = i;
+        this.j = j;
+        this.groesse = groesse;
+        this.state = 0;  // 0 - zu, 1 - auf, 2 - markiert   
+        this.inhalt = '';
+      }
+
+      display() {
+        //  FFB03B,  468966,  FFF0A5 
+        strokeWeight(2);
+        switch (this.state) {
+          case 0:
+            fill('#FFB03B');
+            break;
+          case 1:
+            fill('#FFF0A5');
+            break;
+          case 2:   
+            fill('#468966');
+        }
+
+        stroke('#8E2800')    // Farbe für den Kachel-Rand
+        rect(2 + this.i * this.groesse, 2 + this.j * this.groesse, this.groesse, this.groesse);
+
+      }
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
