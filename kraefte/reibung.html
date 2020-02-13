@@ -1,6 +1,7 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 
     let m;
@@ -15,8 +16,10 @@
 
       let wind = createVector(0.05, 0);
       let gravity = createVector(0, 0.3);
+
       let friction = m.v.copy();
       friction.setMag(-0.03);
+
       m.applyForce(friction);
       m.applyForce(gravity);
       m.applyForce(wind);
@@ -76,6 +79,8 @@
     }
   </script>
 </head>
+
 <body>
 </body>
+
 </html>

@@ -1,6 +1,6 @@
 <html>
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 
     let pos;
@@ -9,18 +9,19 @@
 
     function setup() {
       createCanvas(400, 400);
-      strokeWeight(10);
-      stroke(255);
+ 
       pos = createVector(200,50);  // Position
       v = createVector(0,0);
-      a = createVector(0,0.1);
+      a = createVector(0,0.08);
     }
 
     function draw() {
       background(0);
       v.add(a);
       pos.add(v);
-      point(pos.x,pos.y);
+
+      fill(240);
+      circle(pos.x,pos.y,20);
     }
 
   </script>

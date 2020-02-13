@@ -1,49 +1,34 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 
     let m;
-    let trechts = false;
-    let tlinks = false;
-    let tw = false;     // Taste w
 
     function setup() {
       createCanvas(400, 400);
       m = new Mover();
+
     }
 
     function draw() {
       background(0);
 
-      if (tw) {
-        let schub = m.richtung.copy();
-        schub.setMag(0.1);
+      if (keyIsDown(LEFT_ARROW)) m.winkel -= 0.1;
+      if (keyIsDown(RIGHT_ARROW)) m.winkel += 0.1;
+
+      if (keyIsDown(87)) {        // Taste w für Schub
+        let schub = p5.Vector.fromAngle(m.winkel, 0.2);
         m.applyForce(schub);
       }
 
-      if (m.v.mag() > 0.001) {
-        let friction = m.v.copy();
-        friction.setMag(-0.04);
-        m.applyForce(friction);
-      }
-      else {
-        m.v.mult(0);
-      }
+      let friction = m.v.copy();  // Reibung
+      friction.setMag(-0.05);
+      m.applyForce(friction);
+
       m.act();
 
-    }
-
-    function keyPressed() {
-      if (keyCode === LEFT_ARROW) tlinks = true;
-      if (keyCode === RIGHT_ARROW) trechts = true;
-      if (key.toLowerCase() === 'w') tw = true;
-    }
-
-    function keyReleased() {
-      if (keyCode === LEFT_ARROW) tlinks = false;
-      if (keyCode === RIGHT_ARROW) trechts = false;
-      if (key.toLowerCase() === 'w') tw = false;
     }
 
     class Mover {
@@ -52,7 +37,7 @@
         this.pos = createVector(30, 30);
         this.v = createVector(0, 0);
         this.a = createVector(0, 0);
-        this.richtung = createVector(1, 0);   // Die Ausrichtung des Movers
+        this.winkel = 0;   // Die Ausrichtung des Movers
       }
 
       applyForce(force) {
@@ -75,18 +60,21 @@
         fill(255);
         stroke(255);
         strokeWeight(2);
+
         push();
         translate(this.pos.x, this.pos.y)
-        rotate(this.richtung.heading() - PI / 2);
-        ellipse(0, 0, 10, 10);
-        line(0,0,0,10);
+        rotate(this.winkel);
+
+        fill(255);
+        circle(0, 0, 10);
+
+        stroke(255);
+        strokeWeight(2);
+        line(0, 0, 10, 0);
         pop();
       }
 
       check() {
-        if (tlinks) this.richtung.rotate(-0.1);
-        if (trechts) this.richtung.rotate(0.1);
-
         if (this.pos.x > width + 5) this.pos.x = -5;
         if (this.pos.y > height + 5) this.pos.y = -5;
         if (this.pos.x < -5) this.pos.x = width + 5;
@@ -95,6 +83,8 @@
     }
   </script>
 </head>
+
 <body>
 </body>
+
 </html>

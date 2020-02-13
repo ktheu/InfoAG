@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+
+        let points = []
+        let anzahl;
+        let speed = 3;
+        let pos;
+        let state;
+
+        function setup() {
+            createCanvas(400, 400);
+            init0();
+        }
+
+
+        function init0() {
+            state = 0;
+            anzahl = floor(random(5,20));
+            points = []
+            for (let i = 0; i < anzahl; i++) {
+                points.push(createVector(random(10, width - 10), random(10, height - 10)));
+            }
+            pos = points[0].copy();
+        }
+
+        function draw() {
+            background(240);
+            for (let i = 0; i < anzahl - 1; i++) {
+                if ((state === i) && pos.dist(points[i + 1]) < speed) {
+                    state = state + 1;
+                }
+            }
+
+            if ((state + 1) < anzahl) {
+                pos.add(entlang(points[state], points[state + 1], speed))
+            }
+
+            stroke(170);
+            strokeWeight(1);
+            fill(200);
+
+            for (let i = 0; i < anzahl - 1; i++) {
+                line(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
+                circle(points[i + 1].x, points[i + 1].y, 4)
+            }
+            circle(points[0].x, points[0].y,4);
+                    
+            fill(50);
+            circle(pos.x, pos.y, 10);
+        }
+
+        function entlang(von, bis, speed) {
+            let vb = p5.Vector.sub(bis, von);
+            vb.setMag(speed);
+            return vb;
+        }
+
+        function mousePressed() {
+            init0();
+        }
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

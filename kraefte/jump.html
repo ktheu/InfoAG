@@ -1,12 +1,11 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 
     let m;
-    let trechts = false;
-    let tlinks = false;
-    let tw = false;     // Taste w
+    let onGround = false;
 
     function setup() {
       createCanvas(400, 400);
@@ -16,39 +15,32 @@
     function draw() {
       background(0);
 
-      if (trechts) {
-        let rechts = createVector(0.1,0);
-        m.applyForce(rechts);
+      if (keyIsDown(RIGHT_ARROW) && onGround)
+        m.applyForce(createVector(0.2, 0));
 
-      }
-      if (tlinks) {
-        let links = createVector(-0.1,0);
-        m.applyForce(links);
+      if (keyIsDown(LEFT_ARROW) && onGround)
+        m.applyForce(createVector(-0.2, 0));
 
-      }
 
-      if (tw) {
-        let jump = createVector(0,-10);
-        m.applyForce(jump);
-        tw = false;
-      }
       let gravity = createVector(0, 0.4);
-
       m.applyForce(gravity);
+
+
+      if (onGround) {
+        let friction = m.v.copy();  // Reibung
+        friction.setMag(-0.1);
+        m.applyForce(friction);
+      }
+
       m.act();
 
     }
 
     function keyPressed() {
-      if (keyCode === LEFT_ARROW) tlinks = true;
-      if (keyCode === RIGHT_ARROW) trechts = true;
-      if (key.toLowerCase() === 'w') tw = true;
-    }
-
-    function keyReleased() {
-      if (keyCode === LEFT_ARROW)  tlinks = false;
-      if (keyCode === RIGHT_ARROW) trechts = false;
-      if (key.toLowerCase() === 'w') tw = false;
+      if (key === 'w' && onGround) {
+        let jump = createVector(0, -10);
+        m.applyForce(jump);
+      }
     }
 
     class Mover {
@@ -81,17 +73,20 @@
       }
 
       check() {
-        if (this.pos.y > height - 5) {
-          this.v.y *= 0;
-          this.v.x *= 0;
-          this.pos.y = height - 5;
+        if (this.pos.y >= height - 5) {
+          onGround = true;
+          this.v.y = 0;
+          this.pos.y = height - 5;  // falls versunken
+        }
+        else {
+          onGround = false;
         }
       }
-
-
     }
   </script>
 </head>
+
 <body>
 </body>
+
 </html>

@@ -1,0 +1,52 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+let a = []
+let v0;
+let part = 0;
+
+function setup() {
+  createCanvas(400, 400);
+  noFill();
+}
+
+function draw() {
+  background(220);
+  showLine();
+  showPoint();
+}
+
+function showPoint() {
+  if (v0) {
+    circle(v0.x, v0.y, 10);
+  }
+}
+
+function showLine() {
+  if (a.length > 1) {
+    beginShape();
+    for (let v of a) {
+      vertex(v.x, v.y);
+    }
+    endShape(CLOSE);
+  }
+
+}
+
+function mousePressed() {
+
+  if (key === 'p') {
+    a.push(createVector(mouseX, mouseY))
+    if (a.length === 1) {
+      v0 = a[0];
+
+    }
+  }
+}
+  </script>
+</head>
+<body>
+</body>
+</html>

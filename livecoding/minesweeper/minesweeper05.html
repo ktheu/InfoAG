@@ -1,30 +1,43 @@
 <html>
 
+
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 
-    let rows = 8;
-    let cols = 8;
-    let grid = [];
-    let groesse = 70;
+    // countBombs mit test und toggleFlag
     let bomb = String.fromCodePoint('0x1F4A3');
+    let flagge = String.fromCodePoint('0x1F6A9');
 
+    let rows = 9;
+    let cols = 9;
+    let groesse = 65;
+    let anzBombs = 10;
+
+    let grid = [];
 
     function setup() {
-      createCanvas(cols * groesse + 4, rows * groesse + 4 + 100);
+      createCanvas(cols * groesse + 4, rows * groesse + 4);
       createGrid();
-      createBombs(10);
+      createBombs(anzBombs);
     }
 
     function draw() {
       showGrid();
+      showBombs();
+      //testCountBombs();
     }
 
-    function showGrid() {
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          grid[i][j].display();
+    function mousePressed() {
+      if (0 <= mouseX && mouseX <= width && 0 <= mouseY && mouseY <= height) {
+
+        let i = kachel(mouseX);
+        let j = kachel(mouseY);
+        let t = grid[i][j];
+
+        if (keyIsDown(70)) {   // toggle flat
+          if (t.anzeige === flagge) t.anzeige = '';
+          else if (t.anzeige === '') t.anzeige = flagge;
         }
       }
     }
@@ -38,36 +51,11 @@
       }
     }
 
-    function neigbors(i, j) {
-      tmp = []
-      let dirs = [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]]
-      for (let c of dirs) {
-        let x = i + c[0]
-        let y = j + c[1]
-        if (0 <= x && x < cols && 0 <= y && y < rows) {
-          tmp.push([x, y]);
-        }
-      }
-      return tmp;
-    }
-
-    function countBombs(i, j) {
-      let zaehl = 0;
-      let nb = neigbors(i, j);
-      for (let c of nb) {
-        if (grid[c[0]][c[1]].zeichen === bomb) {
-          zaehl += 1;
-        }
-      }
-      return zaehl;
-    }
-
-
     function createBombs(n) {
-      a = []
-      wahl = []
-      for (let i = 0; i < 8; i++) {
-        for (let j = 0; j < 8; j++) {
+      a = [];        // alle Kachelkoordinaten [i,j]
+      wahl = []      // ausgewählte Kachelkoordinaten  
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
           a.push([i, j])
         }
       }
@@ -79,59 +67,75 @@
       }
 
       for (let c of wahl) {
-        grid[c[0]][c[1]].zeichen = bomb;
+        let i = c[0];
+        let j = c[1];
+        grid[i][j].inhalt = bomb;
       }
     }
 
-    // berechnet aus mouseX den i-Index der Kachel
-    function I(x) {
+    function neigbors(i, j) {
+      // returns: Liste mit Nachbarindizes zu [i,j]
+      tmp = []
+      let dirs = [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]]
+      for (let c of dirs) {
+        let ii = i + c[0]
+        let jj = j + c[1]
+        if (0 <= ii && ii < cols && 0 <= jj && jj < rows) {
+          tmp.push([ii, jj]);
+        }
+      }
+      return tmp;
+    }
+
+    function kachel(x) {
+      // returns: Kachelkoordinate aus Pixelkoordinate
       return Math.floor((x - 2) / groesse);
     }
 
-    // berechnet aus mouseY den j-Index der Kachel
-    function J(y) {
-      return Math.floor((y - 2) / groesse);
+    function countBombs(i, j) {
+      // returns: Anzahl Bomben in der Nachbarschaft von Tile(i,j)
+      let zaehl = 0;
+      let nb = neigbors(i, j);
+      for (let c of nb) {
+        let ii = c[0];
+        let jj = c[1];
+        if (grid[ii][jj].inhalt === bomb) {
+          zaehl += 1;
+        }
+      }
+      return zaehl;
     }
 
-    function mousePressed() {
-      let i = I(mouseX);
-      let j = J(mouseY);
-      let t = grid[i][j];
-      if (keyIsPressed) {
-        t.state = 2;           // markieren
+
+    function testCountBombs() {
+      let i = kachel(mouseX);
+      let j = kachel(mouseY);
+      if (mouseIsPressed) {
+        grid[i][j].zeige(countBombs(i, j))
       }
-      else {
-        t.state = 1;
-        if (t.zeichen != bomb) {
-          let anzBombs = countBombs(i, j);
-          if (anzBombs === 0) {
-            showFree(i, j);
-          }
-          else {
-            grid[i][j].zeichen = anzBombs;
+    }
+
+    function showGrid() {
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          t = grid[i][j];
+          grid[i][j].display();
+        }
+      }
+    }
+
+    function showBombs() {
+      // deckt alle Felder mit Bomben auf
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          let t = grid[i][j];
+          if (t.inhalt === bomb) {
+            grid[i][j].verdeckt = false;
           }
         }
       }
     }
 
-    function showFree(i, j) {
-      for (let c of neigbors(i, j)) {
-        let x = c[0];
-        let y = c[1];
-        let t = grid[x][y];
-
-        if (t.state === 0) {
-          t.state = 1;
-          let anz = countBombs(x, y);
-          if (anz === 0) {
-            showFree(x, y);
-          }
-          else {
-            t.zeichen = anz;
-          }
-        }
-      }
-    }
 
     class Tile {
 
@@ -139,35 +143,34 @@
         this.i = i;
         this.j = j;
         this.groesse = groesse;
-        this.state = 0;  // 0 - zu, 1 - auf, 2 - markiert   
-        this.zeichen = '';
+        this.inhalt = '';
+        this.anzeige = '';
+        this.verdeckt = true;
       }
 
       display() {
-        //  FFB03B,  468966,  FFF0A5 
         strokeWeight(3);
-        switch (this.state) {
-          case 0:
-            fill('#FFB03B');
-            break;
-          case 1:
-            fill('#FFF0A5');
-            break;
-          case 2:
-            fill('#468966');
-        }
-        stroke('#8E2800')    // Farbe für den Kachel-Rand
+        stroke('#8E2800');    // Randfarbe
+
+        if (this.verdeckt) fill('#FFB03B'); else fill('#FFF0A5');    // Farbe auf- oder zu.
+
         rect(2 + this.i * this.groesse, 2 + this.j * this.groesse, this.groesse, this.groesse);
-        if (this.state === 1) {
-          this.inhalt();
-        }
+
+        // wenn Kachel nicht verdeckt, wird der Inhalt angezeigt
+        if (!this.verdeckt && this.inhalt.length > 0) this.zeige(this.inhalt);
+
+        // ist eine anzeige gesetzt, wird diese gezeigt.
+        else if (this.anzeige.length > 0) this.zeige(this.anzeige);
+
+
       }
 
-      inhalt() {
+      zeige(char) {
+
         textAlign(CENTER, CENTER);
+        fill('#8E2800');  // wie Randfarbe
         textSize(this.groesse * 0.6);
-        fill('#8E2800')
-        text(this.zeichen, (this.i + 0.55) * this.groesse, (this.j + 0.6) * this.groesse);
+        text(char, (this.i + 0.55) * this.groesse, (this.j + 0.6) * this.groesse);
       }
     }
   </script>

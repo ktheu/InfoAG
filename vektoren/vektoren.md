@@ -137,6 +137,7 @@ function draw() {
 
 ---
 
+
 ### Übungen
 
 #### Umdrehen
@@ -182,3 +183,10 @@ Bei jedem Mausklick entsteht ein neuer Ball, der nach oben rechts fliegt. Es kö
 Bei jedem Klick entsteht ein Ball, der zunächst nach oben rechts fliegt. Überschreitet seine Entfernung zum Mittelpunkt eine gewissen Wert, wird seine Flugbahn abgelenkt.
 
 <iframe src="ablenkung.html" width="420" height="420"></iframe>
+
+
+#### Entlang
+
+Bei Mausklick entstehen zufällige Punkte, die miteinander verbunden werden. Ein Punkt fährt die Linien entlang
+
+<iframe src="entlangViele.html" width="420" height="420"></iframe>

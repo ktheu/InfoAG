@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+
+        let v1, v2, v3;
+        let pos;
+        let state = 0;
+
+        function setup() {
+            createCanvas(400, 400);
+
+            v1 = createVector(50, 50);
+            v2 = createVector(200, 200);
+            v3 = createVector(80, 300);
+            pos = v1.copy();
+     
+        }
+
+        function draw() {
+            background(240);
+            if (state === 0 && pos.dist(v2) < 1) state = 1;
+            if (state === 1 && pos.dist(v3) < 1) state = 2;
+
+            switch (state) {
+                case 0:
+                    pos.add(entlang(v1, v2, 2))
+                    break;
+                case 1:
+                    pos.add(entlang(v2, v3, 2))
+                    break;
+
+                case 2:
+                    break;
+            }
+
+            fill(0);
+            strokeWeight(0.3);
+            line(v1.x,v1.y, v2.x,v2.y);
+            line(v2.x,v2.y, v3.x, v3.y);
+            circle(v1.x, v1.y, 4);
+            circle(v2.x, v2.y, 4);
+            circle(v3.x, v3.y, 4);
+            circle(pos.x, pos.y, 8);
+
+
+        }
+
+        function entlang(von, bis, speed) {
+            let vb = p5.Vector.sub(bis, von);
+            vb.setMag(speed);
+            return vb;
+        }
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

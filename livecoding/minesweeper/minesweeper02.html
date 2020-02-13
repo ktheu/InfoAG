@@ -1,31 +1,28 @@
 <html>
+  
 
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 
-    let rows = 10;
-    let cols = 10;
+    // createGrid und showGrid
+
+    let bomb = String.fromCodePoint('0x1F4A3');
+    let flagge = String.fromCodePoint('0x1F6A9');
+
+    let rows = 9;
+    let cols = 9;
+    let groesse = 65;
+
     let grid = [];
-    let groesse = 50;
-    let bomb = String.fromCodePoint('0x1F4A3')
 
     function setup() {
       createCanvas(cols * groesse + 4, rows * groesse + 4);
-      createGrid();
-      grid[1][1].zeichen = bomb;
     }
 
     function draw() {
+      createGrid();
       showGrid();
-    }
-
-    function showGrid() {
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          grid[i][j].display();
-        }
-      }
     }
 
     function createGrid() {
@@ -37,29 +34,15 @@
       }
     }
 
-    // berechnet aus mouseX den i-Index der Kachel
-    function I(x) {
-      return Math.floor((x - 2) / groesse);
+    function showGrid() {
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          t = grid[i][j];
+          grid[i][j].display();
+        }
+      }
     }
 
-    // berechnet aus mouseY den j-Index der Kachel
-    function J(y) {
-      return Math.floor((y - 2) / groesse);
-    }
-
-    function mousePressed() {
-      let i = I(mouseX);
-      let j = J(mouseY);
-      if (key === '0') {
-        grid[i][j].state = 0
-      }
-      else if (key === '1') {
-        grid[i][j].state = 1
-      }
-      else if (key === '2') {
-        grid[i][j].state = 2
-      }
-    }
 
     class Tile {
 
@@ -67,34 +50,34 @@
         this.i = i;
         this.j = j;
         this.groesse = groesse;
-        this.state = 0;  // 0 - zu, 1 - auf, 2 - markiert   
-        this.zeichen = '';
+        this.inhalt = '';
+        this.anzeige = '';
+        this.verdeckt = true;
       }
 
       display() {
-        //  FFB03B,  468966,  FFF0A5 
         strokeWeight(3);
-        switch (this.state) {
-          case 0:
-            fill('#FFB03B');
-            break;
-          case 1:
-            fill('#FFF0A5');
-            break;
-          case 2:
-            fill('#468966');
-        }
-        stroke('#8E2800')    // Farbe für den Kachel-Rand
+        stroke('#8E2800');    // Randfarbe
+
+        if (this.verdeckt) fill('#FFB03B'); else fill('#FFF0A5');    // Farbe auf- oder zu.
+
         rect(2 + this.i * this.groesse, 2 + this.j * this.groesse, this.groesse, this.groesse);
-        if (this.state === 1) {
-          this.inhalt();
-        }
+
+        // wenn Kachel nicht verdeckt, wird der Inhalt angezeigt
+        if (!this.verdeckt && this.inhalt.length > 0) this.zeige(this.inhalt);
+
+        // ist eine anzeige gesetzt, wird diese gezeigt.
+        else if (this.anzeige.length > 0) this.zeige(this.anzeige);
+
+
       }
 
-      inhalt() {
+      zeige(char) {
+
         textAlign(CENTER, CENTER);
+        fill('#8E2800');  // wie Randfarbe
         textSize(this.groesse * 0.6);
-        text(this.zeichen, (this.i + 0.55) * this.groesse, (this.j + 0.6) * this.groesse);
+        text(char, (this.i + 0.55) * this.groesse, (this.j + 0.6) * this.groesse);
       }
     }
   </script>
