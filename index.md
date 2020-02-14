@@ -66,8 +66,6 @@ Himmel, Kachelbilder, Fliegen, Cliff, Wüste, Explosion, Parallax, Weltall, Spac
 __[Sound](sound.html)__ -
 Saba, DreiSounds
 
-
-
 __[Perlin Noise](noise.html)__ -
 Hügel
 
