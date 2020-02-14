@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+        let von = 50;
+        let bis = 350;
+
+        function setup() {
+            createCanvas(400, 100);
+        }
+
+        function draw() {
+            background(220);
+            x1 = lerp(von, bis, 0.25);
+            x2 = lerp(von, bis, 0.5);
+            x3 = lerp(von, bis, 0.9);
+
+            fill(180);
+            circle(von, 50, 12);
+            circle(bis, 50, 12);
+
+            fill(60);
+            circle(x1, 50, 10);
+            circle(x2, 50, 10);
+            circle(x3, 50, 10);
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

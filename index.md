@@ -51,8 +51,11 @@ Highscore eines Spiels auf einem Server verwalten.
 __[Klassen](./klassen/klassen.md)__ -
 Ballwelt, Counter, Hinher, Flappybalken 
 
-__[Vektoren](./vektoren/vektoren.md)__ - gleichmäßige und beschleunigte Bewegung, Steuerung, HalberWeg,
-NachobenRechts, Ablenkung
+__[Vektoren](./vektoren/vektoren.md)__ -
+gleichmäßige und beschleunigte Bewegung, Steuerung, HalberWeg, NachobenRechts, Ablenkung
+
+__[Map und Lerp](./lerp/lerp.md)__ -
+ wandernde Kreise, von Punkt zu Punkt, Easing
 
 __[Transformationen](./transformationen/transformationen.md)__ -
 Haufen, Rotierendes Rechteck, Planeten, Lenken mit Rotate

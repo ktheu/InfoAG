@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+        let vonX = 50;
+        let vonY = 50;
+        let bisX = 350;
+        let bisY = 250;
+        let t = 0;
+
+        function setup() {
+            createCanvas(400, 300);
+        }
+
+        function draw() {
+            background(220);
+            if (t > 1) t = 0;
+
+            x1 = lerp(vonX, bisX, t);
+            y1 = lerp(vonY, bisY, t);
+            t += 0.01;
+
+
+            fill(180);
+            circle(vonX, vonY, 12);
+            circle(bisX, bisY, 12);
+
+            fill(60);
+            circle(x1, y1, 10);
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
