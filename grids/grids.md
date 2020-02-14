@@ -149,9 +149,7 @@ der Kachel berechnen.
     }
 
     function draw() {
-
       check();
-
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
           grid[i][j].display();
@@ -159,20 +157,16 @@ der Kachel berechnen.
       }
     }
 
-    // berechnet aus mouseX den i-Index der Kachel
-    function I(x) {
+
+    function kachel(x) {
+      // rechnet pixel-koordinate in grid-koordinate um
       return Math.floor((x - 2) / groesse);
     }
 
-    // berechnet aus mouseY den j-Index der Kachel
-    function J(y) {
-      return Math.floor((y - 2) / groesse);
-    }
-
     function mousePressed() {
-      let i = I(mouseX);
-      let j = J(mouseY);
-      if (!grid[i][j].zeichen) {    // wenn Feld frei
+      let i = kachel(mouseX);
+      let j = kachel(mouseY);
+      if (!grid[i][j].zeichen) {
         grid[i][j].zeichen = playerX ? 'X' : 'O';
         playerX = !playerX;
       }
@@ -219,7 +213,7 @@ der Kachel berechnen.
         this.i = i;
         this.j = j;
         this.groesse = groesse;
-        this.farbe = null;        
+        this.farbe = null;
         this.zeichen = null;
       }
 

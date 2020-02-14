@@ -66,6 +66,9 @@ Fallen, Wind und Gravitation, Reibung, Navigation, Würmchen, Jump and Run
 __[Collide2D](./collide2d/collide2d.md)__ -
 Kollisionen Punkt-Rechteck, Kreis-Rechteck, Linie-Kreis
 
+__[Grids](./grids/grids.md)__ -
+Raster, Schachbrett, Kacheln, TicTacToe
+
 __[Bilder](bilder.html)__ -
 Himmel, Kachelbilder, Fliegen, Cliff, Wüste, Explosion, Parallax, Weltall, Spaceship, Zug
 
