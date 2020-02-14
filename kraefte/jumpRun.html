@@ -1,0 +1,133 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let m;
+    let balken0;     // ground
+    let balken1;
+    let gravity;
+    let jump;
+
+    let onGround = false;
+
+    function setup() {
+      createCanvas(400, 400);
+      m = new Mover();
+      balken0 = new Balken(-50, height - 10, width + 100, 10, 0);
+      balken1 = new Balken(180, 320, 80, 10, -1);
+      gravity = createVector(0, 0.4);
+      jump = createVector(0, -8);
+    }
+
+    function draw() {
+      background(240);
+
+      // check
+      if (keyIsDown(RIGHT_ARROW) && onGround)
+        m.applyForce(createVector(0.3, 0));
+
+      if (keyIsDown(LEFT_ARROW) && onGround)
+        m.applyForce(createVector(-0.3, 0));
+
+      if (!onGround)
+        m.applyForce(gravity);
+
+      if (onGround) {
+        let friction = m.v.copy();  // Reibung
+        friction.setMag(-0.2);
+        m.applyForce(friction);
+      }
+
+      // move
+      m.move();
+      balken1.move();
+      onGround = m.collide(balken0) || m.collide(balken1);   // darin ist ein move enthalten
+
+      // display
+      m.display();
+      balken0.display();
+      balken1.display();
+    }
+
+    function keyPressed() {
+      if (key === 'w' && (onGround)) {
+         m.applyForce(jump);
+      }
+    }
+
+    class Mover {
+
+      constructor() {
+        this.w = 8;  // width
+        this.h = 20;  // height
+        this.pos = createVector(80, height - 100);
+        this.v = createVector(0, 0);
+        this.a = createVector(0, 0);
+      }
+
+      applyForce(force) {
+        this.a.add(force);
+      }
+
+      move() {
+        this.v.add(this.a);
+        this.pos.add(this.v);
+        this.a.mult(0);
+      }
+
+      display() {
+        fill(255);
+        fill(20);
+        rect(this.pos.x, this.pos.y, this.w, this.h);
+      }
+
+      collide(b) {
+        let linksVonBalken = this.pos.x + this.w < b.x;
+        let rechtsVonBalken = this.pos.x > b.x + b.w;
+        let ueberBalken = this.pos.y + this.h < b.y;
+        let unterBalken = this.pos.y > b.y + b.h;
+        let collision = !(linksVonBalken || rechtsVonBalken || ueberBalken || unterBalken);
+        if (collision) {
+          if (this.v.y < 0) {
+            this.v.y = -this.v.y       // Kollision von unten zählt nicht
+            return false;
+          }
+          this.pos.y = b.y - this.h;   // Korrektur der y-Koordinate
+          this.pos.x += b.vx;          // Mover wird von Balken mitgenommen.
+          this.v.y = 0;
+        }
+        return collision;
+      }
+    }
+
+    class Balken {
+      constructor(x, y, w, h, vx) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.vx = vx;
+      }
+
+      move() {
+        this.x = this.x + this.vx;
+        if (this.x < 30 || this.x + this.w > width - 30) this.vx = -this.vx;
+      }
+
+      display() {
+        noStroke();
+        fill(150);
+        rect(this.x, this.y, this.w, this.h);
+      }
+    }
+
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
