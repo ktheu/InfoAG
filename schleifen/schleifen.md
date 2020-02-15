@@ -3,7 +3,7 @@
 #### Die while Schleife
 Solange die while-Bedingung wahr ist, wird der Schleifenrumpf durchlaufen.
 
-```javascript
+``` 
 function setup() {
   noCanvas();
 
@@ -20,7 +20,7 @@ function setup() {
 Solange x noch nicht die Breite der Leinwand erreicht hat, wird im Abstand von 20 ein neuer Punkt gezeichnet.
 Mit dieser Bedingung muss man nicht selbst ausrechnen, wieviele Punkte entstehen.
 
-```javascript
+``` 
 let y = 10;
 
 function setup() {
@@ -48,7 +48,7 @@ function draw() {
 #### Die for Schleife
 Diese for-Schleife macht dasselbe wie die while-Schleife oben.
 
-```javascript
+``` 
 function setup() {
   noCanvas();
 
@@ -65,7 +65,7 @@ Wenn die Anzahl der Schleifendurchgänge feststeht, nimmt man meist die `for-Sch
 ---
 
 
-```javascript
+``` 
 let x = 0;
 
 function setup() {
@@ -98,7 +98,7 @@ x = int(random(5,20));  // x ganze Zahl zwischen 5 und 19
 Wird ein `randomSeed` gesetzt, so ist die Reihenfolge der Zufallszahlen immer gleich.
 Bei Koordinaten oder Farbwerten werden Dezimalzahlen automatisch gerundet.
 
-```javascript
+``` 
 let anzahl = 100;
 
 function setup() {
@@ -121,7 +121,7 @@ function draw() {
 ---
 Bei jedem Mausklick entstehen 100 bunte Kreise. Ohne `randomSeed` würden beim jedem draw-Durchgang 100 neue Kreise entstehen.
 
-```javascript
+``` 
 let anzahl = 100;
 let seed = 12;
 
@@ -149,7 +149,7 @@ function mousePressed() {
 ---
 Es entstehen nacheinander bläuliche Quadrate. Ab und zu wird alles gelöscht.
 
-```javascript
+``` 
 let anzahl = 100;
 let abstand = 40;
 

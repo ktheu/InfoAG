@@ -3,7 +3,7 @@
 Mit einem Array können wir mehrere Werte in einer Variablen speichern. Auf die einzelnen Werte greifen wir mit
 einem Index zu.
 
-```javascript
+``` 
 function setup() {
   noCanvas();
   a = [5, 4, 17, 22];
@@ -36,7 +36,7 @@ Für jeden Ball benötigen wir drei Variablen, zwei für die Position und eine f
 
 <iframe src="zweiBaelleOhneArray.html" width="420" height="420"></iframe>
 
-```javascript
+``` 
 let x0 = 100;
 let x1 = 300;
 let y0 = 40;
@@ -79,7 +79,7 @@ Mit drei Arrays können wir die Daten von vielen Bällen verwalten.
 
 
 
-```javascript
+``` 
 let x = [100, 300, 200, 350]
 let y = [40, 140, 20, 300];
 let vy = [3, 6, 1, -7];
@@ -106,7 +106,7 @@ Auch 100 Bälle sind jetzt kein Problem mehr. Für jede weitere Eigenschaft spen
 
 <iframe src="hundertBaelle.html" width="420" height="420"></iframe>
 
-```javascript
+``` 
 let x = []
 let y = []
 let vy = [];
