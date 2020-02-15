@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+        
+        let rot = false;
+
+        function setup() {
+            createCanvas(200, 200);
+        }
+
+        function draw() {
+            background(240);
+            if (rot) {
+                strokeWeight(10);
+                stroke(255,0,0);
+            }
+            else {
+                strokeWeight(5);
+                stroke(80);
+            }
+            line(50,100,150,100);
+        }
+
+        function mousePressed() {
+            rot = true;
+            setTimeout(() => {rot = false;}, 3000)
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

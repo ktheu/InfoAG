@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+        let farbe = 80;
+
+        function setup() {
+            createCanvas(200, 200);
+            setTimeout(setRot,1000)
+        }
+
+        function draw() {
+            background(240);
+            fill(farbe);
+            noStroke();
+            circle(100,100,50);
+        }
+
+        function setRot() {
+            farbe = color(255,0,0);
+        }
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

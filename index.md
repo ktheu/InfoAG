@@ -57,6 +57,9 @@ gleichmäßige und beschleunigte Bewegung, Steuerung, HalberWeg, NachobenRechts,
 __[Map und Lerp](./lerp/lerp.md)__ -
  wandernde Kreise, von Punkt zu Punkt, Easing
 
+__[Timer](./timer/timer.md)__ -
+setTimeout, setInterval
+
 __[Transformationen](./transformationen/transformationen.md)__ -
 Haufen, Rotierendes Rechteck, Planeten, Lenken mit Rotate
 
