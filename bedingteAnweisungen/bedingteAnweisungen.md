@@ -3,7 +3,7 @@
 #### if 
 Bedingte Anweisungen ermöglichen Verzweigungen im Programmablauf.
 
-```javascript
+``` 
     let x = 0;
 
     function setup() {
@@ -27,7 +27,7 @@ Bedingte Anweisungen ermöglichen Verzweigungen im Programmablauf.
 Wenn wir Zahlen vergleichen, erhalten wir boolesche Ausdrücke, die
 sich zu *true* oder *false* auswerten. Mit den boolschen Operatoren && (und) || (oder) und ! (nicht) können wir boolesche Ausdrücke zusammensetzen.
 
-```javascript
+``` 
 function setup() {
   noCanvas()
   print(4 >= 5);
@@ -42,7 +42,7 @@ function setup() {
 ```
 
 ##### if - else
-```javascript
+``` 
   let x = 0;
 
   function setup() {
@@ -69,7 +69,7 @@ function setup() {
 
 
 ##### if - else if - else
-```javascript
+```
 let x = 0;
 
 function setup() {
@@ -101,7 +101,7 @@ function draw() {
 Die Systemvariable `frameCount` zählt die Anzahl der draw-Durchläufe. Zusammen mit dem modulo-Operator können
 wir damit periodisch wiederkehrende Ereignisse implementieren.
 
-```javascript
+``` 
     let x = 0
 
     function setup() {
@@ -139,7 +139,7 @@ wir damit periodisch wiederkehrende Ereignisse implementieren.
 
 Wenn möglich, halten wir uns bei Sketchen mit bewegten Figuren an die Reihenfolge *check - move - display*.
 
-```javascript
+``` 
     let x = 20;
     let y = 50;
     let vx = 1;
