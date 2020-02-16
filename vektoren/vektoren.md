@@ -94,12 +94,119 @@ function draw() {
 
 <iframe src="beschleunigt.html" width="420" height="420"></iframe>
 
+#### Bewegung zwischen zwei Punkten
+
+Mit der *lerp*-Funktion der Klasse *p5.Vector* können wir uns auf einfache Weise von Punkt zu Punkt bewegen.
+
+```
+let von;
+let bis;
+let t = 0;
+
+function setup() {
+    createCanvas(400, 300);
+    von = createVector(50, 50);
+    bis = createVector(350, 250);
+}
+
+function draw() {
+    background(220);
+    if (t > 1) t = 0;
+
+    let v = p5.Vector.lerp(von, bis, t);
+    t += 0.01;
+
+    fill(180);
+    circle(von.x, von.x, 12);
+    circle(bis.x, bis.y, 12);
+
+    fill(60);
+    circle(v.x, v.y, 10);
+}
+```
+<iframe src="entlang.html" width="420" height="320"></iframe>
+
 -----
+
+
+#### Bewegung zwischen vielen Punkten
+
+Um uns mit konstanter Geschwindigkeit von Punkt zu Punkt zu bewegen, addieren wir zu dem Positionsvektor einen Geschwindigkeitsvektor mit konstanter Länge. Die Richtung des Geschwindigkeitsvektors orientiert sich an dem *state* der Bewegung. Immer wenn wir einem Zielpunkt nahe genug sind, wechseln wir den *state*.
+
+
+Einen Vektor der Länge k, der von v1 nach v2 zeigt, erhalten wir durch folgenden Code:
+
+```
+let v = p5.Vector.sub(v2,v1).setMag(k);
+
+```
+
+```
+let points = []
+let anzahl;
+let speed = 5;
+let pos;
+let state;
+
+function setup() {
+    createCanvas(400, 400);
+    init0();
+}
+
+function init0() {
+    state = 0;
+    anzahl = floor(random(5, 20));
+    points = []
+    for (let i = 0; i < anzahl; i++) {
+        points.push(createVector(random(10, width - 10), random(10, height - 10)));
+    }
+    pos = points[0].copy();
+}
+
+function draw() {
+    background(240);
+    for (let i = 0; i < anzahl - 1; i++) {
+        if ((state === i) && pos.dist(points[i + 1]) <= speed) {
+            state = state + 1;
+        }
+    }
+
+    if ((state + 1) < anzahl) {
+        let v = p5.Vector.sub(points[state+1],pos).setMag(speed)
+        pos.add(v);
+    }
+
+    stroke(170);
+    strokeWeight(1);
+    fill(200);
+
+    for (let i = 0; i < anzahl - 1; i++) {
+        line(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
+        circle(points[i + 1].x, points[i + 1].y, 4)
+    }
+    circle(points[0].x, points[0].y, 4);
+
+    fill(50);
+    circle(pos.x, pos.y, 10);
+}
+
+function mousePressed() {
+    init0();
+}
+
+
+```
+<iframe src="entlangViele.html" width="420" height="420"></iframe>
+
+
+
+------
+
 
 #### Steuerung 1
 
 Der Winkel des Geschwindigkeitvektors wird durch die Pfeiltasten geändert, der Betrag der Geschwindigkeit
- durch die Tasten *w* und *s*. Mit let `v = p5.Vector.fromAngle(winkel, geschwindigkeit)` erzeugen wir aus
+ durch die Tasten *w* und *s*. Mit `let v = p5.Vector.fromAngle(winkel, geschwindigkeit)` erzeugen wir aus
  den beiden Werten den Geschwindigkeitsvektor.
 
 ```
@@ -185,8 +292,3 @@ Bei jedem Klick entsteht ein Ball, der zunächst nach oben rechts fliegt. Übers
 <iframe src="ablenkung.html" width="420" height="420"></iframe>
 
 
-#### Entlang
-
-Bei Mausklick entstehen zufällige Punkte, die miteinander verbunden werden. Ein Punkt fährt die Linien entlang
-
-<iframe src="entlangViele.html" width="420" height="420"></iframe>

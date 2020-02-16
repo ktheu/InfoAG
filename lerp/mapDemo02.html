@@ -1,0 +1,27 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    function setup() {
+      createCanvas(200, 200);
+      noStroke();
+      colorMode(HSB, 360, 100, 100);
+    }
+
+    function draw() {
+      background('#EEEEEE');
+
+      let farbe = map(mouseX, 0, width, 180, 200);
+      let durchmesser = map(mouseY, 0, height, 100, 50);
+
+      fill(farbe,100,100);
+      circle(100, 100, durchmesser);
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

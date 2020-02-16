@@ -34,8 +34,7 @@
             }
 
             if ((state + 1) < anzahl) {
-                let v = p5.Vector.sub(points[state+1],pos).setMag(speed)
-                pos.add(v);
+                pos.add(entlang(pos, points[state + 1], speed))
             }
 
             stroke(170);
@@ -50,6 +49,12 @@
 
             fill(50);
             circle(pos.x, pos.y, 10);
+        }
+
+        function entlang(von, bis, speed) {
+            let vb = p5.Vector.sub(bis, von);
+            vb.setMag(speed);
+            return vb;
         }
 
         function mousePressed() {

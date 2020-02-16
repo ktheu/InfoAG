@@ -27,6 +27,9 @@ if, if-else, if-else if-else, frameCount, boolesche Variablen
 __[Schleifen und Zufall](./schleifen/schleifen.md)__ -
 while-Schleife, for-Schleife, random, randomSeed
 
+__[Map und Lerp](./lerp/lerp.md)__ -
+Map-Demos, von Punkt zu Punkt, Easing
+
 __[Arrays](./arrays/arrays.md)__ -
 Fallende Quadrate, Hinher, Linienschlange 
 
@@ -52,10 +55,9 @@ __[Klassen](./klassen/klassen.md)__ -
 Ballwelt, Counter, Hinher, Flappybalken 
 
 __[Vektoren](./vektoren/vektoren.md)__ -
-gleichmäßige und beschleunigte Bewegung, Steuerung, HalberWeg, NachobenRechts, Ablenkung
+gleichmäßige und beschleunigte Bewegung, von Punkt zu Punkt, Steuerung, HalberWeg, NachobenRechts, Ablenkung
 
-__[Map und Lerp](./lerp/lerp.md)__ -
- wandernde Kreise, von Punkt zu Punkt, Easing
+
 
 __[Timer](./timer/timer.md)__ -
 setTimeout, setInterval

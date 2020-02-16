@@ -31,58 +31,31 @@ die y-Position der Maus wird auf einen Bereich für einen Grauwert gemappt.
 
 ----
 
-#### Wandernde Kreise
+#### Map Demo 02
 
-Der Farbton wird über *mouseX*, der Radius der Kreise über *mouseY* gesteuert.
-
-```
-let hue = int(map(mouseX, 0, width, 0, 360));
-let durchmesser = int(map(mouseY, 0, height, 5, 250));
-```
+Die x-Position der Maus wird auf einen Farbbereich gemappt, die y-Position bestimmt den Durchmesser.
 
 ```
-let pos;
-let v;
-
 function setup() {
-    createCanvas(800, 600);
-    pos = createVector(50, 50);
-    v = createVector(10, 15);
-
-    noFill();
-    strokeWeight(2);
-    background(0);
+    createCanvas(200, 200);
+    noStroke();
     colorMode(HSB, 360, 100, 100);
 }
 
 function draw() {
+    background('#EEEEEE');
 
-    if (frameCount % 300 == 0) {
-    background(0);
-    pos = createVector(400 + random(-300, 300), 300 + random(-200, 200));
-    v = createVector(random(5, 20), random(5, 20));
-    }
+    let farbe = map(mouseX, 0, width, 180, 200);
+    let durchmesser = map(mouseY, 0, height, 100, 50);
 
-    let hue = int(map(mouseX, 0, width, 0, 360));
-    let sat = int(random(0, 100));
-    let bright = int(random(50, 100));
-
-    stroke(hue, sat, bright);
-
-    pos.add(v);
-
-    if (pos.y > height || pos.y < 0)
-    v.y = -v.y
-    if (pos.x > width || pos.x < 0)
-    v.x = -v.x
-
-    let durchmesser = int(map(mouseY, 0, height, 5, 250));
-    circle(pos.x, pos.y, durchmesser);
+    fill(farbe,100,100);
+    circle(100, 100, durchmesser);
 }
 
 ```
 
-<iframe src="wanderndeKreise.html" width="820" height="620"></iframe>
+<iframe src="mapDemo02.html" width="220" height="220"></iframe>
+
 
 ----- 
 
@@ -158,74 +131,6 @@ function draw() {
 
 ----
 
-Sind x und y-Koordinate von Anfangspunkt und Endpunkt verschieden, nutzen wir zwei lerp-Funktionen
-
-```
-let vonX = 50;
-let vonY = 50;
-let bisX = 350;
-let bisY = 250;
-let t = 0;
-
-function setup() {
-    createCanvas(400, 300);
-}
-
-function draw() {
-    background(220);
-    if (t > 1) t = 0;
-
-    x1 = lerp(vonX, bisX, t);
-    y1 = lerp(vonY, bisY, t);
-    t += 0.01;
-
-
-    fill(180);
-    circle(vonX, vonY, 12);
-    circle(bisX, bisY, 12);
-
-    fill(60);
-    circle(x1, y1, 10);
-}
-```
-
-<iframe src="zwischenPunkten02.html" width="420" height="320"></iframe>
-
-----
-
-Der Sketch oben wird einfacher, wenn wir die *lerp*-Funktion der *P5.Vector*-Klasse nutzen.
-
-```
-let von;
-let bis;
-let t = 0;
-
-function setup() {
-    createCanvas(400, 300);
-    von = createVector(50, 50);
-    bis = createVector(350, 250);
-}
-
-function draw() {
-    background(220);
-    if (t > 1) t = 0;
-
-    let v = p5.Vector.lerp(von, bis, t);
-    t += 0.01;
-
-    fill(180);
-    circle(von.x, von.x, 12);
-    circle(bis.x, bis.y, 12);
-
-    fill(60);
-    circle(v.x, v.y, 10);
-}
-
-```
-
-<iframe src="zwischenVektoren.html" width="420" height="320"></iframe>
-
------
 
 #### Easing
 
