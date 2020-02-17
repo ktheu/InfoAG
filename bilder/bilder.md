@@ -47,7 +47,7 @@ function draw() {
 }
 ```
 
-<iframe src="wall.html" width="660" height="520"></iframe>
+<iframe src="wall.html" width="660" height="320"></iframe>
 
 -----
 
@@ -276,7 +276,7 @@ function draw() {
 }
 ```
 
-
+<iframe src="kachel.html" width="820" height="420"></iframe>
 
 
 
