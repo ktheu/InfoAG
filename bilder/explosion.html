@@ -30,7 +30,7 @@
       for (let i = 0; i < 81; i++) {
         let zeile = int(i / 9);
         let spalte = int(i - 9 * zeile);
-        expImg[i] = explosionImg.get(spalte * 100, zeile * 100, 100, 100);
+        expImg[i] = explosionImg.get(spalte * 100, zeile * 100, 100, 100);  // extrahieren des teilbilds
       }
     }
 

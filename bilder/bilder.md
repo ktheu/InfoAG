@@ -365,6 +365,72 @@ function draw() {
 
 ```
 
+<iframe src="snap.html" width="520" height="220"></iframe>
+
+----
+
+#### Image Sheets
+
+Manchmal sind die verschiedenen Bilder einer Animation in einem Gesamtbild zusammengefasst. Wir extrahieren dann die 
+Einzelbilder aus dem Gesamtbild und verwalten sie in einem Array.
+
+(Suche in Google nach `image sheets for sprites`)
+
+Das Gesamtbild für eine Explosion besteht aus 81 Teilbildern:
+
+<img src="explosion.png" width = "700">   
+
+Das extrahieren der 100 x 100 - Teilbilder geschieht in der Zeile:
+
+`expImg[i] = explosionImg.get(spalte * 100, zeile * 100, 100, 100);`
+
+
+```
+    class Explosion {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.index = 0;
+      }
+
+      display() {
+        if (this.index < 81) {
+          imageMode(CENTER);
+          image(expImg[this.index], this.x, this.y);
+          this.index++;
+        }
+      }
+    }
+
+    let expImg = [];
+    let e = null;
+
+    function preload() {
+      explosionImg = loadImage("../img/explosion.png");
+    }
+
+    function setup() {
+      createCanvas(500, 500);
+      for (let i = 0; i < 81; i++) {
+        let zeile = int(i / 9);
+        let spalte = int(i - 9 * zeile);
+        expImg[i] = explosionImg.get(spalte * 100, zeile * 100, 100, 100);
+      }
+    }
+
+    function draw() {
+      background(0);
+      if (e != null) e.display();
+    }
+
+    function mousePressed() {
+      e = new Explosion(mouseX, mouseY);
+    }
+```
+
+
+<iframe src="explosion.html" width="520" height="520"></iframe>
+
 ### Übungen
 
 
