@@ -1,0 +1,41 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let img;
+    let bugImg;
+    let bugPos;
+    let bugV;
+
+    function preload() {
+      img = loadImage("wall.jpg");
+      bugImg = loadImage("ladybug_02.png");
+    }
+
+    function setup() {
+      createCanvas(img.width, img.height);
+      bugPos = createVector(40, height / 2);
+      bugV = createVector(2.0, 0);
+    }
+
+    function draw() {
+      // check
+      if (bugPos.x > width) bugPos.x = -bugImg.width;
+
+      // move
+      bugPos.add(bugV);
+
+      // display
+      image(img, 0, 0);
+      image(bugImg, bugPos.x, bugPos.y)
+
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

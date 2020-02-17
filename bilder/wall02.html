@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let img;
+
+    function preload() {
+      img = loadImage("wall.jpg");
+
+    }
+
+    function setup() {
+      createCanvas(640, 300);
+    }
+
+    function draw() {
+      background(255);
+
+      let sv = img.height / img.width    // Seitenverhältnis
+      let bildbreite = 200;
+      let bildhoehe = bildbreite * sv;
+      image(img, 50, 50, bildbreite, bildhoehe);
+
+      bildbreite = 150;
+      bildhoehe = bildbreite * sv;
+      image(img, 300, 50, bildbreite, bildhoehe);
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

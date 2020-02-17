@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let img;
+
+    function preload() {
+      img = loadImage("wall.jpg");
+    }
+
+    function setup() {
+      createCanvas(640, 300);
+      let bildbreite = 100;
+      img.resize(bildbreite, 0)
+    }
+
+    function draw() {
+      background(255);
+      image(img, 50, 50);
+      image(img, 300, 50);
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

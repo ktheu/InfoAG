@@ -60,7 +60,7 @@ gleichmäßige und beschleunigte Bewegung, von Punkt zu Punkt, Steuerung, Halber
 
 
 __[Timer](./timer/timer.md)__ -
-setTimeout, setInterval
+setTimeout, setInterval, clearInterval
 
 __[Transformationen](./transformationen/transformationen.md)__ -
 Haufen, Rotierendes Rechteck, Planeten, Lenken mit Rotate
@@ -74,7 +74,7 @@ Kollisionen Punkt-Rechteck, Kreis-Rechteck, Linie-Kreis
 __[Grids](./grids/grids.md)__ -
 Raster, Schachbrett, Kacheln, TicTacToe
 
-__[Bilder](bilder.html)__ -
+__[Bilder](./bilder/bilder.md)__ -
 Himmel, Kachelbilder, Fliegen, Cliff, Wüste, Explosion, Parallax, Weltall, Spaceship, Zug
 
 __[Sound](sound.html)__ -
@@ -92,9 +92,6 @@ Smiley
 __[Input](input.html)__ -
 Textfeld, Textarea, Datei laden
 
-__[Raster/Grid](raster.html)__ -
-Zählung, Schachbrett, Kacheln, TicTacToe
-
 __[Sockets](sockets2.html)__ -
 Repl.it
 
@@ -105,9 +102,6 @@ __[Sonstiges](sonstiges/sonstiges.md)__
 
 __[Gallery](gallery/gallery.md)__ -
 Eine Gallerie der Sketche erstellen
-
-__[Code Änderungen](vonNach/vonNach.md)__ -
-Code lesbarer und besser wartbar machen
 
 --- 
 
