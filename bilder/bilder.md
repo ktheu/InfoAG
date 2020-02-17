@@ -239,6 +239,8 @@ Das Beispiel zeigt die Übertragung der Navigation aus dem Abschnitt *Kräfte*. 
 
 ```
 
+Schub mit Taste *w*, Richtung mit den Pfeiltasten. <br>
+
 <iframe src="bugLenken.html" width="660" height="446"></iframe>
 
 
@@ -380,7 +382,7 @@ Das Gesamtbild für eine Explosion besteht aus 81 Teilbildern:
 
 <img src="explosion.png" width = "700">   
 
-Das extrahieren der 100 x 100 - Teilbilder geschieht in der Zeile:
+Das Extrahieren der 100 x 100 - Teilbilder geschieht in der Zeile:
 
 `expImg[i] = explosionImg.get(spalte * 100, zeile * 100, 100, 100);`
 
