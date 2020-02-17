@@ -310,20 +310,74 @@ function displayBackground() {
 
 function displayCliffs() {
     push();
-    translate(0, height - cliff.height);   //- translate für linkes Cliff
-    image(cliff, 0, 0);                    //- zeige linkes Cliff
+    translate(0, height - cliff.height);   // translate für linkes Cliff
+    image(cliff, 0, 0);                    
     pop();
 
     push();
-    translate(width, height - cliff.height);  //- translate für rechtes Cliff
-    scale(-1.0, 1.0);                         //- scale für rechtes Cliff
-    image(cliff, 0, 0);                       //- zeige rechtes Cliff
+    translate(width, height - cliff.height);  // translate für rechtes Cliff
+    scale(-1.0, 1.0);                         // rechtes Cliff umdrehen
+    image(cliff, 0, 0);                     
     pop();
 }
 
 ```
 
 <iframe src="cliff.html" width="820" height="620"></iframe>
+
+#### Animation
+
+Eine Animation besteht aus einer Folge von Bildern. Im Beispiel werden immer wieder drei Bilder hintereinander gezeigt:
+
+<img src="snapR0.png"> &nbsp; snapR0.png<br>
+
+<img src="snapR1.png">  &nbsp; snapR1.png<br>
+
+<img src="snapR2.png">  &nbsp; snapR2.png
+
+
+In der Zeile `i = (i + 0.2) % 3`  bestimmt der Wert `0.2` wie schnell die Bilder aufeinander folgen. 
+
+```
+let snapImg = []; // Array mit den Snap-Bildern
+let i = 0;        // Bildindex
+let x = 10;       // Position
+
+function preload() {
+    snapImg[0] = loadImage("snapR0.png");
+    snapImg[1] = loadImage("snapR1.png");
+    snapImg[2] = loadImage("snapR2.png");
+}
+
+function setup() {
+    createCanvas(500, 200);
+}
+
+function draw() {
+    background(220);
+
+    i = (i + 0.2) % 3
+    x = (x + 2) % width
+
+    image(snapImg[int(i)], x, 100);
+}
+
+
+```
+
+### Übungen
+
+
+#### Fliegen
+
+Auf einem Kachelbild laufen viele Fliegen. Die Pfeiltasten drehen die Geschwindigkeitsvektoren.
+
+
+<iframe src="fliege.html" width="520" height="520"></iframe>
+
+
+
+
 
 
 

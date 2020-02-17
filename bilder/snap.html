@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+        let snapImg = []; // Array mit den Snap-Bildern
+        let i = 0;        // Bildindex
+        let x = 10;       // Position
+
+        function preload() {
+            snapImg[0] = loadImage("snapR0.png");
+            snapImg[1] = loadImage("snapR1.png");
+            snapImg[2] = loadImage("snapR2.png");
+        }
+
+        function setup() {
+            createCanvas(500, 200);
+        }
+
+        function draw() {
+            background(220);
+
+            i = (i + 0.2) % 3
+            x = (x + 2) % width
+
+            image(snapImg[int(i)], x, 100);
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

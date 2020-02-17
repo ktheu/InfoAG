@@ -1,6 +1,6 @@
 <html>
 <head>
-    <script src="../p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
     <script>
         class Fliege {
             constructor() {
@@ -9,8 +9,8 @@
             }
 
             act() {
-                this.checkPosition();
                 this.checkTasten();
+                this.checkPosition();
                 this.move();
                 this.display();
             }
@@ -29,8 +29,8 @@
             }
 
             checkTasten() {
-                if (tLeft) this.v.rotate(radians(-5.0)); // check linke Pfeiltaste
-                if (tRight) this.v.rotate(radians(+5.0)); //- check rechte Pfeiltaste
+                if (keyIsDown(LEFT_ARROW)) this.v.rotate(radians(-5.0)); // check linke Pfeiltaste
+                if (keyIsDown(RIGHT_ARROW)) this.v.rotate(radians(+5.0)); //- check rechte Pfeiltaste
             }
 
             checkPosition() {
@@ -53,12 +53,10 @@
         let fliegen = []
         let anzahl = 50;
 
-        let tLeft = false;
-        let tRight = false;
 
         function preload() {
-            img = loadImage("../img/bricks2.jpg");
-            fliege = loadImage("../img/fly.png");
+            img = loadImage("bricks2.jpg");
+            fliege = loadImage("fly.png");
         }
 
         function setup() {
@@ -83,15 +81,7 @@
 
         }
 
-        function keyPressed() {
-            if (keyCode == RIGHT_ARROW) tRight = true;
-            if (keyCode == LEFT_ARROW) tLeft = true;
-        }
 
-        function keyReleased() {
-            if (keyCode == RIGHT_ARROW) tRight = false;
-            if (keyCode == LEFT_ARROW) tLeft = false;
-        }
     </script>
 </head>
 <body>
