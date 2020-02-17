@@ -29,13 +29,13 @@
         function displayCliffs() {
             push();
             translate(0, height - cliff.height);   //- translate für linkes Cliff
-            image(cliff, 0, 0);                   //- zeige linkes Cliff
+            image(cliff, 0, 0);                    //- zeige linkes Cliff
             pop();
 
             push();
             translate(width, height - cliff.height);  //- translate für rechtes Cliff
-            scale(-1.0, 1.0);                       //- scale für rechtes Cliff
-            image(cliff, 0, 0);                      //- zeige rechtes Cliff
+            scale(-1.0, 1.0);                         //- scale für rechtes Cliff
+            image(cliff, 0, 0);                       //- zeige rechtes Cliff
             pop();
         }
     </script>

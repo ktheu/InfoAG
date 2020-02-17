@@ -239,6 +239,46 @@ Das Beispiel zeigt die Übertragung der Navigation aus dem Abschnitt *Kräfte*. 
 
 ```
 
-
 <iframe src="bugLenken.html" width="660" height="446"></iframe>
+
+
+#### Kachelbilder
+
+Mit Kachel-Bildern können wir kleinen Bildern ein beliebig großen Hintergrund erzeugen.
+Beispiele für Kacheln gibt es [hier](https://ktheu.github.io/InfoAG/Medien/Greenfoot/backgrounds/backgrounds.html);
+
+Eine Kachel:
+
+<img src="bricks2.jpg>
+
+```
+let kachel;
+let fliege;
+
+function preload() {
+    kachel = loadImage("bricks2.jpg");
+    fliege = loadImage("fly.png");
+}
+
+function setup() {
+    createCanvas(800, 400);
+    console.log(kachel.width)
+}
+
+function draw() {
+    // Kacheln für den Hintergrund  
+    for (let i = 0; i < width + kachel.width; i = i + kachel.width) {
+    for (let j = 0; j < height + kachel.height; j = j + kachel.height)
+        image(kachel, i, j);
+    }
+
+    image(fliege, 400, 200);
+}
+```
+
+
+
+
+
+
 

@@ -1,4 +1,5 @@
 <html>
+
 <head>
   <script src="../p5.min.js"></script>
   <script>
@@ -6,12 +7,14 @@
     let fliege;
 
     function preload() {
-      kachel = loadImage("../img/bricks2.jpg");
-      fliege = loadImage("../img/fly.png");
+      kachel = loadImage("bricks2.jpg");
+
+      fliege = loadImage("fly.png");
     }
 
     function setup() {
       createCanvas(800, 400);
+      console.log(kachel.width)
     }
 
     function draw() {
@@ -23,6 +26,8 @@
     }
   </script>
 </head>
+
 <body>
 </body>
+
 </html>
