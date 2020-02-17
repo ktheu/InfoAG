@@ -278,7 +278,52 @@ function draw() {
 
 <iframe src="kachel.html" width="820" height="420"></iframe>
 
+#### Bilder umdrehen
 
+Der Hintergrund wird mit Kacheln erzeugt. Das rechte Cliff wird mit *translate* verschoben und mit
+*scale(-1.0,1.0)* umgedreht.
+
+```
+let clouds;
+let cliff;
+
+function preload() {
+    cliff = loadImage("cliff.png");
+    clouds = loadImage("clouds.jpg");
+}
+
+function setup() {
+    createCanvas(800, 600);
+}
+
+function draw() {
+    displayBackground();
+    displayCliffs();
+}
+
+function displayBackground() {
+    for (let i = 0; i < width + clouds.width; i = i + clouds.width) {
+        for (let j = 0; j < height + clouds.width; j = j + clouds.width)
+            image(clouds, i, j);
+    }
+}
+
+function displayCliffs() {
+    push();
+    translate(0, height - cliff.height);   //- translate für linkes Cliff
+    image(cliff, 0, 0);                    //- zeige linkes Cliff
+    pop();
+
+    push();
+    translate(width, height - cliff.height);  //- translate für rechtes Cliff
+    scale(-1.0, 1.0);                         //- scale für rechtes Cliff
+    image(cliff, 0, 0);                       //- zeige rechtes Cliff
+    pop();
+}
+
+```
+
+<iframe src="cliff.html" width="820" height="620"></iframe>
 
 
 
