@@ -14,10 +14,10 @@ Lizenzfreie Bilder können von  [Pexels](https://www.pexels.com/) oder [Unsplash
 Die maximale Bildgröße für den Upload in den Webeditor ist **5 MB**. Bei [Pexels] haben wir die
 Möglichkeit, beim Download zwischen verschiedenen Größen zu wählen. 
 
-Nach dem Login im P5-Webeditor und dem Klick auf *Sketch, AddFile* haben wir die Möglichkeit, ein Bild in den markierten Bereich zu ziehen oder durch Klick auf den freien Bereich (unterhalb des *OR*) ein File zu wählen.
+Nach dem Login im P5-Webeditor und dem Klick auf *Sketch, AddFile* können wir ein Bild in den markierten Bereich  ziehen oder durch Klick auf den freien Bereich (unterhalb des *OR*) ein File wählen.
 
-Wenn wir dann den linken Bereich mit der Fileübersicht aufklappen, sehen wir dort das
-hochgeladene Bild und können es ggf umbenennen.
+Wenn wir auf der linken Seite die Fileübersicht aufklappen, sehen wir dort das
+hochgeladene Bild und können es umbenennen.
 
 <img src="upload2.png" width="801">
 
@@ -47,11 +47,11 @@ function draw() {
 }
 ```
 
-<iframe src="wall.html" width="660" height="320"></iframe>
+<iframe src="wall.html" width="660" height="446"></iframe>
 
 -----
 
-#### Bildgröße in unterschiedlichen Größe anzeigen.
+#### Bilder in unterschiedlichen Größe anzeigen.
 
 Der *img*-Funktion können wir weitere Koordinaten für die Breite und Höhe des Bildes mitgeben. Wenn 
 wir keine Verzerrungen wollen, berechnen wir das Seitenverhältnis aus dem Originalbild.
@@ -246,12 +246,12 @@ Schub mit Taste *w*, Richtung mit den Pfeiltasten. <br>
 
 #### Kachelbilder
 
-Mit Kachel-Bildern können wir kleinen Bildern ein beliebig großen Hintergrund erzeugen.
+Aus Kachel-Bildern lassen sich beliebig große Hintergrundbilder erzeugen.
 Beispiele für Kacheln gibt es [hier](https://ktheu.github.io/InfoAG/Medien/Greenfoot/backgrounds/backgrounds.html);
 
 Eine Kachel:
 
-<img src="bricks2.jpg>
+<img src="bricks2.jpg">
 
 ```
 let kachel;
