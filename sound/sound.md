@@ -11,7 +11,7 @@ BenSound als Urheber genannt ist.
 Geräusche können bei [FreeSound](https://freesound.org/) heruntergeladen werden. Die Nutzungsbedingungen sind
 unterschiedlich. Viele sind lizenzfrei, manche Urheber möchten genannt werden, manche nicht. 
 
-Tutorial: Daniel Shiffmans [Youtube Tutorial](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6aFcVjlDAkkGIixw70s7jpW) für p5.sound.
+Tutorial: Daniel Shiffmans [Youtube Tutorial](https://www.youtube.com/playlist?st=PLRqwX-V7Uu6aFcVjlDAkkGIixw70s7jpW) für p5.sound.
 
 -----
 
@@ -21,10 +21,32 @@ Wie Bilder werden auch Musikfiles in der preload-Funktion geladen.
 Die Hintergrundmusik wird automatisch eingeschaltet und kann bei Bedarf ausgeschaltet werden.
 
 ```
+let song;
 
+function preload() {
+    song = loadSound('bensound-jazzyfrenchy.mp3');
+}
+
+function setup() {
+    createCanvas(100, 100);
+    background(200);
+    createP("Music: www.bensound.com")
+}
+
+function draw() {
+
+}
+
+function mousePressed() {
+    if (song.isPlaying() ) {
+    song.stop();
+    } else {
+    song.play();
+    }
+}
 
 
 ```
 
-<iframe src="startStop.html" width="240" height="200"></iframe>
+<iframe src="startStop.html" width="140" height="200"></iframe>
 
