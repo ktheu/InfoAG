@@ -1,7 +1,7 @@
 ## Sound
 
 Die [p5.sound](https://p5js.org/reference/#/libraries/p5.sound) Bibliothek liefert umfangreiche Möglichkeiten
-zur Wiedergabe, Bearbeiten und Erzeugen von Sound.
+zur Wiedergabe, Bearbeitung und Erzeugen von Sound.
 
 Die unterstützten Wiedergabeformate hängen vom Browser ab, die Formate *mp3* und *wav* sind immer möglich.
 
