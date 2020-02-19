@@ -77,8 +77,8 @@ Raster, Schachbrett, Kacheln, TicTacToe
 __[Bilder](./bilder/bilder.md)__ -
 Himmel, Kachelbilder, Fliegen, Cliff, Wüste, Explosion, Parallax, Weltall, Spaceship, Zug
 
-__[Sound](sound.html)__ -
-Saba, DreiSounds
+__[Sound](./sound/sound.md)__ -
+Hintergrundmusik, Geräusche
 
 __[Perlin Noise](noise.html)__ -
 Hügel
