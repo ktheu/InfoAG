@@ -22,7 +22,7 @@ Zwischen *beginshape* und *endshape* werden Knotenpunkte mit *vertex* definiert.
 
 ```
 
-<iframe src="vertex.html" width="420" height="420"></iframe>
+<iframe src="vertexDemo.html" width="420" height="420"></iframe>
 
 
 ---- 
