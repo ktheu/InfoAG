@@ -80,8 +80,8 @@ Himmel, Kachelbilder, Fliegen, Cliff, Wüste, Explosion, Parallax, Weltall, Spac
 __[Sound](./sound/sound.md)__ -
 Hintergrundmusik, Geräusche
 
-__[Perlin Noise](noise.html)__ -
-Hügel
+__[Perlin Noise](./noise/noise.md)__ - 
+Hügel, Stäbchen
 
 __[Vertex](vertex.html)__ -
 vertex, curveVertex

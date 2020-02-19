@@ -1,31 +1,31 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
   <script>
-    let ya;
+    let y = [];
 
     function setup() {
       createCanvas(600, 200);
-      ya = new Array(width).fill(random(height));
+      for (let x = 0; x < width; x++) {
+        y[x] = random(height);
+      }
     }
 
     function draw() {
       background(255);
-      display();
-      for (let i = 1; i < ya.length; i++)   // kopiere ya-Werte eins nach links
-        ya[i - 1] = ya[i];
-      ya[ya.length - 1] = random(height);  // ermittle neuen Wert für ganz rechts.
-    }
 
-    // die display-Methode zeigt die Linie der ya-Punkte
-    function display() {
-      beginShape();
-      for (let x = 0; x < ya.length; x++)
-        vertex(x, ya[x]);
-      endShape();
+      y.splice(0, 1);                // nimm y[0] aus dem Array heraus
+      y[width - 1] = random(height);  // ermittle neuen Wert für ganz rechts.
+
+      for (let x = 0; x < width - 1; x++) {
+        line(x, y[x], x + 1, y[x + 1]);
+      }
     }
   </script>
 </head>
+
 <body>
 </body>
+
 </html>
