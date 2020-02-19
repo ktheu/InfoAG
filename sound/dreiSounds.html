@@ -1,16 +1,17 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
-  <script src="../addons/p5.sound.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
   <script>
     let song;
     let missile;
     let explosion;
 
     function preload() {
-      song = loadSound('../img/soundtrack.mp3');
-      missile = loadSound('../img/missile.mp3')
-      explosion = loadSound('../img/explosion.mp3')
+      song = loadSound('soundtrack.mp3');
+      missile = loadSound('missile.mp3')
+      explosion = loadSound('explosion.mp3')
     }
 
     function setup() {
@@ -23,8 +24,8 @@
     }
 
     function keyPressed() {
-      if (key.toLowerCase() === 'e') explosion.play();
-      if (key.toLowerCase() === 's') missile.play();
+      if (key === 'e') explosion.play();
+      if (key === 's') missile.play();
     }
 
     function mousePressed() {
@@ -32,6 +33,8 @@
     }
   </script>
 </head>
+
 <body>
 </body>
+
 </html>

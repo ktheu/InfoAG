@@ -39,14 +39,51 @@ function draw() {
 
 function mousePressed() {
     if (song.isPlaying() ) {
-    song.stop();
+        song.stop();
     } else {
-    song.play();
+        song.play();
     }
 }
 
 
 ```
 
-<iframe src="startStop.html" width="140" height="200"></iframe>
+<iframe src="startStop.html" width="200" height="200"></iframe>
 
+
+#### Drei Sounds
+
+Ein Hintergrundsound, der mit Mausklick gestartet wird, eine Explosion mit Taste 'e' und ein Schuss mit Taste 's'
+
+```
+let song;
+let missile;
+let explosion;
+
+function preload() {
+    song = loadSound('soundtrack.mp3');
+    missile = loadSound('missile.mp3')
+    explosion = loadSound('explosion.mp3')
+}
+
+function setup() {
+    createCanvas(200, 200);
+    background(220);
+    song.setVolume(0.7);
+}
+
+function draw() {
+}
+
+function keyPressed() {
+     if (key === 'e') explosion.play();
+     if (key === 's') missile.play();
+}
+
+function mousePressed() {
+    song.play();
+}
+
+```
+
+<iframe src="dreiSounds.html" width="220" height="220"></iframe>
