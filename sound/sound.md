@@ -18,7 +18,8 @@ Tutorial: Daniel Shiffmans [Youtube Tutorial](https://www.youtube.com/playlist?s
 #### Hintergrundmusik 
 
 Wie Bilder werden auch Musikfiles in der preload-Funktion geladen.
-Die Hintergrundmusik wird automatisch eingeschaltet und kann bei Bedarf ausgeschaltet werden.
+
+Im Beispiel wird die Hintergrundmusik mit Mausklick ein- und ausgeschaltet.
 
 ```
 let song;
