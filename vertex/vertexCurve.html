@@ -1,40 +1,44 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
   <script>
 
 
     function setup() {
       createCanvas(400, 400);
-      noStroke();
     }
 
     function draw() {
       background(220);
-      let y1 = map(mouseX,0,width,0,height);
+      let y1 = map(mouseX, 0, width, 0, height);
       let y2 = mouseY;
 
       noFill();
       stroke(0);
       strokeWeight(10);
-      point(50,y1);
-      point(100,150);
-      point(200,300);
+      // Kontrollpunkte
+      point(50, y1);
+      point(100, 150);
+      point(200, 300);
       point(300, 200);
-      point(350,y2);
+      point(350, y2);
+
+      // Shape
       strokeWeight(2);
       beginShape();
       curveVertex(50, y1);
       curveVertex(100, 150);
       curveVertex(200, 300);
       curveVertex(300, 200);
-
       curveVertex(350, y2);
       endShape();
     }
 
   </script>
 </head>
+
 <body>
 </body>
+
 </html>

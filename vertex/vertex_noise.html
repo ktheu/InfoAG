@@ -1,16 +1,17 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
   <script>
 
     let anzahl = 10;
-    let t = new Array(anzahl);
-    let x = new Array(anzahl);
-    let y = new Array(anzahl);
+    let t = [];
+    let x = [];
+    let y = [];
 
     function setup() {
       createCanvas(400, 400);
-      for (let i=0; i<anzahl; i++) {
+      for (let i = 0; i < anzahl; i++) {
         t[i] = random(1000);
         x[i] = int(random(width));
         y[i] = int(random(height));
@@ -21,22 +22,25 @@
       background(220);
 
       fill('#233259')
-      beginShape();
       noStroke();
-      for (let i=0; i<anzahl; i++) {
-        vertex(x[i],y[i]);
 
-        x[i]+=map(noise(t[i]),0,1,-2,2);
-        y[i]+=map(noise(t[i]+500),0,1,-2,2);
-        t[i]+=0.01;
-        x[i] = constrain(x[i],0,width);
-        y[i] = constrain(y[i],0,height);
+      beginShape();
+      for (let i = 0; i < anzahl; i++) {
+        vertex(x[i], y[i]);
+
+        x[i] += map(noise(t[i]), 0, 1, -2, 2);
+        y[i] += map(noise(t[i] + 500), 0, 1, -2, 2);
+        t[i] += 0.01;
+        x[i] = constrain(x[i], 0, width);
+        y[i] = constrain(y[i], 0, height);
       }
       endShape(CLOSE);
     }
 
   </script>
 </head>
+
 <body>
 </body>
+
 </html>

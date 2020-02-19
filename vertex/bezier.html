@@ -1,14 +1,12 @@
 <html>
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
   <script>
 
     let t = 0;
 
-
     let x1 = 300;
     let y1 = 300;
-
 
     function setup() {
       createCanvas(400, 400);
@@ -20,7 +18,6 @@
       stroke(0);
       strokeWeight(2);
       noFill()
-
 
       bezier(100, 100, mouseX, mouseY, x1, y1, 350,350);
       x1 += map(noise(t+100),0,1,-2,2);
@@ -38,6 +35,7 @@
       point(mouseX,mouseY);
       point(100,100);
       point(350,350);
+
       t+=0.01
 
     }

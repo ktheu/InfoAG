@@ -1,6 +1,7 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
   <script>
     let i = 30;
 
@@ -11,15 +12,15 @@
 
     function draw() {
       background(220);
-        push()
-        translate(i, 200)
-        rotate(i/20);
-        gestalt();
-        pop();
-        i+=1;
-        if (i > width ) {
-          i = 0;
-        }
+      push()
+      translate(i, 200)
+      rotate(i / 20);
+      gestalt();
+      pop();
+      i += 1;
+      if (i > width) {
+        i = 0;
+      }
     }
 
     function gestalt() {
@@ -29,14 +30,18 @@
       vertex(20, 10);
       vertex(-20, 10);
       fill('#233259')
-      ellipse(-20,10,10,10);
-      ellipse(20,10,10,10);
+      ellipse(-20, 10, 10, 10);
+      ellipse(20, 10, 10, 10);
       fill('#227a92');
       endShape(CLOSE);
+      stroke(255, 0, 0);
+      strokeWeight(5);
     }
 
   </script>
 </head>
+
 <body>
 </body>
+
 </html>

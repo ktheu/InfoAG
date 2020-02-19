@@ -83,7 +83,7 @@ Hintergrundmusik, Geräusche
 __[Perlin Noise](./noise/noise.md)__ - 
 Hügel, Stäbchen
 
-__[Vertex](vertex.html)__ -
+__[Vertex](./vertex/vertex.md)__ -
 vertex, curveVertex
 
 __[Mobile](mobile.html)__ -

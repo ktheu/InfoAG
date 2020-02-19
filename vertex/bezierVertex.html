@@ -1,11 +1,12 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
   <script>
 
-    let x = [80,180,50,200];   // Koordinaten der Kontrollpunkte
-    let y = [20,200,120,250];
-    let t = 0;    // time for perlin-noise
+    let x = [80, 180, 50, 200];   // Koordinaten der Kontrollpunkte
+    let y = [20, 200, 120, 250];
+    let t = 0;                 // time for perlin-noise
 
     function setup() {
       createCanvas(400, 400);
@@ -25,23 +26,25 @@
       endShape();
 
       strokeWeight(5);
-      point(20,50);
-      point(220,100);
-      point(330,320);
+      point(20, 50);
+      point(220, 100);
+      point(330, 320);
 
-      for (let i=1; i<x.length; i++) {
-        x[i] += map(noise(t+i*100),0,1,-2,2);
-        y[i] += map(noise(t+i*200),0,1,-2,2);
+      for (let i = 1; i < x.length; i++) {
+        x[i] += map(noise(t + i * 100), 0, 1, -2, 2);
+        y[i] += map(noise(t + i * 200), 0, 1, -2, 2);
 
-        x[i] = constrain(x[i],50,width-50);
-        y[i] = constrain(y[i],50,height-50);
+        x[i] = constrain(x[i], 50, width - 50);
+        y[i] = constrain(y[i], 50, height - 50);
       }
-      t = t+0.01;
+      t = t + 0.01;
 
     }
 
   </script>
 </head>
+
 <body>
 </body>
+
 </html>
