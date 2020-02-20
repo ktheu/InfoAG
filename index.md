@@ -98,8 +98,6 @@ Repl.it
 __[WebGL](webgl.html)__ - __[Teil2](webgl2.html)__
 3D-Primitives, Rotate, Translate, Mbaterial, Light, Texture
 
-__[Sonstiges](sonstiges/sonstiges.md)__
-
 __[Gallery](gallery/gallery.md)__ -
 Eine Gallerie der Sketche erstellen
 
