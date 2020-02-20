@@ -86,7 +86,7 @@ Hügel, Stäbchen
 __[Vertex](./vertex/vertex.md)__ -
 vertex, curveVertex
 
-__[Mobile](mobile.html)__ -
+__[Mobile](./mobil/mobil.md)__ -
 Smiley
 
 __[Input](input.html)__ -
