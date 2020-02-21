@@ -89,14 +89,14 @@ vertex, curveVertex
 __[Mobile](./mobil/mobil.md)__ -
 Smiley
 
+__[WebGL](./webgl/webgl.md)__ -  
+3D-Primitives, Rotate, Translate, Mbaterial, Light, Texture
+
 __[Input](input.html)__ -
 Textfeld, Textarea, Datei laden
 
 __[Sockets](sockets2.html)__ -
 Repl.it
-
-__[WebGL](webgl.html)__ - __[Teil2](webgl2.html)__
-3D-Primitives, Rotate, Translate, Mbaterial, Light, Texture
 
 __[Gallery](gallery/gallery.md)__ -
 Eine Gallerie der Sketche erstellen
@@ -118,7 +118,7 @@ __[Medien](./medien.html)__
 
 __[Code! Programming with P5JS](https://www.youtube.com/watch?v=HerCR8bw_GE&list=PLRqwX-V7Uu6Zy51Q-x9tMWIv9cueOFTFA)__
 
-__[HTML/CSS/DOM with P5JS](https://www.youtube.com/watch?v=URSH0QpxKo8&list=PLRqwX-V7Uu6bI1SlcCRfLH79HZrFAtBvX)__
+<!-- _[HTML/CSS/DOM with P5JS](https://www.youtube.com/watch?v=URSH0QpxKo8&list=PLRqwX-V7Uu6bI1SlcCRfLH79HZrFAtBvX)__ -->
 
 __[CodingTrain Playlists](https://www.youtube.com/user/shiffman/playlists)__
 

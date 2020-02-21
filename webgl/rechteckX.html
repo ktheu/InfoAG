@@ -1,6 +1,7 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
   <script>
 
     let winkel = 0;
@@ -10,14 +11,16 @@
     }
     function draw() {
       background(200);
-      rotateX(winkel);
+      rotateX(winkel);  // rotateY, rotateZ
       rectMode(CENTER);
       fill(0, 0, 255);
-      rect(0,0,150,100);
+      rect(0, 0, 150, 100);
       winkel += 0.03;
     }
   </script>
 </head>
+
 <body>
 </body>
+
 </html>

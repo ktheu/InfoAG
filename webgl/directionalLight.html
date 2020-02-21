@@ -1,4 +1,5 @@
 <html>
+
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
 
@@ -12,14 +13,12 @@
     function draw() {
       background(200);
 
-      directionalLight(255,0,0,-10,0,-7);
-      directionalLight(0,255,0,1,2,-3);
-
+      directionalLight(255, 0, 0, -10, 0, -7);
+      directionalLight(0, 255, 0, 1, 2, -3);
 
       rotateX(winkel * 0.9);
       rotateY(winkel * 0.8);
       rotateZ(winkel);
-
 
       sphere(80);
       winkel += 0.01;
@@ -27,6 +26,8 @@
 
   </script>
 </head>
+
 <body>
 </body>
+
 </html>

@@ -1,6 +1,7 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
   <script>
 
     function setup() {
@@ -10,26 +11,30 @@
       background(230);
       strokeWeight(4);
 
-      winkelX = map(mouseX,0,width,-HALF_PI,HALF_PI);
-      winkelY = map(mouseY,0,width,-HALF_PI,HALF_PI);
-
+      winkelX = map(mouseX, 0, width, -HALF_PI, HALF_PI);
+      winkelY = map(mouseY, 0, width, -HALF_PI, HALF_PI);
+  
+      // blaue Box am Ursprung
       push();
-      fill(0,0,255);
+      fill(0, 0, 255);
       rotateX(winkelX);
       rotateY(winkelY);
-      box(40,40);
+      box(40, 40);
       pop();
 
+      // rote Box versetzt
       push();
-      fill(255,0,0);
-      translate(-100,-100,0);
+      fill(255, 0, 0);
+      translate(-100, -100, 0);
       rotateX(winkelX);
       rotateY(winkelY);
-      box(40,40);
+      box(40, 40);
       pop();
     }
   </script>
 </head>
+
 <body>
 </body>
+
 </html>

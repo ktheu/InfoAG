@@ -1,6 +1,7 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
   <script>
 
     let winkel = 0;
@@ -11,41 +12,29 @@
     function draw() {
       background(230);
 
-
-
       push();
       normalMaterial();
-
       rotateX(winkel);
       rotateY(winkel);
       rotateZ(winkel);
-      box(40,40);
+      
+      box(40, 40);
       stroke(0);
-      line(0,0,0,70,0,0);
+      line(0, 0, 0, 70, 0, 0);
+
       push();
-      translate(70,0,0);
+      translate(70, 0, 0);
       rotateZ(-HALF_PI);
-      cone(5,10);
+      cone(5, 10);
       pop();
+
       pop();
-
-
-
-  /*    push();
-      normalMaterial();
-      rotateX(winkel*1.3);
-      rotateY(winkel*0.5);
-      rotateZ(winkel*0.5);
-      torus(80,10);
-      pop();
-*/
-
-
-
       winkel += 0.02;
     }
   </script>
 </head>
+
 <body>
 </body>
+
 </html>

@@ -1,12 +1,13 @@
 <html>
+
 <head>
-  <script src="../p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
   <script>
     let winkel = 0;
     let img;
 
     function preload() {
-      img = loadImage('../img/stifts.png');
+      img = loadImage('stifts.png');
     }
 
     function setup() {
@@ -21,12 +22,13 @@
       rotateY(winkel * 0.8);
       rotateZ(winkel);
 
-
       box(150);
       winkel += 0.01;
     }
   </script>
 </head>
+
 <body>
 </body>
+
 </html>
