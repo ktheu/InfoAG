@@ -89,8 +89,7 @@ vertex, curveVertex
 __[Mobile](./mobil/mobil.md)__ -
 Smiley
 
-__[WebGL](./webgl/webgl.md)__ -  
-3D-Primitives, Rotate, Translate, Mbaterial, Light, Texture
+__[WebGL](./webgl/webgl.md)__ - 3D-Primitives, Rotate, Translate, Mbaterial, Light, Texture
 
 __[P5-Webeditor](./webeditor/webeditor.md)__ -
 Present-Modus verschönern
