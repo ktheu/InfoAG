@@ -3,7 +3,7 @@
 #### Der Present-Modus
 
 Unter *File, Share, Present* können wir den Sketch im *present-Modus* anschauen.  
-Um die Leinwand mittig zu platzieren und evtl. einen anderen Hintergrundfarbe zu wählen machen wir Anpassungen.
+Um die Leinwand mittig zu platzieren und evtl. eine andere Hintergrundfarbe zu wählen, machen wir Anpassungen:
 
 Durch Klick auf `>` neben `sketch.js` sehen wir alle Files des Sketches.
 

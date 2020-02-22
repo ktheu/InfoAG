@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+    <script>
+        let weiter = false;
+        let button;
+        let x = 30;
+
+        function setup() {
+            createCanvas(400, 200);
+            noStroke()
+            createP();
+            button = createButton("Start")
+            button.mousePressed(klick);
+        }
+
+        function draw() {
+            background(240);
+            if (weiter) x = x + 1;
+            fill(90);
+            circle(x, 100, 40);
+        }
+
+        function klick() {
+            weiter = !weiter
+
+            if (weiter) {
+                button.html("Stop");
+            }
+            else {
+                button.html("Start")
+            }
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

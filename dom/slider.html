@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+    <script>
+        let slider;
+
+        function setup() {
+            createCanvas(200, 200);
+            noStroke()
+            createP();
+            slider = createSlider(20, 80, 30);
+        }
+
+        function draw() {
+            background(240);
+            fill(90);
+            circle(100, 100, slider.value());
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

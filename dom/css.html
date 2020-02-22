@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+    <script>
+        function setup() {
+            createCanvas(400, 300);
+            background(240);
+            noStroke()
+
+            select("body").style("background-color", "#1a1a1a");
+            select("body").style("padding-top", "150px");
+            select("canvas").style("margin", "auto");
+
+        }
+
+        function mousePressed() {
+            fill(90);
+            circle(mouseX, mouseY, 40);
+        }
+
+        function keyPressed() {
+            background(240);
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

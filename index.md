@@ -91,15 +91,8 @@ Smiley
 
 __[WebGL](./webgl/webgl.md)__ - 3D-Primitives, Rotate, Translate, Mbaterial, Light, Texture
 
-__[P5-Webeditor](./webeditor/webeditor.md)__ -
-Present-Modus verschönern
-
-__[DOM](./dom/dom.md)__ -
-DOM
-
-<!-- __[Input](input.html)__ -
-Textfeld, Textarea, Datei laden -->
-
+__[DOM](./dom/dom.md)__ - Html, Css, Present-Modus verschönern
+ 
 __[Sockets](sockets2.html)__ -
 Repl.it
 

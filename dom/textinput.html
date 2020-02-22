@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+    <script>
+        let nameInput;
+        let name = "";
+
+        function setup() {
+            createCanvas(200, 200);
+            noStroke()
+            createP();
+            createSpan("Name:   ")
+            nameInput = createInput();
+            nameInput.size(100);
+            nameInput.changed(setName);
+        }
+
+        function draw() {
+            background(240);
+     
+            fill(90);
+            if (name.length > 0) {
+               textAlign(CENTER,CENTER);
+               textSize(20);
+               text("Hallo " + name, 100,100 )
+            }
+        }
+
+        function setName() {
+            name = nameInput.value();
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
