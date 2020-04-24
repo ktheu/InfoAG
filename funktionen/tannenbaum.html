@@ -1,0 +1,33 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+        let step = 10;
+
+        function setup() {
+            createCanvas(800, 800);
+            strokeWeight(4);
+            stroke(0,0,255);
+        }
+
+        function draw() {
+            background(200);
+            tannenbaum(200,200,10);
+       
+        }
+
+        function left(x,y,k) {
+            x1 = x - k * step;
+            line(x,y,x1,y)
+            return 
+        }
+
+        function tannenbaum(x, y, laenge) {
+            left(x,y,10);
+        }
+
+    </script>
+</head>
+<body>
+</body>
+</html>

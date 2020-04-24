@@ -1,0 +1,56 @@
+
+wiederhole 2 mal
+    wiederhole bis hindernis oben
+        färbe Feld
+        gehe nach oben
+    gehe nach rechts
+    gehe nach oben
+    färbe Feld
+    wiederhole bis hindernis unten
+      färbe das Feld
+      gehe nach unten
+   
+gehe hoch
+gehe rechts
+wiederhole 4 mal
+   wiederhole bis hindernis oben:
+      färbe das Feld
+      gehe nach oben
+   färbe das feld
+   wiederhole bis hindernis unten:
+      gehe nach unten
+      färbe das feld
+   gehe nach rechts
+wiederhole bis hindernis oben
+   färbe das feld
+   gehe nach oben
+färbe das feld  
+
+----------------
+wiederhole 3 mal
+   wiederhole bis hindernis oben 
+      färbe feld
+      gehe hoch
+   färbe feld
+   wiederholde bis hindernis rechts
+      gehe runter
+   gehe hoch
+   gehe rechts
+
+wiederhole 4 mal:
+    wiederhole bis oben hindernis
+      färbe
+      nach oben
+    färbe
+    wiederholde bis unten hindernis
+        färbe
+        nach unten
+    färbe
+    rechts
+
+wiederhole bis oben hindernis:
+    färbe 
+    oben
+
+färbe
+   

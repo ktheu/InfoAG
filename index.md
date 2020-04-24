@@ -54,6 +54,9 @@ Highscore eines Spiels auf einem Server verwalten.
 __[Klassen](./klassen/klassen.md)__ -
 Ballwelt, Counter, Hinher, Flappybalken 
 
+__[Vererbung](./vererbung/vererbung.md)__ - 
+extends, super, überschreiben
+
 __[Vektoren](./vektoren/vektoren.md)__ -
 gleichmäßige und beschleunigte Bewegung, von Punkt zu Punkt, Steuerung, HalberWeg, NachobenRechts, Ablenkung
 

@@ -1,0 +1,5 @@
+
+bis hindernis oben:
+  färbe
+  gehe nach oben
+gehe rechts

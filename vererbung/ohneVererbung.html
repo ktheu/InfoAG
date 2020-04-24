@@ -1,0 +1,65 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    class Kreis {
+
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.groesse = 30;
+      }
+
+      move() {
+        this.x = this.x + random(-3, +3);
+        this.y = this.y + random(-3, +3);
+      }
+
+      display() {
+        circle(this.x, this.y, this.groesse);
+      }
+    }
+
+    class Quadrat {
+
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.groesse = 30;
+      }
+
+      move() {
+        this.x = this.x + random(-3, +3);
+        this.y = this.y + random(-3, +3);
+      }
+
+      display() {
+        square(this.x, this.y, this.groesse);
+      }
+    }
+
+    let k;
+    let q;
+
+    function setup() {
+      createCanvas(400, 400);
+      k = new Kreis(100, 200);
+      q = new Quadrat(200, 300);
+    }
+
+    function draw() {
+      background(220);
+      k.move();
+      q.move();
+
+      k.display();
+      q.display();
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
