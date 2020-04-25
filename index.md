@@ -48,8 +48,8 @@ Haus und Sonne, Gesicht, Entfernung zum Mittelpunkt, Augen, Häuser
 __[Zustände](./zustand/zustand.md)__ -
 switch/case, Spielsteuerung durch Zustände
 
-__[Glitch](./glitch/glitch.md)__ -
-Highscore eines Spiels auf einem Server verwalten.
+__[Glitch](./glitch/glitch.md)__ 
+Highscore eines Spiels auf einem Server verwalten - _[Video](https://youtu.be/9pCGssdTmhc)_
 
 __[Klassen](./klassen/klassen.md)__ -
 Ballwelt, Counter, Hinher, Flappybalken 

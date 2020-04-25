@@ -10,14 +10,14 @@ Beispiel 2: [Wellen](https://wellen.glitch.me/)
 
 #### Express und Nedb
 
-- Wir klicken auf `New Project` und wählen `hello-express` aus.  
+- Wir klicken auf *New Project* und wählen *hello-express* aus.  
 - Durch Klick auf den Projektnamen können wir einen passenden Namen vergeben.
-- Klick auf `package.json`, `add package`, suchen nach `nedb`  und auswählen. Nedb ist eine einfache Datenbank.
+- Klick auf *package.json, add package*, suchen nach *nedb*  und auswählen. Nedb ist eine einfache Datenbank.
 
 #### server.js
  
-Den Inhalt von `server.js` vollständig ersetzen durch den folgenden Inhalt. Gegebenenfalls die Variable
-`highscoreAnz` anpassen. 
+Den Inhalt von *server.js* vollständig ersetzen durch den folgenden Inhalt. Gegebenenfalls die Variable
+*highscoreAnz* anpassen. 
 
 ```
 const highscoreAnz = 3;         // Update: Anzahl Highscores
@@ -71,8 +71,8 @@ app.listen(process.env.PORT);
 ```
 #### views/index.html
 
-Den Inhalt von `views/index.html` löschen und durch den folgenden Inhalt ersetzen. 
-Gegebenenfalls `title`, `background-color` und `padding` anpassen.
+Den Inhalt von *views/index.html* löschen und durch den folgenden Inhalt ersetzen. 
+Gegebenenfalls *title, background-color* und *padding-top* anpassen.
 
 ```
 <html>
@@ -104,75 +104,25 @@ Gegebenenfalls `title`, `background-color` und `padding` anpassen.
  
 Jetzt den Sketch an die markierte Stelle einfügen und weitere Anpassungen machen.
 
-#### httpPost, httpGet
+#### Variablen, getHighscore
 
-Wir setzen voraus, dass `name` die Variable ist mit dem Namen des Spielers, der in die Highscoreliste
-soll und `score` sein score. Mit der folgenden Anweisung senden wir die Daten an den Server,
-setzen `name` und `score` auf einen Anfangszustand und begeben uns in den Spielstatus `PLAY`.
-
-
-```
-let score = 0;
-let name = "";
-let state = "PLAY"; 
-
-// ...
-
-httpPost("/highscore", {name: name, score: score}, function(res) {
-    score = 0;
-    name = "";
-    state = "PLAY";
-    getHighscore();
-});
- 
-```
-
-Die Funktion `getHighscore` füllt die Variablen `hsmin` und `highscoreText`, die wir an geeigneter
-Stelle ausgeben können. `hsmin` wird benötigt um zu entscheiden, ob eine neuer Eintrag in die
+Wir setzen voraus, dass *name* die Variable mit dem Namen des Spielers ist, der in die Highscoreliste
+soll und *score* sein score. Die Funktion *getHighscore* füllt die Variablen *hsmin* und *highscoreText*, die wir an geeigneter Stelle ausgeben können. *hsmin* wird benötigt um zu entscheiden, ob eine neuer Eintrag in die
 Highscore-Liste erfolgen soll.
 
-```
-let hsmin = 0;               // minimaler Highscore
-let highscoreText = "";      // Ausgabetext des Highscores
- 
-// ...
-
-function getHighscore() {
-  httpGet(
-    "/highscore",
-    "json",
-    false,
-    function(res) {
-      highscoreText = "Highscore:\n\n";
-      for (let i = 0; i < res.length; i++) {
-        highscoreText += res[i].name + ": " + res[i].score + "\n";
-      }
-      hsmin = res[res.length - 1].score;
-    },
-    function(err) {
-      console.log(err);
-    }
-  );
-}
-```
-
-#### Beispiel Sketch
-
-Spiel auf Glitch [hier](https://highscore.glitch.me/). Bei jedem Klick wird eine Zahl erzeugt.
+Falls noch nicht vorhanden, fügen wir die folgenden Variablen ein:
 
 ```
-let highscoreText = "";
-let hsmin = 0; // minimaler Highscore
 let score = 0;
 let name = "";
+let hsmin = 0;               // minimaler Highscore
+let highscoreText = "";      // Ausgabetext des Highscores
+```
 
-let state = "PLAY";
+Wir fügen folgende Funktion ein und rufen Sie am Ende von *setup* auf. 
 
-function setup() {
-  createCanvas(300, 200);
-  getHighscore();
-}
 
+```
 function getHighscore() {
   httpGet(
     "/highscore",
@@ -191,41 +141,113 @@ function getHighscore() {
   );
 }
 
-function draw() {
-  background(220);
-  text(highscoreText, 50, 30);
-  text("Deine Zahl: " + score, 50, 140);
+```
 
+#### Anpassung Welcome-Screen
+
+Im *welcome-screen* zeigen wir an geeigneter Stelle den bisherigen Highscore
+
+```
+    textStyle(NORMAL);
+    textAlign(LEFT);
+    textSize(18);
+    text(highscoreText, 100, 20);
+```
+ 
+#### Highscore und Newhighscore
+
+Wenn wir am Ende eines Spiels merken, dass der erreichte Score größer als *hsmin* ist, versetzen wir uns in den
+Spielstatus *HIGHSCORE* um unseren Namen einzugeben. Im Status *NEWHIGHSCORE* wird der neue Highscore dann gezeigt.
+Hier könnten wir eine restart-Möglichkeit einbauen.
+
+```
   if (score > hsmin) {
-    state = "EINGABE";
-    text("Dein Name: " + name, 50, 165);
+    state = "HIGHSCORE";
   }
+```
+
+In der draw-Methode berücksichtigen wir die neuen Stati:
+
+```
+  case "HIGHSCORE":
+    highscore();
+    break;
+
+  case "NEWHIGHSCORE":
+    newhighscore();
+    break;
+
+```
+
+Die dazugehörigen Funktionen müssen für den Einzelfall angepasst werden.
+
+```
+function highscore() {
+  background('#1a1a1f');
+  fill(120);
+  textStyle(NORMAL);
+  textAlign(LEFT);
+  textSize(18);
+  text(highscoreText, 200, 100);
+  
+  text("Your score: " + score, 200, 270);
+  text("Your name: " + name, 200, 300);
 }
 
+function newhighscore() {
+  background('#1a1a1f');
+  fill(120);
+  textStyle(NORMAL);
+  textAlign(LEFT);
+  textSize(18);
+  text(highscoreText, 200, 100);
+}
+
+ 
+```   
+
+Zum Eintippen des Namens fügen wir die Funktion *keyTyped* ein.
+In der Funktion *keyPressed* können wir mit *backspace* die Eingabe korrigieren. Mit 
+*enter* schließen wir die Eingabe ab und versetzen uns in den Zustand *NEWHIGHSCORE*.
+
+```
 function keyTyped() {
-  if (state === "EINGABE") {
+  if (state === "HIGHSCORE") {
     name += key;
   }
 }
 
+
 function keyPressed() {
-  if (state === "EINGABE") {
+  if (state === "HIGHSCORE") {
     if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
     if (keyCode === ENTER) {
-        httpPost("/highscore", {name: name, score: score}, function(res) {
-        score = 0;
-        name = "";
-        state = "PLAY";
+      httpPost("/highscore", { name: name, score: score }, function(res) {
         getHighscore();
       });
+      state = "NEWHIGHSCORE";
     }
   }
 }
 
-function mousePressed() {
-  if (state === "PLAY") {
-    score = int(random(50));
-  }
-}
+```
+
+
+#### Fehlersuche 
+
+Fehler in unserem Sketch treten auf der Client-Seite auf. Wir können in Chrome mit der Eingabe von
+`Strg+Umschalt+I` die Konsole mit den Fehlermeldungen aufrufen.
+
+Fehler auf der Serverseite können wir in Glitch mit Klick auf `Tools, Logs` sehen.
+
+#### Datenbank neu anlegen
+Die Datenbank können wir löschen, indem wir die Kommentarzeichen in Zeile 10 in *server.js* entfernen und die 
+Anwendung neu starten. Danach fügen wir die Kommentarzeichen wieder ein.
 
 ```
+db.remove({}, { multi: true });  
+
+```
+
+#### Anwendung aufrufen
+Wenn der Projektname *treffer* heißt, dann ist die Anwendung unter *https://treffer.glitch.me/* aufrufbar.
