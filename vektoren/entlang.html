@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+        let von;
+        let bis;
+        let pos;
+        let v;
+        let fertig = false;
+
+        function setup() {
+            createCanvas(400, 400);
+            von = createVector(100, 300);
+            bis = createVector(300, 50);
+            pos = von.copy();
+            v = p5.Vector.sub(bis, von);
+            v.setMag(2);
+        }
+
+        function draw() {
+            background(220);
+
+            if (!fertig) {
+                pos.add(v);
+                if (p5.Vector.dist(pos, bis) < v.mag()) {
+                    fertig = true;
+                    pos = bis.copy();
+                }
+            }
+
+            fill(180);
+            circle(von.x, von.y, 10);
+            circle(bis.x, bis.y, 10);
+
+            fill(60);
+            circle(pos.x, pos.y, 5);
+        }
+
+        function mousePressed() {
+            pos = von.copy();
+            fertig = false;
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

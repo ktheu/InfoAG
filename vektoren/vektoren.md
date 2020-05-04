@@ -94,9 +94,57 @@ function draw() {
 
 <iframe src="beschleunigt.html" width="420" height="420"></iframe>
 
-#### Bewegung zwischen zwei Punkten
+#### Bewegung zwischen zwei Punkten  
+
+Bei Mausklick wird der Punkt wieder auf seine Anfangsposition zurückgesetzt.
+
+```
+    let von;
+    let bis;
+    let pos;
+    let v;
+    let fertig = false;
+
+    function setup() {
+        createCanvas(400, 400);
+        von = createVector(100, 300);
+        bis = createVector(300, 50);
+        pos = von.copy();
+        v = p5.Vector.sub(bis, von);
+        v.setMag(2);
+    }
+
+    function draw() {
+        background(220);
+
+        if (!fertig) {
+            pos.add(v);
+            if (p5.Vector.dist(pos, bis) < v.mag()) {
+                fertig = true;
+                pos = bis.copy();
+            }
+        }
+
+        fill(180);
+        circle(von.x, von.y, 10);
+        circle(bis.x, bis.y, 10);
+
+        fill(60);
+        circle(pos.x, pos.y, 5);
+    }
+
+    function mousePressed() {
+        pos = von.copy();
+        fertig = false;
+    }
+```
+
+<iframe src="entlang.html" width="420" height="420"></iframe>
+
+#### Bewegung zwischen zwei Punkten mit Lerp
 
 Mit der *lerp*-Funktion der Klasse *p5.Vector* können wir uns auf einfache Weise von Punkt zu Punkt bewegen.
+Die Geschwindigkeit der Bewegung hängt davon ab, wie schnell sich die Variable *t* von 0 nach 1 bewegt.
 
 ```
 let von;
