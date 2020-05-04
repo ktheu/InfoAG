@@ -19,14 +19,14 @@
 
             t += 0.01;
 
-            let v = p5.Vector.lerp(von, bis, t);
+            let pos = p5.Vector.lerp(von, bis, t);
   
             fill(180);
             circle(von.x, von.x, 12);
             circle(bis.x, bis.y, 12);
 
             fill(60);
-            circle(v.x, v.y, 10);
+            circle(pos.x, pos.y, 10);
         }
     </script>
 </head>

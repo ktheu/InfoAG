@@ -251,3 +251,124 @@ db.remove({}, { multi: true });
 
 #### Anwendung aufrufen
 Wenn der Projektname *treffer* heißt, dann ist die Anwendung unter *https://treffer.glitch.me/* aufrufbar.
+
+
+### Beispiel: _[Highscore](https://highscore.glitch.me)_
+
+Ein Mausklick erzeugt eine Zufallszahl zwischen 0 und 99. Die höchsten drei werden im Highscore abgespeichert.
+
+```
+      let highscoreText = "";
+      let hsmin = 0; // minimaler Highscore
+      let score = 0;
+      let name = "";
+
+      let state = "WELCOME";
+
+      function setup() {
+        createCanvas(400, 400);
+        fill(120);
+        getHighscore();
+      }
+
+      function getHighscore() {
+        httpGet(
+          "/highscore",
+          "json",
+          false,
+          function(res) {
+            highscoreText = "Highscore:\n\n";
+            for (let i = 0; i < res.length; i++) {
+              highscoreText += res[i].name + ": " + res[i].score + "\n";
+            }
+            hsmin = res[res.length - 1].score;
+          },
+          function(err) {
+            console.log(err);
+          }
+        );
+      }
+
+      function draw() {
+        background("#1a1a1f");
+
+        switch (state) {
+          case "WELCOME":
+            welcome();
+            break;
+
+          case "PLAY":
+            play();
+            break;
+
+          case "HIGHSCORE":
+            highscore();
+            break;
+
+          case "NEWHIGHSCORE":
+            newhighscore();
+            break;
+        }
+      }
+
+      function welcome() {
+        textSize(22);
+        text("Welcome to Highscore", 50, 50);
+        textSize(18);
+        text(
+          "Click to start, then click to get a random number",
+          50,
+          100,
+          250,
+          200
+        );
+        textSize(18);
+        text(highscoreText, 50, 200);
+      }
+
+      function play() {
+        textSize(18);
+        text("Your number: " + score, 50, 200);
+        if (score > hsmin) {
+          state = "HIGHSCORE";
+        }
+      }
+
+      function highscore() {
+        textSize(18);
+        text(highscoreText, 50, 100);
+
+        text("Your score: " + score, 50, 270);
+        text("Your name: " + name, 50, 300);
+      }
+
+      function newhighscore() {
+        textSize(18);
+        text(highscoreText, 50, 100);
+      }
+
+      function keyTyped() {
+        if (state === "HIGHSCORE") {
+          name += key;
+        }
+      }
+
+      function keyPressed() {
+        if (state === "HIGHSCORE") {
+          if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
+          if (keyCode === ENTER) {
+            httpPost("/highscore", { name: name, score: score }, function(res) {
+              getHighscore();
+            });
+            state = "NEWHIGHSCORE";
+          }
+        }
+      }
+
+      function mousePressed() {
+        if (state === "WELCOME") state = "PLAY";
+        if (state === "PLAY") {
+          score = int(random(100));
+        }
+      }
+```

@@ -113,7 +113,7 @@ function draw() {
     background(220);
     if (t > 1) t = 0;
 
-    let v = p5.Vector.lerp(von, bis, t);
+    let pos = p5.Vector.lerp(von, bis, t);
     t += 0.01;
 
     fill(180);
@@ -121,7 +121,7 @@ function draw() {
     circle(bis.x, bis.y, 12);
 
     fill(60);
-    circle(v.x, v.y, 10);
+    circle(pos.x, pos.y, 10);
 }
 ```
 <iframe src="entlang.html" width="420" height="320"></iframe>
