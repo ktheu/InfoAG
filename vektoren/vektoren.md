@@ -124,7 +124,7 @@ function draw() {
     circle(pos.x, pos.y, 10);
 }
 ```
-<iframe src="entlang.html" width="420" height="320"></iframe>
+<iframe src="entlangLerp.html" width="420" height="320"></iframe>
 
 -----
 
