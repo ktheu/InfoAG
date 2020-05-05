@@ -179,22 +179,16 @@ function draw() {
 
 #### Bewegung zwischen vielen Punkten
 
-Um uns mit konstanter Geschwindigkeit von Punkt zu Punkt zu bewegen, addieren wir zu dem Positionsvektor einen Geschwindigkeitsvektor mit konstanter Länge. Die Richtung des Geschwindigkeitsvektors orientiert sich an dem *state* der Bewegung. Immer wenn wir einem Zielpunkt nahe genug sind, wechseln wir den *state*.
+Um uns mit konstanter Geschwindigkeit von Punkt zu Punkt zu bewegen, addieren wir zu dem Positionsvektor einen Geschwindigkeitsvektor mit konstanter Länge. Die Richtung des Geschwindigkeitsvektors ändert sich bei jeder Etappe. Immer wenn wir einem Zielpunkt nahe genug sind, wechseln wir in die nächste Etappe.
 
-
-Einen Vektor der Länge k, der von v1 nach v2 zeigt, erhalten wir durch folgenden Code:
-
-```
-let v = p5.Vector.sub(v2,v1).setMag(k);
 
 ```
 
-```
-let points = []
+let points;
 let anzahl;
-let speed = 5;
 let pos;
-let state;
+let etappe;
+let speed = 5;
 
 function setup() {
     createCanvas(400, 400);
@@ -202,39 +196,39 @@ function setup() {
 }
 
 function init0() {
-    state = 0;
-    anzahl = floor(random(5, 20));
-    points = []
+    points = [];
+    etappe = 0;
+    anzahl = int(random(10,20));
     for (let i = 0; i < anzahl; i++) {
-        points.push(createVector(random(10, width - 10), random(10, height - 10)));
+        points[i] = createVector(random(10, width - 10), random(10, height - 10));
     }
     pos = points[0].copy();
 }
 
 function draw() {
-    background(240);
-    for (let i = 0; i < anzahl - 1; i++) {
-        if ((state === i) && pos.dist(points[i + 1]) <= speed) {
-            state = state + 1;
+
+    if (etappe + 1 < anzahl) {
+
+        let v = p5.Vector.sub(points[etappe + 1], points[etappe]);
+        v.setMag(speed);
+
+        pos.add(v);
+
+        if (pos.dist(points[etappe + 1]) < speed) {
+            etappe += 1;
+            pos = points[etappe].copy();
         }
     }
 
-    if ((state + 1) < anzahl) {
-        let v = p5.Vector.sub(points[state+1],pos).setMag(speed)
-        pos.add(v);
-    }
-
-    stroke(170);
-    strokeWeight(1);
-    fill(200);
-
+    // display
+    background(220);
+    stroke(150);
+    fill(40);
     for (let i = 0; i < anzahl - 1; i++) {
+        circle(points[i].x, points[i].y, 4);
         line(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
-        circle(points[i + 1].x, points[i + 1].y, 4)
     }
-    circle(points[0].x, points[0].y, 4);
-
-    fill(50);
+    circle(points[anzahl - 1].x, points[anzahl - 1].y, 4);
     circle(pos.x, pos.y, 10);
 }
 

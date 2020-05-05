@@ -4,7 +4,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
     <script>
 
-        let points = [];
+        let points;
         let anzahl;
         let pos;
         let etappe;
@@ -16,6 +16,7 @@
         }
 
         function init0() {
+            points = [];
             etappe = 0;
             anzahl = int(random(10,20));
             for (let i = 0; i < anzahl; i++) {
