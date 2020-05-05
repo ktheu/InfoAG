@@ -60,11 +60,6 @@ extends, super, überschreiben
 __[Vektoren](./vektoren/vektoren.md)__ -
 gleichmäßige und beschleunigte Bewegung, von Punkt zu Punkt, Steuerung, HalberWeg, NachobenRechts, Ablenkung
 
-
-
-__[Timer](./timer/timer.md)__ -
-setTimeout, setInterval, clearInterval
-
 __[Transformationen](./transformationen/transformationen.md)__ -
 Haufen, Rotierendes Rechteck, Planeten, Lenken mit Rotate
 
@@ -88,6 +83,9 @@ Hügel, Stäbchen
 
 __[Vertex](./vertex/vertex.md)__ -
 vertex, curveVertex
+
+__[Timer](./timer/timer.md)__ -
+setTimeout, setInterval, clearInterval
 
 __[Mobile](./mobil/mobil.md)__ -
 Smiley
