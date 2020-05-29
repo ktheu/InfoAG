@@ -1,0 +1,42 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+function setup() {
+  createCanvas(400, 300);
+}
+
+function draw() {
+  background(220);
+  push()
+  translate(50,100);
+  circle(0,0,8);
+  skizze();
+  pop()
+ 
+  push()
+  translate(250,100);
+  circle(0,0,8);
+  scale(-1,1);
+  skizze();
+  pop()
+
+}
+
+function skizze() {
+  fill(255,0,0);
+  square(0,0,30); 
+  fill(0,255,0);
+  square(30,0,30); 
+  fill(0,0,255);
+  square(0,30,30);
+  fill(255,255,0);
+  square(30,30,30);
+}
+
+  </script>
+</head>
+<body>
+</body>
+</html>

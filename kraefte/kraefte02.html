@@ -1,0 +1,101 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let pos;
+    let v;
+    let a;
+    let radius = 10;
+    let gravitation;
+    let wind;
+    let schubs;
+    let gibSchubs = false;
+    let einmal = false;
+
+
+    function setup() {
+
+      fill(250);
+      createCanvas(400, 400);
+      background(0);
+      pos = createVector(200, 50);
+      v = createVector(0, 0);
+      a = createVector(0, 0);
+      gravitation = createVector(0, 0.7);
+      wind = createVector(0.1, 0);
+      schubs = createVector(0, -20);
+
+      ellipseMode(RADIUS);
+    }
+
+    function draw() {
+      // check
+
+      let unterBoden = pos.y + radius > height;
+      let rechtsraus = pos.x + radius > width;
+
+      // move
+
+      if (rechtsraus) {
+        v.x = -abs(v.x);
+      }
+
+      if (unterBoden) {
+        v.y = -abs(v.y);
+        v.y -= gravitation.y;
+      }
+
+      let reibung = p5.Vector.mult(v, -1)
+      reibung.setMag(0.1);
+
+      a.mult(0);
+      a.add(gravitation);
+      //a.add(reibung);
+      if (gibSchubs) {
+        a.add(schubs);
+        gibSchubs = false;
+
+      }
+      a.add(wind);
+
+      v.add(a);
+      pos.add(v);
+
+      //positionskorrektur
+      if (unterBoden) {
+        pos.y = height - radius;
+      }
+
+      if (rechtsraus) {
+        pos.x = width - radius;
+      }
+      //display
+
+      background(0);
+      stroke(0);
+      circle(pos.x, pos.y, radius)
+      stroke(255);
+      line(0, 50, 400, 50);
+
+
+
+    }
+
+    function mousePressed() {
+      gibSchubs = true;
+    }
+
+
+
+
+
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

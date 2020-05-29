@@ -1,0 +1,52 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let pos;
+    let v;
+    let a;
+    let radius = 10;
+    let gravitation;
+
+    function setup() {
+      fill(250);
+      createCanvas(400, 400);
+      ellipseMode(RADIUS);
+
+      pos = createVector(200, 50);
+      v = createVector(0, 0);
+      a = createVector(0, 0);
+      gravitation = createVector(0, 0.7);
+    }
+
+    function draw() {
+      // check
+      let unterBoden = pos.y + radius > height;
+      if (unterBoden) {
+        v.y = -abs(v.y);
+      }
+
+      // move
+      a.mult(0);
+      a.add(gravitation);
+      v.add(a);
+      pos.add(v);
+
+      //display
+      background(0);
+      stroke(255);
+      line(0,50,width,50);
+      circle(pos.x, pos.y, radius)
+      stroke(255);
+      ellipseMode(RADIUS);
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

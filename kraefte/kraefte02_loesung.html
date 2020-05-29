@@ -1,0 +1,80 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let pos;
+    let v;
+    let a;
+    let radius = 10;
+    let gravitation;
+    let schubs;
+    let gibSchubs = false;
+    let debug = false;
+      
+    function setup() {
+
+      fill(250);
+      createCanvas(400, 400);
+      background(0);
+      pos = createVector(200, 300);
+      v = createVector(0, 0);
+      a = createVector(0, 0);
+      gravitation = createVector(0, 0.7);
+      schubs = createVector(0, -20);
+
+      ellipseMode(RADIUS);
+    }
+
+    function draw() {
+      // check
+
+      let unterBoden = pos.y + radius > height;
+ 
+      if (unterBoden) {
+        v.y = -abs(v.y);
+      }
+
+      // move
+      a.mult(0);
+      a.add(gravitation);
+      if (gibSchubs) {
+        a.add(schubs);
+        gibSchubs = false;
+        debug = true;
+      }
+      v.add(a);
+      pos.add(v);
+       
+      if (unterBoden) {    //positionskorrektur
+        pos.y = height - radius;
+      }
+
+      //display
+      background(0);
+      stroke(0);
+      circle(pos.x, pos.y, radius)
+
+      if (debug) noLoop();
+    
+    }
+
+    function mousePressed() {
+      gibSchubs = true;
+    }
+
+    function keyPressed() {
+      if (key === 'd' && debug ) {
+        loop();
+      }
+    }
+   
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

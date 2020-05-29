@@ -3,7 +3,7 @@
 ### translate
 
 Mit *translate* verschieben wir den Koordinatenursprung. Innerhalb eines draw-Durchgangs "addieren" sich die
-die Transformationen.
+Transformationen.
 
 ```
 function setup() {
@@ -119,6 +119,46 @@ function draw() {
 
 -------
 
+### scale
+
+Mit *scale* werden die Achsen des Koordinatensystems mit einem Faktor skaliert. Der Faktor kann auch negativ sein, dadurch kann man
+Figuren spiegeln.
+
+```
+function setup() {
+  createCanvas(400, 300);
+}
+
+function draw() {
+  background(220);
+  push()
+  translate(50,100);
+  circle(0,0,8);
+  skizze();
+  pop()
+ 
+  push()
+  translate(250,100);
+  circle(0,0,8);
+  scale(-1,1);
+  skizze();
+  pop()
+
+}
+
+function skizze() {
+  fill(255,0,0);
+  square(0,0,30); 
+  fill(0,255,0);
+  square(30,0,30); 
+  fill(0,0,255);
+  square(0,30,30);
+  fill(255,255,0);
+  square(30,30,30);
+}
+```
+<iframe src="scale.html" width="420" height="320"></iframe>
+
 #### Rotierendes Rechteck
 
 Mit *rectMode(CENTER)* und *translate* können wir das Rechteck um seinen Mittelpunkt drehen.
@@ -158,46 +198,42 @@ function draw() {
 
 #### Lenken mit rotate
 
-Der Ball wird in die Richtung des Geschwindigkeitsvektors gedreht.
+Winkel und Länge des Geschwindigkeitsvektors werden direkt mit Tasten geändert. Ein eigener Beschleunigungsvektor wird nicht benutzt.
 
 ```
 let pos;
 let winkel = 0;
-let geschwindigkeit = 0.5;
+let speed = 0;
 
 function setup() {
-    createCanvas(400, 400);
-    strokeWeight(10);
-    stroke(255);
-    pos = createVector(50, 200);
+  createCanvas(400, 400);
+  pos = createVector(100,100);
+  fill(255);
+  stroke(255);
 }
 
 function draw() {
-    background(0);
-    if (keyIsDown(LEFT_ARROW)) winkel -= 0.06;
-    if (keyIsDown(RIGHT_ARROW)) winkel += 0.06;
-    if (keyIsDown(87)) geschwindigkeit += 0.1;
-    if (keyIsDown(83)) geschwindigkeit -= 0.1;
-
-    let v = p5.Vector.fromAngle(winkel, geschwindigkeit)
-    v.limit(5);
-    pos.add(v);
-
-    if (pos.x > width + 5) pos.x = -5;
-    if (pos.y > height + 5) pos.y = -5;
-    if (pos.x < -5) pos.x = width + 5;
-    if (pos.y < -5) pos.y = height + 5;
-
-    push();
-
-    translate(pos.x, pos.y)
-    rotate(v.heading());
-    circle(0, 0, 10);
-
-    strokeWeight(1);
-    line(0, 0, 20, 0);
-
-    pop();
+  background(0);
+  
+  if (keyIsDown(LEFT_ARROW)) winkel -= 0.06;
+  if (keyIsDown(RIGHT_ARROW)) winkel += 0.06;
+  if (keyIsDown(87)) speed  += 0.1;
+  if (keyIsDown(83)) speed  -= 0.1;
+  
+  let v = p5.Vector.fromAngle(winkel, speed);
+  pos.add(v);
+  v.limit(2);
+   
+  if (pos.x > width) pos.x = 0;
+  if (pos.x < 0) pos.x = width;
+  if (pos.y > height) pos.y = 0;
+  if (pos.y < 0) pos.y = height;
+  
+  translate(pos.x,pos.y);
+  rotate(winkel);
+  circle(0,0,10);
+  line(5,0,10,0);
+}
 }
 
 ```

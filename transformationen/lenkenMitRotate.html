@@ -3,42 +3,39 @@
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
+let pos;
+let winkel = 0;
+let speed = 0;
 
-    let pos;
-    let winkel = 0;
-    let geschwindigkeit = 0.5;
+function setup() {
+  createCanvas(400, 400);
+  pos = createVector(100,100);
+  fill(255);
+  stroke(255);
+}
 
-    function setup() {
-      createCanvas(400, 400);
-      strokeWeight(10);
-      stroke(255);
-      pos = createVector(50, 200);
-    }
-
-    function draw() {
-      background(0);
-      if (keyIsDown(LEFT_ARROW)) winkel -= 0.06;
-      if (keyIsDown(RIGHT_ARROW)) winkel += 0.06;
-      if (keyIsDown(87)) geschwindigkeit += 0.1;
-      if (keyIsDown(83)) geschwindigkeit -= 0.1;
-
-      let v = p5.Vector.fromAngle(winkel, geschwindigkeit)
-      v.limit(5);
-      pos.add(v);
-
-      if (pos.x > width + 5) pos.x = -5;
-      if (pos.y > height + 5) pos.y = -5;
-      if (pos.x < -5) pos.x = width + 5;
-      if (pos.y < -5) pos.y = height + 5;
-
-      push();
-      translate(pos.x, pos.y)
-      rotate(v.heading());
-      circle(0, 0, 10);
-      strokeWeight(1);
-      line(0, 0, 20, 0);
-      pop();
-    }
+function draw() {
+  background(0);
+  
+  if (keyIsDown(LEFT_ARROW)) winkel -= 0.06;
+  if (keyIsDown(RIGHT_ARROW)) winkel += 0.06;
+  if (keyIsDown(87)) speed  += 0.1;
+  if (keyIsDown(83)) speed  -= 0.1;
+  
+  let v = p5.Vector.fromAngle(winkel, speed);
+  pos.add(v);
+  v.limit(2);
+   
+  if (pos.x > width) pos.x = 0;
+  if (pos.x < 0) pos.x = width;
+  if (pos.y > height) pos.y = 0;
+  if (pos.y < 0) pos.y = height;
+  
+  translate(pos.x,pos.y);
+  rotate(winkel);
+  circle(0,0,10);
+  line(5,0,10,0);
+}
   </script>
 </head>
 

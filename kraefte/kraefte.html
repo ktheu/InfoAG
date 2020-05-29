@@ -1,0 +1,101 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let pos;
+    let v;
+    let a;
+    let gravitation;
+    let wind;
+    let radius = 10;
+    let reibung = 0.1;
+    let schubs = 20;
+
+    function setup() {
+      createCanvas(400, 400);
+      ellipseMode(RADIUS);
+      pos = createVector(200, 50);  // Position
+      v = createVector(0, 0);
+      a = createVector(0 ,0);
+      gravitation = createVector(0, 0.6);
+      wind = createVector(0.2, 0)
+    }
+
+
+
+    function draw() {
+      // check
+
+      let onGround = false;
+      if (abs(pos.y + radius - height) < 1) {
+        onGround = true;
+      }
+
+      if (pos.x  > width - radius) {
+        pos.x = width - radius
+        v.x *= -1;
+      }
+
+      if (pos.x  < 0) {
+        pos.x = 0
+        v.x *= -1;
+      }
+
+
+      if (pos.y > height - radius) {
+        pos.y = height - radius
+        v.y *= -1;
+      }
+
+      if (pos.y - radius < 0) {
+        pos.y =  radius
+        v.y *= -1;
+      }
+
+      a.mult(0);
+      a.add(gravitation);                      // gravitation
+                 
+      if (keyIsDown(RIGHT_ARROW)) {            // wind
+        a.add(wind);
+      }
+
+      if (keyIsDown(LEFT_ARROW)) {            // wind
+        rightwind = wind.copy()
+        rightwind.mult(-1);
+        a.add(rightwind);
+      }
+
+      friction = v.copy().setMag(-reibung)     // reibung
+      a.add(friction);
+
+      if (keyIsDown(UP_ARROW) && onGround) {   // schubs
+        a.add(createVector(0,-schubs))
+      }
+
+
+      // move
+      v.add(a);
+      pos.add(v);
+
+      // display
+      background(0);
+      fill(240);
+      circle(pos.x, pos.y, radius);
+    }
+
+    function mousePressed() {
+
+      pos.x = mouseX;
+      pos.y = mouseY;
+
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
