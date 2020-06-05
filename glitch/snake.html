@@ -1,0 +1,262 @@
+<html>
+
+<head>
+    <title>Snake</title>
+    <meta charset="utf-8" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #1a1a1a;
+        padding-top: 50px;
+      }
+  
+      canvas {
+        display: block;
+        margin: auto;
+      }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+
+        const dicke = 20;  // Dicke eines Schlangenelements und Länge einer Bewegung
+        let hsmin = -1;
+        let highscoreText = "Highscore: \n\nN.N. 0\nN.N. 0\nN.N. 0";
+        let state = "WELCOME";
+
+        // set in init0
+        let score;
+        let name;
+        let sx, sy;  // arrays for snake pos
+        let laenge;    //aktuelle Länge der Schlange
+        let x, y;   // Koordinaten des Kopfes
+        let vx, vy;   // Vorzeichen x/y-Bewegung
+        let fx, fy;    // Koordinaten des Futters
+
+        function setup() {
+            createCanvas(500, 500);
+            stroke(0);
+            strokeWeight(1);
+            textSize(32);
+            frameRate(10);
+            init0();
+        }
+
+        function init0() {
+            laenge = 1;    //aktuelle Länge der Schlange
+            sx = [];
+            sy = [];
+            sx[0] = int(random(0, width / dicke)) * dicke;
+            sy[0] = int(random(0, height / dicke)) * dicke;
+            fx = int(random(0, width / dicke)) * dicke;
+            fy = int(random(0, height / dicke)) * dicke;
+            vx = 0;  // Vorzeichen x-Bewegung
+            vy = 1;  // Vorzeichen y-Bewegung
+            score = 0;
+            name = "";
+        }
+
+        function draw() {
+
+            switch (state) {
+                case "WELCOME":
+                    welcome();
+                    break;
+                case "PLAY":
+                    play();
+                    break;
+                case "GAMEOVER":
+                    gameover();
+                    break;
+                case "HIGHSCORE":
+                    highscore();
+                    break;
+                case "NEWHIGHSCORE":
+                    newhighscore();
+                    break;
+                case "WAIT":
+                    wait();
+                    break;
+            }
+        }
+
+        function play() {
+            background('#92F5C1');
+            updateKopf();
+            checkFenster();
+            checklost();
+            checkFutter();
+            nachruecken();
+            futterzeigen();
+            schlangezeigen();
+            scorezeigen();
+        }
+
+        function welcome() {
+            background('#92F5C1');
+            fill('#F5582C');
+            noStroke();
+            textAlign(CENTER, CENTER)
+            textSize(14);
+            text(highscoreText, 0, 60, width);
+            textSize(20);
+            text("Welcome to Snake", 0, 220, width);
+            textSize(14);
+            text("Navigate snake with arrow-keys\n\nStart with ENTER", 0, 320, width);
+
+        }
+
+        function updateKopf() {
+            x = sx[0];
+            y = sy[0];
+            x = x + vx * dicke;
+            y = y + vy * dicke;
+        }
+
+        function checkFenster() {
+            if (x > width) x = 0;
+            if (x < 0) x = int(width / dicke) * dicke;
+            if (y > height) y = 0;
+            if (y < 0) y = int(height / dicke) * dicke;
+        }
+
+        function checklost() {
+            for (let i = 0; i < laenge; i++) {
+                if (x == sx[i] && y == sy[i]) {
+                    state = "GAMEOVER";
+                }
+            }
+        }
+
+        function checkFutter() {
+            if (x == fx && y == fy) {
+                laenge++;
+                fx = int(random(0, width / dicke)) * dicke;
+                fy = int(random(0, height / dicke)) * dicke;
+
+            }
+        }
+
+        function scorezeigen() {
+            textSize(26);
+            noStroke();
+            fill('#F5582C');
+            text(score, 20, 40);
+        }
+
+        function futterzeigen() {
+            stroke(0);
+            fill('#F5582C');
+            rect(fx, fy, dicke, dicke);
+        }
+
+        function schlangezeigen() {
+            stroke(0);
+            for (let i = 0; i < laenge; i++) {
+                fill('#CEBC2E');
+                rect(sx[i], sy[i], dicke, dicke);
+            }
+        }
+
+        function nachruecken() {
+            for (let i = laenge - 1; i > 0; i--) {
+                sx[i] = sx[i - 1];
+                sy[i] = sy[i - 1];
+            }
+            sx[0] = x;
+            sy[0] = y;
+        }
+
+        function scoreBackground() {
+            background('#92F5C1');
+            futterzeigen();
+            schlangezeigen();
+            scorezeigen();
+            textSize(14);
+            text(highscoreText, 0, 60, width);
+        }
+
+        function gameover() {
+            if (score > hsmin) {
+                state = "HIGHSCORE";
+            } else {
+                scoreBackground();
+                text("Your score: " + score, 0, 230, width);
+                text("Press r to restart", 0, 260, width);
+            }
+        }
+
+        function highscore() {
+            scoreBackground();
+            text("Your score: " + score, 0, 230, width);
+            text("Your name: " + name, 0, 260, width);
+        }
+
+        function wait() {
+            scoreBackground();
+            text("Your Score: " + score, 0, 230, width);
+            text("Your Name: " + name, 0, 250, width);
+            text("... updating database", 0, 270, width);
+        }
+
+        function newhighscore() {
+            scoreBackground();
+            text("Press r to restart", 0, 260, width);
+        }
+
+        function keyTyped() {
+            if (state === "HIGHSCORE") {
+                name += key;
+            }
+        }
+
+        function keyPressed() {
+            if (state === "WELCOME") {
+                if (keyCode === ENTER) {
+                    state = "PLAY";
+                }
+            }
+
+            if (state === "PLAY") {
+                if (keyCode == RIGHT_ARROW || key == 'd' || key == 'D') {
+                    vx = 1;
+                    vy = 0;
+                } else if (keyCode == LEFT_ARROW || key == 'a' || key == 'A') {
+                    vx = -1;
+                    vy = 0;
+                } else if (keyCode == DOWN_ARROW || key == 's' || key == 'S') {
+                    vx = 0;
+                    vy = 1;
+                } else if (keyCode == UP_ARROW || key == 'w' || key == 'W') {
+                    vx = 0;
+                    vy = -1;
+                }
+            }
+
+            if (state === "GAMEOVER" || state === "NEWHIGHSCORE") {
+                if (key === "r") {
+                    init0();
+                    state = "PLAY";
+                }
+            }
+
+            if (state === "HIGHSCORE") {
+                if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
+                if (keyCode === ENTER) {
+                    state = "WAIT";
+                    httpPost("/highscore", { name: name, score: score }, function (res) {
+                        getHighscore();
+                        state = "NEWHIGHSCORE";
+                    });
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

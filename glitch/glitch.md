@@ -4,20 +4,65 @@ In einem [Glitch](https://glitch.com)-Project können wir einen Node-Server star
 
 Wir möchten Highscores in einem Spiel zu verwalten.
 
+Muster: [Highscore-Demo](https://highscore-demo.glitch.me/)
+
 Beispiel 1: [SimplePong](https://simplepong.glitch.me/)
 
 Beispiel 2: [Wellen](https://wellen.glitch.me/)
 
-#### Express und Nedb
+Beispiel 3: [Snake](https://p5snake.glitch.me/)
 
-- Wir klicken auf *New Project* und wählen *hello-express* aus.  
-- Durch Klick auf den Projektnamen können wir einen passenden Namen vergeben.
-- Klick auf *package.json, add package*, suchen nach *nedb*  und auswählen. Nedb ist eine einfache Datenbank.
 
-#### server.js
- 
-Den Inhalt von *server.js* vollständig ersetzen durch den folgenden Inhalt. Gegebenenfalls die Variable
-*highscoreAnz* anpassen. 
+### Ablauf 
+
+Für ein Projekt mit Highscore nutzen wir insgesamt 6 Spielstati: 
+
+WELCOME, PLAY, GAMEOVER, HIGHSCORE, WAIT, NEWHIGHSCORE
+
+
+<img src="ablauf.png" width=800>
+
+
+### Eigenes Projekt mit Highscore nach Glitch bringen
+
+1. Remix *highscore-demo*
+2. Projektnamen vergeben
+
+Anpassungen in *server.js*
+
+3. *highscoreAnz* anpassen, falls mehr als 3 Highscores angezeigt werden sollen. Nach der Anpassung die Zeile mit *db.remove* aktivieren. Der Server wird dann automatisch neu gestartet und die Datenbank mit der neuen Anzahl angelegt. Dann die Zeile wieder auskommentieren.
+
+
+Anpassungen in *index.js*
+
+4. Zusätzliche globale Variablen hinzufügen
+
+5. *setup* anpassen. Initialisierungen in setup, die auch beim restart durchgeführt werden sollen, in die Funktion
+   *init0* verlegen.
+
+6. Die eigene Spiellogik in die *play*-Funktion bringen.
+
+7. Bei Spielende in den state *GAMEOVER* wechseln. In dem Muster wird das Spielende durch die Leertaste herbeigeführt. Diesen
+Code gegebenenfalls entfernen. Eigene Tastensteuerungen einfügen.
+
+```
+        if (state === "PLAY") {
+          if (key === " ") {
+            state = "GAMEOVER";
+          }
+        }
+```
+
+8. Eigene Maussteuerungen einfügen.
+
+9. Schrift, Text, Positionen, etc. in den Funktionen *scoreBackground, highscore, newhighscore, gameover* anpassen.
+
+
+### Highscore-Demo
+
+Die Anwendung besteht im wesentlichen aus zwei Dateien und einer nedb-Datenbank.
+
+#### sever.js
 
 ```
 const highscoreAnz = 3;         // Update: Anzahl Highscores
@@ -69,10 +114,8 @@ app.post("/highscore", (req, res, next) => {
 
 app.listen(process.env.PORT);
 ```
-#### views/index.html
 
-Den Inhalt von *views/index.html* löschen und durch den folgenden Inhalt ersetzen. 
-Gegebenenfalls *title, background-color* und *padding-top* anpassen.
+#### views/index.html
 
 ```
 <html>
@@ -94,181 +137,51 @@ Gegebenenfalls *title, background-color* und *padding-top* anpassen.
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
     <script>
-        //  ------------ Hier kommt der Sketch hin -------------
-    </script>
-  </head>
-
-  <body></body>
-</html>
-```
- 
-Jetzt den Sketch an die markierte Stelle einfügen und weitere Anpassungen machen.
-
-#### Variablen, getHighscore
-
-Wir setzen voraus, dass *name* die Variable mit dem Namen des Spielers ist, der in die Highscoreliste
-soll und *score* sein score. Die Funktion *getHighscore* füllt die Variablen *hsmin* und *highscoreText*, die wir an geeigneter Stelle ausgeben können. *hsmin* wird benötigt um zu entscheiden, ob eine neuer Eintrag in die
-Highscore-Liste erfolgen soll.
-
-Falls noch nicht vorhanden, fügen wir die folgenden Variablen ein:
-
-```
-let score = 0;
-let name = "";
-let hsmin = 0;               // minimaler Highscore
-let highscoreText = "";      // Ausgabetext des Highscores
-```
-
-Wir fügen folgende Funktion ein und rufen Sie am Ende von *setup* auf. 
-
-
-```
-function getHighscore() {
-  httpGet(
-    "/highscore",
-    "json",
-    false,
-    function(res) {
-      highscoreText = "Highscore:\n\n";
-      for (let i = 0; i < res.length; i++) {
-        highscoreText += res[i].name + ": " + res[i].score + "\n";
-      }
-      hsmin = res[res.length - 1].score;
-    },
-    function(err) {
-      console.log(err);
-    }
-  );
-}
-
-```
-
-#### Anpassung Welcome-Screen
-
-Im *welcome-screen* zeigen wir an geeigneter Stelle den bisherigen Highscore
-
-```
-    textStyle(NORMAL);
-    textAlign(LEFT);
-    textSize(18);
-    text(highscoreText, 100, 20);
-```
- 
-#### Highscore und Newhighscore
-
-Wenn wir am Ende eines Spiels merken, dass der erreichte Score größer als *hsmin* ist, versetzen wir uns in den
-Spielstatus *HIGHSCORE* um unseren Namen einzugeben. Im Status *NEWHIGHSCORE* wird der neue Highscore dann gezeigt.
-Hier könnten wir eine restart-Möglichkeit einbauen.
-
-```
-  if (score > hsmin) {
-    state = "HIGHSCORE";
-  }
-```
-
-In der draw-Methode berücksichtigen wir die neuen Stati:
-
-```
-  case "HIGHSCORE":
-    highscore();
-    break;
-
-  case "NEWHIGHSCORE":
-    newhighscore();
-    break;
-
-```
-
-Die dazugehörigen Funktionen müssen für den Einzelfall angepasst werden.
-
-```
-function highscore() {
-  background('#1a1a1f');
-  fill(120);
-  textStyle(NORMAL);
-  textAlign(LEFT);
-  textSize(18);
-  text(highscoreText, 200, 100);
-  
-  text("Your score: " + score, 200, 270);
-  text("Your name: " + name, 200, 300);
-}
-
-function newhighscore() {
-  background('#1a1a1f');
-  fill(120);
-  textStyle(NORMAL);
-  textAlign(LEFT);
-  textSize(18);
-  text(highscoreText, 200, 100);
-}
-
- 
-```   
-
-Zum Eintippen des Namens fügen wir die Funktion *keyTyped* ein.
-In der Funktion *keyPressed* können wir mit *backspace* die Eingabe korrigieren. Mit 
-*enter* schließen wir die Eingabe ab und versetzen uns in den Zustand *NEWHIGHSCORE*.
-
-```
-function keyTyped() {
-  if (state === "HIGHSCORE") {
-    name += key;
-  }
-}
-
-
-function keyPressed() {
-  if (state === "HIGHSCORE") {
-    if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
-    if (keyCode === ENTER) {
-      httpPost("/highscore", { name: name, score: score }, function(res) {
-        getHighscore();
-      });
-      state = "NEWHIGHSCORE";
-    }
-  }
-}
-
-```
-
-
-#### Fehlersuche 
-
-Fehler in unserem Sketch treten auf der Client-Seite auf. Wir können in Chrome mit der Eingabe von
-`Strg+Umschalt+I` die Konsole mit den Fehlermeldungen aufrufen.
-
-Fehler auf der Serverseite können wir in Glitch mit Klick auf `Tools, Logs` sehen.
-
-#### Datenbank neu anlegen
-Die Datenbank können wir löschen, indem wir die Kommentarzeichen in Zeile 10 in *server.js* entfernen und die 
-Anwendung neu starten. Danach fügen wir die Kommentarzeichen wieder ein.
-
-```
-db.remove({}, { multi: true });  
-
-```
-
-#### Anwendung aufrufen
-Wenn der Projektname *treffer* heißt, dann ist die Anwendung unter *https://treffer.glitch.me/* aufrufbar.
-
-
-### Beispiel: _[Highscore](https://highscore.glitch.me)_
-
-Ein Mausklick erzeugt eine Zufallszahl zwischen 0 und 99. Die höchsten drei werden im Highscore abgespeichert.
-
-```
+      let hsmin = -1;
       let highscoreText = "";
-      let hsmin = 0; // minimaler Highscore
-      let score = 0;
-      let name = "";
-
       let state = "WELCOME";
 
-      function setup() {
-        createCanvas(400, 400);
-        fill(120);
+      // set in init0
+      let score;
+      let name;
+
+      function preload() {
         getHighscore();
+      }
+
+      function setup() {
+        createCanvas(300, 300);
+        noStroke();
+        init0();
+      }
+
+      function draw() {
+        background(100);
+        switch (state) {
+          case "WELCOME":
+            welcome();
+            break;
+          case "PLAY":
+            play();
+            break;
+          case "GAMEOVER":
+            gameover();
+            break;
+          case "HIGHSCORE":
+            highscore();
+            break;
+          case "NEWHIGHSCORE":
+            newhighscore();
+            break;
+          case "WAIT":
+            wait();
+            break;
+        }
+      }
+
+      function init0() {
+        score = 0;
+        name = "";
       }
 
       function getHighscore() {
@@ -289,62 +202,60 @@ Ein Mausklick erzeugt eine Zufallszahl zwischen 0 und 99. Die höchsten drei wer
         );
       }
 
-      function draw() {
-        background("#1a1a1f");
+      function scoreBackground() {
+        background(100);
+        textSize(30);
+        textAlign(CENTER, CENTER);
+        text(score, 0, 170, width);
 
-        switch (state) {
-          case "WELCOME":
-            welcome();
-            break;
-
-          case "PLAY":
-            play();
-            break;
-
-          case "HIGHSCORE":
-            highscore();
-            break;
-
-          case "NEWHIGHSCORE":
-            newhighscore();
-            break;
-        }
+        textAlign(CENTER, CENTER);
+        fill(200);
+        textSize(14);
+        text(highscoreText, 0, 60, width);
       }
 
       function welcome() {
-        textSize(22);
-        text("Welcome to Highscore", 50, 50);
-        textSize(18);
-        text(
-          "Click to start, then click to get a random number",
-          50,
-          100,
-          250,
-          200
-        );
-        textSize(18);
-        text(highscoreText, 50, 200);
+        scoreBackground();
+        text("Welcome to HighNumber", 0, 30, width);
+        text("Start with ENTER", 0, 200, width);
       }
 
       function play() {
-        textSize(18);
-        text("Your number: " + score, 50, 200);
+        background(100);
+        score = int(random(1000));
+        textSize(30);
+        textAlign(CENTER, CENTER);
+        text(score, 0, 170, width);
+        textSize(14);
+        text("Hit space to stop", 0, 260, width);
+      }
+
+      function gameover() {
         if (score > hsmin) {
           state = "HIGHSCORE";
+        } else {
+          scoreBackground();
+          text("Your score: " + score, 0, 230, width);
+          text("Press r to restart", 0, 260, width);
         }
       }
 
       function highscore() {
-        textSize(18);
-        text(highscoreText, 50, 100);
+        scoreBackground();
+        text("Your score: " + score, 0, 230, width);
+        text("Your name: " + name, 0, 260, width);
+      }
 
-        text("Your score: " + score, 50, 270);
-        text("Your name: " + name, 50, 300);
+      function wait() {
+        scoreBackground();
+        text("Your Score: " + score, 0, 230, width);
+        text("Your Name: " + name, 0, 250, width);
+        text("... updating database", 0, 270, width);
       }
 
       function newhighscore() {
-        textSize(18);
-        text(highscoreText, 50, 100);
+        scoreBackground();
+        text("Press r to restart", 0, 260, width);
       }
 
       function keyTyped() {
@@ -354,21 +265,49 @@ Ein Mausklick erzeugt eine Zufallszahl zwischen 0 und 99. Die höchsten drei wer
       }
 
       function keyPressed() {
+        if (state === "WELCOME") {
+          if (keyCode === ENTER) {
+            state = "PLAY";
+          }
+        }
+
+        if (state === "PLAY") {
+          if (key === " ") {
+            state = "GAMEOVER";
+          }
+        }
+
+        if (state === "GAMEOVER" || state === "NEWHIGHSCORE") {
+          if (key === "r") {
+            init0();
+            state = "PLAY";
+          }
+        }
+
         if (state === "HIGHSCORE") {
           if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
           if (keyCode === ENTER) {
+            state = "WAIT";
             httpPost("/highscore", { name: name, score: score }, function(res) {
               getHighscore();
+              state = "NEWHIGHSCORE";
             });
-            state = "NEWHIGHSCORE";
           }
         }
       }
+    </script>
+  </head>
 
-      function mousePressed() {
-        if (state === "WELCOME") state = "PLAY";
-        if (state === "PLAY") {
-          score = int(random(100));
-        }
-      }
+  <body></body>
+</html>
+
 ```
+
+
+
+ 
+
+
+
+ 
+

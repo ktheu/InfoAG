@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Highscore-Demo</title>
+    <title>Wellen</title>
     <meta charset="utf-8" />
     <style>
       html,
@@ -17,26 +17,27 @@
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
     <script>
-      let highscoreText = "";
-      let hsmin = 0; // minimaler Highscore
-      let score = 0; // aktueller score
-      let name = ""; // Spielername für Highscore
-
       let anzahlWellen = 6;
       let anzahlQuadrate = 10;
       let abstand = 120; // abstand zwischen zwei Wellen
       let seitenlaenge = 30; // seitenlänge eines quadrats
-      let x = 100;
-      let y;
-      let vx = 1;
 
-      let px = 10;
-      let py = 200;
       let radius = 10;
-      let vpx = 1;
-      let vpy = 2;
+      let vpx = 1; // x-velocity of player
+      let vpy = 2; // y-velocity of player
 
+      let hsmin = -1;
+      let highscoreText = "";
       let state = "WELCOME";
+
+      // set in init0
+      let score;
+      let name;
+      let y; // 2-dim Array for rect-bars
+      let x; // x-coord of front-bar
+      let vx; // velocitiy of bars
+      let px; // x-coord of player
+      let py; // y-coord of player
 
       function getHighscore() {
         httpGet(
@@ -51,18 +52,48 @@
             hsmin = res[res.length - 1].score;
           },
           function(err) {
+            console.log("error function");
             console.log(err);
           }
         );
       }
 
+      function preload() {
+        getHighscore();
+      }
+
       function setup() {
         createCanvas(600, 400);
-        getHighscore();
         noStroke();
         textSize(30);
         ellipseMode(RADIUS);
+        init0();
+      }
 
+      function draw() {
+        switch (state) {
+          case "WELCOME":
+            welcome();
+            break;
+          case "PLAY":
+            play();
+            break;
+          case "GAMEOVER":
+            gameover();
+            break;
+          case "HIGHSCORE":
+            highscore();
+            break;
+          case "NEWHIGHSCORE":
+            newhighscore();
+            break;
+          case "WAIT":
+            wait();
+            break;
+        }
+      }
+
+      function init0() {
         y = [];
         for (let i = 0; i < anzahlWellen; i++) {
           y[i] = [];
@@ -70,44 +101,52 @@
             y[i][j] = int(random(0, 400));
           }
         }
+        score = 0;
+        name = "";
+        px = 10;
+        py = 200;
+        vx = 1;
+        x = 100;
+        count = 0;
       }
 
-      function draw() {
-        background(0);
-        switch (state) {
-          case "PLAY":
-            play();
-            break;
-          case "WELCOME":
-            welcome();
-            break;
-          case "HIGHSCORE":
-            highscore();
-            break;
-        }
-      }
-
-      function highscore() {
+      function scoreBackground() {
+        background(100);
+ 
+     
         fill(120);
+        for (let i = 0; i < anzahlWellen; i++) {
+          for (let j = 0; j < anzahlQuadrate; j++) {
+            square(x + i * abstand, y[i][j], seitenlaenge);
+          }
+        }
+
+        fill(0, 255, 0);
+        textSize(20);
+        text(score, 40, 40);
+
+        fill(255, 0, 0);
+        circle(px, py, radius);
+        
+        textAlign(CENTER, CENTER);
+        fill(200);
         textSize(18);
-        text(highscoreText, 50, 100);
-        text("Your score: " + score, 50, 270);
-        text("Your name: " + name, 50, 300);
+        text(highscoreText, 0, 100, width);
       }
 
       function welcome() {
-        fill(120);
-        textSize(20);
-        text("Welcome to Wellen", 50, 50);
-        textSize(14);
-        text("Move red ball with arrow-keys",50,100);
-        textSize(18);
-        text(highscoreText, 50, 140);
-        textSize(14);
-        text("Start with ENTER", 50, 300);
+        scoreBackground();
+        text("Welcome to Wellen", 0, 50, width);
+        text(
+          "Use arrow-keys to navigate through gaps\n\nStart with ENTER",
+          0,
+          300,
+          width
+        );
       }
 
       function play() {
+        background(100);
         x = x - vx;
         vx = 1.0003 * vx;
 
@@ -158,60 +197,67 @@
         circle(px, py, radius);
 
         if (collision) {
-          s = "Your score: " + score;
-          fill(0, 255, 0);
-
-          text(s, 200, 200);
-
-          if (score > hsmin) {
-            state = "HIGHSCORE";
-          } else {
-            s2 = "r - restart";
-            text(s2, 200, 250);
-            noLoop();
-          }
+          state = "GAMEOVER";
         }
+      }
+
+      function gameover() {
+        if (score > hsmin) {
+          state = "HIGHSCORE";
+        } else {
+          scoreBackground();
+          text("Your score: " + score, 0, 230, width);
+          text("Press r to restart", 0, 260, width);
+        }
+      }
+
+      function highscore() {
+        scoreBackground();
+        text("Your score: " + score, 0, 230, width);
+        text("Your name: " + name, 0, 260, width);
+      }
+
+      function wait() {
+        scoreBackground();
+        text("Your Score: " + score, 0, 230, width);
+        text("Your Name: " + name, 0, 260, width);
+        text("... updating database", 0, 300, width);
+      }
+
+      function newhighscore() {
+        scoreBackground();
+        text("Press r to restart", 0, 260, width);
       }
 
       function keyTyped() {
         if (state === "HIGHSCORE") {
           name += key;
         }
-
-        if (state === "PLAY" && key === "r") {
-          px = 10;
-          py = 200;
-          vx = 1;
-          x = 100;
-          score = 0;
-          loop();
-        }
       }
 
       function keyPressed() {
-        if (state === "HIGHSCORE") {
-          if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
+        if (state === "WELCOME") {
           if (keyCode === ENTER) {
-            let data = {
-              name: name,
-              score: score
-            };
-            httpPost("/highscore", data, function(res) {
-              score = 0;
-              name = "";
-              state = "WELCOME";
-              px = 10;
-              py = 200;
-              vx = 1;
-              x = 100;
-              loop();
-              getHighscore();
-            });
+            state = "PLAY";
           }
         }
 
-        if (state === "WELCOME" && keyCode === ENTER) {
-          state = "PLAY";
+        if (state === "GAMEOVER" || state === "NEWHIGHSCORE") {
+          if (key === "r") {
+            init0();
+            state = "PLAY";
+          }
+        }
+
+        if (state === "HIGHSCORE") {
+          if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
+          if (keyCode === ENTER) {
+            state = "WAIT";
+            httpPost("/highscore", { name: name, score: score }, function(res) {
+              getHighscore();
+              state = "NEWHIGHSCORE";
+            });
+          }
         }
       }
     </script>

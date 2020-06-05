@@ -1,0 +1,257 @@
+<html>
+  <head>
+    <title>SimplePong</title>
+    <meta charset="utf-8" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #1a1a1a;
+        padding-top: 100px;
+      }
+      canvas {
+        display: block;
+        margin: auto;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+      let xBalken = 150;
+      let yBalken = 270;
+      let balkenBreite = 80;
+      let balkenHoehe = 10;
+      let vxBalken = 4;
+
+      let ballRadius = 10;
+
+      let xBall, yBall;
+      let vxBall, vyBall;
+
+      let tRechts = false; // Schalter Taste
+      let tLinks = false;
+
+      let pLinksVonBalken;
+      let pRechtsVonBalken;
+
+      let hsmin = -1;
+      let highscoreText = "";
+      let state = "WELCOME";
+
+      // set in init0
+      let score;
+      let name;
+
+      function init0() {
+        xBall = random(20, width - 20);
+        yBall = 50;
+
+        vxBall = 4;
+        vyBall = 3;
+
+        score = 0;
+        name = "";
+      }
+
+      function preload() {
+        getHighscore();
+      }
+
+      function setup() {
+        createCanvas(300, 300);
+        ellipseMode(RADIUS);
+        init0();
+      }
+
+      function draw() {
+        switch (state) {
+          case "WELCOME":
+            welcome();
+            break;
+          case "PLAY":
+            play();
+            break;
+          case "GAMEOVER":
+            gameover();
+            break;
+          case "HIGHSCORE":
+            highscore();
+            break;
+          case "NEWHIGHSCORE":
+            newhighscore();
+            break;
+          case "WAIT":
+            wait();
+            break;
+        }
+      }
+
+      function gameBackground() {
+        background(80);
+        fill(175);
+        textSize(14);
+        textAlign(CENTER, CENTER);
+        text(highscoreText, 0, 40, width);
+      }
+
+      function welcome() {
+        gameBackground();
+        text(
+          "Welcome to Simple Pong\nUse arrow keys to move paddle\n\nPress Enter to start",
+          0,
+          200,
+          width
+        );
+      }
+
+      function highscore() {
+        gameBackground();
+        text("Your Score: " + score, 0, 200, width);
+        text("Your Name: " + name, 0, 230, width);
+      }
+
+      function newhighscore() {
+        gameBackground();
+        text("Press r to restart", 0, 260, width);
+      }
+
+      function wait() {
+        gameBackground();
+        text("Your Score: " + score, 0, 200, width);
+        text("Your Name: " + name, 0, 230, width);
+        text("... updating database", 0, 260, width);
+      }
+
+      function gameover() {
+        if (score > hsmin) {
+          state = "HIGHSCORE";
+        } else {
+          gameBackground();
+
+          text("Your Score: " + score, 0, 200, width);
+          text("Press r to restart", 0, 260, width);
+        }
+      }
+
+      function getHighscore() {
+        httpGet(
+          "/highscore",
+          "json",
+          false,
+          function(res) {
+            highscoreText = "Highscore:\n\n";
+            for (let i = 0; i < res.length; i++) {
+              highscoreText += res[i].name + ": " + res[i].score + "\n";
+            }
+            hsmin = res[res.length - 1].score;
+          },
+          function(err) {
+            console.log(err);
+          }
+        );
+      }
+
+      function play() {
+        background(80);
+
+        let oberhalbBalken = yBall + ballRadius <= yBalken;
+        let unterhalbBalken = yBall - ballRadius >= yBalken + balkenHoehe;
+        let linksVonBalken = xBall + ballRadius <= xBalken;
+        let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
+
+        let kollisionMitBalken = !(
+          oberhalbBalken ||
+          unterhalbBalken ||
+          linksVonBalken ||
+          rechtsVonBalken
+        );
+
+        let amRandLinksRechts =
+          xBall - ballRadius < 0 || xBall + ballRadius > width;
+        let amRandOben = yBall - ballRadius < 0;
+
+        let kommtVonLinks = pLinksVonBalken && !linksVonBalken;
+        let kommtVonRechts = pRechtsVonBalken && !rechtsVonBalken;
+
+        if (amRandLinksRechts) vxBall = -vxBall;
+        if (amRandOben) vyBall = -vyBall;
+
+        if (kollisionMitBalken) {
+          if (kommtVonLinks) vxBall = -vxBall - vxBalken;
+          else if (kommtVonRechts) vxBall = -vxBall + vxBalken;
+          else {
+            vyBall = -vyBall;
+            score++;
+          }
+        }
+
+        if (yBall > height) state = "GAMEOVER";
+
+        if (tLinks) xBalken = xBalken - vxBalken;
+        if (tRechts) xBalken = xBalken + vxBalken;
+
+        // der Ball wird langsam schneller
+        vxBall = vxBall * 1.0003;
+        vyBall = vyBall * 1.0003;
+
+        xBall = xBall + vxBall;
+        yBall = yBall + vyBall;
+
+        noStroke();
+        rect(xBalken, yBalken, balkenBreite, balkenHoehe);
+        circle(xBall, yBall, ballRadius);
+
+        textSize(20);
+        fill(175);
+        text(score + "", 20, 30);
+
+        pLinksVonBalken = linksVonBalken;
+        pRechtsVonBalken = rechtsVonBalken;
+      }
+
+      function keyTyped() {
+        if (state === "HIGHSCORE") {
+          name += key;
+        }
+      }
+
+      function keyReleased() {
+        if (keyCode == RIGHT_ARROW) tRechts = false;
+        if (keyCode == LEFT_ARROW) tLinks = false;
+      }
+
+      function keyPressed() {
+        if (state === "WELCOME") {
+          if (keyCode === ENTER) {
+            state = "PLAY";
+          }
+        }
+
+        if (state === "PLAY") {
+          if (keyCode == RIGHT_ARROW) tRechts = true;
+          if (keyCode == LEFT_ARROW) tLinks = true;
+        }
+
+        if (state === "GAMEOVER" || state === "NEWHIGHSCORE") {
+          if (key === "r") {
+            init0();
+            state = "PLAY";
+          }
+        }
+
+        if (state === "HIGHSCORE") {
+          if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
+          if (keyCode === ENTER) {
+            state = "WAIT";
+            httpPost("/highscore", { name: name, score: score }, function(res) {
+              getHighscore();
+              state = "NEWHIGHSCORE";
+            });
+          }
+        }
+      }
+    </script>
+  </head>
+
+  <body></body>
+</html>
