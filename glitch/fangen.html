@@ -1,0 +1,97 @@
+<html>
+
+<head>
+  <title>Highscore-Demo</title>
+  <meta charset="utf-8" />
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1a1a1a;
+      padding-top: 100px;
+    }
+
+    canvas {
+      display: block;
+      margin: auto;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+
+    let baelle = [];
+    const N = 10; // Anzahl Bälle
+    const radius = 15;
+    let score = 100;
+
+    function setup() {
+      createCanvas(400, 400);
+      ellipseMode(RADIUS);
+      noStroke();
+      textSize(26);
+      for (let i = 0; i < N; i++) {
+        pos = createVector(random(50, width - 50), random(50, height - 50));
+        v = createVector(random(3, 8), random(3, 8))
+        baelle[i] = new Ball(pos, v, radius);
+      }
+    }
+
+    function draw() {
+      background(0);
+
+      if (score > 0 && baelle.length > 0 && frameCount % 10 == 0) score--;
+
+      fill(255, 0, 0);
+      circle(mouseX, mouseY, radius);
+
+      let iOut = 0;
+      for (let i = 0; i < baelle.length; i++) {
+        d = dist(baelle[i].pos.x, baelle[i].pos.y, mouseX, mouseY)
+        if (d > radius) {
+          baelle[i].act();
+          baelle[iOut++] = baelle[i];
+        }
+      }
+      baelle.length = iOut;
+
+      fill(255);
+      text(score, 30, 30);
+    }
+
+    class Ball {
+      constructor(pos, v, radius) {
+        this.pos = pos;
+        this.v = v;
+        this.radius = radius;
+      }
+
+      act() {
+        this.checkRand();
+        this.move();
+        this.display();
+      }
+
+      checkRand() {
+        if (this.pos.x + this.radius > width || this.pos.x - this.radius < 0) this.v.x = -this.v.x;
+        if (this.pos.y + this.radius > height || this.pos.y - this.radius < 0) this.v.y = -this.v.y;
+      }
+
+      move() {
+        this.pos.add(this.v);
+      }
+
+      display() {
+        noStroke();
+        fill(255);
+        ellipseMode(RADIUS);
+        circle(this.pos.x, this.pos.y, this.radius);
+      }
+    }
+  </script>
+</head>
+
+<body></body>
+
+</html>
