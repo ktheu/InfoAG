@@ -20,7 +20,7 @@ Für ein Projekt mit Highscore nutzen wir insgesamt 6 Spielstati:
 WELCOME, PLAY, GAMEOVER, HIGHSCORE, WAIT, NEWHIGHSCORE
 
 
-<img src="ablauf.png" width=800>
+<img src="ablauf.png" width="800">
 
 
 ### Eigenes Projekt mit Highscore nach Glitch bringen
