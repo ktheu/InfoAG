@@ -49,7 +49,7 @@ __[Zustände](./zustand/zustand.md)__ -
 switch/case, Spielsteuerung durch Zustände
 
 __[Glitch](./glitch/glitch.md)__ 
-Highscore eines Spiels auf einem Server verwalten - 
+Highscore eines Spiels auf einem Server verwalten - [Videos](https://www.youtube.com/playlist?list=PLWeMgMhRDsIFmPHXjpYU3fceHgrEEJ4ZU)
 
 __[Klassen](./klassen/klassen.md)__ -
 Ballwelt, Counter, Hinher, Flappybalken 

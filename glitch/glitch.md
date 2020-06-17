@@ -33,7 +33,7 @@ Anpassungen in *server.js*
 3. *highscoreAnz* anpassen, falls mehr als 3 Highscores angezeigt werden sollen. Nach der Anpassung die Zeile mit *db.remove* aktivieren. Der Server wird dann automatisch neu gestartet und die Datenbank mit der neuen Anzahl angelegt. Dann die Zeile wieder auskommentieren.
 
 
-Anpassungen in *index.js*
+Anpassungen in *index.html*
 
 4. Zusätzliche globale Variablen hinzufügen
 
