@@ -2,7 +2,7 @@
 
 __[P5JS WebEditor](https://editor.p5js.org/)__ -
 __[P5JS Reference](https://p5js.org/reference/)__ - 
-__[Gallery](https://www.openprocessing.org/user/141965/#sketches)__ 
+<!-- __[Gallery](https://www.openprocessing.org/user/141965/#sketches)__  -->
 <!-- __[OpenProcessing](https://www.openprocessing.org/)__ - -->
 
 <!-- __[Hinweise](./hinweise.md)__ -->
@@ -12,6 +12,8 @@ __[Gallery](https://www.openprocessing.org/user/141965/#sketches)__
 ___________________________________________________________________
 
 __[Einführung und Einfache Figuren](figuren/figuren.md)__ - Sketchaufbau, Koordinaten, einfache Figuren, Grauwerte
+
+__[Fehler](fehler/fehler.md)__ - Syntaxfehler, Laufzeitfehler, logische Fehler
 
 __[Farben](farben/farben.md)__ - RGB-Farben, HSB-Modus, Farbtabellen, Transparenz
 
@@ -47,9 +49,6 @@ Haus und Sonne, Gesicht, Entfernung zum Mittelpunkt, Augen, Häuser
 
 __[Zustände](./zustand/zustand.md)__ -
 switch/case, Spielsteuerung durch Zustände
-
-__[Glitch](./glitch/glitch.md)__ 
-Highscore eines Spiels auf einem Server verwalten - [Videos](https://www.youtube.com/playlist?list=PLWeMgMhRDsIFmPHXjpYU3fceHgrEEJ4ZU)
 
 __[Klassen](./klassen/klassen.md)__ -
 Ballwelt, Counter, Hinher, Flappybalken 
@@ -93,13 +92,11 @@ Smiley
 __[WebGL](./webgl/webgl.md)__ - 3D-Primitives, Rotate, Translate, Mbaterial, Light, Texture
 
 __[DOM](./dom/dom.md)__ - Html, Css, Present-Modus verschönern
- 
-__[Sockets](sockets2.html)__ -
-Repl.it
 
---- 
-
-__[Fehler](fehler/fehler.md)__
+__[Glitch](./glitch/glitch.md)__ -
+Highscore eines Spiels auf einem Server verwalten - [Videos](https://www.youtube.com/playlist?list=PLWeMgMhRDsIFmPHXjpYU3fceHgrEEJ4ZU) 
+<!-- __[Sockets](sockets2.html)__ -
+Repl.it -->
 
 ---
 <!-- #### Übungsrunden
@@ -116,7 +113,7 @@ __[Code! Programming with P5JS](https://www.youtube.com/watch?v=HerCR8bw_GE&list
 
 <!-- _[HTML/CSS/DOM with P5JS](https://www.youtube.com/watch?v=URSH0QpxKo8&list=PLRqwX-V7Uu6bI1SlcCRfLH79HZrFAtBvX)__ -->
 
-__[CodingTrain Playlists](https://www.youtube.com/user/shiffman/playlists)__
+<!-- __[CodingTrain Playlists](https://www.youtube.com/user/shiffman/playlists)__ -->
 
 
 <!-- __[JavaScript Repl](https://repl.it/classroom/invite/b62owlc)__ - 165 Übungen -->

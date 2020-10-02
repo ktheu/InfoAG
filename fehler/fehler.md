@@ -7,11 +7,21 @@ Es gibt drei Arten von Fehlern
 
 ---
 
+#### Syntaxfehler
+
 Syntaxfehler: Ein Komma fehlt
 
 <img src="fehler04.png" width="700"/>
 
 --- 
+
+Syntaxfehler:  eine geschweifte Klammer fehlt
+
+<img src="fehler05.png" width="600"/>
+
+---
+
+#### Laufzeitfehler
 
 Laufzeitfehler: Eine P5JS-Anweisung wurde falsch geschrieben
 
@@ -19,11 +29,6 @@ Laufzeitfehler: Eine P5JS-Anweisung wurde falsch geschrieben
 
 --- 
 
-Syntaxfehler: eine geschweifte Klammer fehlt
-
-<img src="fehler05.png" width="600"/>
-
----
 
 Laufzeitfehler: Eine P5JS-Anweisung wurde außerhalb der Funktionen draw und setup geschrieben.
 
