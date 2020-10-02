@@ -3,7 +3,6 @@
 Mit Funktionen fassen wir Code-Blöcke zu Einheiten zusammen. Funktionen können Parameter erhalten und 
 Werte zurückgeben. Ziel ist es, die Einheiten so zu wählen, dass man sie gut testen kann, dass sie wiederverwendbar sind und durch sprechende Namen den Code lesbarer machen.
 
-$\forall x \in \mathbb{R}: x^2 \ge 0$.
 
 #### Haus und Sonne 
 
