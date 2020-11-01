@@ -240,6 +240,7 @@ Wir ändern `style.css`.
 `margin: auto` - Die Leinwand kommt in die horizontale Mitte 
 
 style.css:
+ 
 ```
 html, body {
   margin: 0;
@@ -251,3 +252,5 @@ canvas {
   padding-top: 100px; 
   margin: auto;
 }
+
+```
