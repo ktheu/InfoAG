@@ -7,7 +7,7 @@ Um die Leinwand mittig zu platzieren und evtl. eine andere Hintergrundfarbe zu w
 
 Durch Klick auf `>` neben `sketch.js` sehen wir alle Files des Sketches.
 
-<img src="./bild1.png" width="300px">
+<img src="./bild1.png" width="500px">
 
 Wir ändern `style.css`.
 
