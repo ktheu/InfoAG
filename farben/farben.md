@@ -1,4 +1,4 @@
-### Farben
+### Farben 
 
 ##### RGB
 
@@ -139,6 +139,48 @@ function draw() {
 ```
 
 <iframe src="transparenz.html" width="320" height="320"></iframe>
+
+
+### Kommentare
+
+Kommentare dienen dazu, dass wir selbst und andere unseren Code verstehen. 
+Manchmal setzt man Teile des Programms in Kommentare, um die Ausführung zu verhindern.
+
+* `//` - einzeiliger Kommentar
+* `/* ...  */` - mehrzeiliger Kommentar
+
+```
+/*
+Dieses Programm zeigt die Verwendung der Transparenz
+bei Farbwerten. Je höher der Wert, desto höher die Deckkraft -
+also desto niedriger die Transparenz.
+*/
+
+// setup wird nur einmal durchlaufen
+function setup() {
+  createCanvas(300, 300);
+}
+
+// draw wird immer wieder durchlaufen
+function draw() {
+  background(240);          // Hintergrundfarbe
+
+  // 1. Kreis
+  noStroke();               // keine Umrandung
+  fill(163, 25, 27);        // Füllfarbe 
+  circle(100, 150, 100);     
+
+  // 2. Kreis
+  stroke(0);                // schwarze Umrandung
+  fill(217, 152, 14, 150);  // Füllfarbe, nicht ganz deckend
+  circle(150, 150, 100);    
+}
+```
+
+Im P5-Webeditor gibt es den Keyboard-Shortcut `Strg-/` zum Aus- und Einkommentieren von selektiertem Code.
+Das funktioniert nur, wenn das  `/`-Zeichen mit der Geteilt-Taste im Nummernblock geschrieben wird, nicht mit der 7er-Taste.
+
+Mit `Tidy-Code` geht leider die vertikale Ausrichtung der Zeilenkommentare verloren.
 
 ### Übungen
 

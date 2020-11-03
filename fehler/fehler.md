@@ -35,3 +35,41 @@ Laufzeitfehler: Eine P5JS-Anweisung wurde außerhalb der Funktionen draw und set
 <img src="fehler01.png" width="750"/>
 
 ---
+
+### Hilfe bei Fehler
+
+Wenn du Hilfe bei der Fehlersuche benötigst, benötige ich (oder jemand anders, der dir helfen möchte) den
+Programmcode und eine möglichst genaue Beschreibung dessen, was du beim Ablauf erwartest und was stattdessen
+passiert.
+
+Beispiel:
+
+```
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(220);
+  
+  // 1. Kreis
+  stroke(0)
+  circle(200,200,50);
+  
+  // 2.Kreis
+  strokeWeight(0);
+  circle(300,300,50);
+}
+```
+
+>Fehlerbeschreibung: <br>
+>Bei dem Programm soll der 1.Kreis mit schwarzer Umrandung und der 2. Kreis ohne Umrandung gezeichnet werden.
+>Stattdessen werden beide Kreise ohne Umrandung gezeichnet. Woran liegt das?
+
+Bei kleineren Programmen kannst du den Code  in den Teams-Kanal *Hilfe bei Fehlern* kopieren (mit der Formatierung Codeausschnitt `</>`).
+
+Bei größeren Programmen (z.B. wenn das Programm noch weitere Dateien benötigt) kopiere den Link, der
+im Webeditor unter `File-Share-Edit` steht, in den Teams-Kanal. Dann solltest du diesen Sketch in deinem Webeditor 
+nicht mehr verändern. Du kannst mit `File-Duplicate` eine Kopie erstellen, um daran weiter zu arbeiten.
+
+
