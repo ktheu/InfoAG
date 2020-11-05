@@ -9,27 +9,22 @@ Durch Klick auf `>` neben `sketch.js` sehen wir alle Files des Sketches.
 
 <img src="./bild1.png" width="500px">
 
-Wir ändern `style.css`.
+Wir fügen die Zeilen mit den Kommentaren in `style.css` ein und passen die Werte an.
 
-`background-color:` - die Farbe des Hintergrunds. <br>
-`margin: auto` - Die Leinwand kommt in die horizontale Mitte <br>
-`padding-top:` - Abstand der Leinwand von oben.
-
-style.css:
 ```
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #1a1a1a;
-  padding-top: 100px; 
+  background-color: #1a1a1a;  /* <--- update: Hintergrundfarbe */
+  padding-top: 100px;         /* <--- update: Abstand nach oben */
 }
 canvas {
   display: block;
-  margin: auto;
+  margin: auto;               /* Leinwand mittig */
 }
 ```
 
------ 
+ 
  
 
 
