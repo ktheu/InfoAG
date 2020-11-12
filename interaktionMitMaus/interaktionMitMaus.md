@@ -70,6 +70,33 @@ function mousePressed() {
 ```
 <iframe src="mauspressed.html" width="320" height="320"></iframe>
 
+
+##### Zufall (Teil1)
+
+Mit `int(random(10,100))` erhalten wir eine zufällige ganze Zahl zwischen 10 und 100 (ohne die 100).
+Damit können wir zufällige Farben und zufällige Positionen für unsere Figuren erzeugen.
+
+```
+function setup() {
+  createCanvas(300, 300);
+  colorMode(HSB, 360, 100, 100);
+  noStroke();
+  background(0);
+}
+
+function draw() {
+}
+
+function mousePressed() {
+  fill(int(random(0, 360)), 100, 100);
+  circle(mouseX, mouseY, 30);
+}
+```
+
+<iframe src="bunteKreise.html" width="320" height="320"></iframe>
+
+
+
 ### Übungen
 
 Mauslinie
@@ -94,6 +121,11 @@ Ecklinien mit transparentem Hintergrund
 Kleine Quadrate bei Mausklick
 
 <iframe src="kleineQuadrate.html" width="320" height="320"></iframe>
+
+---
+Gelbe Rechtecke, nach Mausklick neues Bild
+
+<iframe src="gelbeRechtecke.html" width="620" height="420"></iframe>
 
 ---
 Kette mit niedriger frameRate, nach Mausklick beginnt die Kette neu
