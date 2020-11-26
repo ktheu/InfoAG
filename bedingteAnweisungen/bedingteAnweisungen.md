@@ -32,11 +32,11 @@ function setup() {
   noCanvas()
   print(4 >= 5);
   print(5 < 6);
-  print(2 == 2.0);
-  print(3.14 != 3.15);
+  print(2 === 2.0);
+  print(3.14 !== 3.15);
   print(10 > 5 && 2 > 7);
-  print(5 == 6 || 8 < 10);
-  print(7 % 2 == 0);
+  print(5 === 6 || 8 < 10);
+  print(7 % 2 === 0);
   print(!(9 > 10));
 }
 ```
