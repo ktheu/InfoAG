@@ -1,0 +1,34 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+let abstandZumRand = 60;
+let seitenlaenge = 50;    
+let N = 4;                // N X N Quadrate
+let abstand;              // Abstand der Quadrate untereinander
+
+
+function setup() {
+  createCanvas(400, 400);
+  rectMode(CENTER);
+  abstand = (width - 2 * abstandZumRand - N * seitenlaenge) / (N - 1);
+  
+}
+
+function draw() {
+  background(220);
+  for (let i=0; i<N*N; i++) {
+    let zeile = int(i/N);
+    let spalte = i % N;
+    let x = abstandZumRand + spalte * abstand + (spalte + 0.5) * seitenlaenge;
+    let y = abstandZumRand + zeile * abstand + (zeile + 0.5) * seitenlaenge;
+
+    square(x,y,seitenlaenge);
+    
+  }
+}
+ </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+let abstandZumRand = 40;
+let abstand = 10 // der frei Raum zwischen 2 Kugeln
+let N = 20; // Anzahl Kugeln
+let durchmesser = 10;
+let vy = 2;
+let y;
+
+
+function setup() {
+  createCanvas(600, 200);
+  abstand = (width - 2 * abstandZumRand - N * durchmesser) / (N - 1);
+  y = height / 2;
+  fill(0);
+  stroke(0);
+}
+
+function draw() {
+  background(255);
+  // check
+  if (y > height|| y < 0) vy = -vy;
+  
+  // move
+  y += vy;
+
+  // display
+  for (let i = 0; i < N; i++) {
+    let x = abstandZumRand + i * abstand + (i + 0.5) * durchmesser;
+    circle(x, y, durchmesser);
+    line(x, y, width / 2, 0);
+    line(x, y, width / 2, height);
+  }
+}
+ </script>
+</head>
+<body>
+</body>
+</html>

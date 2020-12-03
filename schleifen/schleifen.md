@@ -1,5 +1,25 @@
 ## Schleifen
 
+
+#### Verkürzte Zuweisung und Inkrement
+Für manche Zuweisungen gibt es verkürzte Schreibweisen. Sie lohnen sich bei langen Variablennamen.
+
+```
+anzahlTrefferInErsterRunde = anzahlTrefferInErsterRunde + 10;
+anzahlTrefferInErsterRunde += 10;                              // verkürzte Zuweisung
+```
+
+```
+x += y;         // statt x = x + y;
+x -= y;         // statt x = x - y;
+x *= y;         // statt x = x * y; 
+x /= y;         // statt x = x / y;
+x %= y;         // statt x = x % y;
+x++;            // statt x = x + 1;   Increment-Operator
+x--;            // statt x = x - 1;   Decrement-Operator
+```
+
+
 #### Die while Schleife
 Solange die while-Bedingung wahr ist, wird der Schleifenrumpf durchlaufen.
 
@@ -85,6 +105,32 @@ function draw() {
 <iframe src="zwanzigLinien.html" width="320" height="220"></iframe>
 
 --- 
+
+#### break und continue
+
+`break` verlässt die aktuelle Schleife, `continue` unterbricht den aktuellen Schleifendurchgang und beginnt den nächsten Durchgang.
+
+``` 
+function setup() {
+  noCanvas();
+
+  let x = 0;
+  while (x < 5) {
+    x = x + 1;
+    if (x == 3) {
+      break;
+    }
+   
+    if (x == 1) {
+      continue;
+    }
+    print(x);
+  }
+  print("Ende");
+}
+```
+--- 
+
 ## Zufall
 
 ```
