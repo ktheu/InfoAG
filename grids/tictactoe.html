@@ -4,44 +4,37 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 
-    let rows = 3;
-    let cols = 3;
-    let grid = [];
     let groesse = 100;
-    let playerX = true;       // X ist an der Reihe
-    let gewinn = '#FFB03B';   // Farbe für die Gewinnfelder
+    let grid = make2DArray(3, 3);
+
+    let playerX = true; // X ist an der Reihe
+    let gewinn = '#FFB03B'; // Farbe für die Gewinnfelder
 
     function setup() {
-      createCanvas(cols * groesse + 4, rows * groesse + 4);
-      for (let i = 0; i < cols; i++) {
-        grid[i] = [];
-        for (let j = 0; j < rows; j++) {
-          grid[i][j] = new Tile(i, j, groesse);
-          grid[i][j].farbe = '#FFF0A5';
+      createCanvas(3 * groesse + 4, 3 * groesse + 4);
+      for (let x = 0; x < 3; x++) {
+        for (let y = 0; y < 3; y++) {
+          grid[x][y] = new Tile(x, y, groesse);
         }
       }
     }
 
     function draw() {
       check();
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          grid[i][j].display();
+      for (let x = 0; x < 3; x++) {
+        for (let y = 0; y < 3; y++) {
+          grid[x][y].display();
         }
       }
     }
 
 
-    function kachel(x) {
-      // rechnet pixel-koordinate in grid-koordinate um
-      return Math.floor((x - 2) / groesse);
-    }
-
     function mousePressed() {
-      let i = kachel(mouseX);
-      let j = kachel(mouseY);
-      if (!grid[i][j].zeichen) {
-        grid[i][j].zeichen = playerX ? 'X' : 'O';
+      let x = int(mouseX / groesse);
+      let y = int(mouseY / groesse);
+      let tile = grid[x][y];
+      if (!tile.zeichen) {
+        tile.zeichen = playerX ? 'X' : 'O';
         playerX = !playerX;
       }
     }
@@ -49,18 +42,18 @@
     function check() {
 
       for (let k = 0; k < 3; k++) {
-        let zeile = grid[0][k].zeichen + grid[1][k].zeichen + grid[2][k].zeichen;
+        let zeile = grid[k][0].zeichen + grid[k][1].zeichen + grid[k][2].zeichen;
         if (zeile === 'XXX' || zeile === 'OOO') {
-          grid[0][k].farbe = gewinn;
-          grid[1][k].farbe = gewinn;
-          grid[2][k].farbe = gewinn;
-          noLoop();
-        }
-        let spalte = grid[k][0].zeichen + grid[k][1].zeichen + grid[k][2].zeichen;
-        if (spalte === 'XXX' || spalte === 'OOO') {
           grid[k][0].farbe = gewinn;
           grid[k][1].farbe = gewinn;
           grid[k][2].farbe = gewinn;
+          noLoop();
+        }
+        let spalte = grid[0][k].zeichen + grid[1][k].zeichen + grid[2][k].zeichen;
+        if (spalte === 'XXX' || spalte === 'OOO') {
+          grid[0][k].farbe = gewinn;
+          grid[1][k].farbe = gewinn;
+          grid[2][k].farbe = gewinn;
           noLoop();
         }
       }
@@ -72,7 +65,7 @@
         noLoop();
       }
 
-      let diagonale2 = grid[0][2].zeichen + grid[1][1].zeichen + grid[2][0].zeichen;
+      let diagonale2 = grid[2][0].zeichen + grid[1][1].zeichen + grid[0][2].zeichen;
       if (diagonale2 === 'XXX' || diagonale2 === 'OOO') {
         grid[0][2].farbe = gewinn;
         grid[1][1].farbe = gewinn;
@@ -81,33 +74,35 @@
       }
     }
 
+    function make2DArray(cols, rows) {
+      let arr = new Array(cols);
+      for (let x = 0; x < cols; x++) {
+        arr[x] = new Array(rows);
+      }
+      return arr;
+    }
+
     class Tile {
 
-      constructor(i, j, groesse) {
-        this.i = i;
-        this.j = j;
+      constructor(x, y, groesse) {
+        this.x = x;
+        this.y = y;
         this.groesse = groesse;
-        this.farbe = null;
+        this.farbe = '#FFF0A5';
         this.zeichen = null;
       }
 
       display() {
         strokeWeight(2);
-        if (this.farbe !== null) {
-          fill(this.farbe);
-        } else {
-          noFill();
-        }
-
-        stroke('#8E2800')    // Farbe für den Kachel-Rand
-        rect(2 + this.i * this.groesse, 2 + this.j * this.groesse, this.groesse, this.groesse);
-
+        fill(this.farbe);
+        stroke('#8E2800') // Farbe für den Kachel-Rand
+        rect(2 + this.x * this.groesse, 2 + this.y * this.groesse, this.groesse, this.groesse);
         if (this.zeichen !== null) {
-          fill('#468966');   // Farbe für das Zeichen
+          fill('#468966'); // Farbe für das Zeichen
           noStroke();
           textAlign(CENTER, CENTER);
           textSize(this.groesse * 0.7);
-          text(this.zeichen, (this.i + 0.5) * this.groesse, (this.j + 0.6) * this.groesse);
+          text(this.zeichen, (this.x + 0.5) * this.groesse, (this.y + 0.6) * this.groesse);
         }
       }
     }

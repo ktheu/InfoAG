@@ -1,0 +1,57 @@
+<html>
+
+<head>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+let cols = 6; // Anzahl Spalten
+    let rows = 4; // Anzahl Zeilen
+
+    let farbe = make2DArray(cols, rows);
+    let visible = make2DArray(cols, rows);
+
+    function setup() {
+      createCanvas(300, 200);
+      colorMode(HSB, 360, 100, 100);
+      for (let x = 0; x < cols; x++) { // 2D-Array füllen
+        for (let y = 0; y < rows; y++) {
+          farbe[x][y] = random(200, 260);
+          visible[x][y] = true;
+        }
+      }
+    }
+
+    function draw() {
+      background(220);
+      let zaehl = 0
+      for (let x = 0; x < cols; x++) { // 2D-Array zeigen
+        for (let y = 0; y < rows; y++) {
+          if (visible[x][y]) {
+            fill(farbe[x][y], 100, 100)
+            square(x * 50, y * 50, 50);
+          }
+        }
+      }
+    }
+
+    function make2DArray(cols, rows) {
+      let arr = new Array(cols);
+      for (let x = 0; x < cols; x++) {
+        arr[x] = new Array(rows);
+      }
+      return arr;
+    }
+
+    function mousePressed() {
+      let x = int(mouseX / 50);  // aus der Position 
+      let y = int(mouseY / 50);
+      visible[x][y] = !visible[x][y];
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

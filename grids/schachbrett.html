@@ -4,26 +4,56 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 
-    let rows = 15;
-    let cols = 30;
-    let groesse = 15;
+let rows = 8;
+let cols = 8;
+let groesse = 50;
+let cp = 0x265F; // Unicode Codepoint für schwarzer Bauer
 
-    function setup() {
-      createCanvas(cols * groesse + 4, rows * groesse + 4);
-      background(255);
+board = make2DArray(cols, rows);
+visible = make2DArray(cols, rows);
+
+function setup() {
+  createCanvas(cols * groesse, rows * groesse);
+  background(255);
+  strokeWeight(3);
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  for (let x = 0; x < cols; x++) {
+    for (let y = 0; y < rows; y++) {
+      visible[x][y] = false;
     }
+  };
+}
 
-    function draw() {
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          fill(255);
-          if ((i + j) % 2 == 0) {
-            fill(0);
-          }
-          rect(i * groesse, j * groesse, groesse, groesse);
-        }
+function draw() {
+  for (let x = 0; x < cols; x++) {
+    for (let y = 0; y < rows; y++) {
+      fill(255, 127, 36);
+      if ((x + y) % 2 == 0) {
+        fill(255);
+      }
+      rect(x * groesse, y * groesse, groesse, groesse);
+      if (visible[x][y]) {
+        fill(0);
+        text(String.fromCodePoint('0x' + cp.toString(16)), (x + 0.5) * groesse, (y + 0.5) * groesse);
       }
     }
+  }
+}
+
+function make2DArray(cols, rows) {
+  let arr = new Array(cols);
+  for (let x = 0; x < cols; x++) {
+    arr[x] = new Array(rows);
+  }
+  return arr;
+}
+
+function mousePressed() {
+  let x = int(mouseX / 50);   
+  let y = int(mouseY / 50);
+  visible[x][y] = !visible[x][y];
+}
   </script>
 </head>
 
