@@ -1,0 +1,47 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    function setup() {
+      createCanvas(400, 400);
+      strokeWeight(3);
+    }
+
+    function draw() {
+      background(245);
+      let x = 300;
+      let y = 300;
+      let laenge = 200;
+      let abstand = 10;
+      stroke(0, 255, 0);
+
+      noFill();
+
+      for (let i = 0; i < 10; i++) {
+        beginShape();
+        vertex(x, y);
+        x = x - laenge;
+        vertex(x, y);
+        y = y - abstand;
+        vertex(x, y);
+        laenge = laenge - abstand;
+        x = x + laenge;
+        vertex(x, y);
+        y = y - abstand;
+        vertex(x, y);
+        laenge = laenge - abstand;
+        endShape();
+      }
+
+      stroke('#E07C2F');
+      line(x, y, x, 300 + 20);
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

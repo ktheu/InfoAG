@@ -3,49 +3,51 @@
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
-let x = [100, 300]
-let y = [30, 80]
+    let x = [100, 300]
+    let y = [30, 80]
+    let vx = [2, -1];
+    let vy = [5, -3];
 
-let dy = [5, -3];
-let dx = [2, -1];
-
-function setup() {
-  createCanvas(600, 600);
-  noStroke();
-}
-
-function draw() {
-  background(0, 20);
- 
-  fill(255);
-  for (let i = 0; i < x.length; i++) {
-    ellipse(x[i], y[i], 10, 10);
-    y[i] = y[i] + dy[i];
-    x[i] = x[i] + dx[i];
-
-    if (y[i] < 0 || height < y[i]) {
-      dy[i] = -dy[i]
+    function setup() {
+      createCanvas(600, 600);
+      noStroke();
     }
-    if (x[i] < 0 || width < x[i]) {
-      dx[i] = -dx[i]
-    }
-  }
 
-  if (mouseIsPressed) {
-    x.push(mouseX)
-    y.push(mouseY)
-    ydiff = int(random(1, 5))
-    if (random() < 0.5) {
-      ydiff = -ydiff
+    function draw() {
+      background(0, 20);
+
+      fill(255);
+      for (let i = 0; i < x.length; i++) {
+        x[i] = x[i] + vx[i];
+        y[i] = y[i] + vy[i];
+
+        if (x[i] < 0 || width < x[i]) {
+          vx[i] = -vx[i]
+        }
+        if (y[i] < 0 || height < y[i]) {
+          vy[i] = -vy[i]
+        }
+
+        ellipse(x[i], y[i], 10, 10);
+      }
+
+      if (mouseIsPressed) {
+        x.push(mouseX)
+        y.push(mouseY)
+
+        vx_neu = int(random(2, 5))
+        if (random() < 0.5) {
+          vx_neu = -vx_neu
+        }
+        vx.push(vx_neu)
+
+        vy_neu = int(random(1, 5))
+        if (random() < 0.5) {
+          vy_neu = -vy_neu
+        }
+        vy.push(vy_neu)
+      }
     }
-    dy.push(ydiff)
-    xdiff = int(random(2, 5))
-    if (random() < 0.5) {
-      xdiff = -xdiff
-    }
-    dx.push(xdiff)
-  }
-}
   </script>
 </head>
 

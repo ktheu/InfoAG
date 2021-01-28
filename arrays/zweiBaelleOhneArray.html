@@ -4,10 +4,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 let x0 = 100;
-let x1 = 300;
-let y0 = 40;
-let y1 = 140;
 let vy0 = 3;
+let y0 = 40;
+
+let x1 = 300;
+let y1 = 140;
 let vy1 = 6;
 
 function setup() {
@@ -22,12 +23,13 @@ function draw() {
     vy0 = -vy0
   }
   y0 = y0 + vy0;
-  ellipse(x0, y0, 10, 10);
   
   if (y1 < 0 || height < y1) {
     vy1 = -vy1
   }
   y1 = y1 + vy1;
+
+  ellipse(x0, y0, 10, 10);
   ellipse(x1, y1, 10, 10);
 
 }

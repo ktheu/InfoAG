@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let farben = ['#ACD1F2', '#22401E', '#5A8C0F', '#D9D273', '#BF9169']
+    let i = 0;
+
+    function setup() {
+      createCanvas(400, 400);
+      noStroke();
+    }
+
+    function draw() {
+      background(0);
+
+      fill(farben[i]);
+      circle(width / 2, height / 2, 200);
+    }
+
+    function mousePressed() {
+      i = (i + 1) % farben.length;
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

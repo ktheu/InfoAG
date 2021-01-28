@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+        let farben = ['#ACD1F2', '#22401E', '#5A8C0F', '#D9D273', '#BF9169']
+        let visible = new Array(5).fill('true');
+
+        function setup() {
+            createCanvas(600, 300);
+            noStroke();
+        }
+
+        function draw() {
+            background(0);
+            let x = 50;
+            for (let i = 0; i < farben.length; i++) {
+                if (visible[i]) {
+                    fill(farben[i]);
+                    rect(x, 100, 100, 100);
+                }
+                x = x + 100;
+            }
+        }
+
+        function mousePressed() {
+            if (50 < mouseX && mouseX < 550 && 100 < mouseY && mouseY < 200) {
+                let i = int((mouseX - 50) / 100);
+                visible[i] = !visible[i];
+            }
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
