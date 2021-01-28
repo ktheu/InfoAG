@@ -10,7 +10,7 @@ Ein Array stellen wir uns als eine Reihe von Speicherplätzen vor.  Auf die einz
 ``` 
 function setup() {
   noCanvas();
-  a = [5, 4, 17, 22];
+  let a = [5, 4, 17, 22];
   print(a[0]);
   print(a[2]);
   print(a.length);
