@@ -1,6 +1,6 @@
 ## Tastensteuerung
 
-Jeder Taste ist eine Zahl, der `keyCode`. Auf [keyCode.info](https://keycode.info/) können wir diese Zahl abfragen.
+Jeder Taste ist eine Zahl zugeordnet, der `keyCode`. Auf [keyCode.info](https://keycode.info/) können wir diese Zahl abfragen.
 Für Buchstaben, Ziffern und weitere [ASCII](https://de.wikipedia.org/wiki/American_Standard_Code_for_Information_Interchange)-Zeichen können wir auch die Variable `key` benutzen.
 
 Für einige Tasten gibt es Systemvariablen, die den keyCode enthalten:
