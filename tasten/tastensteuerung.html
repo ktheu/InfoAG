@@ -18,7 +18,7 @@ function draw() {
   if (keyIsDown('A'.charCodeAt(0))) x = x - vx;
   if (keyIsDown('D'.charCodeAt(0))) x = x + vx;
   if (keyIsDown('W'.charCodeAt(0))) y = y - vy;
-  if (keyIsDown('S'.charCodeAt(0))) y = y + vx;
+  if (keyIsDown('S'.charCodeAt(0))) y = y + vy;
 
   circle(x, y, 20);
 }
