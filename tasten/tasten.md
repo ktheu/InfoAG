@@ -27,12 +27,11 @@ function setup() {
 
 function draw() {
   background(0);
-  
-  circle(x,100,20);
+
   if (keyIsPressed) {
      x = x + vx; 
   }
-  if (x > width) x = 0;
+  circle(x,100,20);
 }
 ```
 
@@ -41,7 +40,7 @@ function draw() {
 ---
 #### Die zuletzt gedrückte Taste
 
-Wenn wir abfragen wollen welche Taste zuletzt gedrückt wurde, nutzen wir `key` für Tasten mit Zeichen, ansonsten
+Wenn wir abfragen wollen, welche Taste zuletzt gedrückt wurde, nutzen wir `key` für Tasten mit Zeichen, ansonsten
 `keyCode`.
 
 ```
@@ -53,16 +52,16 @@ function setup() {
 
 function draw() {
   background(0);
-  
-  circle(x,100,20);
+
   if (keyIsPressed) {
-    if (key === 'd') {
+    if (key == 'd') {
       x = x + vx; 
     }
-    else if (keyCode === LEFT_ARROW) {
+    if (keyCode == LEFT_ARROW) {
       x = x - vx;
     }
   }
+  circle(x,100,20);
 }
 ```
 
@@ -113,7 +112,7 @@ auch mit der String-Methode `charCodeAt` ermitteln.
 
 ```
 keyIsDown('A'.charCodeAt(0))   true, wenn Taste `A` 
-keyIsDown(65)`                 gedrückt ist.
+keyIsDown(65)                  gedrückt ist.
 
 ```
 
@@ -149,19 +148,16 @@ Die beiden Balken lassen sich unabhängig voneinander nach oben und unten bewege
 der rechte Balken mit den Tasten `o` und `l`.
 
 ```
-let x1 = 30;
-let x2;
+let x1 = 30;   // Abstand Balken zum Rand
 
-let y1 = 100;
-let y2;
+let y1 = 100;  // y-Koordinaten
+let y2 = 100;  // der beiden Balken
 
-let vy = 2;
+let vy = 2;    // Geschwindigkeit Balken
 
 function setup() {
   createCanvas(300, 200);
   rectMode(CENTER);
-  x2 = width - x1;
-  y2 = height - y1;
 }
 
 function draw() {
@@ -174,7 +170,7 @@ function draw() {
   if (keyIsDown(76)) y2 = y2 + vy;   // L
 
   rect(x1, y1, 10, 50);
-  rect(x2, y2, 10, 50);
+  rect(width-x1, y2, 10, 50);
 }
 ```
 
@@ -185,81 +181,83 @@ function draw() {
 #### SimplePong
 
 ```
-let xBalken = 150;
-let yBalken = 270;
-let balkenBreite = 80;
-let balkenHoehe = 10;
-let xBall = 20;
-let yBall = 50;
-let ballRadius = 10;
+    let xBalken = 150;
+    let yBalken = 270;
+    let balkenBreite = 80;
+    let balkenHoehe = 10;
+    let vxBalken = 4;
 
-let vxBall = 4;
-let vyBall = 3;
+    let xBall = 20;
+    let yBall = 50;
+    let ballRadius = 10;
 
-let vxBalken = 4;
+    let vxBall = 4;
+    let vyBall = 3;
+    let vfactor = 1.0001;  // Zunahme der Ball-Geschwindigkeit
 
-let pLinksVonBalken;
-let pRechtsVonBalken;
+    let pLinksVonBalken;
+    let pRechtsVonBalken;
 
-function setup() {
-  createCanvas(300, 300);
-  ellipseMode(RADIUS);
-  noStroke();
-}
+    function setup() {
+      createCanvas(300, 300);
+      ellipseMode(RADIUS);
+      noStroke();
+    }
 
-function draw() {
-  background(0);
+    function draw() {
+      background(0);
 
-  let oberhalbBalken = yBall + ballRadius <= yBalken;
-  let unterhalbBalken = yBall - ballRadius >= yBalken + balkenHoehe;
-  let linksVonBalken = xBall + ballRadius <= xBalken;
-  let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
+      let oberhalbBalken = yBall + ballRadius <= yBalken;
+      let unterhalbBalken = yBall - ballRadius >= yBalken + balkenHoehe;
+      let linksVonBalken = xBall + ballRadius <= xBalken;
+      let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
 
-  let kollisionMitBalken = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
+      let kollision = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
 
-  let amRandLinksRechts = (xBall - ballRadius < 0 || xBall + ballRadius > width);
-  let amRandOben = yBall - ballRadius < 0;
-
-  let kommtVonLinks = pLinksVonBalken && !linksVonBalken;
-  let kommtVonRechts = pRechtsVonBalken && !rechtsVonBalken;
-
-  if (amRandLinksRechts) vxBall = -vxBall;
-  if (amRandOben) vyBall = -vyBall;
- 
-  if (kollisionMitBalken) {
-    if (kommtVonLinks) vxBall = -vxBall - vxBalken;
-    else if (kommtVonRechts) vxBall = -vxBall + vxBalken
-    else vyBall = -vyBall;
-  }
-
-  if (keyIsDown(LEFT_ARROW)) xBalken = xBalken - vxBalken;
-  if (keyIsDown(RIGHT_ARROW)) xBalken = xBalken + vxBalken;
-
-  xBall = xBall + vxBall;
-  yBall = yBall + vyBall;
-
-  rect(xBalken, yBalken, balkenBreite, balkenHoehe);
-  circle(xBall, yBall, ballRadius);
-
-  pLinksVonBalken = linksVonBalken;
-  pRechtsVonBalken = rechtsVonBalken;
-
-}
+      let amRandLinksRechts = (xBall - ballRadius < 0 || xBall + ballRadius > width);
+      let amRandOben = yBall - ballRadius < 0;
 
 
-function mousePressed() {
-  xBall = random(20, width-20);
-  yBall = 50;
-  vxBall = 4;
-  vyBall = 3;
-}
+      if (xBall < 0 || width < xBall) vxBall = -vxBall;
+      if (yBall < 0) vyBall = -vyBall
+
+      if (kollision) {
+        if (pLinksVonBalken || pRechtsVonBalken) {
+          vxBall = -vxBall;
+        }
+        else {
+          vyBall = -abs(vyBall);
+        }
+      }
+
+      if (keyIsDown(LEFT_ARROW)) xBalken = xBalken - vxBalken;
+      if (keyIsDown(RIGHT_ARROW)) xBalken = xBalken + vxBalken;
+
+      vxBall *= vfactor;   // die Geschwindigkeit 
+      vyBall *= vfactor;   // nimmt langsam zu
+
+      xBall = xBall + vxBall;
+      yBall = yBall + vyBall;
+
+      rect(xBalken, yBalken, balkenBreite, balkenHoehe);
+      circle(xBall, yBall, ballRadius);
+
+      pLinksVonBalken = linksVonBalken;
+      pRechtsVonBalken = rechtsVonBalken;
+
+    }
+
+    function mousePressed() {
+      xBall = random(20, width - 20);
+      yBall = 50;
+      vxBall = 4;
+      vyBall = 3;
+    }
 ```
 
 <iframe src="simplePong.html" width="320" height="320"></iframe>
 
 ---
-
-Hinweis:
 
 - Wenn wir die zuletzt gedrückte Taste benötigen, dann fragen wir die Variable `key` (für ASCII-Zeichen) und
   `keyCode` für sonstige Tasten ab.

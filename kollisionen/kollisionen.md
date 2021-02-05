@@ -336,4 +336,15 @@ des Balls in x-Richtung um die des Balkens.
 
 <iframe src="kollision08.html" width="320" height="320"></iframe>
 
+--- 
+### Übungen
 
+Klotz - Der Ball prallt an allen Seiten des Klotzes ab.
+
+<iframe src="klotz.html" width="420" height="420"></iframe>
+
+---
+
+Klotz2 -Viele Bälle prallen an den Seiten des Klotzes ab.
+
+<iframe src="klotzArray.html" width="420" height="420"></iframe>

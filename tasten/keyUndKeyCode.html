@@ -11,16 +11,17 @@ function setup() {
 
 function draw() {
   background(0);
-  
-  circle(x,100,20);
+
   if (keyIsPressed) {
     if (key == 'd') {
       x = x + vx; 
     }
-    else if (keyCode == LEFT_ARROW) {
+    if (keyCode == LEFT_ARROW) {
       x = x - vx;
     }
   }
+    
+  circle(x,100,20);
 }
   </script>
 </head>

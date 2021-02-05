@@ -11,12 +11,11 @@ function setup() {
 
 function draw() {
   background(0);
-  
-  circle(x,100,20);
+
   if (keyIsPressed) {
      x = x + vx; 
   }
-  if (x > width) x = 0;
+  circle(x,100,20);
 }
   </script>
 </head>

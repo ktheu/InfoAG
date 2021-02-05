@@ -7,15 +7,14 @@
     let yBalken = 270;
     let balkenBreite = 80;
     let balkenHoehe = 10;
-    let vxBalken = 4;
-
     let xBall = 20;
     let yBall = 50;
     let ballRadius = 10;
 
     let vxBall = 4;
     let vyBall = 3;
-    let vfactor = 1.0001;  // Zunahme der Ball-Geschwindigkeit
+
+    let vxBalken = 4;
 
     let pLinksVonBalken;
     let pRechtsVonBalken;
@@ -34,29 +33,25 @@
       let linksVonBalken = xBall + ballRadius <= xBalken;
       let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
 
-      let kollision = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
+      let kollisionMitBalken = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
 
       let amRandLinksRechts = (xBall - ballRadius < 0 || xBall + ballRadius > width);
       let amRandOben = yBall - ballRadius < 0;
 
+      let kommtVonLinks = pLinksVonBalken && !linksVonBalken;
+      let kommtVonRechts = pRechtsVonBalken && !rechtsVonBalken;
 
-      if (xBall < 0 || width < xBall) vxBall = -vxBall;
-      if (yBall < 0) vyBall = -vyBall
+      if (amRandLinksRechts) vxBall = -vxBall;
+      if (amRandOben) vyBall = -vyBall;
 
-      if (kollision) {
-        if (pLinksVonBalken || pRechtsVonBalken) {
-          vxBall = -vxBall;
-        }
-        else {
-          vyBall = -abs(vyBall);
-        }
+      if (kollisionMitBalken) {
+        if (kommtVonLinks) vxBall = -vxBall - vxBalken;
+        else if (kommtVonRechts) vxBall = -vxBall + vxBalken
+        else vyBall = -vyBall;
       }
 
       if (keyIsDown(LEFT_ARROW)) xBalken = xBalken - vxBalken;
       if (keyIsDown(RIGHT_ARROW)) xBalken = xBalken + vxBalken;
-
-      vxBall *= vfactor;   // die Geschwindigkeit 
-      vyBall *= vfactor;   // nimmt langsam zu
 
       xBall = xBall + vxBall;
       yBall = yBall + vyBall;

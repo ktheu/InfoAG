@@ -3,19 +3,16 @@
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
-let x1 = 30;
-let x2;
+let x1 = 30;   // Abstand Balken zum Rand
 
-let y1 = 100;
-let y2;
+let y1 = 100;  // y-Koordinaten
+let y2 = 100;  // der beiden Balken
 
-let vy = 2;
+let vy = 2;    // Geschwindigkeit Balken
 
 function setup() {
   createCanvas(300, 200);
   rectMode(CENTER);
-  x2 = width - x1;
-  y2 = height - y1;
 }
 
 function draw() {
@@ -28,7 +25,7 @@ function draw() {
   if (keyIsDown(76)) y2 = y2 + vy;   // L
 
   rect(x1, y1, 10, 50);
-  rect(x2, y2, 10, 50);
+  rect(width-x1, y2, 10, 50);
 }
   </script>
 </head>
