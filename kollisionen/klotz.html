@@ -1,0 +1,69 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+let klotzX = 100
+let klotzY = 100
+let klotzBreite = 150;
+let klotzHoehe = 200;
+
+let poberhalbVonKlotz;
+let punterhalbVonKlotz;
+let plinksVonKlotz;
+let prechtsVonKlotz;
+
+let x = 50;
+let y = 50;
+let r = 5;
+let vx = 8;
+let vy = 7;
+
+function setup() {
+  createCanvas(400, 400);
+  ellipseMode(RADIUS);
+  noStroke();
+}
+
+function draw() {
+  background(220);
+  // check
+  if (x <= 0 || width <= x) vx = -vx;
+  if (y <= 0 || height <= y) vy = -vy;
+  
+  let oberhalbVonKlotz = y + r < klotzY;   
+  let unterhalbVonKlotz = klotzY + klotzHoehe < y - r;   
+  let linksVonKlotz = x + r < klotzX
+  let rechtsVonKlotz =  klotzX + klotzBreite < x - r;
+  let kollision = !(oberhalbVonKlotz || unterhalbVonKlotz || linksVonKlotz || rechtsVonKlotz);
+  
+  if ((plinksVonKlotz || prechtsVonKlotz) && kollision)  {
+    vx = - vx;
+  }
+  if ((poberhalbVonKlotz || punterhalbVonKlotz) && kollision)  {
+    vy = - vy;
+  }
+   
+  // move
+  x = x + vx;
+  y = y + vy;
+    
+  // display
+  fill(150);
+  rect(klotzX, klotzY,klotzBreite, klotzHoehe)
+  fill(20);
+  circle(x,y,r);
+  
+  poberhalbVonKlotz = oberhalbVonKlotz;
+  punterhalbVonKlotz = unterhalbVonKlotz;
+  plinksVonKlotz = linksVonKlotz;
+  prechtsVonKlotz = rechtsVonKlotz;
+  
+}
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

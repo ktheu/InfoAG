@@ -7,6 +7,7 @@ let xBalken = 300;
 let yBalken = 250;
 let balkenBreite = 80;
 let balkenHoehe = 10;
+let vxBalken = -4;
 
 let xBall = 20;
 let yBall = 150;
@@ -14,8 +15,6 @@ let ballRadius = 10;
 
 let vxBall = 4;
 let vyBall = 3;
-
-let vxBalken = -4;
 
 function setup() {
   createCanvas(300, 300);
@@ -31,13 +30,10 @@ function draw() {
   let linksVonBalken = xBall + ballRadius <= xBalken;
   let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
 
-  let amRandLinksRechts = (xBall - ballRadius < 0 || xBall + ballRadius > width);
-  let amRandOben = yBall - ballRadius < 0;
+  let kollision = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
 
-  let kollisionMitBalken = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
-
-  if (amRandLinksRechts) vxBall = -vxBall;
-  if (amRandOben || kollisionMitBalken) vyBall = -vyBall;
+  if (xBall < 0 || width < xBall) vxBall = -vxBall;
+  if (yBall < 0 || kollision) vyBall = -vyBall;
 
   xBall = xBall + vxBall;
   yBall = yBall + vyBall;

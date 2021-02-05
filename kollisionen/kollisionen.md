@@ -85,90 +85,86 @@ Auch für die anderen Fälle führen wir boolesche Variablen ein und testen sie 
 Wenn der Ball weder oberhalb, noch unterhalb, noch links oder rechts vom Balken ist, dann ist er offenbar mit den Balken kollidiert.
 
 ```
-let xBalken = 100;
-let yBalken = 250;
-let balkenBreite = 80;
-let balkenHoehe = 10;
+    let xBalken = 100;
+    let yBalken = 250;
+    let balkenBreite = 80;
+    let balkenHoehe = 10;
 
-let xBall = 20;
-let yBall = 50;
-let ballRadius = 10;
+    let xBall = 20;
+    let yBall = 50;
+    let ballRadius = 10;
 
-function setup() {
-  createCanvas(300, 300);
-  ellipseMode(RADIUS);
-  noStroke();
-}
+    function setup() {
+      createCanvas(300, 300);
+      ellipseMode(RADIUS);
+      noStroke();
+    }
 
-function draw() {
-  background(0);
+    function draw() {
+      background(0);
 
-  xBall = mouseX;
-  yBall = mouseY;
+      xBall = mouseX;
+      yBall = mouseY;
 
-  let oberhalbBalken = yBall + ballRadius <= yBalken;
-  let unterhalbBalken = yBall - ballRadius >= yBalken + balkenHoehe;
-  let linksVonBalken = xBall + ballRadius <= xBalken;
-  let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
+      let oberhalbBalken = yBall + ballRadius <= yBalken;
+      let unterhalbBalken = yBall - ballRadius >= yBalken + balkenHoehe;
+      let linksVonBalken = xBall + ballRadius <= xBalken;
+      let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
 
-  let kollisionMitBalken = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
-  if (kollisionMitBalken) circle(0, 0, 20); // Test   
+      let kollision = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
+      if (kollision) circle(0, 0, 20); // Test     
 
-  rect(xBalken, yBalken, balkenBreite, balkenHoehe);
-  circle(xBall, yBall, ballRadius);
-}
+      rect(xBalken, yBalken, balkenBreite, balkenHoehe);
+      circle(xBall, yBall, ballRadius);
+    }
 ```
 
 <iframe src="kollision03.html" width="320" height="320"></iframe>
 
 ---
 
-Jetzt lassen wir den Ball laufen und übernehmen zum Test mit der Maus die x-Position des Balkens. Auch für die Kollisionen an
-den Seiten spendieren wir uns boolesche Variablen.
+Jetzt lassen wir den Ball laufen und übernehmen zum Test mit der Maus die x-Position des Balkens.
 
 ```
-let xBalken = 100;
-let yBalken = 250;
-let balkenBreite = 80;
-let balkenHoehe = 10;
+    let xBalken = 100;
+    let yBalken = 250;
+    let balkenBreite = 80;
+    let balkenHoehe = 10;
 
-let xBall = 20;
-let yBall = 50;
-let ballRadius = 10;
+    let xBall = 20;
+    let yBall = 50;
+    let ballRadius = 10;
 
-let vxBall = 4;
-let vyBall = 4;
+    let vxBall = 4;
+    let vyBall = 4;
 
-function setup() {
-  createCanvas(300, 300);
-  ellipseMode(RADIUS);
-  noStroke();
-}
+    function setup() {
+      createCanvas(300, 300);
+      ellipseMode(RADIUS);
+      noStroke();
+    }
 
-function draw() {
-  background(0);
+    function draw() {
+      background(0);
 
-  xBalken = mouseX;
+      xBalken = mouseX;
 
-  let oberhalbBalken = yBall + ballRadius <= yBalken;
-  let unterhalbBalken = yBall - ballRadius >= yBalken + balkenHoehe;
-  let linksVonBalken = xBall + ballRadius <= xBalken;
-  let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
+      let oberhalbBalken = yBall + ballRadius <= yBalken;
+      let unterhalbBalken = yBall - ballRadius >= yBalken + balkenHoehe;
+      let linksVonBalken = xBall + ballRadius <= xBalken;
+      let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
 
-  let kollisionMitBalken = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
+      let kollision = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
 
-  let amRandLinksRechts = (xBall - ballRadius < 0 || xBall + ballRadius > width);
-  let amRandOben = yBall - ballRadius < 0;
+      if (xBall < 0 || width < xBall) vxBall = -vxBall;
+      if (yBall < 0 || kollision) vyBall = -vyBall;
 
-  if (amRandLinksRechts) vxBall = -vxBall;
-  if (amRandOben || kollisionMitBalken) vyBall = -vyBall;
+      xBall = xBall + vxBall;
+      yBall = yBall + vyBall;
 
-  xBall = xBall + vxBall;
-  yBall = yBall + vyBall;
-
-  rect(xBalken, yBalken, balkenBreite, balkenHoehe);
-  circle(xBall, yBall, ballRadius);
-}
+      rect(xBalken, yBalken, balkenBreite, balkenHoehe);
+      circle(xBall, yBall, ballRadius);
+    }
 ```
 
 <iframe src="kollision04.html" width="320" height="320"></iframe>
@@ -178,7 +174,7 @@ function draw() {
 Bei den Kollisionen können seltsame Effekte auftreten, die schwierig zu beheben sind, weil sie nur manchmal auftreten.
 Man kann versuchen, die Situation mit geeigneten Anfangswerten nachzustellen.
 
-Beispiel:  Die Positionen und Geschwindigkeiten von Ball und Balken nach etlichen Versuchen
+Beispiel:  Die Positionen und Geschwindigkeiten von Ball und Balken sind nach etlichen Versuchen
 voreingestellt, damit der Effekt sicher auftritt.
 
 <iframe src="kollision05.html" width="320" height="320"></iframe>
@@ -188,127 +184,136 @@ voreingestellt, damit der Effekt sicher auftritt.
 Mit `noLoop()` stoppt der Programmablauf nach dem aktuellen draw-Durchgang, mit `loop()` gehts wieder weiter. Mit Mausklick können wir die draw-Durchgänge einzeln beobachten und den Grund für den seltsamen Effekt herausfinden.
 
 ```
-let xBalken = 300;
-let yBalken = 250;
-let balkenBreite = 80;
-let balkenHoehe = 10;
+    let xBalken = 300;
+    let yBalken = 250;
+    let balkenBreite = 80;
+    let balkenHoehe = 10;
+    let vxBalken = -4;
 
-let xBall = 20;
-let yBall = 150;
-let ballRadius = 10;
+    let xBall = 20;
+    let yBall = 150;
+    let ballRadius = 10;
 
-let vxBall = 4;
-let vyBall = 3;
+    let vxBall = 4;
+    let vyBall = 3;
 
-let vxBalken = -4;
+    function setup() {
+      createCanvas(300, 300);
+      ellipseMode(RADIUS);
+      noStroke();
+    }
 
-function setup() {
-  createCanvas(300, 300);
-  ellipseMode(RADIUS);
-  noStroke();
-}
+    function draw() {
+      background(0);
 
-function draw() {
-  background(0);
+      let oberhalbBalken = yBall + ballRadius <= yBalken;
+      let unterhalbBalken = yBall - ballRadius >= yBalken + balkenHoehe;
+      let linksVonBalken = xBall + ballRadius <= xBalken;
+      let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
 
-  let oberhalbBalken = yBall + ballRadius <= yBalken;
-  let unterhalbBalken = yBall - ballRadius >= yBalken + balkenHoehe;
-  let linksVonBalken = xBall + ballRadius <= xBalken;
-  let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
+      let kollision = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
 
-  let kollisionMitBalken = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
-  
-  let amRandLinksRechts = (xBall - ballRadius < 0 || xBall + ballRadius > width);
-  let amRandOben = yBall - ballRadius < 0;
+      if (xBall < 0 || width < xBall) vxBall = -vxBall;
+      if (yBall < 0 || kollision) vyBall = -vyBall
 
-  if (amRandLinksRechts) vxBall = -vxBall;
-  if (amRandOben || kollisionMitBalken) vyBall = -vyBall;
-  
-  xBall = xBall + vxBall;
-  yBall = yBall + vyBall;
-  
-  xBalken = xBalken + vxBalken;
+      xBall = xBall + vxBall;
+      yBall = yBall + vyBall;
 
-  rect(xBalken, yBalken, balkenBreite, balkenHoehe);
-  circle(xBall, yBall, ballRadius);
+      xBalken = xBalken + vxBalken;
 
-  if (frameCount > 30) noLoop();
-}
+      rect(xBalken, yBalken, balkenBreite, balkenHoehe);
+      circle(xBall, yBall, ballRadius);
 
-function mousePressed() {
-  loop();
-}
+      if (frameCount > 30) noLoop();
+    }
+
+    function mousePressed() {
+      loop();
+    }
 ```
 
 <iframe src="kollision06.html" width="320" height="320"></iframe>
 
 ---
-In  `pLinksVonBalken` merken wir uns, ob der Ball im letzten draw-Durchgang links vom Balken war. Damit können wir die Variable
-`kommtVonLinks` setzen. Unser erster Korrekturversuch ist aber noch nicht erfolgreich.
+Eine einfache Lösung für das Problem: Bei einer Kollision mit dem Balken 
+setzen wir für den Ball immer eine negative y-Geschwindigkeit. Wir ersetzen dazu die Zeile:
 
 ```
-let xBalken = 300;
-let yBalken = 250;
-let balkenBreite = 80;
-let balkenHoehe = 10;
+if (yBall < 0 || kollision) vyBall = -vyBall
 
-let xBall = 20;
-let yBall = 150;
-let ballRadius = 10;
+```
+durch
 
-let vxBall = 4;
-let vyBall = 3;
+```
+if (yBall < 0) vyBall = -vyBall
+if (kollision) vyBall = - abs(vyBall)
 
-let vxBalken = -4;
-let pLinksVonBalken;   // true wenn beim letzten Durchgang links vom Balken
+```
+Wenn wir die Kollision an der linken Seite anders behandeln wollen als eine Kollision von oben, gehen
+wir wie folgt vor: 
+In  `pLinksVonBalken` merken wir uns, ob der Ball im letzten draw-Durchgang links vom Balken war. Damit können wir bei einer Kollision entscheiden, welcher Geschwindigkeitsanteil sein Vorzeichen ändern muss.
 
-function setup() {
-  createCanvas(300, 300);
-  ellipseMode(RADIUS);
-  noStroke();
-}
 
-function draw() {
-  background(0);
+```
+    let xBalken = 300;
+    let yBalken = 250;
+    let vxBalken = -4;
+    
+    let balkenBreite = 80;
+    let balkenHoehe = 10;
 
-  let oberhalbBalken = yBall + ballRadius <= yBalken;
-  let unterhalbBalken = yBall - ballRadius >= yBalken + balkenHoehe;
-  let linksVonBalken = xBall + ballRadius <= xBalken;
-  let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
+    let xBall = 20;
+    let yBall = 150;
+    let ballRadius = 10;
 
-  let kollisionMitBalken = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
-  
-  let amRandLinksRechts = (xBall - ballRadius < 0 || xBall + ballRadius > width);
-  let amRandOben = yBall - ballRadius < 0;
+    let vxBall = 4;
+    let vyBall = 3;
 
-  let kommtVonLinks = pLinksVonBalken && !linksVonBalken;
+    let pLinksVonBalken;   // true wenn beim letzten Durchgang links vom Balken
 
-  if (amRandLinksRechts) vxBall = -vxBall;
-  if (amRandOben) vyBall = -vyBall;
-
-  if (kollisionMitBalken) {
-    if (kommtVonLinks) vxBall = -vxBall;
-    else {
-      vyBall = -vyBall;
+    function setup() {
+      createCanvas(300, 300);
+      ellipseMode(RADIUS);
     }
-  }
-  
-  xBall = xBall + vxBall;
-  yBall = yBall + vyBall;
-  
-  xBalken = xBalken + vxBalken;
 
-  rect(xBalken, yBalken, balkenBreite, balkenHoehe);
-  circle(xBall, yBall, ballRadius);
+    function draw() {
+      background(0);
 
-  pLinksVonBalken = linksVonBalken;
+      let oberhalbBalken = yBall + ballRadius <= yBalken;
+      let unterhalbBalken = yBall - ballRadius >= yBalken + balkenHoehe;
+      let linksVonBalken = xBall + ballRadius <= xBalken;
+      let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
 
-  if (frameCount > 30) noLoop();
-}
+      let kollision = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
 
-function mousePressed() {
-  loop();
-}
+      if (xBall < 0 || width < xBall) vxBall = -vxBall;
+      if (yBall < 0)  vyBall = -vyBall
+
+      if (kollision) {
+        if (pLinksVonBalken) {
+          vxBall = -vxBall;
+        }
+        else {
+          vyBall = -vyBall;
+        }
+      }
+
+      xBall = xBall + vxBall;
+      yBall = yBall + vyBall;
+
+      xBalken = xBalken + vxBalken;
+
+      rect(xBalken, yBalken, balkenBreite, balkenHoehe);
+      circle(xBall, yBall, ballRadius);
+
+      pLinksVonBalken = linksVonBalken;
+
+      if (frameCount > 30) noLoop();
+    }
+
+    function mousePressed() {
+      loop();
+    }
 ```
 
 <iframe src="kollision07.html" width="320" height="320"></iframe>
@@ -319,12 +324,14 @@ Wir müssen noch dafür sorgen, dass sich der Ball nach der Reflexion sicher vom
 des Balls in x-Richtung um die des Balkens.
 
 ```
-  if (kollisionMitBalken) {
-    if (kommtVonLinks) vxBall = -vxBall + vxBalken;
-    else {
-      vyBall = -vyBall;
-    }
-  }
+      if (kollision) {
+        if (pLinksVonBalken) {
+          vxBall = -vxBall + vxBalken;
+        }
+        else {
+          vyBall = -vyBall;
+        }
+      }
 ```
 
 <iframe src="kollision08.html" width="320" height="320"></iframe>
