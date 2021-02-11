@@ -1,0 +1,41 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let x;
+    let y;
+    let v = 2;
+
+    // wasd =  87,65,83,68
+
+    function setup() {
+      createCanvas(400, 400);
+      background(0);
+      noStroke();
+      fill(255);
+    }
+
+    function draw() {
+
+      if (mouseIsPressed) {
+        if (keyIsDown(87)) y -= v;
+        if (keyIsDown(65)) x -= v;
+        if (keyIsDown(83)) y += v;
+        if (keyIsDown(68)) x += v;
+        if (keyIsPressed) circle(x, y, 10);
+      }
+    }
+
+    function mousePressed() {
+      x = mouseX;
+      y = mouseY
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

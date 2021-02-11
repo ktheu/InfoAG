@@ -125,16 +125,21 @@ let y = 20;
 let vx = 2;
 let vy = 1;
 
+let tasteA = 'A'.charCodeAt(0); 
+let tasteD = 'D'.charCodeAt(0); 
+let tasteW = 'W'.charCodeAt(0);
+let tasteS = 'S'.charCodeAt(0);
+
 function setup() {
   createCanvas(300, 200);
 }
 
 function draw() {
   background(0);
-  if (keyIsDown('A'.charCodeAt(0))) x = x - vx;
-  if (keyIsDown('D'.charCodeAt(0))) x = x + vx;
-  if (keyIsDown('W'.charCodeAt(0))) y = y - vy;
-  if (keyIsDown('S'.charCodeAt(0))) y = y + vy;
+  if (keyIsDown(tasteA)) x = x - vx;
+  if (keyIsDown(tasteD)) x = x + vx;
+  if (keyIsDown(tasteW)) y = y - vy;
+  if (keyIsDown(tasteS)) y = y + vy;
 
   circle(x, y, 20);
 }
@@ -275,6 +280,14 @@ Der Durchmesser des Kreises wächst, solange eine Taste gedrückt ist. Ein zu gr
 
 
 <iframe src="durchmesser.html" width="320" height="220"></iframe>
+
+---
+Wenn die Maus gedrückt ist, wird beim Drücken der Tasten `w a s d` ab Mausposition eine Linie in 
+die entsprechende Richtung gezeichnet. Solange die Maus gedrückt bleibt, schließen sich die verschiedenen Richtungen hintereinander an.
+
+<iframe src="tastenLinie.html" width="420" height="420"></iframe>
+
+
 
 ---
 
