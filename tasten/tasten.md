@@ -7,10 +7,10 @@ Für einige Tasten gibt es Systemvariablen, die den keyCode enthalten:
 `UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, RETURN, SHIFT, CONTROL, BACKSPACE, DELETE, TAB, ESCAPE, ALT`
  
 ```
-if (keyCode === '39')           # prüft ob 
+if (keyCode === 39)             # prüft ob 
 if (keyCode === RIGHT_ARROW)    # rechte Pfeiltaste gedrückt
 
-if (keyCode === '65')           # prüft ob  
+if (keyCode === 65)             # prüft ob  
 if (key === 'a')                # Taste A gedrückt
  
 ```
