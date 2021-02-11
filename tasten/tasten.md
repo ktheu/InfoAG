@@ -264,10 +264,12 @@ function draw() {
 
 ---
 
-- Wenn wir die zuletzt gedrückte Taste benötigen, dann fragen wir die Variable `key` (für ASCII-Zeichen) und
-  `keyCode` für sonstige Tasten ab.
-- Wenn wir abfragen wollen, ob eine bestimmte Taste gerade gedrückt ist, dann fragen wir das Ergebnis der
-  Funktion `keyIsDown()` ab.
+- Wenn wir die zuletzt gedrückte Taste benötigen, dann fragen wir die Variable `key` für druckbare Zeichen und
+  `keyCode` für sonstige Tasten ab. Insbesondere können wir in den Funktionen` keyPressed(), keyReleased(), keyTyped() ` mit diesen Variablen prüfen, welcher Tastendruck den Aufruf dieser Funktionen veranlasst hat. Dabei vergleichen wir `key` mit einem Zeichen (z.B. 'a') und 
+  `keyCode` mit einer Zahl (z.B. 65 oder LEFT_ARROW).
+
+- Wenn wir abfragen wollen, ob eine bestimmte Taste gedrückt ist, dann fragen wir das Ergebnis der
+  Funktion `keyIsDown()` ab. Damit können wir alle Tasten ermitteln, die gerade gedrückt sind.
 
 ---
 
