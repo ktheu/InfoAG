@@ -138,7 +138,7 @@ Die Funktion *loadStrings* liest jede Zeile als String ein. Unser 2D-Array ist e
 --- 
 
 
-Die Figur wird mit den Pfeiltasten gesteuert. Es ist bisher nur die Bewegung durch das Maze realisiert. 
+Die Figur wird mit den Tasten *w, a, s, d* gesteuert. Es ist bisher nur die Bewegung durch das Maze realisiert. 
 
 <iframe src="tiles04.html" width="628" height="596"></iframe>
 
