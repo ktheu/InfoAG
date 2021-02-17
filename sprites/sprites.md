@@ -2,6 +2,8 @@
 
 Der Begriff Sprite wird für Objekte benutzt, die per Software über den Hintergrund eingeblendet werden.
 
+Sammlungen von Sprites finden sich bei [opengameart.org](opengameart.org) (Lizenzbedingungen beachten).
+
 ### Spritesheets
 
 Die Einzelbilder für animierte Sprites werden häufig in Spritesheets zusammengefasst. Dieses Spritesheet umfasst 8 Einzelbilder im Format 32x32.
