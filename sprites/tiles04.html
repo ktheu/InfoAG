@@ -13,7 +13,7 @@
 
       display() {
         push()
-        translate(this.pos.x+16,this.pos.y+16);
+        translate(this.pos.x + 16, this.pos.y + 16);
         rotate(radians(this.winkel));
         let tempo = int(frameCount * 0.2);
         image(hero_images[tempo % 8], -16, -16);
@@ -57,6 +57,13 @@
     let player;
     let v = 1.2;
 
+    window.addEventListener("keydown", function (e) {
+      // space and arrow keys
+      if ([32, 37, 38, 39, 40].indexOf(e.code) > -1) {
+        e.preventDefault();
+      }
+    }, false);
+
     function preload() {
       sheet = loadImage('default_tiles_x.png');
       map = loadStrings('map01.txt');
@@ -97,7 +104,7 @@
         }
       }
 
-      player = new Player(createVector(5*tileSize, 4*tileSize));
+      player = new Player(createVector(5 * tileSize, 4 * tileSize));
 
     }
 
@@ -138,11 +145,11 @@
       return arr;
     }
 
-    function validSquare(xc,yc) {
+    function validSquare(xc, yc) {
       // checks if square is within free area
-      let size = 0.8*tileSize;
-      return free(xc+5,yc+5) && free(xc+size,yc+5) &&
-             free(xc+5,yc+size) && free(xc+size,yc+size)
+      let size = 0.8 * tileSize;
+      return free(xc + 5, yc + 5) && free(xc + size, yc + 5) &&
+        free(xc + 5, yc + size) && free(xc + size, yc + size)
     }
 
     function free(xc, yc) {
