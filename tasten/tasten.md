@@ -125,10 +125,10 @@ let y = 20;
 let vx = 2;
 let vy = 1;
 
-let tasteA = 'A'.charCodeAt(0); 
-let tasteD = 'D'.charCodeAt(0); 
-let tasteW = 'W'.charCodeAt(0);
-let tasteS = 'S'.charCodeAt(0);
+let tasteW = 'W'.charCodeAt(0);    // 87
+let tasteA = 'A'.charCodeAt(0);    // 65
+let tasteS = 'S'.charCodeAt(0);    // 83
+let tasteD = 'D'.charCodeAt(0);    // 68
 
 function setup() {
   createCanvas(300, 200);

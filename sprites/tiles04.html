@@ -24,19 +24,19 @@
         let x = this.pos.x;
         let y = this.pos.y;
 
-        if (keyIsDown(UP_ARROW) && (validSquare(x, y - v))) {
+        if (keyIsDown(87) && (validSquare(x, y - v))) {      // w
           this.pos.y -= v;
           this.winkel = 0;
         }
-        if (keyIsDown(DOWN_ARROW) && (validSquare(x, y + v))) {
+        if (keyIsDown(83) && (validSquare(x, y + v))) {    // s
           this.pos.y += v;
           this.winkel = 180;
         }
-        if (keyIsDown(LEFT_ARROW) && (validSquare(x - v, y))) {
+        if (keyIsDown(65) && (validSquare(x - v, y))) {    // a
           this.pos.x -= v;
           this.winkel = -90;
         }
-        if (keyIsDown(RIGHT_ARROW) && (validSquare(x + v, y))) {
+        if (keyIsDown(68) && (validSquare(x + v, y))) {   // d
           this.pos.x += v;
           this.winkel = 90;
         }
@@ -57,12 +57,7 @@
     let player;
     let v = 1.2;
 
-    window.addEventListener("keydown", function (e) {
-      // space and arrow keys
-      if ([32, 37, 38, 39, 40].indexOf(e.code) > -1) {
-        e.preventDefault();
-      }
-    }, false);
+
 
     function preload() {
       sheet = loadImage('default_tiles_x.png');
