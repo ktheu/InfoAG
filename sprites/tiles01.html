@@ -1,0 +1,38 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let sheet;
+    let images = [];
+
+    function preload() {
+      sheet = loadImage('default_tiles_x.png');
+    }
+
+    function setup() {
+      createCanvas(450, 100);
+      for (let x = 0; x < 8 * 32; x += 32) {
+        let img = sheet.get(x, 0, 32, 32);
+        images.push(img);
+      }
+      
+      images.push(sheet.get(4*32,32,32,32));
+      images.push(sheet.get(5*32,32,32,32));
+    }
+
+    function draw() {
+      background(220);
+      for (let i=0; i<images.length; i++) {
+        image(images[i],10+i*40,20,32,32);
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

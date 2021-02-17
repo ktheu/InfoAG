@@ -1,0 +1,72 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let sheet;            
+
+    let wall;         
+    let ground;
+
+    let cols = 18;
+    let rows = 18;
+    let tileSize = 32;
+
+    let gridMap = make2DArray(cols, rows);
+
+    function preload() {
+      sheet = loadImage('default_tiles_x.png');
+    }
+
+    function setup() {
+      createCanvas(cols * tileSize, rows * tileSize);
+      let images = [];
+      for (let x = 0; x < 8 * 32; x += 32) {
+        let img = sheet.get(x, 0, 32, 32);
+        images.push(img);
+      }
+      images.push(sheet.get(4 * 32, 32, 32, 32));
+      images.push(sheet.get(5 * 32, 32, 32, 32));
+
+      ground = images[0];
+      wall = images[1];
+
+      //randomSeed(42);
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          gridMap[x][y] = int(random(0, 2))
+        }
+      }
+    }
+
+
+    function draw() {
+      background(0);
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+
+          if (gridMap[x][y] === 0) {
+            image(wall, x * tileSize, y * tileSize)
+          }
+          else image(ground, x * tileSize, y * tileSize)
+
+        }
+      }
+    }
+
+    function make2DArray(cols, rows) {
+      let arr = new Array(cols);
+      for (let x = 0; x < cols; x++) {
+        arr[x] = new Array(rows);
+      }
+      return arr;
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

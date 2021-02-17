@@ -76,6 +76,8 @@ Raster, Schachbrett, Kacheln, TicTacToe
 __[Bilder](./bilder/bilder.md)__ -
 Himmel, Kachelbilder, Fliegen, Cliff, Wüste, Explosion, Parallax, Weltall, Spaceship, Zug
 
+__[Sprites](./sprites/sprites.md)__ - Opengameart 
+
 __[Sound](./sound/sound.md)__ -
 Hintergrundmusik, Geräusche
 

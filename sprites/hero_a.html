@@ -1,0 +1,34 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let sheet;
+    let images = [];
+
+    function preload() {
+      sheet = loadImage('hero_a.png');
+    }
+
+    function setup() {
+      createCanvas(200, 200);
+      for (let x = 0; x < 8 * 32; x += 32) {
+        let img = sheet.get(x, 0, 32, 32);
+        images.push(img);
+      }
+    }
+
+    function draw() {
+      background(220);
+      let tempo = int(frameCount * 0.2);
+      image(images[tempo % 8], 100, 100);
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let cols = 16;
+    let rows = 16;
+    let tileSize = 32;
+
+    let v = tileSize/10;   // speed of player
+
+
+    let gridMap = make2DArray(cols, rows)
+    let grid = make2DArray(cols, rows)
+    let player;
+
+
+    function setup() {
+      createCanvas(cols * tileSize + 4, rows * tileSize + 4);
+      makeRandomMap(43);
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          gridMap[x][y] = int(random(0, 2))
+        }
+      }
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          grid[x][y] = random() < 0.5 ? new Tile(x, y, 0) : new Tile(x, y, 1);
+        }
+      }
+      player = new Player(grid[4][4].middle());
+    }
+
+    function draw() {
+      background(255);
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          grid[x][y].display();
+        }
+      }
+      player.move();
+      player.display();
+      // player.tile().mark('#FF0000');
+    }
+
+    function getTile(xc, yc) {
+      let xm = int(xc / tileSize);
+      let ym = int(yc / tileSize);
+      return grid[xm][ym];
+    }
+
+    function validSquare(xc,yc,size) {
+      // checks if square is within free area
+      return getTile(xc-size,yc-size).free() && getTile(xc+size,yc-size).free() &&
+             getTile(xc-size,yc+size).free() && getTile(xc+size,yc+size).free()
+
+    }
+
+    function valid(x, y) {
+      // check if grid-Koordinate is within grid
+      return 0 <= x && x < cols && 0 <= y && y < rows;
+    }
+
+    function freeCoord(xc, yx) {
+      // check if pixel-Koordinate is in free tile
+      return getTile(xc,yc).free();
+    } 
+
+    function mouseTile() {
+      return getTile(mouseX, mouseY);
+    }
+
+    function make2DArray(cols, rows) {
+      let arr = new Array(cols);
+      for (let x = 0; x < cols; x++) {
+        arr[x] = new Array(rows);
+      }
+      return arr;
+    }
+
+    function makeRandomMap(seed) {
+      randomSeed(seed);
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          gridMap[x][y] = int(random(0, 2))
+        }
+      }
+    }
+
+    function showGrid() {
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+        }
+      }
+    }
+
+    class Tile {
+
+      // state: 0-wall, 1-free 
+
+      constructor(x, y, state) {
+        this.x = x;
+        this.y = y;
+        this.state = state;
+      }
+
+      display() {
+        noStroke();
+        if (this.state === 0) fill(80);
+        else if (this.state === 1) fill(150);
+        rectMode(CORNER);
+        square(this.x * tileSize, this.y * tileSize, tileSize);
+      }
+
+      mark(farbe) {
+        fill(farbe);
+        circle((this.x + 0.5) * tileSize, (this.y + 0.5) * tileSize, tileSize * 0.25);
+      }
+
+      free() {
+        return grid[this.x][this.y].state === 1;
+      }
+
+      middle() {
+        // returns: PVector to middle of tile
+        return createVector((this.x + 0.5) * tileSize, (this.y + 0.5) * tileSize);
+      }
+    }
+
+
+    class Player {
+
+      constructor(pos) {
+        this.pos = pos;
+      }
+
+      display() {
+        noStroke();
+        fill('#FFFF00');
+        rectMode(CENTER);
+        square(this.pos.x, this.pos.y, 0.8 * tileSize);
+      }
+
+      move() {
+        let x = this.pos.x;
+        let y = this.pos.y;
+        
+        if (keyIsDown(UP_ARROW) && (validSquare(x,y-v,0.42*tileSize))) {
+          this.pos.y -= v;
+        }
+        if (keyIsDown(DOWN_ARROW) && (validSquare(x,y+v,0.42*tileSize))) {
+          this.pos.y += v;
+        }
+        if (keyIsDown(LEFT_ARROW) && (validSquare(x-v,y,0.42*tileSize))) {
+          this.pos.x -= v;
+        }
+        if (keyIsDown(RIGHT_ARROW) && (validSquare(x+v,y,0.42*tileSize))) {
+          this.pos.x += v;
+        }
+      }
+
+      // tile() {
+      //   // get current tile of player
+      //   let xp = int(this.pos.x / tileSize);
+      //   let yp = int(this.pos.y / tileSize);
+      //   return grid[xp][yp];
+      // }
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

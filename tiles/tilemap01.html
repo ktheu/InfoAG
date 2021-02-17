@@ -1,0 +1,168 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    /*
+
+    Die freien Tiles werden durch grüne Punkte angezeigt.
+
+    */
+
+    let cols = 8;
+    let rows = 8;
+    let tileSize = 60;
+
+
+    let gridMap = make2DArray(cols, rows)
+    let grid = make2DArray(cols, rows)
+
+
+    function setup() {
+      createCanvas(cols * tileSize + 4, rows * tileSize + 4);
+      makeRandomMap(43);
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          gridMap[x][y] = int(random(0, 2))
+        }
+      }
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          grid[x][y] = random() < 0.5 ? new Tile(x, y, 0) : new Tile(x, y, 1);
+        }
+      }
+    }
+
+    function draw() {
+      background(255);
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          grid[x][y].display();
+        }
+      }
+      markFreeNbs();
+
+    }
+
+    function markFreeNbs() {
+      let mt = mouseTile();
+      if (mt.free()) {
+        mt.mark(0);
+        for (let t of mt.freeNbs()) t.mark('#00FF00');
+      }
+    }
+
+    function valid(x, y) {
+      return 0 <= x && x < cols && 0 <= y && y < rows;
+    }
+
+    function mouseTile() {
+      let xm = int(mouseX / tileSize);
+      let ym = int(mouseY / tileSize);
+      if (!valid(xm, ym)) return grid[0][0];
+      return grid[xm][ym];
+    }
+
+
+
+    function make2DArray(cols, rows) {
+      let arr = new Array(cols);
+      for (let x = 0; x < cols; x++) {
+        arr[x] = new Array(rows);
+      }
+      return arr;
+    }
+
+    function makeRandomMap(seed) {
+      randomSeed(seed);
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          gridMap[x][y] = int(random(0, 2))
+        }
+      }
+    }
+
+    function showGrid() {
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+        }
+      }
+    }
+
+    class Tile {
+
+      // state: 0-wall, 1-free 
+
+      constructor(x, y, state) {
+        this.x = x;
+        this.y = y;
+        this.state = state;
+      }
+
+      display() {
+        noStroke();
+        if (this.state === 0) fill(80);
+        else if (this.state === 1) fill(150);
+
+        square(this.x * tileSize, this.y * tileSize, tileSize);
+      }
+
+      mark(farbe) {
+        fill(farbe);
+        circle((this.x + 0.5) * tileSize, (this.y + 0.5) * tileSize, tileSize * 0.25);
+      }
+
+      upFree() {
+        return this.y - 1 >= 0 && grid[this.x][this.y - 1].state === 1;
+      }
+
+      downFree() {
+        return this.y + 1 < rows && grid[this.x][this.y + 1].state === 1;
+      }
+
+      leftFree() {
+        return this.x - 1 >= 0 && grid[this.x - 1][this.y].state === 1;
+      }
+
+      rightFree() {
+        return this.x + 1 < cols && grid[this.x + 1][this.y].state === 1;
+      }
+
+      upTile() {
+        return grid[this.x][this.y - 1];
+      }
+
+      downTile() {
+        return grid[this.x][this.y + 1];
+      }
+
+      leftTile() {
+        return grid[this.x - 1][this.y];
+      }
+
+      rightTile() {
+        return grid[this.x + 1][this.y];
+      }
+
+      free() {
+        return grid[this.x][this.y].state === 1;
+      }
+
+      freeNbs() {
+        let tmp = []
+        if (this.upFree()) tmp.push(this.upTile());
+        if (this.downFree()) tmp.push(this.downTile());
+        if (this.leftFree()) tmp.push(this.leftTile());
+        if (this.rightFree()) tmp.push(this.rightTile());
+        return tmp;
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    class Player {
+
+      constructor(pos) {
+        this.pos = pos;
+        this.winkel = 0;
+      }
+
+      display() {
+        push()
+        translate(this.pos.x+16,this.pos.y+16);
+        rotate(radians(this.winkel));
+        let tempo = int(frameCount * 0.2);
+        image(hero_images[tempo % 8], -16, -16);
+        pop();
+      }
+
+      move() {
+        let x = this.pos.x;
+        let y = this.pos.y;
+
+        if (keyIsDown(UP_ARROW) && (validSquare(x, y - v))) {
+          this.pos.y -= v;
+          this.winkel = 0;
+        }
+        if (keyIsDown(DOWN_ARROW) && (validSquare(x, y + v))) {
+          this.pos.y += v;
+          this.winkel = 180;
+        }
+        if (keyIsDown(LEFT_ARROW) && (validSquare(x - v, y))) {
+          this.pos.x -= v;
+          this.winkel = -90;
+        }
+        if (keyIsDown(RIGHT_ARROW) && (validSquare(x + v, y))) {
+          this.pos.x += v;
+          this.winkel = 90;
+        }
+      }
+    }
+
+    let map = [];
+    let cols, rows;
+    let gridmap;
+
+    let sheet;
+    let images = []
+
+    let hero_sheet;
+    let hero_images = [];
+    let tileSize = 32;
+
+    let player;
+    let v = 1.2;
+
+    function preload() {
+      sheet = loadImage('default_tiles_x.png');
+      map = loadStrings('map01.txt');
+      hero_sheet = loadImage('hero_a.png');
+    }
+
+    function setup() {
+
+      for (let x = 0; x < 8 * 32; x += 32) {
+        let img = sheet.get(x, 0, 32, 32);
+        images.push(img);
+      }
+      images.push(sheet.get(4 * 32, 32, 32, 32));
+      images.push(sheet.get(5 * 32, 32, 32, 32));
+
+      for (let x = 0; x < 8 * 32; x += 32) {
+        let img = hero_sheet.get(x, 0, 32, 32);
+        hero_images.push(img);
+      }
+
+      //randomSeed(42);
+      let map0 = []      // no empty Strings and no whitespace at end
+
+      for (let s of map) {
+        s = s.trim();
+        if (s.length > 0) map0.push(s);
+      }
+
+      cols = map0[0].length;
+      rows = map0.length;
+      createCanvas(cols * tileSize, rows * tileSize);
+
+      gridmap = make2DArray(cols, rows);
+
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          gridmap[x][y] = map0[y][x];
+        }
+      }
+
+      player = new Player(createVector(5*tileSize, 4*tileSize));
+
+    }
+
+    function draw() {
+      background(0);
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+
+          if (gridmap[x][y] === 'x') {
+            image(images[1], x * tileSize, y * tileSize)
+          }
+          else image(images[0], x * tileSize, y * tileSize)
+
+          if (gridmap[x][y] === 'S') {
+            image(images[4], x * tileSize, y * tileSize)
+          }
+          if (gridmap[x][y] === '?') {
+            image(images[7], x * tileSize, y * tileSize)
+          }
+          if (gridmap[x][y] === 'D') {
+            image(images[6], x * tileSize, y * tileSize)
+          }
+          if (gridmap[x][y] === 'T') {
+            image(images[2], x * tileSize, y * tileSize)
+          }
+        }
+      }
+
+      player.move();
+      player.display();
+    }
+
+    function make2DArray(cols, rows) {
+      let arr = new Array(cols);
+      for (let x = 0; x < cols; x++) {
+        arr[x] = new Array(rows);
+      }
+      return arr;
+    }
+
+    function validSquare(xc,yc) {
+      // checks if square is within free area
+      let size = 0.8*tileSize;
+      return free(xc+5,yc+5) && free(xc+size,yc+5) &&
+             free(xc+5,yc+size) && free(xc+size,yc+size)
+    }
+
+    function free(xc, yc) {
+      let xm = int(xc / tileSize);
+      let ym = int(yc / tileSize);
+      return gridmap[xm][ym] === ' ';
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

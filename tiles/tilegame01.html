@@ -1,0 +1,59 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let tileW = 40, tileH = 40;
+    let mapW = 10, mapH = 10;
+
+    let currentSecond = 0, _frameCount = 0, frameLastSecond = 0;
+    let gameMap = [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 1, 1, 1, 0, 1, 1, 1, 1, 0,
+      0, 1, 0, 0, 0, 1, 0, 0, 0, 0,
+      0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+      0, 1, 0, 1, 0, 0, 0, 1, 1, 0,
+      0, 1, 0, 1, 0, 1, 0, 0, 1, 0,
+      0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+      0, 1, 0, 0, 0, 0, 0, 1, 0, 0,
+      0, 1, 1, 1, 0, 1, 1, 1, 1, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    ];
+
+    function setup() {
+      createCanvas(tileW * mapW, tileH * mapH);
+
+    }
+
+    function draw() {
+
+      // let sec = Math.floor(Date.now()/1000);
+      // if(sec!=currentSecond)
+      // {
+      //   currentSecond = sec;
+      //   framesLastSecond = frameCount;
+      //   frameCount = 1;
+      // }
+      // else { frameCount++; }
+      for (var y = 0; y < mapH; ++y) {
+        for (var x = 0; x < mapW; ++x) {
+          switch (gameMap[((y * mapW) + x)]) {
+            case 0:
+              fill("#000000");
+              break;
+            default:
+              fill("#ccffcc");
+          }
+          rect(x * tileW, y * tileH, tileW, tileH);
+        }
+      }
+    }
+
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let map = [];
+    let cols, rows;
+    let gridmap;
+
+    let sheet;
+
+    let images = []
+    let tileSize = 32;
+
+    function preload() {
+      sheet = loadImage('default_tiles_x.png');
+      map = loadStrings('map01.txt');
+    }
+
+    function setup() {
+      
+      for (let x = 0; x < 8 * 32; x += 32) {
+        let img = sheet.get(x, 0, 32, 32);
+        images.push(img);
+      }
+      images.push(sheet.get(4 * 32, 32, 32, 32));
+      images.push(sheet.get(5 * 32, 32, 32, 32));
+
+      //randomSeed(42);
+      let map0 = []      // no empty Strings and no whitespace at end
+
+      for (let s of map) {
+        s = s.trim();
+        if (s.length > 0) map0.push(s);
+      }
+
+      cols = map0[0].length;
+      rows = map0.length;
+      createCanvas(cols * tileSize, rows * tileSize);
+
+      gridmap = make2DArray(cols, rows);
+
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          gridmap[x][y] = map0[y][x];
+        }
+      }
+    }
+
+    function draw() {
+      background(0);
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+        
+          if (gridmap[x][y] === 'x') {
+             image(images[1], x * tileSize, y * tileSize)
+          }
+          else image(images[0], x * tileSize, y * tileSize)
+
+          if  (gridmap[x][y] === 'S') {
+             image(images[4], x * tileSize, y * tileSize)
+          }
+          if  (gridmap[x][y] === '?') {
+             image(images[7], x * tileSize, y * tileSize)
+          }
+          if  (gridmap[x][y] === 'D') {
+             image(images[6], x * tileSize, y * tileSize)
+          }
+          if  (gridmap[x][y] === 'T') {
+             image(images[2], x * tileSize, y * tileSize)
+          }
+        }
+      }
+    }
+
+    function make2DArray(cols, rows) {
+      let arr = new Array(cols);
+      for (let x = 0; x < cols; x++) {
+        arr[x] = new Array(rows);
+      }
+      return arr;
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

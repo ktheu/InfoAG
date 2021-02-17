@@ -1,0 +1,60 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let map = [];
+    let cols, rows;
+    let gridmap;
+
+    function preload() {
+      map = loadStrings('map01.txt');
+    }
+  
+    function setup() {
+      createCanvas(400, 400);
+      let map0 = []      // no empty Strings and no whitespace at end
+
+      for (let s of map) {
+        s = s.trim();
+        if (s.length > 0)  map0.push(s);  
+      }
+
+      cols = map0[0].length;
+      rows = map0.length;
+ 
+      gridmap = make2DArray(cols, rows);
+
+      for (let x=0; x < cols; x++) {
+        for (let y=0; y < rows; y++) {
+          gridmap[x][y] = map0[y][x];
+        }
+      }
+    }
+
+    function draw() {
+      background(255);
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          textSize(20);
+          text(gridmap[x][y], 20+x*20, 20+y*20)
+        }
+      }
+    }
+
+    function make2DArray(cols, rows) {
+      let arr = new Array(cols);
+      for (let x = 0; x < cols; x++) {
+        arr[x] = new Array(rows);
+      }
+      return arr;
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

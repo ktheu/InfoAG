@@ -1,0 +1,58 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let horse;
+    let horse_run = new Array(7);
+    let horse_jump = new Array(7);
+    let horse_bend = new Array(4);
+    let state = 0
+    let path = 'Horse of Spring Assets/Sprite/Horse/'
+    function preload() {
+      horse = loadImage(path+"horse.png")
+      for (let i = 0; i < horse_run.length; i++) {
+        let filename = path+"horse-run-0" + str(i) + ".png";
+        horse_run[i] = loadImage(filename);
+      }
+      for (let i = 0; i < horse_bend.length; i++) {
+        let filename = path+"horse-bend-0" + str(i) + ".png";
+        horse_bend[i] = loadImage(filename);
+      }
+      for (let i = 0; i < horse_jump.length; i++) {
+        let filename = path+"horse-jump-0" + str(i) + ".png";
+        horse_jump[i] = loadImage(filename);
+      }
+    }
+
+    function setup() {
+      createCanvas(400, 400);
+    }
+
+    function draw() {
+      background(220);
+      if (state === 0) {
+        image(horse, 100, 100);
+      } else if (state === 1) {
+        image(horse_run[int(frameCount / 5) % 7], 100, 100);
+      } else if (state === 2) {
+        image(horse_bend[int(frameCount / 10) % 4], 100, 100);
+      } else if (state === 3) {
+        image(horse_jump[int(frameCount / 6) % 7], 100, 100);
+      }
+    }
+
+    function keyPressed() {
+      if (key === 'h') state = 0;
+      else if (key === 'r') state = 1;
+      else if (key === 'b') state = 2;
+      else if (key === 'j') state = 3;
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
