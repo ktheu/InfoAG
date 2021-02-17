@@ -142,6 +142,8 @@ Die Figur wird mit den Tasten *w, a, s, d* gesteuert. Es ist bisher nur die Bewe
 
 <iframe src="tiles04.html" width="628" height="596"></iframe>
 
+
+```
     class Player {
 
       constructor(pos) {
