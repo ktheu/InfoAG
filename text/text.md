@@ -1,6 +1,65 @@
-## Text und Zeichen
 
-Mit der Funktion `text` können wir Text auf der Leinwand ausgeben. 
+
+
+
+
+## Strings, Text und Zeichen
+
+#### Strings
+
+[doc](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/String)
+
+Strings sind Zeichenfolgen. Sie werden in einfachen oder doppelten Hochkommata eingeschlossen.
+
+```
+let s1 = "Hello";
+let s2 = 'Hello';
+```
+
+```
+function setup() {
+  noCanvas();
+  a = '1'
+  b = 1
+  print(typeof a, typeof b);
+}
+
+Ausgabe: string number 
+```
+
+Nützliche Attribute und Methoden eines String-Objekts:
+
+```
+s = 'Hello';
+s.length;           //  5
+s.substring(1,4);   //  'ell' - von Index 1 bis Index 4. Der Bis-Index wird nicht genommen.
+s.substring(0,s.length-1) // alles außer dem letzten Zeichen
+s.indexOf('l')      //  2  - Index des ersten Auftretens
+s.indexOf('lo')     //  3
+s1 = s + ' world';  // Konkatenation (Zusammenpappen)
+
+s = "Dies ist ein Satz";
+a = s.split(' ');  //  a:  ["Dies", "ist", "ein", "Satz"];
+b = a.join('-')    //  b: "Dies-ist-ein-Satz"
+
+```
+
+Die Zeichen eines Strings können wir mit einer for-Schleife oder einer for-of-Schleife durchlaufen.
+
+```
+for (let i=0; i<s.length; i++) {
+  print(s[i]);
+}
+  
+for (let c of s) {
+  print(c);
+}
+```
+
+
+#### Text
+
+Mit der Funktion `text` können wir Strings auf der Leinwand ausgeben. 
 
 
 ```
@@ -9,6 +68,7 @@ function setup() {
   background(220);
 
   text("Hallo",40,40);  
+  circle(40,40,3);
 
   rect(40, 80, 180, 80);
   let s = "The quick brown fox jumps over the lazy dog";
@@ -54,7 +114,7 @@ Wir lassen eine Timer runterzählen und zählen die Mausclicks als score hoch. W
 erfolgt nach `noLoop()` kein weiterer Durchlauf der draw-Funktion.
 
 ```
-   let count = 20;
+    let count = 20;
     let score = 0;
     let fertig = false;
 
@@ -152,7 +212,7 @@ let cp = 0x1F631;
 
 function setup() {
   createCanvas(200, 200);
-  zeichen = String.fromCodePoint('0x' + cp.toString(16))
+  let zeichen = String.fromCodePoint('0x' + cp.toString(16));
   textSize(50);
   text(zeichen, 70, 100);
 }
@@ -173,7 +233,7 @@ function setup() {
   let size = 30
   textSize(size);
   for (let i = 0; i < 20; i++) {
-    zeichen = String.fromCodePoint('0x' + (cp + i).toString(16));
+    let zeichen = String.fromCodePoint('0x' + (cp + i).toString(16));
     text(zeichen, i*(size+4), 100);
   }
 }

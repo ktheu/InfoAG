@@ -17,7 +17,7 @@ __[Fehler](fehler/fehler.md)__ - Syntaxfehler, Laufzeitfehler, logische Fehler
 
 __[Farben](farben/farben.md)__ - RGB-Farben, HSB-Modus, Farbtabellen, Transparenz
 
-__[Webeditor](webeditor/webeditor.md)__ - Verschönern des Present-Modus
+__[Webeditor](webeditor/webeditor.md)__ - Verschönern des Present-Modus, Tastenkombinationen
 
 __[Interaktion mit der Maus](interaktionMitMaus/interaktionMitMaus.md)__ - 
   mouseX/mouseY, pmouseX/pmouseY, mousePressed, frameRate

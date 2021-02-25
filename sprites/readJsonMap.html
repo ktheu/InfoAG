@@ -1,0 +1,65 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let cols, rows;
+    let gridmap;         // 0-1.. repräsentation auf grid
+    let gridjson;      
+
+    function preload() {
+      gridjson = loadJSON('map50.json');    // gridjson from software tiled
+    }
+
+    function setup() {
+      createCanvas(400, 400);
+      let gridlist = gridjson.layers[0].data 
+      cols = Math.sqrt(gridlist.length)
+      rows = cols
+      gridmap = reshape(gridlist,cols, rows);
+      print2DArray(gridmap)
+    }
+
+    function draw() {
+      background(255);
+
+    }
+
+    function reshape(a, cols, rows) {
+      arr = make2DArray(cols, rows);
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          arr[x][y] = a[x+y*cols];
+        }
+      }
+      return arr;
+    }
+
+    function make2DArray(cols, rows) {
+      let arr = new Array(cols);
+      for (let x = 0; x < cols; x++) {
+        arr[x] = new Array(rows);
+      }
+      return arr;
+    }
+
+    function print2DArray(arr) {
+      let cols = arr.length;
+      let rows = arr[0].length;
+      let line = "";
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          line += " " + arr[x][y];
+        }
+        print(line);
+        line = "";
+      }
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -24,6 +24,18 @@ canvas {
 }
 ```
 
+
+#### Überschreibemodus
+ 
+Manchmal kommt man irgendwie in den Überschreibemodus. Mit der Tastenkombination: `Umschalt + 0 ` kommt man da wieder raus, aber die Null muss aus dem Nummernblock sein.
+
+#### Aus- und Einkommentieren
+
+Mit der Tastenkombination `Str /`  kann man markierete Teile ein- und auskommentieren. Das Zeichen `/`  muss das Geteilt-Zeichen auf
+dem Nummernblock sein.
+
+
+ 
  
  
 
