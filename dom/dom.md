@@ -177,6 +177,8 @@ function setName() {
 
 -----
 
+
+
 #### CSS
 
 Mit *html* beschreiben wir die Struktur einer Webseite, mit *css* den Stil (Farbe, Abstände etc. ) der einzelnen Elemente.

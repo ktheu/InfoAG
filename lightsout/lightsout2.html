@@ -1,0 +1,101 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+    let N = 5;               // NxN Matrix
+    let abstand = 20;
+    let abstandZumRand = 40;
+    let size = 50;
+    let x = new Array(N * N)
+    let y = new Array(N * N)
+    let on = new Array(N * N).fill(false)
+
+    function setup() {
+      let breite = 2 * abstandZumRand + N * size + (N - 1) * abstand
+      createCanvas(breite, breite);
+    }
+
+    function draw() {
+      background(220);
+      for (let i = 0; i < x.length; i++) {
+        fill(255)
+        if (on[i]) fill(255, 255, 0);
+        square(getX(i), getY(i), size);
+      }
+    }
+
+    function getX(k) {
+      // returns: x-Koordinate der k-ten Zelle zurück
+      return abstandZumRand + (k % N) * (abstand + size);
+    }
+
+    function getY(k) {
+      // returns: y-Koordinate der k-ten Zelle
+      return abstandZumRand + int(k / N) * (abstand + size);
+    }
+
+    function nb(k, N) {
+      // returns: ein Array mit den Indizes der Nachbarn
+      tmp = []
+      if ((k + N) < N * N) tmp.push(k + N);
+      if ((k - N) >= 0) tmp.push(k - N);
+      if (k % N < N - 1) tmp.push(k + 1);
+      if (k % N > 0) tmp.push(k - 1);
+      return tmp
+    }
+
+    function innerhalb(x, y, k) {
+      // true, wenn die Position x und y innerhalb der k-ten Zelle ist
+      let xk = getX(k);
+      let yk = getY(k);
+      return xk <= x && x <= xk + size && yk <= y && y <= yk + size;
+
+    }
+
+    function mousePressed() {
+      for (let i = 0; i < N * N; i++) {
+        if (innerhalb(mouseX, mouseY, i)) {
+          on[i] = !on[i]
+          for (let k of nb(i, N)) {
+            on[k] = !on[k];
+          }
+        }
+      }
+    }
+
+    function keyPressed() {
+      if (key === 's') {
+        print(int(on));
+      }
+      if (key == 'n') {
+        let a = choose(int(random(N,N*N)));
+        for (let i of a) {
+          on[i] = !on[i]
+          for (let k of nb(i, N)) {
+            on[k] = !on[k];
+          }
+
+        }
+
+      }
+    }
+
+    function choose(k) {
+      let tmp = new Set();
+      while (tmp.size < k) {
+        tmp.add(int(random(0, N * N)));
+      }
+      return tmp;
+    }
+
+
+
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

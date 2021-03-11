@@ -1,0 +1,31 @@
+<html>
+ <!-- Mit position wird hier der output neben dem Canvas gezeigt  -->
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+    <script>
+        let canvas;
+        let ausgabe;
+        let a = [1, 0, 1, 0, 1, 1, 0, 1, 1];
+
+        function setup() {
+            canvas = createCanvas(200, 200);
+            canvas.position(50, 50);
+            noStroke()
+            ausgabe = createDiv().size(100, 200);
+            for (let i = 0; i < a.length; i++) {
+                ausgabe.html(a[i] + '<br>', true);
+            }
+            ausgabe.position(300, 50);
+        }
+
+        function draw() {
+            background(240);
+            rect(50, 50, 100, 100);
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
