@@ -118,183 +118,162 @@ app.listen(process.env.PORT);
 #### views/index.html
 
 ```
-<html>
-  <head>
-    <title>Highscore-Demo</title>
-    <meta charset="utf-8" />
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #1a1a1a;
-        padding-top: 100px;
-      }
-      canvas {
-        display: block;
-        margin: auto;
-      }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
-    <script>
-      let hsmin = -1;
-      let highscoreText = "";
-      let state = "WELCOME";
+let hsmin = -1;
+let highscoreText = "";
+let state = "WELCOME";
+let bgfarbe = "#777777"; // Farbe background welcome
+let textfarbe = "#CCCCCC"; // Textfarbe welcome
 
-      // set in init0
-      let score;
-      let name;
+// set in init0
+let score;
+let name;
 
-      function preload() {
+function preload() {
+  getHighscore();
+}
+
+function setup() {
+  createCanvas(400, 400);
+  init0();
+}
+
+function draw() {
+  switch (state) {
+    case "WELCOME":
+      welcome();
+      break;
+    case "PLAY":
+      play();
+      break;
+    case "GAMEOVER":
+      gameover();
+      break;
+    case "HIGHSCORE":
+      highscore();
+      break;
+    case "NEWHIGHSCORE":
+      newhighscore();
+      break;
+    case "WAIT":
+      wait();
+      break;
+  }
+}
+
+function init0() {
+  score = 0;
+  name = "";
+}
+
+function getHighscore() {
+  httpGet(
+    "/highscore",
+    "json",
+    false,
+    function(res) {
+      highscoreText = "Highscore:\n\n";
+      for (let i = 0; i < res.length; i++) {
+        highscoreText += res[i].name + ": " + res[i].score + "\n";
+      }
+      hsmin = res[res.length - 1].score;
+    },
+    function(err) {
+      console.log(err);
+    }
+  );
+}
+
+function textausgabe(str, y, size) {
+  rectMode(CORNER);
+  textAlign(CENTER);
+  textSize(size);
+  fill(textfarbe);
+  noStroke();
+  text(str, 0, y, width);
+}
+
+function header() {
+  background(bgfarbe);
+  textausgabe("HighNumber", 50, 24);
+  textausgabe(highscoreText, 100, 14);
+}
+
+function welcome() {
+  header();
+  textausgabe("Hit space to get a number", 280, 14);
+  textausgabe("Start with Enter", 300, 14);
+}
+
+function play() {
+  background(100);
+  score = int(random(2000));
+  textausgabe(score, 170, 30);
+  textausgabe("Hit space to stop", 280, 14);
+}
+
+function gameover() {
+  if (score > hsmin) {
+    state = "HIGHSCORE";
+  } else {
+    header();
+    textausgabe("Your score: " + score, 250, 18);
+    textausgabe("Press r to restart", 300, 14);
+  }
+}
+
+function highscore() {
+  header();
+  textausgabe("Your score: " + score, 250, 18);
+  textausgabe("Your name: " + name, 300, 18);
+}
+
+function wait() {
+  header();
+  textausgabe("... updating database", 300, 14);
+}
+
+function newhighscore() {
+  header();
+  textausgabe("Press r to restart", 300, 14);
+}
+
+function keyTyped() {
+  if (state === "HIGHSCORE") {
+    name += key;
+  }
+}
+
+function keyPressed() {
+  if (state === "WELCOME") {
+    if (keyCode === ENTER) {
+      state = "PLAY";
+    }
+  }
+
+  if (state === "PLAY") {
+    if (key === " ") {
+      state = "GAMEOVER";
+    }
+  }
+
+  if (state === "GAMEOVER" || state === "NEWHIGHSCORE") {
+    if (key === "r") {
+      init0();
+      state = "PLAY";
+    }
+  }
+
+  if (state === "HIGHSCORE") {
+    if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
+    if (keyCode === ENTER) {
+      state = "WAIT";
+      httpPost("/highscore", { name: name, score: score }, function(res) {
         getHighscore();
-      }
-
-      function setup() {
-        createCanvas(300, 300);
-        noStroke();
-        init0();
-      }
-
-      function draw() {
-        background(100);
-        switch (state) {
-          case "WELCOME":
-            welcome();
-            break;
-          case "PLAY":
-            play();
-            break;
-          case "GAMEOVER":
-            gameover();
-            break;
-          case "HIGHSCORE":
-            highscore();
-            break;
-          case "NEWHIGHSCORE":
-            newhighscore();
-            break;
-          case "WAIT":
-            wait();
-            break;
-        }
-      }
-
-      function init0() {
-        score = 0;
-        name = "";
-      }
-
-      function getHighscore() {
-        httpGet(
-          "/highscore",
-          "json",
-          false,
-          function(res) {
-            highscoreText = "Highscore:\n\n";
-            for (let i = 0; i < res.length; i++) {
-              highscoreText += res[i].name + ": " + res[i].score + "\n";
-            }
-            hsmin = res[res.length - 1].score;
-          },
-          function(err) {
-            console.log(err);
-          }
-        );
-      }
-
-      function scoreBackground() {
-        background(100);
-        textSize(30);
-        textAlign(CENTER, CENTER);
-        text(score, 0, 170, width);
-
-        textAlign(CENTER, CENTER);
-        fill(200);
-        textSize(14);
-        text(highscoreText, 0, 60, width);
-      }
-
-      function welcome() {
-        scoreBackground();
-        text("Welcome to HighNumber", 0, 30, width);
-        text("Start with ENTER", 0, 200, width);
-      }
-
-      function play() {
-        background(100);
-        score = int(random(1000));
-        textSize(30);
-        textAlign(CENTER, CENTER);
-        text(score, 0, 170, width);
-        textSize(14);
-        text("Hit space to stop", 0, 260, width);
-      }
-
-      function gameover() {
-        if (score > hsmin) {
-          state = "HIGHSCORE";
-        } else {
-          scoreBackground();
-          text("Your score: " + score, 0, 230, width);
-          text("Press r to restart", 0, 260, width);
-        }
-      }
-
-      function highscore() {
-        scoreBackground();
-        text("Your score: " + score, 0, 230, width);
-        text("Your name: " + name, 0, 260, width);
-      }
-
-      function wait() {
-        scoreBackground();
-        text("Your Score: " + score, 0, 230, width);
-        text("Your Name: " + name, 0, 250, width);
-        text("... updating database", 0, 270, width);
-      }
-
-      function newhighscore() {
-        scoreBackground();
-        text("Press r to restart", 0, 260, width);
-      }
-
-      function keyTyped() {
-        if (state === "HIGHSCORE") {
-          name += key;
-        }
-      }
-
-      function keyPressed() {
-        if (state === "WELCOME") {
-          if (keyCode === ENTER) {
-            state = "PLAY";
-          }
-        }
-
-        if (state === "PLAY") {
-          if (key === " ") {
-            state = "GAMEOVER";
-          }
-        }
-
-        if (state === "GAMEOVER" || state === "NEWHIGHSCORE") {
-          if (key === "r") {
-            init0();
-            state = "PLAY";
-          }
-        }
-
-        if (state === "HIGHSCORE") {
-          if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
-          if (keyCode === ENTER) {
-            state = "WAIT";
-            httpPost("/highscore", { name: name, score: score }, function(res) {
-              getHighscore();
-              state = "NEWHIGHSCORE";
-            });
-          }
-        }
-      }
+        state = "NEWHIGHSCORE";
+      });
+    }
+  }
+}
     </script>
   </head>
 

@@ -1,16 +1,103 @@
 ## Local Storage und HighScore
 
 Mit Javascript können wir nicht direkt auf unser Filesystem zugreifen. 
+
 Mit `getItem` und `storeItem` können wir auf den *local storage* des Browsers zugreifen.  
+
+Die Daten des *local storage* bleiben auch erhalten, wenn man den Browser schließt. 
 
  
 In Chrome können wir den *local storage* mit `Strg+Umsch+i, Application, LocalStorage` anschauen.
- 
+
+
+```
+// speichern
+let vorname = 'Malte';
+storeItem('name',vorname);      
+
+```
+```
+// laden
+let s  = getItem('name');
+        
+```
+
+```
+removeItem('name')   // Eintrag löschen
+clearStorage();      // alle Einträge löschen
+
+```
+####  Einen String in Local Storage speichern und laden
+Mit Mausclick wird der Name aus dem Local Storage geladen.
+
+```
+let name = "";
+
+function setup() {
+  createCanvas(300, 200);
+  storeItem('name', "Malte")
+}
+
+function draw() {
+  background(230);
+  textSize(20);
+  text("Name: " + name, 20, 100);
+}
+
+function mousePressed() {
+  name = getItem('name');
+}
+```
+<iframe src="saveString.html" width="320" height="220"></iframe>
+
+---- 
+####  Ein Array in Local Storage speichern und laden
+Wir müssen das Array vor dem speichern in einen String umwandeln. Nach dem Laden wird aus dem String das Array 
+rekonstruiert.
+
+Mit Mausclick werden die Daten aus dem Local Storage geladen.
+
+```
+let array = "";
+
+function setup() {
+  createCanvas(300, 200);
+  let a = [12,13,14,15];
+  storeItem('daten', JSON.stringify(a))   // Array --> String
+}
+
+function draw() {
+  background(230);
+  textSize(20);
+  text("Daten: " + array, 20, 100);
+}
+
+function mousePressed() {
+  array = JSON.parse(getItem('daten'));   // String --> Array
+}
+```
+
+----
+
+####  Eine Highscore-Tabelle im Local Storage speichern und laden
+
+Die Highscore-Tabelle wird zunächst mit dummy-Einträgen belegt (N.N. = nomen nescio). Die Tabelle ist eine
+Liste von Listen.
+
+
+<iframe src="saveArray.html" width="320" height="220"></iframe>
+
+
 ---
 
 Wenn wir einen Namen eingeben und die Eingabe mit Enter bestätigen, wird dieser Namen beim nächsten Start des Sketches wieder angezeigt.
 
 ```
+
+
+
+
+
     let name = '';
 
     function setup() {

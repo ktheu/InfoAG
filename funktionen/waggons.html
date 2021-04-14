@@ -19,6 +19,7 @@
             x = simple_waggon(x);
             x = simple_waggon(x);
   
+
             xStart = xStart - 2;
             if (x < 0) xStart = 800;
 
@@ -56,6 +57,54 @@
             rad(x + 200);
             rad(x + 260);
             return x + 20 + 300;
+        }
+
+        function mark_schaab_waggon(x) {
+            puffer_vorne(x);
+            fill("#8B8B8C");
+            rect(x + 10, yPuffer - 10, 300, 20);
+            fill("#03A847");
+            rect(x + 15, yPuffer - 70, 290, 60);
+            fill("#A81E14");
+            quad(x + 15, yPuffer - 110, x + 300, yPuffer - 110, x + 315, yPuffer - 70, x + 5, yPuffer - 70);
+            fill("#99D0F2");
+            rect(x + 35, yPuffer - 60, 25, 25);
+            rect(x + 80, yPuffer - 60, 25, 25);
+            rect(x + 125, yPuffer - 60, 25, 25);
+            rect(x + 170, yPuffer - 60, 25, 25);
+            rect(x + 215, yPuffer - 60, 25, 25);
+            rect(x + 260, yPuffer - 60, 25, 25);
+            strokeWeight(10);
+            fill("#7B848C")
+            circle(x + 50, yPuffer + 20, 30);
+            circle(x + 100, yPuffer + 20, 30);
+            circle(x + 220, yPuffer + 20, 30);
+            circle(x + 270, yPuffer + 20, 30);
+            puffer_hinten(x + 10 + 300 + 10);
+            return x + 20 + 300;
+        }
+
+        function moritz_waggon(x) {
+            puffer_vorne(x);
+            fill('#B6ADF0')
+            rect(x + 10, yPuffer - 80, 300, 100, 0, 0, 20, 20);
+            fill('#E1F9CC')
+            rect(x + 40, yPuffer - 60, 240, 35, 12, 12, 20, 20);
+
+            rect(x + 5, yPuffer - 100, 310, 20, 10, 10, 0, 0);
+            rect(x + 35, yPuffer - 130, 250, 20, 10, 10, 0, 0);
+
+            line(x + 50, yPuffer - 100, x + 50, yPuffer - 110);
+            line(x + 270, yPuffer - 100, x + 270, yPuffer - 110)
+
+            fill('#91D9D3');
+            rad(x + 10 + 40);
+            rad(x + 10 + 260);
+            rad(x + 90);
+            rad(x + 230);
+            puffer_hinten(x + 320);
+
+            return x + 320;
         }
 
         function my_waggon(x) {

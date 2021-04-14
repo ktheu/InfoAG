@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Highscore-Demo</title>
+    <title>Ball-Fangen</title>
     <meta charset="utf-8" />
     <style>
       html,
@@ -20,29 +20,43 @@
       let hsmin = -1;
       let highscoreText = "";
       let state = "WELCOME";
-      let bgfarbe = "#777777"; // Farbe background welcome
-      let textfarbe = "#CCCCCC"; // Textfarbe welcome
+      let bgfarbe = "#777777";      // Farbe background welcome
+      let textfarbe = "#CCCCCC";    // Textfarbe welcome
+      
+      let farbe1 = ["#295B7F", "#89CEFF", "#52B7FF", "#737A7F", "#3D88BE"]; // blue
+      let farbe2 = ["#325C40", "#60E08B", "#3F8F59", "#367049", "#5A635D"]; // green
+      let farben = [farbe1, farbe2];
+      let durchmesser = [20, 25];
+      let basketbreite = [50, 40];
+      let nextlevel = [5];
 
       // set in init0
       let score;
       let name;
+      let dy;
+      let x;
+      let y;
 
       function preload() {
         getHighscore();
       }
 
       function setup() {
-        createCanvas(400, 400);
+        createCanvas(600, 400);
         init0();
       }
 
       function draw() {
+        // background(100);
         switch (state) {
           case "WELCOME":
             welcome();
             break;
-          case "PLAY":
-            play();
+          case "LEVEL0":
+            level(0);
+            break;
+          case "LEVEL1":
+            level(1);
             break;
           case "GAMEOVER":
             gameover();
@@ -59,9 +73,37 @@
         }
       }
 
+      function newBall() {
+        x = int(random(50, width - 50));
+        y = 0;
+      }
+
+      function displayBall(lvl) {
+        fill(farben[lvl][3]);
+        circle(x, y, durchmesser[lvl]);
+      }
+
+      function displayScore(lvl) {
+        fill(farben[lvl][2]);
+        noStroke();
+        textSize(16);
+        textAlign(LEFT);
+        text("Score: " + score, 20, 60);
+      }
+
+      function displayBasket(x, lvl) {
+        fill(farben[lvl][2]);
+        stroke(farben[lvl][3]);
+        strokeWeight(3);
+        rectMode(CENTER);
+        rect(x, height - 25, basketbreite[lvl], 50);
+      }
+
       function init0() {
         score = 0;
         name = "";
+        dy = [2, 3];
+        newBall();
       }
 
       function getHighscore() {
@@ -82,6 +124,49 @@
         );
       }
 
+      function level(lvl) {
+        // check
+        let radius = durchmesser[lvl] / 2;
+        let baskethalb = basketbreite[lvl] / 2;
+
+        let linksVonBasket = x + radius < mouseX - baskethalb;
+
+        let rechtsVonBasket = mouseX + baskethalb < x - radius;
+        let ueberBasket = y - radius < height - 15 - baskethalb;
+        let imZwischenraum =
+          mouseX - baskethalb <= x - radius &&
+          x + radius <= mouseX + baskethalb;
+
+        let kollision =
+          !linksVonBasket &&
+          !rechtsVonBasket &&
+          !ueberBasket &&
+          !imZwischenraum;
+        let gefangen = !ueberBasket && imZwischenraum;
+
+        if (gefangen) {
+          score += 1;
+          if (score >= nextlevel[lvl]) {
+            state = "LEVEL" + str(lvl + 1);
+          }
+          newBall();
+        }
+
+        if (y > height || kollision) {
+          state = "GAMEOVER";
+        }
+
+        // move
+        dy[lvl] *= 1.001; // Beschleunigung
+        y = y + dy[lvl];
+
+        // display
+        background(farben[lvl][0]);
+        displayBasket(mouseX, lvl);
+        displayBall(lvl);
+        displayScore(lvl);
+      }
+
       function textausgabe(str, y, size) {
         rectMode(CORNER);
         textAlign(CENTER);
@@ -93,21 +178,14 @@
 
       function header() {
         background(bgfarbe);
-        textausgabe("HighNumber", 50, 24);
+        textausgabe("Ballfangen", 50, 24);
         textausgabe(highscoreText, 100, 14);
       }
 
       function welcome() {
         header();
-        textausgabe("Hit space to get a number", 280, 14);
+        textausgabe("Move basket with mouse to catch the ball", 280, 14);
         textausgabe("Start with Enter", 300, 14);
-      }
-
-      function play() {
-        background(100);
-        score = int(random(2000));
-        textausgabe(score, 170, 30);
-        textausgabe("Hit space to stop", 280, 14);
       }
 
       function gameover() {
@@ -145,20 +223,14 @@
       function keyPressed() {
         if (state === "WELCOME") {
           if (keyCode === ENTER) {
-            state = "PLAY";
-          }
-        }
-
-        if (state === "PLAY") {
-          if (key === " ") {
-            state = "GAMEOVER";
+            state = "LEVEL0";
           }
         }
 
         if (state === "GAMEOVER" || state === "NEWHIGHSCORE") {
           if (key === "r") {
             init0();
-            state = "PLAY";
+            state = "LEVEL0";
           }
         }
 

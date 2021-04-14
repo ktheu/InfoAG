@@ -1,0 +1,42 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let highscore;
+    
+    function setup() {
+      createCanvas(300, 200);
+      let tmp = [['Malte', 12], ['Thorben', 10], ['Lena', 15],['N.N.',0],['N.N.',0]];
+      tmp.sort((a, b) => (a[1] < b[1]) ? 1 : -1)       // abwärts nach der 2.Komponente sortieren
+      storeItem('highscore',JSON.stringify(tmp));
+    }
+
+    function displayHighscore(highscore,x,y,size,color) {
+      textSize(size);
+      noStroke();
+      fill(color);
+      let ausgabe = "Highscore:\n\n";
+      for (let x of highscore) {
+        ausgabe = ausgabe + x[0] + " - " + x[1] + '\n';
+      }
+      text(ausgabe,x,y);
+    }
+
+    function draw() {
+      background(230);
+      if (highscore) displayHighscore(highscore,30,30,14,100);
+    }
+
+    function mousePressed() {
+      highscore = JSON.parse(getItem('highscore'));
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

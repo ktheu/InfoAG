@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width	, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <title>Color Array</title>
+  <style>
+    textarea {
+      height: 20vh;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="row" style="margin-top: 10%">
+      <h3>Color Array</h3>
+      <p>Generate a P5JS Color Array from an Adobe Color Palette</p>
+      <p><a href="https://color.adobe.com/de/explore">Adobe Color CC / Explore </a></p>
+    </div>
+
+    <div class="row">
+      <div class="five columns" id="canvas_position"></div>
+      <div class="three columns">
+        <input class="button" type="button" value="Generate" id="btnGenerate">
+      </div>
+    </div>
+
+    <div class="row" spellcheck="false">
+      <form>
+        <div class="ten columns">
+          <textarea placeholder="CSS-Input..." id="areaCss" class="u-full-width"></textarea>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</body>
+<script src="app.js"></script>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width	, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <title>Color Arrange</title>
+  <style>
+    textarea {
+      height: 5vh;
+    }
+
+    .weit {
+      float: left;
+      width: 90px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="row" style="margin-top: 10%">
+      <h3>Color Arrange</h3>
+      <p>Arrange a Color Array: background, fill1, fill2, stroke, text</p>
+    </div>
+
+    <div class="row">
+      <div class="six columns" id="canvas_position"></div>
+      <div class="three columns">
+        <span class="weit">background</span>
+        <select id="wahl0" name="wahl0" onchange="wahldo()">
+          <option value="0" selected="selected">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select><br>
+
+
+        <span class="weit">fill 1</span>
+        <select id="wahl1" name="wahl1" onchange="wahldo()">
+          <option value="0">0</option>
+          <option value="1" selected="selected">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select><br>
+
+
+        <span class="weit">fill 2</span>
+        <select id="wahl2" name="wahl2" onchange="wahldo()">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2" selected="selected">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select><br>
+
+
+        <span class="weit">stroke</span>
+        <select id="wahl3" name="wahl3" onchange="wahldo()">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3" selected="selected">3</option>
+          <option value="4">4</option>
+        </select><br>
+
+        <span class="weit">text</span>
+        <select id="wahl4" name="wahl4" onchange="wahldo()">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4" selected="selected">4</option>
+        </select><br>
+
+      </div>
+
+
+
+      <div class="two columns">
+        <span>0</span>
+        <input type="color" id="wahl0color"></input><br>
+        <span>1</span>
+        <input type="color" id="wahl1color"></input><br>
+        <span>2</span>
+        <input type="color" id="wahl2color"></input><br>
+        <span>3</span>
+        <input type="color" id="wahl3color"></input><br>
+        <span>4</span>
+        <input type="color" id="wahl4color"></input>
+      </div>
+    </div>
+
+
+    <div class="row" spellcheck="false">
+      <form>
+        <div class="eight columns">
+          <textarea placeholder="Color Array..." id="area" class="u-full-width"></textarea>
+        </div>
+      </form>
+      <div class="three columns">
+        <input class="button" type="button" value="Reset" id="btn">
+      </div>
+    </div>
+
+  </div>
+
+</body>
+<script src="app.js"></script>
+
+</html>

@@ -1,0 +1,103 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let highscore;
+    let score;
+    let namenseingabe;
+    let name;
+
+    function setup() {
+      createCanvas(300, 200);
+      highscore = initHighscore('highscore', 3);
+      init0();
+    }
+
+    function draw() {
+      background(220);
+      if (highscore) displayHighscore(highscore, 20, 12, 100);
+      textausgabe('Mausklick für eine Zufallszahl', 120, 14, 120);
+      if (score) textausgabe(score, 140, 16, 50);
+      if (namenseingabe) {
+        textausgabe('Dein Name: ' + name, 160, 16, 120);
+      }
+    }
+
+    function init0() {
+      namenseingabe = false;
+      name = "";
+      score = 0;
+    }
+
+    function mousePressed() {
+      if (!namenseingabe) {
+        score = int(random(5, 500));
+        if (score > highscore[highscore.length - 1][1]) {
+          namenseingabe = true;
+        }
+      }
+    }
+
+    function initHighscore(varName, anzahl) {
+      let tmp = getItem(varName);
+      if (tmp) {
+        return JSON.parse(tmp);
+      }
+      else {
+        tmp = [];
+        let nn = ['N.N', 0];
+        for (let i = 0; i < anzahl; i++) {
+          tmp.push(nn);
+        }
+        storeItem(varName, JSON.stringify(tmp));
+        return tmp;
+      }
+    }
+
+    function updateHighscore(name, score, highscore) {
+      highscore.push([name, score]);
+      highscore.sort((a, b) => (a[1] < b[1]) ? 1 : -1)
+      highscore.pop();
+      storeItem('highscore',JSON.stringify(highscore))
+    }
+
+    function displayHighscore(highscore, y, size, farbe) {
+      let ausgabe = "Highscore: \n";
+      for (let x of highscore) {
+        ausgabe = ausgabe + x[0] + " - " + x[1] + '\n';
+      }
+      textausgabe(ausgabe, y, size, farbe);
+    }
+
+    function textausgabe(str, y, size = 14, farbe = 200) {
+      rectMode(CORNER);
+      textAlign(CENTER);
+      textSize(size);
+      fill(farbe);
+      noStroke();
+      text(str, 0, y, width);
+    }
+
+    function keyTyped() {
+      if (namenseingabe) {
+        name += key;
+      }
+    }
+
+    function keyPressed() {
+      if (keyCode === BACKSPACE) name = name.substr(0, name.length - 1);
+      if (keyCode === ENTER) {
+        updateHighscore(name, score, highscore)
+        init0()
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    farbe0 = ['#295B7F', '#89CEFF', '#52B7FF', '#737A7F', '#3D88BE']   // blue
+    farbe1 = ['#325C40', '#60E08B', '#367049', '#3F8F59', '#5A635D']   // green
+    farbe2 = ['#BEAD10', '#7E730B', '#FEE815', '#3F3905', '#E4D013'];  // yellow
+    farben = [farbe0, farbe1, farbe2];
+
+    let state = "WELCOME";
+    let basketbreite = [40, 38, 37];
+    let balldurchmesser = [20, 21, 22];
+    let nextlevel = [5, 10, 1000];
+
+    let score;
+    let level;
+    let vy;
+    let x;
+    let y;
+
+    function setup() {
+      createCanvas(600, 400);
+    }
+
+    function init0() {
+      score = 0;
+      level = 0;
+      vy = [2, 3, 3.2];
+      newBall();
+      state = "PLAY";
+    }
+
+    function newBall() {
+      x = int(random(50, width - 50));
+      y = 0;
+    }
+
+    function draw() {
+      switch (state) {
+        case "WELCOME":
+          welcome();
+          break;
+        case "PLAY":
+          play(level);
+          break;
+        case "END":
+          end();
+          break;
+      }
+    }
+
+    function welcome() {
+      background(120);
+      textausgabe('Welcome to Ballfangen', 100, 20);
+      textausgabe('Move basket with mouse to catch the ball', 300);
+      textausgabe('Press Enter to start', 320);
+    }
+
+    function play(lvl) {
+      background(farben[lvl][0])
+
+      // check
+      let radius = balldurchmesser[lvl] / 2;
+      let baskethalb = basketbreite[lvl] / 2;
+      let oberhalb = (y + radius) < height - 50;
+      let unterhalb = (height - 50) < y - radius
+      let zwischen = (mouseX - baskethalb < x - radius) && (x + radius < mouseX + baskethalb);
+      let gefangen = zwischen && unterhalb;
+      let kollision = !oberhalb && !zwischen;
+
+      if (gefangen) {
+        score++;
+        if (score >= nextlevel[lvl]) {
+          if (level === farben.length) {
+            state = "END"
+          } else {
+            level++;
+          }
+        }
+        else {
+          newBall();
+        }
+      }
+
+      if (kollision) {
+        state = 'END'
+      }
+
+      // move
+      vy[level] *= 1.001
+      y = y + vy[level]
+
+      // display 
+      displayScore(level);
+      displayBasket(level);
+      displayBall(level);
+
+    }
+
+    function end() {
+      background(120);
+      textausgabe("End of Ballfangen", 100, 20);
+      textausgabe("Your score: " + score, 300);
+      textausgabe("r - restart", 320);
+    }
+
+    function displayBall(level) {
+      noStroke();
+      fill(farben[level][4]);
+      circle(x, y, balldurchmesser[level]);
+    }
+
+    function displayBasket(level) {
+      rectMode(CENTER);
+      strokeWeight(2);
+      stroke(farben[level][2]);
+      fill(farben[level][3]);
+      rect(mouseX, height - 25, basketbreite[level], 50);
+    }
+
+    function displayScore(level) {
+      noStroke();
+      fill(farben[level][3]);
+      textSize(20);
+      text(score, 40, 40);
+    }
+
+    function keyPressed() {
+      if (state === 'WELCOME' && keyCode === ENTER) {
+        init0();
+      } else if (state === 'END' && key === 'r') {
+        init0();
+      }
+    }
+
+    function textausgabe(str, y, size = 14, farbe = 200) {
+      rectMode(CORNER);
+      textAlign(CENTER);
+      textSize(size);
+      fill(farbe);
+      noStroke();
+      text(str, 0, y, width);
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

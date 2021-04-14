@@ -1,0 +1,35 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script>
+
+    let daten = [['Malte', 11], ['Thorben', 12], ['Lena', 14], ['Sören', 13]];
+
+    function setup() {
+      createCanvas(300, 300);
+      textSize(14);
+      noStroke();
+    }
+
+    function draw() {
+      background(220);
+      let y = 30;
+      for (let x of daten) {
+        text(x[0] + " " + x[1] + "\n", 30, y)
+        y += 20;
+      }
+    }
+
+    function mousePressed() {
+      daten.sort((a,b) => (a[1] < b[1]) ? 1 : -1)
+    }
+
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
