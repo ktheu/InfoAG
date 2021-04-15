@@ -1,41 +1,46 @@
 ## Zustände
 
-Bei Spielen ist es häufig möglich, verschiedene Zustände zu identifizieren. Meist unterscheiden sich die Zustände dadurch,
-dass auf der Leinwand andere Dinge zu sehen sind. Im Beispiel wird im Zustand "WELCOME" der Benutzer begrüßt und mit den Regeln des
+Bei Spielen ist es häufig möglich, verschiedene Zustände zu identifizieren. Meist unterscheiden sich die Zustände dadurch, dass auf der Leinwand andere Dinge zu sehen sind. Im Beispiel wird im Zustand "WELCOME" der Benutzer begrüßt und mit den Regeln des
 Spiels vertraut gemacht, im Zustand "PLAY" findet das eigentliche Spiel statt, im Zustand "END" wird das Ergebnis angezeigt und
 die Möglichkeit zum Restart gegeben.
 
 Für spendieren uns eine Variable `state` und implementieren für jeden Zustand eine eigene Funktion.
 Die draw-Funktion beteht dann nur noch aus einer `switch-case` Anweisung.
 
-Hat unser Spiel mehrere Levels, wird jeder Level ein eigener Zustand.
-
-Beispiel (ohne Levels): SimplePong
+Beispiel: BallFangen
 
 
 ```
-    let xBalken = 150;
-    let yBalken = 270;
-    let balkenBreite = 80;
-    let balkenHoehe = 10;
-    let xBall = 20;
-    let yBall = 50;
-    let ballRadius = 10;
-    let treffer = 0;
-
-    let vxBall = 4;
-    let vyBall = 3;
-
-    let vxBalken = 4;
-
-    let pLinksVonBalken;
-    let pRechtsVonBalken;
+    farbe0 = ['#295B7F', '#89CEFF', '#52B7FF', '#737A7F', '#3D88BE']   // blue
+    farbe1 = ['#325C40', '#60E08B', '#367049', '#3F8F59', '#5A635D']   // green
+    farben = [farbe0, farbe1];
 
     let state = "WELCOME";
+    let basketbreite = [40, 38];
+    let balldurchmesser = [20, 21];
+    let nextlevel = [10, 1000];
+
+    let score;
+    let level;
+    let vy;
+    let x;
+    let y;
 
     function setup() {
-      createCanvas(300, 300);
-      ellipseMode(RADIUS);
+      createCanvas(600, 400);
+    }
+
+    function init0() {
+      score = 0;
+      level = 0;
+      vy = [2, 3];
+      newBall();
+      state = "PLAY";
+    }
+
+    function newBall() {
+      x = int(random(50, width - 50));
+      y = 0;
     }
 
     function draw() {
@@ -44,7 +49,7 @@ Beispiel (ohne Levels): SimplePong
           welcome();
           break;
         case "PLAY":
-          play();
+          play(level);
           break;
         case "END":
           end();
@@ -52,95 +57,95 @@ Beispiel (ohne Levels): SimplePong
       }
     }
 
-    function end() {
-      background(120);
-      fill(50);
-      textSize(20);
-      textAlign(CENTER);
-      text("End of SimplePong\n\n", 0, 100, width, 20);
-      textSize(16);
-      text("Your score: " + treffer + "\n\nr - restart", 0, 140, width, 80);
-    }
-
     function welcome() {
       background(120);
-      fill(50);
-      textSize(20);
-      textAlign(CENTER);
-      text("Welcome to SimplePong\n\n", 0, 100, width, 20);
-      textSize(16);
-      text("Move paddle with \nleft and right arrow-key \n\nENTER to start", 0, 140, width, 80);
+      textausgabe('Welcome to Ballfangen', 100, 20);
+      textausgabe('Move basket with mouse to catch the ball', 300);
+      textausgabe('Press Enter to start', 320);
     }
 
-    function play() {
-      background(0);
+    function play(lvl) {
+      background(farben[lvl][0])
 
-      let oberhalbBalken = yBall + ballRadius <= yBalken;
-      let unterhalbBalken = yBall - ballRadius >= yBalken + balkenHoehe;
-      let linksVonBalken = xBall + ballRadius <= xBalken;
-      let rechtsVonBalken = xBalken + balkenBreite <= xBall - ballRadius;
+      // check
+      let radius = balldurchmesser[lvl] / 2;
+      let baskethalb = basketbreite[lvl] / 2;
+      let oberhalb = (y + radius) < height - 50;
+      let unterhalb = (height - 50) < y - radius
+      let zwischen = (mouseX - baskethalb < x - radius) && (x + radius < mouseX + baskethalb);
+      let gefangen = zwischen && unterhalb;
+      let kollision = !oberhalb && !zwischen;
 
-      let kollisionMitBalken = !(oberhalbBalken || unterhalbBalken || linksVonBalken || rechtsVonBalken);
-
-      let amRandLinksRechts = (xBall - ballRadius < 0 || xBall + ballRadius > width);
-      let amRandOben = yBall - ballRadius < 0;
-
-      let kommtVonLinks = pLinksVonBalken && !linksVonBalken;
-      let kommtVonRechts = pRechtsVonBalken && !rechtsVonBalken;
-
-      if (amRandLinksRechts) vxBall = -vxBall;
-      if (amRandOben) vyBall = -vyBall;
-
-      if (kollisionMitBalken) {
-        if (kommtVonLinks) vxBall = -vxBall - vxBalken;
-        else if (kommtVonRechts) vxBall = -vxBall + vxBalken
+      if (gefangen) {
+        score++;
+        if (score >= nextlevel[lvl]) {
+          if (level === farben.length) {
+            state = "END"
+          } else {
+            level++;
+          }
+        }
         else {
-          vyBall = -vyBall;
-          treffer++;
+          newBall();
         }
       }
 
-      if (yBall > height) {
-        state = "END";
+      if (kollision) {
+        state = 'END'
       }
 
-      if (keyIsDown(LEFT_ARROW)) xBalken = xBalken - vxBalken;
-      if (keyIsDown(RIGHT_ARROW)) xBalken = xBalken + vxBalken;
+      // move
+      vy[level] *= 1.001
+      y = y + vy[level]
 
-      // der Ball wird langsam schneller
-      vxBall = vxBall * 1.0003;
-      vyBall = vyBall * 1.0003;
+      // display 
+      displayScore(level);
+      displayBasket(level);
+      displayBall(level);
+    }
 
-      xBall = xBall + vxBall;
-      yBall = yBall + vyBall;
-
-      noStroke();
-      rect(xBalken, yBalken, balkenBreite, balkenHoehe);
-      circle(xBall, yBall, ballRadius);
-
-      textSize(20);
-      fill(255);
-      text(treffer + "", 20, 30);
-
-      pLinksVonBalken = linksVonBalken;
-      pRechtsVonBalken = rechtsVonBalken;
-
+    function end() {
+      background(120);
+      textausgabe("End of Ballfangen", 100, 20);
+      textausgabe("Your score: " + score, 300);
+      textausgabe("r - restart", 320);
     }
 
     function keyPressed() {
-      if (state === "WELCOME" && keyCode === ENTER) {
-        state = "PLAY";
+      if ((state === 'WELCOME' && keyCode === ENTER) || (state === 'END' && key === 'r')) {
+        init0();
       }
+    }
 
-      if (state === "END" && key === 'r') {
-        treffer = 0;
-        xBall = random(20, width - 20);
-        yBall = 50;
-        vxBall = 4;
-        vyBall = 3;
-        state = "PLAY";
-      }
+    function displayBall(level) {
+      noStroke();
+      fill(farben[level][4]);
+      circle(x, y, balldurchmesser[level]);
+    }
+
+    function displayBasket(level) {
+      rectMode(CENTER);
+      strokeWeight(2);
+      stroke(farben[level][2]);
+      fill(farben[level][3]);
+      rect(mouseX, height - 25, basketbreite[level], 50);
+    }
+
+    function displayScore(level) {
+      noStroke();
+      fill(farben[level][3]);
+      textSize(20);
+      text(score, 40, 40);
+    }
+
+    function textausgabe(str, y, size = 14, farbe = 200) {
+      rectMode(CORNER);
+      textAlign(CENTER);
+      textSize(size);
+      fill(farbe);
+      noStroke();
+      text(str, 0, y, width);
     }
 ```
 
-<iframe src="simplePong.html" width="320" height="320"></iframe>
+<iframe src="fangen.html" width="620" height="420"></iframe>

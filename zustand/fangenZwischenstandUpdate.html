@@ -4,13 +4,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
   <script>
 
-    let farbe0 = ['#295B7F', '#89CEFF', '#52B7FF', '#3D88BE', '#737A7F'] // blue
-    let farbe1 = ['#325C40', '#60E08B', '#3F8F59', '#367049', '#5A635D'] // green
-    let farben = [farbe0, farbe1]
+    let farbe0 = ['#295B7F', '#89CEFF', '#52B7FF', '#3D88BE', '#737A7F']; // blue
+    let farbe1 = ['#325C40', '#60E08B', '#3F8F59', '#367049', '#5A635D']; // green
+    let farbe2 = ['#D96704','#F29F05','#F2B705','#F2E641','#F2CB05'];
+    let farben = [farbe0, farbe1, farbe2]
 
-    let basketbreite = [60, 50];
-    let balldurchmesser = [30, 35];
-    let nextlevel = [10, 1000];
+    let basketbreite = [60, 50, 48];
+    let balldurchmesser = [30, 35, 38];
+    let nextlevel = [5, 10, 1000];
     let state = "WELCOME";
 
     let x;
@@ -28,7 +29,7 @@
       state = "PLAY";
       score = 0;
       level = 0;
-      vy = [2, 3];
+      vy = [2, 3, 3.5];
       newBall();
     }
 
