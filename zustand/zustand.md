@@ -79,15 +79,9 @@ Beispiel: BallFangen
       if (gefangen) {
         score++;
         if (score >= nextlevel[lvl]) {
-          if (level === farben.length) {
-            state = "END"
-          } else {
-            level++;
-          }
+           level++;
         }
-        else {
-          newBall();
-        }
+        newBall();
       }
 
       if (kollision) {
