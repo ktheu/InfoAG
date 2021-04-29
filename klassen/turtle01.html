@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+        class Turtle {
+
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.richtung = 0; // 0,1,2,3 - N,W,S,O
+            }
+
+            display() {
+                rectMode(CENTER)
+                strokeWeight(1);
+                fill(0, 255, 0);
+                if (this.richtung === 0 || this.richtung === 2) {
+                    rect(this.x, this.y, 10, 20);
+                }
+
+                if (this.richtung === 1 || this.richtung === 3) {
+                    rect(this.x, this.y, 20, 10);
+                }
+            }
+
+            gehe(schritte = 1) {
+                strokeWeight(3);
+                let weg = schritte * 40;
+                if (this.richtung === 0) {
+
+                    line(this.x, this.y, this.x, this.y - weg);
+                    this.y = this.y - weg;
+                } else if (this.richtung === 1) {
+
+                    line(this.x, this.y, this.x - weg, this.y);
+                    this.x = this.x - weg;
+                } else if (this.richtung === 2) {
+
+                    line(this.x, this.y, this.x, this.y + weg);
+                    this.y = this.y + weg;
+                } else if (this.richtung === 3) {
+
+                    line(this.x, this.y, this.x + weg, this.y);
+                    this.x = this.x + weg;
+                }
+
+            }
+
+            dreheNachLinks() {
+                this.richtung = (this.richtung + 1) % 4
+            }
+
+            dreheNachRechts() {
+                if (this.richtung === 0)
+                    this.richtung = 3;
+                else
+                    this.richtung = (this.richtung - 1)
+            }
+
+            goto(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+        }
+
+
+        let t = new Turtle(200, 200);
+
+        function setup() {
+            createCanvas(400, 400);
+            background(220);
+
+            t.gehe();
+            t.gehe();
+            t.dreheNachLinks();
+            t.gehe();
+            t.dreheNachLinks();
+            t.gehe();
+            t.dreheNachLinks();
+            t.gehe();
+            t.gehe(4);
+            t.dreheNachRechts();
+            t.gehe();
+            t.dreheNachRechts();
+            t.gehe();
+            t.goto(100, 300);
+            for (let i = 0; i < 4; i++) {
+                t.gehe(2);
+                t.dreheNachRechts();
+            }
+
+        }
+
+ 
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

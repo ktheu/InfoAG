@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+        class Ball {
+
+            constructor(x, y, d) {
+                this.x = x;
+                this.y = y;
+                this.d = d;
+                this.pulsiere = false;
+                this.amplitude = 0.2;
+            }
+
+            display() {
+                let faktor = 1
+                if (this.pulsiere) {
+                    faktor = 1 + this.amplitude * sin(frameCount * 0.1);
+                }
+                circle(this.x, this.y, faktor * this.d);
+            }
+        }
+
+        let baelle = [];
+        let anzahl = 10;
+
+
+        function setup() {
+            createCanvas(400, 400);
+            for (let i = 0; i < anzahl; i++) {
+                let x = int(random(20, width))
+                let y = int(random(20, height))
+                let d = int(random(20, 50))
+                let b = new Ball(x, y, d);
+                b.amplitude = random(0.1, 1.5);
+                baelle.push(b);
+            }
+
+        }
+
+        function draw() {
+            background(0);
+            for (let b of baelle) {
+                b.display();
+                b.pulsiere = true;
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
