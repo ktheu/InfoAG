@@ -5,8 +5,8 @@ Hintergrund eignet sich das *png*-Format.
  
 
 -----
-
-Lizenzfreie Bilder können von  [Pexels](https://www.pexels.com/) oder [Unsplash](https://unsplash.com/)  heruntergeladen und dann in den P5-WebEditor geladen werden.
+<!-- [Pexels](https://www.pexels.com/)  -->
+Lizenzfreie Bilder können von [Unsplash](https://unsplash.com/)  heruntergeladen und dann in den P5-WebEditor geladen werden.
 
 
 #### Upload in den P5 Webeditor
